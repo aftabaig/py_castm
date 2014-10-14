@@ -1,0 +1,56 @@
+<section class="panel">
+    <div class="panel-body">
+        <section id="unseen">
+            <section class="panel">
+                <header ng-if="isNew" class="panel-heading big-font">New Entity</header>
+                <header ng-if="!isNew" class="panel-heading big-font">Edit Entity</header>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="input-group" style="padding-bottom:5px">
+                            <span class="input-group-addon">Name</span>
+                            <input ng-model="entity.name" type="text" class="form-control" style="width:250px">
+                        </div>
+                        <div class="input-group" style="padding-bottom:5px">
+                            <span class="input-group-addon">Type</span>
+                            <input ng-model="entity.type" type="text" class="form-control" style="width:250px">
+                        </div>
+                        <div>
+                            <label>Address</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Tenancy</span>
+                                <input ng-model="entity.tenancy" type="text" class="form-control" style="width:250px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Street #</span>
+                                <input ng-model="entity.street_num" type="text" class="form-control" style="width:100px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Street </span>
+                                <input ng-model="entity.street" type="text" class="form-control" style="width:250px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Town </span>
+                                <input ng-model="entity.town"  type="text" class="form-control" style="width:250px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Postcode </span>
+                                <input ng-model="entity.postcode"  type="text" class="form-control" style="width:150px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">State </span>
+                                <input ng-model="entity.state"  type="text" class="form-control" style="width:150px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Country </span>
+                                <input ng-model="entity.country"  type="text" class="form-control" style="width:150px">
+                            </div>
+                        </div>
+                        <button ng-click="save()" type="button" class="btn btn-info">Save</button>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

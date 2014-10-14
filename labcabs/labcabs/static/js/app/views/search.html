@@ -1,0 +1,147 @@
+<section class="panel">
+    <div class="panel-body">
+        <section id="unseen">
+            <section class="panel">
+                <header class="panel-heading big-font">Search Consignments</header>
+                <div class="panel-body">
+                    <form role="form">
+                        <div style="width:100%;padding-top:20px">
+                            <label>By Consingor/Consignee</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <select ng-model="consignor" class="form-control">
+                                    <option value="">-- Any Consignor --</option>
+                                    <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignor===entity.id^^">^^entity.name^^</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <select ng-model="consignee" class="form-control">
+                                    <option value="">-- Any Consignee --</option>
+                                    <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignee===entity.id^^">^^entity.name^^</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="width:100%;padding-top:20px">
+                            <label>By Delivery Address</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Postcode</span>
+                                <input ng-model="postcode" type="text" class="form-control" style="width:250px">
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">State</span>
+                                <input ng-model="state" type="text" class="form-control" style="width:250px">
+                            </div>
+                        </div>
+                        <div style="width:100%;padding-top:20px">
+                            <label>By Account</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span class="input-group-addon">Account</span>
+                                <input ng-model="account" type="text" class="form-control" style="width:250px">
+                            </div>
+                        </div>
+                        <div style="width:100%;padding-top:20px">
+                            <label>By Modes/Statuses</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <select ng-model="mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
+                                    <option value="">-- Any Mode --</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <select ng-model="status" ng-options="status for status in statuses track by status" class="form-control" style="width:250px">
+                                    <option value="">-- Any Status --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="width:100%;padding-top:20px">
+                            <label>By Pickup Date</label>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span ng-click="openStart($event)" class="input-group-addon" style="cursor:pointer">From</span>
+                                <input  ng-model="startDate"
+                                    type="text" class="form-control"
+                                    style="width:150px"
+                                    datepicker-popup="dd-MMM-yyyy hh:mm"
+                                    min-mode="time"
+                                    datepicker-mode="time"
+                                    is-open="openedStart"
+                                    close-on-date-selection="true"
+                                    date-disabled="disabled(date, mode)"
+                                    show-button-bar="false"
+                                    show-weeks="false"/>
+                            </div>
+                            <div class="input-group" style="padding-bottom:5px">
+                                <span ng-click="openEnd($event)" class="input-group-addon" style="cursor:pointer">To</span>
+                                <input  ng-model="endDate"
+                                    type="text" class="form-control"
+                                    style="width:150px"
+                                    datepicker-popup="dd-MMM-yyyy hh:mm"
+                                    min-mode="time"
+                                    datepicker-mode="time"
+                                    is-open="openedEnd"
+                                    close-on-date-selection="true"
+                                    date-disabled="disabled(date, mode)"
+                                    show-button-bar="false"
+                                    show-weeks="false"/>
+                            </div>
+                        </div>
+                        <div style="margin-top:20px">
+                            <button ng-click="search()" type="button" class="btn btn-info">Search Consignments</button>
+                        </div>
+                        <div style="margin-top:20px">
+                            <div ng-if="filteredConsignments.length == 0" class="well">
+                                No Results
+                            </div>
+                            <table ng-if="filteredConsignments.length > 0" class="table table-bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Consignor</th>
+                                        <th>Consignee</th>
+                                        <th>Pickup Address</th>
+                                        <th>Delivery Address</th>
+                                        <th>Account</th>
+                                        <th>Mode</th>
+                                        <th>Status</th>
+                                        <th>Pickup Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="consignment in filteredConsignments">
+                                        <td>
+                                            <a href="/#/consignments/^^consignment.id^^">^^consignment.id^^</a>
+                                        </td>
+                                        <td>
+                                            <div>^^consignment.consignorObj.name^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^consignment.consigneeObj.name^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^formatAddress(consignment.consignorObj)^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^formatAddress(consignment.consigneeObj)^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^consignment.account^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^consignment.mode^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^consignment.status^^</div>
+                                        </td>
+                                        <td>
+                                            <div>^^ consignment.pickupDate | date:'dd-MM-yyyy HH:mm' ^^</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />
