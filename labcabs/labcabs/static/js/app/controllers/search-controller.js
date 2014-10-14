@@ -64,9 +64,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
-    if ($scope.postcode) {
+    if ($scope.pickupPostcode) {
 
-        var re = new RegExp($scope.postcode, 'i');
+        var re = new RegExp($scope.pickupPostcode, 'i');
         var filteredEntities = []
         for (i=0; i<$scope.entities.length; i++) {
             var entity = $scope.entities[i];
@@ -74,15 +74,12 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
                 filteredEntities.push(entity.id);
             }
         }
-        console.log("filtered-entities");
-        console.dir(filteredEntities);
 
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
             var found = false;
             filteredEntities.forEach(function(entity) {
-                console.log("consignee",consignment.consignee);
-                if (consignment.consignee === entity) {
+                if (consignment.consignor === entity) {
                     found = true;
                 }
             });
@@ -92,9 +89,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
-    if ($scope.state) {
+    if ($scope.pickupState) {
 
-        var re = new RegExp($scope.state, 'i');
+        var re = new RegExp($scope.pickupState, 'i');
         var filteredEntities = []
         for (i=0; i<$scope.entities.length; i++) {
             var entity = $scope.entities[i];
@@ -107,7 +104,57 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
             var consignment = $scope.filteredConsignments[i];
             var found = false;
             filteredEntities.forEach(function(entity) {
-                if (consignment.consignee == entity.id) {
+                if (consignment.consignor == entity) {
+                    found = true;
+                }
+            });
+            if (!found) {
+                $scope.filteredConsignments.splice(i--, 1);
+            }
+        }
+    }
+
+    if ($scope.deliveryPostcode) {
+
+        var re = new RegExp($scope.deliveryPostcode, 'i');
+        var filteredEntities = []
+        for (i=0; i<$scope.entities.length; i++) {
+            var entity = $scope.entities[i];
+            if (entity.postcode.match(re)) {
+                filteredEntities.push(entity.id);
+            }
+        }
+
+        for (i=0; i<$scope.filteredConsignments.length; i++) {
+            var consignment = $scope.filteredConsignments[i];
+            var found = false;
+            filteredEntities.forEach(function(entity) {
+                if (consignment.consignee === entity) {
+                    found = true;
+                }
+            });
+            if (!found) {
+                $scope.filteredConsignments.splice(i--, 1);
+            }
+        }
+    }
+
+    if ($scope.deliveryState) {
+
+        var re = new RegExp($scope.deliveryState, 'i');
+        var filteredEntities = []
+        for (i=0; i<$scope.entities.length; i++) {
+            var entity = $scope.entities[i];
+            if (entity.state.match(re)) {
+                filteredEntities.push(entity.id);
+            }
+        }
+
+        for (i=0; i<$scope.filteredConsignments.length; i++) {
+            var consignment = $scope.filteredConsignments[i];
+            var found = false;
+            filteredEntities.forEach(function(entity) {
+                if (consignment.consignee == entity) {
                     found = true;
                 }
             });

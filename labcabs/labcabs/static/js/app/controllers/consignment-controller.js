@@ -16,7 +16,7 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
     $scope.entities.forEach(function(entity) {
         if (entity.id == entityId) {
             $scope.consignment.account = entity.name;
-            $scope.selectedConsignor = entity;
+            $scope.consignment.pickupAddress = $scope.formatAddress(entity);
         }
     });
   }
@@ -25,6 +25,7 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
     $scope.entities.forEach(function(entity) {
         if (entity.id == entityId) {
             $scope.selectedConsignee = entity;
+            $scope.consignment.deliveryAddress = $scope.formatAddress(entity);
         }
     });
   }
@@ -32,8 +33,6 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
   $scope.entities = entities;
   $scope.consignment = consignment;
   if ($scope.consignment) {
-    $scope.onConsignorChange($scope.consignment.consignor);
-    $scope.onConsigneeChange($scope.consignment.consignee);
     $scope.isNew = false;
   }
   else {

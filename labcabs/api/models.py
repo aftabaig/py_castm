@@ -6,6 +6,8 @@ from django.db import models
 class Consignment(models.Model):
     consignor = models.ForeignKey('Entity', default=0, related_name='consignment_consignor')
     consignee = models.ForeignKey('Entity', default=0, related_name='consignment_consignee')
+    pickupAddress = models.CharField('Pickup Address', max_length=512)
+    deliveryAddress = models.CharField('Delivery Address', max_length=512)
     account = models.CharField('Account', max_length=255, blank=False)
     mode = models.CharField('Mode', max_length=64, blank=False)
     status = models.CharField('Status', max_length=64, blank=False)

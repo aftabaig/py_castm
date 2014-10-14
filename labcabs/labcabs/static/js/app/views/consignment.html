@@ -11,14 +11,20 @@
                                 <option value="">-- Choose a Consignor --</option>
                                 <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignor===entity.id^^">^^entity.name^^</option>
                             </select>
-                            <span class='help-inline'>Pickup Address: ^^formatAddress(selectedConsignor)^^</span>
+                        </div>
+                        <div class="input-group" style="padding-bottom:5px">
+                            <span class="input-group-addon">Pickup Address</span>
+                            <input ng-model="consignment.pickupAddress" type="text" class="form-control" style="width:80%"/>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
                             <select ng-model="consignment.consignee" ng-change="onConsigneeChange(consignment.consignee)" class="form-control">
                                 <option value="">-- Choose a Consignee --</option>
                                 <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignee===entity.id^^">^^entity.name^^</option>
                             </select>
-                            <span class='help-inline'>Delivery Address: ^^formatAddress(selectedConsignee)^^</span>
+                        </div>
+                        <div class="input-group" style="padding-bottom:5px">
+                            <span class="input-group-addon">Delivery Address</span>
+                            <input ng-model="consignment.deliveryAddress" type="text" class="form-control" style="width:80%"/>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
                             <select ng-model="consignment.account" class="form-control">
@@ -38,7 +44,7 @@
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
                             <span class="input-group-addon">Notes</span>
-                            <input ng-model="consignment.notes" type="text" class="form-control" style="width:100%">
+                            <textarea ng-model="consignment.notes" class="form-control" style="width:50%;height:100px"/>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
                             <span ng-click="open($event)" class="input-group-addon" style="cursor:pointer">Pickup Date</span>

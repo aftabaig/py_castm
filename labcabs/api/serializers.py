@@ -61,6 +61,8 @@ class ConsignmentSerializer(serializers.ModelSerializer):
         fields = ('id',
                   'consignor',
                   'consignee',
+                  'pickupAddress',
+                  'deliveryAddress',
                   'account',
                   'mode',
                   'status',
