@@ -14,13 +14,9 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
 
   $scope.onConsignorChange = function(entityId) {
     $scope.entities.forEach(function(entity) {
-        console.log("ok2");
         if (entity.id == entityId) {
-            console.log("ok3");
-            setTimeout(function() {
-                $scope.consignment.account = entity.name;
-                $scope.selectedConsignor = entity;
-            }, 10);
+            $scope.consignment.account = entity.name;
+            $scope.selectedConsignor = entity;
         }
     });
   }
@@ -28,9 +24,7 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
   $scope.onConsigneeChange = function(entityId) {
     $scope.entities.forEach(function(entity) {
         if (entity.id == entityId) {
-            setTimeout(function() {
-                $scope.selectedConsignee = entity;
-            }, 10);
+            $scope.selectedConsignee = entity;
         }
     });
   }

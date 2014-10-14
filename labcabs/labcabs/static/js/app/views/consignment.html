@@ -74,37 +74,37 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in consignment.items">
-                                            <td style="width:30%">
+                                            <td style="width:20%">
                                                 <div ng-if="!item.isNew">^^item.description^^</div>
                                                 <div ng-if="item.isNew">
                                                     <input ng-model="item.description" class="form-control round-input">
                                                 </div>
                                             </td>
-                                            <td style="width:15%">
+                                            <td style="width:10%">
                                                 <div ng-if="!item.isNew">^^item.width^^</div>
                                                 <div ng-if="item.isNew">
                                                     <input ng-model="item.width" class="form-control round-input">
                                                 </div>
                                             </td>
-                                            <td style="width:15%">
+                                            <td style="width:10%">
                                                 <div ng-if="!item.isNew">^^item.length^^</div>
                                                 <div ng-if="item.isNew">
                                                     <input ng-model="item.length" class="form-control round-input">
                                                 </div>
                                             </td>
-                                            <td style="width:15%">
+                                            <td style="width:10%">
                                                 <div ng-if="!item.isNew">^^item.height^^</div>
                                                 <div ng-if="item.isNew">
                                                     <input ng-model="item.height" class="form-control round-input">
                                                 </div>
                                             </td>
-                                            <td style="width:15%">
+                                            <td style="width:10%">
                                                 <div ng-if="!item.isNew">^^item.weight^^</div>
                                                 <div ng-if="item.isNew">
                                                     <input ng-model="item.weight" class="form-control round-input">
                                                 </div>
                                             </td>
-                                            <td style="width:20%">
+                                            <td style="width:10%">
                                                 <div ng-if="!item.isNew">^^item.temp^^</div>
                                                 <div ng-if="item.isNew">
                                                     <select ng-model="item.temp" ng-options="env for env in environments track by env" class="form-control" style="width:250px">
@@ -112,12 +112,12 @@
                                                     </select>
                                                 </div>
                                             </td>
-                                            <td class="numeric">
+                                            <td class="numeric" style="text-align:center">
                                                 <div ng-if="!item.isNew">
                                                     <button ng-click="removeItem($index)" type="button" class="btn btn-danger">Remove</button>
                                                 </div>
                                                 <div ng-if="item.isNew">
-                                                    <button ng-click="doneAddItem($index)" type="button" class="btn btn-danger">Done</button>
+                                                    <button ng-click="doneAddItem($index)" type="button" class="btn btn-success">Done</button>
                                                     <button ng-click="cancelAddItem($index)" type="button" class="btn btn-danger">Cancel</button>
                                                 </div>
                                             </td>
@@ -146,7 +146,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="charge in consignment.charges">
-                                            <td style="width:60%">
+                                            <td style="width:55%">
                                                 <div ng-if="!charge.isNew">^^charge.description^^</div>
                                                 <div ng-if="charge.isNew">
                                                     <input ng-model="charge.description" class="form-control round-input">
@@ -167,12 +167,12 @@
                                             <td style="width:10%">
                                                 <div>^^total($index).toFixed(2)^^</div>
                                             </td>
-                                            <td class="numeric">
+                                            <td class="numeric" style="text-align:center">
                                                 <div ng-if="!charge.isNew">
                                                     <button ng-click="removeCharge($index)" type="button" class="btn btn-danger">Remove</button>
                                                 </div>
                                                 <div ng-if="charge.isNew">
-                                                    <button ng-click="doneAddCharge($index)" type="button" class="btn btn-danger">Done</button>
+                                                    <button ng-click="doneAddCharge($index)" type="button" class="btn btn-success">Done</button>
                                                     <button ng-click="cancelAddCharge($index)" type="button" class="btn btn-danger">Cancel</button>
                                                 </div>
                                             </td>
