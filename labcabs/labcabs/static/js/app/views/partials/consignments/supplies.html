@@ -1,0 +1,47 @@
+<div style="width:100%;padding-top:20px">
+    <label>Supplies</label>
+    <div class="input-group" style="width:100%;padding-bottom:5px">
+        <div ng-if="!consignment.supplies || consignment.supplies.length == 0" class="well" style="width:100%">
+            No supplies added
+        </div>
+        <table ng-if="consignment.supplies.length > 0" class="table table-bordered table-striped table-condensed" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Supply</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="supply in consignment.supplies">
+                    <td style="width:60%">
+                        <div ng-if="!supply.isNew">^^supply.supply.description^^</div>
+                        <div ng-if="supply.isNew">
+                            <select ng-model="supply.supply" ng-options="supply.description for supply in supplies track by supply.id" class="form-control" style="width:100%">
+                                <option value="">-- Choose a Supply --</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td style="25%">
+                        <div ng-if="!supply.isNew">^^supply.amount^^</div>
+                        <div ng-if="supply.isNew">
+                            <input ng-model="supply.amount" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td class="numeric" style="width:15%;text-align:center">
+                        <div ng-if="!supply.isNew">
+                            <button ng-click="removeSupply($index)" type="button" class="btn btn-danger">Remove</button>
+                        </div>
+                        <div ng-if="supply.isNew">
+                            <button ng-click="doneAddSupply($index)" type="button" class="btn btn-success">Done</button>
+                            <button ng-click="cancelAddSupply($index)" type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top:-15px;text-align:right">
+            <button ng-click="addSupply()" type="button" class="btn btn-primary">Add Supply</button>
+        </div>
+    </div>
+</div>

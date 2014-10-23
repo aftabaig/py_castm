@@ -20,6 +20,8 @@ lc.factory("EntityService", function($http, $q, $localStorage) {
                 method: 'GET',
                 url: api_url
             }).success(function(data, status, header, config) {
+                console.log("entities");
+                console.dir(data);
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
                 defer.reject(status);
@@ -66,6 +68,19 @@ lc.factory("EntityService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        entityTypes: function() {
+            var url = api_url + "entity_types/";
+            var defer = $q.defer();
+            $http({
+                method: 'GET',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
+        }
     }
 });
 

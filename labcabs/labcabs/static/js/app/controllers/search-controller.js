@@ -1,7 +1,14 @@
-lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localStorage', 'EntityHelper', 'consignments', 'entities', function($scope, $rootScope, $location, $localStorage, EntityHelper, consignments, entities) {
+lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localStorage', 'SearchService', 'EntityHelper', 'mySearches', 'consignments', 'entities', function($scope, $rootScope, $location, $localStorage, SearchService, EntityHelper, mySearches, consignments, entities) {
 
   $rootScope.activeMenu = "Search";
   $rootScope.currentUser = $localStorage.user;
+
+  $scope.searchName = "";
+
+  $scope.saveMode = false;
+  $scope.setSaveMode = function(mode) {
+    $scope.saveMode = mode;
+  }
 
   $scope.statuses = [
     'Quote',
@@ -13,16 +20,82 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
   ];
 
   $scope.modes = [
-    'Same Day',
-    'Overnight',
-    'Next Flight'
+    'Same Day Air',
+    'Overnight Air',
+    'Perishable Air',
+    'Road Express',
+    'Off Peak Air'
   ];
+
+  $scope.fields = [];
+  $scope.fields.push({
+    'name': 'consignor',
+    'title': 'Consignor',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'consignee',
+    'title': 'Consignee',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'originator',
+    'title': 'Originator',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'account',
+    'title': 'Account',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'pickup_address',
+    'title': 'Pickup Address',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'delivery_address',
+    'title': 'Delivery Address',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'mode',
+    'title': 'Mode',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'status',
+    'title': 'Status',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'pickup_date',
+    'title': 'Pickup Date',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'eta_date',
+    'title': 'ETA Date',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'notes',
+    'title': 'Notes',
+    'selected': true
+  });
+  $scope.fields.push({
+    'name': 'customer_reference',
+    'title': 'Customer Reference',
+    'selected': true
+  });
 
   $scope.promise = null;
   $scope.message = "";
 
+  $scope.mySearches = mySearches;
   $scope.consignments = consignments;
   $scope.entities = entities;
+  $scope.selectedSearch = {}
 
   $scope.consignments.forEach(function(consignment) {
     $scope.entities.forEach(function(entity) {
@@ -32,18 +105,24 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         if (consignment.consignee == entity.id) {
             consignment.consigneeObj = angular.copy(entity);
         }
+        if (consignment.originator == entity.id) {
+            consignment.originatorObj = angular.copy(entity);
+            entity.accounts.forEach(function(account) {
+                if (consignment.account == account.id) {
+                    consignment.accountObj = angular.copy(account);
+                }
+            });
+        }
     });
   });
 
-  console.log("all consignments");
-  console.dir($scope.consignments);
-
-  $scope.filteredConsignments = []
+  $scope.filteredConsignments = angular.copy($scope.consignments);
 
   $scope.search = function() {
 
     $scope.filteredConsignments = angular.copy($scope.consignments);
 
+    // Search for consignor.
     if ($scope.consignor) {
         var re = new RegExp($scope.consignor, 'i');
         for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -54,6 +133,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for consignee.
     if ($scope.consignee) {
         var re = new RegExp($scope.consignee, 'i');
         for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -64,6 +144,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for pickup postcode.
     if ($scope.pickupPostcode) {
 
         var re = new RegExp($scope.pickupPostcode, 'i');
@@ -89,6 +170,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for pickup state.
     if ($scope.pickupState) {
 
         var re = new RegExp($scope.pickupState, 'i');
@@ -114,6 +196,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for delivery postcode.
     if ($scope.deliveryPostcode) {
 
         var re = new RegExp($scope.deliveryPostcode, 'i');
@@ -139,6 +222,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for delivery state.
     if ($scope.deliveryState) {
 
         var re = new RegExp($scope.deliveryState, 'i');
@@ -164,6 +248,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for account.
     if ($scope.account) {
         var re = new RegExp($scope.account, 'i');
         for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -174,6 +259,19 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for customer reference.
+    if ($scope.customerReference) {
+        console.log("customerReference:", $scope.customerReference);
+        var re = new RegExp($scope.customerReference, 'i');
+        for (i=0; i<$scope.filteredConsignments.length; i++) {
+            var consignment = $scope.filteredConsignments[i];
+            if (!consignment.customer_reference.match(re)) {
+                $scope.filteredConsignments.splice(i--, 1);
+            }
+        }
+    }
+
+    // Search for mode.
     if ($scope.mode) {
          var re = new RegExp($scope.mode, 'i');
          for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -184,6 +282,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for status.
     if ($scope.status) {
          var re = new RegExp($scope.status, 'i');
          for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -194,6 +293,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    // Search for pickup date.
     if ($scope.startDate && $scope.endDate) {
         console.log("yes");
         for (i=0; i<$scope.filteredConsignments.length; i++) {
@@ -208,8 +308,149 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
-    console.dir($scope.filteredConsignments);
+  }
 
+  // Save search.
+  $scope.save = function() {
+
+    // Create a new search object.
+    var searchObj = {}
+    searchObj.name = "test";
+    searchObj.fields = $scope.fields;
+
+    searchObj.criteria = [];
+    if ($scope.consignor) {
+        searchObj.criteria.push({
+            "criterion": "consignor",
+            "criterion_value": $scope.consignor
+        });
+    }
+    if ($scope.consignee) {
+        searchObj.criteria.push({
+            "criterion": "consignee",
+            "criterion_value": $scope.consignee
+        });
+    }
+    if ($scope.pickupPostcode) {
+        searchObj.criteria.push({
+            "criterion": "pickup_postcode",
+            "criterion_value": $scope.pickupPostcode
+        });
+    }
+    if ($scope.pickupState) {
+        searchObj.criteria.push({
+            "criterion": "pickup_state",
+            "criterion_value": $scope.pickupState
+        });
+    }
+    if ($scope.deliveryPostcode) {
+        searchObj.criteria.push({
+            "criterion": "delivery_postcode",
+            "criterion_value": $scope.deliveryPostcode
+        });
+    }
+    if ($scope.deliveryState) {
+        searchObj.criteria.push({
+            "criterion": "delivery_state",
+            "criterion_value": $scope.deliveryState
+        });
+    }
+    if ($scope.account) {
+        searchObj.criteria.push({
+            "criterion": "account",
+            "criterion_value": $scope.account
+        });
+    }
+    if ($scope.customerReference) {
+        searchObj.criteria.push({
+            "criterion": "customer_reference",
+            "criterion_value": $scope.customerReference
+        });
+    }
+    if ($scope.mode) {
+        searchObj.criteria.push({
+            "criterion": "mode",
+            "criterion_value": $scope.mode
+        });
+    }
+    if ($scope.status) {
+        searchObj.criteria.push({
+            "criterion": "status",
+            "criterion_value": $scope.status
+        });
+    }
+    if ($scope.startDate) {
+        searchObj.criteria.push({
+            "criterion": "start_date",
+            "criterion_value": $scope.startDate
+        });
+    }
+    if ($scope.endDate) {
+        searchObj.criteria.push({
+            "criteria": "end_date",
+            "criterion_value": $scope.endDate
+        });
+    }
+    console.log("searchObj");
+    console.dir(searchObj);
+    SearchService.add(searchObj)
+    .then(function(data) {
+        $scope.mySearches.unshift(searchObj);
+    });
+
+  }
+
+  $scope.loadSearch = function() {
+
+    var mySearch = $scope.selectedSearch;
+    console.log("mySearch");
+    console.dir(mySearch);
+    mySearch.criteria.forEach(function(criterion) {
+        if (criterion.criterion === "consignor") {
+            $scope.consignor = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "consignee") {
+            $scope.consignee = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "pickup_postcode") {
+            $scope.pickupPostcode = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "pickup_state") {
+            $scope.pickupState = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "delivery_postcode") {
+            $scope.deliveryPostcode = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "delivery_state") {
+            $scope.deliveryState = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "account") {
+            $scope.account = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "mode") {
+            $scope.mode = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "status") {
+            $scope.status = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "start_date") {
+            $scope.startDate = criterion.criterion_value;
+        }
+        else if (criterion.criterion === "end_date") {
+            $scope.endDate = criterion.criterion_value;
+        }
+
+    });
+  }
+
+  $scope.isFieldSelected = function(fieldName) {
+    var selected = false;
+    $scope.fields.forEach(function(field) {
+        if (field.name === fieldName) {
+            selected = field.selected;
+        }
+    });
+    return selected;
   }
 
   $scope.openStart = function($event) {

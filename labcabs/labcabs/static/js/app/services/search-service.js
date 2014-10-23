@@ -1,15 +1,13 @@
-lc.factory("ConsignmentService", function($http, $q, $localStorage) {
-    var api_url = "/api/consignments/";
+lc.factory("SearchService", function($http, $q, $localStorage) {
+    var api_url = "/api/searches/";
     return {
-        info: function(consignmentId) {
-            var url = api_url + consignmentId;
+        info: function(searchId) {
+            var url = api_url + searchId + "/";
             var defer = $q.defer();
             $http({
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
-                console.log("data");
-                console.dir(data);
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
                 defer.reject(status);
@@ -28,12 +26,14 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        add: function(consignment) {
+        add: function(search) {
             var defer = $q.defer();
+            console.log("search");
+            console.dir(search);
             $http({
                 method: 'POST',
                 url: api_url,
-                data: consignment
+                data: search
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
@@ -41,15 +41,13 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        update: function(consignment) {
-            console.log("consignment:");
-            console.dir(consignment);
-            var url = api_url + consignment.id + "/";
+        update: function(search) {
+            var url = api_url + search.id + "/";
             var defer = $q.defer();
             $http({
                 method: 'PUT',
                 url: url,
-                data: consignment
+                data: entity
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
@@ -57,8 +55,8 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        delete: function(consignment_id) {
-            var url = api_url + consignment_id + "/";
+        delete: function(search_id) {
+            var url = api_url + search_id + "/";
             var defer = $q.defer();
             $http({
                 method: 'DELETE',

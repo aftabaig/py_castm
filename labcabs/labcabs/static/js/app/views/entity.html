@@ -14,16 +14,18 @@
                             <span class="input-group-addon">Type</span>
                             <input ng-model="entity.type" type="text" class="form-control" style="width:250px">
                         </div>
-                        <div>
+                        <div style="margin-top:20px">
                             <label>Address</label>
+                            <div class="controls controls-row">
                             <div class="input-group" style="padding-bottom:5px">
                                 <span class="input-group-addon">Tenancy</span>
                                 <input ng-model="entity.tenancy" type="text" class="form-control" style="width:250px">
                             </div>
-                            <div class="input-group" style="padding-bottom:5px">
+                            <div class="input-group" style="float:left !important;padding-bottom:5px;padding-right:5px">
                                 <span class="input-group-addon">Street #</span>
                                 <input ng-model="entity.street_num" type="text" class="form-control" style="width:100px">
                             </div>
+                                </div>
                             <div class="input-group" style="padding-bottom:5px">
                                 <span class="input-group-addon">Street </span>
                                 <input ng-model="entity.street" type="text" class="form-control" style="width:250px">
@@ -45,7 +47,45 @@
                                 <input ng-model="entity.country"  type="text" class="form-control" style="width:150px">
                             </div>
                         </div>
-                        <button ng-click="save()" type="button" class="btn btn-info">Save</button>
+                        <div style="width:100%;padding-top:20px">
+                    <label>Accounts</label>
+                    <div class="input-group" style="width:100%;padding-bottom:5px">
+                        <div ng-if="!entity.accounts || entity.accounts.length == 0" class="well" style="width:100%">
+                            No accounts added
+                        </div>
+                        <table ng-if="entity.accounts.length > 0" class="table table-bordered table-striped table-condensed" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="account in entity.accounts">
+                                    <td style="width:85%">
+                                        <div ng-if="!account.isNew">^^account.description^^</div>
+                                        <div ng-if="account.isNew">
+                                            <input ng-model="account.description" class="form-control round-input">
+                                        </div>
+                                    </td>
+                                    <td class="numeric" style="text-align:center">
+                                        <div ng-if="!account.isNew">
+                                            <button ng-click="removeAccount($index)" type="button" class="btn btn-danger">Remove</button>
+                                        </div>
+                                        <div ng-if="account.isNew">
+                                            <button ng-click="doneAddAccount($index)" type="button" class="btn btn-success">Done</button>
+                                            <button ng-click="cancelAddAccount($index)" type="button" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="margin-top:-15px;text-align:right">
+                            <button ng-click="addAccount()" type="button" class="btn btn-primary">Add Account</button>
+                        </div>
+                    </div>
+                </div>
+                        <button ng-click="save()" type="button" class="btn btn-info">Save Entity</button>
                     </form>
                 </div>
             </section>

@@ -1,0 +1,69 @@
+<div ng-if="filteredConsignments.length == 0" class="well">
+    No Results
+</div>
+<table ng-if="filteredConsignments.length > 0" class="table table-bordered table-striped table-condensed">
+    <thead>
+        <tr>
+            <th></th>
+            <th>#</th>
+            <th ng-if="isFieldSelected('consignor')">Consignor</th>
+            <th ng-if="isFieldSelected('consignee')">Consignee</th>
+            <th ng-if="isFieldSelected('originator')">Originator</th>
+            <th ng-if="isFieldSelected('account')">Account</th>
+            <th ng-if="isFieldSelected('pickup_address')">Pickup Address</th>
+            <th ng-if="isFieldSelected('delivery_address')">Delivery Address</th>
+            <th ng-if="isFieldSelected('mode')">Mode</th>
+            <th ng-if="isFieldSelected('status')">Status</th>
+            <th ng-if="isFieldSelected('pickup_date')">Pickup Date</th>
+            <th ng-if="isFieldSelected('eta_date')">ETA Date</th>
+            <th ng-if="isFieldSelected('notes')">Notes</th>
+            <th ng-if="isFieldSelected('customer_reference')">Customer Reference</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="consignment in filteredConsignments">
+            <td>
+                <input type="checkbox"/>
+            </td>
+            <td>
+                <a href="/#/consignments/^^consignment.id^^">^^consignment.id^^</a>
+            </td>
+            <td ng-if="isFieldSelected('consignor')">
+                <div>^^consignment.consignorObj.name^^</div>
+            </td>
+            <td ng-if="isFieldSelected('consignee')">
+                <div>^^consignment.consigneeObj.name^^</div>
+            </td>
+            <td ng-if="isFieldSelected('originator')">
+                <div>^^consignment.originatorObj.name^^</div>
+            </td>
+            <td ng-if="isFieldSelected('account')">
+                <div>^^consignment.accountObj.description^^</div>
+            </td>
+            <td ng-if="isFieldSelected('pickup_address')">
+                <div>^^formatAddress(consignment.consignorObj)^^</div>
+            </td>
+            <td ng-if="isFieldSelected('delivery_address')">
+                <div>^^formatAddress(consignment.consigneeObj)^^</div>
+            </td>
+            <td ng-if="isFieldSelected('mode')">
+                <div>^^consignment.mode^^</div>
+            </td>
+            <td ng-if="isFieldSelected('status')">
+                <div>^^consignment.status^^</div>
+            </td>
+            <td ng-if="isFieldSelected('pickup_date')">
+                <div>^^ consignment.pickupDate | date:'dd-MM-yyyy HH:mm' ^^</div>
+            </td>
+            <td ng-if="isFieldSelected('eta_date')">
+                <div>^^ consignment.eta_date | date:'dd-MM-yyyy HH:mm' ^^</div>
+            </td>
+            <td ng-if="isFieldSelected('notes')">
+                <div>^^consignment.notes^^</div>
+            </td>
+            <td ng-if="isFieldSelected('customer_reference')">
+                <div>^^consignment.customer_reference^^</div>
+            </td>
+        </tr>
+    </tbody>
+</table>

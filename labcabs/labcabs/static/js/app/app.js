@@ -26,6 +26,9 @@ lc.config(function($routeProvider) {
             resolve: {
                 entities: function (EntityService) {
                     return EntityService.all();
+                },
+                entityTypes: function(EntityService) {
+                    return EntityService.entityTypes();
                 }
             }
         })
@@ -66,6 +69,9 @@ lc.config(function($routeProvider) {
                 },
                 entities: function(EntityService) {
                     return EntityService.all();
+                },
+                supplies: function(SupplyService) {
+                    return SupplyService.all();
                 }
             }
         })
@@ -79,6 +85,9 @@ lc.config(function($routeProvider) {
                 },
                 entities: function(EntityService) {
                     return EntityService.all();
+                },
+                supplies: function(SupplyService) {
+                    return SupplyService.all();
                 }
             }
         })
@@ -86,6 +95,9 @@ lc.config(function($routeProvider) {
             templateUrl: "static/js/app/views/search.html",
             controller: "SearchController",
             resolve: {
+                mySearches: function(SearchService) {
+                    return SearchService.all();
+                },
                 consignments: function(ConsignmentService) {
                     return ConsignmentService.all();
                 },
@@ -94,10 +106,20 @@ lc.config(function($routeProvider) {
                 }
             }
         })
+        .when("/supplies", {
+            templateUrl: "static/js/app/views/supplies.html",
+            controller: "SuppliesController",
+            resolve: {
+                supplies: function(SupplyService) {
+                    return SupplyService.all();
+                }
+            }
+        })
         .otherwise({
             redirectTo: "/entities"
         });
 });
+
 
 lc.directive('ngEnter', function () {
     return function (scope, element, attrs) {

@@ -1,7 +1,19 @@
 <section class="panel">
     <div class="panel-body">
         <section id="unseen">
-            <header class="panel-heading big-font">Entities</header>
+            <header class="panel-heading big-font">
+                <div class="input-group" style="padding-bottom:5px">
+                    Entities
+                    <div style="text-align:right">
+                        <select ng-options="type as type.type for type in entityTypes"
+                                ng-model="selectedType"
+                                ng-change="filter()"
+                                class="form-control">
+                            <option value="">-- Filter by Type --</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
             <div class="panel-body">
                 <div ng-if="entities.length == 0" class="well">
                     No Entities
@@ -9,14 +21,19 @@
                 <table ng-if="entities.length > 0" class="table table-bordered table-striped" cg-busy="{promise:promise,message:message}">
                     <thead>
                         <tr>
+                            <td>#</td>
                             <th>Name</th>
                             <th>Type</th>
                             <th>Address</th>
+                            <th>Accounts</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="entity in entities">
+                        <tr ng-repeat="entity in filteredEntities">
+                            <td>
+                                <div>^^entity.id^^</div>
+                            </td>
                             <td style="width:20%">
                                 <div >^^entity.name^^</div>
                             </td>
@@ -26,7 +43,10 @@
                             <td style="width:50%">
                                 <div>^^formatAddress(entity)^^</div>
                             </td>
-                            <td class="numeric" style="width:20%">
+                            <td style="width:5%">
+                                <span ng-repeat="account in entity.accounts" class="label label-default" style="margin-right:2px">^^account.description^^</span>
+                            </td>
+                            <td class="numeric" style="text-align:center;width:15%">
                                 <div>
                                     <a href="#/entities/^^entity.id^^" class="btn btn-warning">Edit</a>
                                     <button ng-click="deleteEntity($index)" type="button" class="btn btn-danger">Delete</button>

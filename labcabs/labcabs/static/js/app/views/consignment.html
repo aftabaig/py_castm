@@ -6,199 +6,182 @@
                 <header ng-if="!isNew" class="panel-heading big-font">Edit Consignment</header>
                 <div class="panel-body">
                     <form role="form">
-                        <div class="input-group" style="padding-bottom:5px">
-                            <select ng-model="consignment.consignor" ng-change="onConsignorChange(consignment.consignor)" class="form-control">
+                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                            <label>Consignor</label>
+                            <select ng-model="consignment.consignor" ng-change="onConsignorChange(consignment.consignor)" class="form-control" style-="width:500px">
                                 <option value="">-- Choose a Consignor --</option>
                                 <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignor===entity.id^^">^^entity.name^^</option>
                             </select>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
-                            <span class="input-group-addon">Pickup Address</span>
-                            <input ng-model="consignment.pickupAddress" type="text" class="form-control" style="width:80%"/>
+                            <label style="padding-top:20px">Pickup Address</label>
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <td style="padding-left:10px">Tenancy</td>
+                                        <td style="padding-left:10px">Street #</td>
+                                        <td style="padding-left:10px">Street</td>
+                                        <td style="padding-left:10px">Town</td>
+                                        <td style="padding-left:10px">Postcode</td>
+                                        <td style="padding-left:10px">State</td>
+                                        <td style="padding-left:10px">Country</td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <input ng-model="consignment.pickup_tenancy" type="text" placeholder="Tenancy" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_street_num"  type="text" placeholder="Street #" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_street"  type="text" placeholder="Street" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_town"  type="text" placeholder="Town" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_postcode"  type="text" placeholder="Postcode" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_state"  type="text" placeholder="State" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.pickup_country"  type="text" placeholder="Country" class="form-control"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="input-group" style="padding-bottom:5px">
-                            <select ng-model="consignment.consignee" ng-change="onConsigneeChange(consignment.consignee)" class="form-control">
+                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                            <label style="padding-top:20px">Consignee</label>
+                            <select ng-model="consignment.consignee" ng-change="onConsigneeChange(consignment.consignee)" class="form-control" style-="width:500px">
                                 <option value="">-- Choose a Consignee --</option>
                                 <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.consignee===entity.id^^">^^entity.name^^</option>
                             </select>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
-                            <span class="input-group-addon">Delivery Address</span>
-                            <input ng-model="consignment.deliveryAddress" type="text" class="form-control" style="width:80%"/>
+                            <label style="padding-top:20px">Delivery Address</label>
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <td style="padding-left:10px">Tenancy</td>
+                                        <td style="padding-left:10px">Street #</td>
+                                        <td style="padding-left:10px">Street</td>
+                                        <td style="padding-left:10px">Town</td>
+                                        <td style="padding-left:10px">Postcode</td>
+                                        <td style="padding-left:10px">State</td>
+                                        <td style="padding-left:10px">Country</td>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <input ng-model="consignment.delivery_tenancy"  type="text" placeholder="Tenancy" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_street_num"  type="text" placeholder="Street #" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_street"  type="text" placeholder="Street" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_town"  type="text" placeholder="Town" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_postcode"  type="text" placeholder="Postcode" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_state"  type="text" placeholder="State" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input ng-model="consignment.delivery_country"  type="text" placeholder="Country" class="form-control"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                       <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                           <label style="padding-top:20px">Originator/Account</label>
+                           <table>
+                               <tr>
+                                   <td>
+                                       <select ng-model="consignment.originator" ng-change="onOriginatorChange(consignment.originator, false)" class="form-control">
+                                           <option value="">-- Choose Originator --</option>
+                                           <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.originator===entity.id^^">^^entity.name^^</option>
+                                       </select>
+                                   </td>
+                                   <td>
+                                        <select ng-model="consignment.account" class="form-control">
+                                            <option value="">-- Choose an Account --</option>
+                                            <option ng-repeat="account in selectedAccounts" value="^^account.id^^" ng-selected="^^consignment.account===account.id^^">^^account.description^^</option>
+                                        </select>
+                                   </td>
+                               </tr>
+                           </table>
+                        </div>
+                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                            <label style="padding-top:20px">Mode/Status</label>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <select ng-model="consignment.mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
+                                            <option value="">-- Choose a Mode --</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select ng-model="consignment.status" ng-options="status for status in statuses track by status" class="form-control" style="width:250px">
+                                            <option value="">-- Choose a Status --</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
-                            <select ng-model="consignment.account" class="form-control">
-                                <option value="">-- Choose an Account --</option>
-                                <option ng-repeat="entity in entities" value="^^entity.name^^" ng-selected="^^consignment.account===entity.name^^">^^entity.name^^</option>
-                            </select>
+                            <label style="padding-top:20px">Notes</label>
+                            <textarea ng-model="consignment.notes" class="form-control" style="width:100%;height:100%"/>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
-                            <select ng-model="consignment.mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
-                                <option value="">-- Choose a Mode --</option>
-                            </select>
+                            <label style="padding-top:50px">Customer Reference</label>
+                            <input type="text" ng-model="consignment.customer_reference" class="form-control"/>
                         </div>
                         <div class="input-group" style="padding-bottom:5px">
-                            <select ng-model="consignment.status" ng-options="status for status in statuses track by status" class="form-control" style="width:250px">
-                                <option value="">-- Choose a Status --</option>
-                            </select>
+                            <label style="padding-top:30px">Pickup/ETA Dates</label>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input  ng-model="consignment.pickupDate"
+                                                ng-click="openPickupDate($event)"
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                min-mode="time"
+                                                datepicker-mode="time"
+                                                is-open="opened_pickup"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="false"
+                                                show-weeks="false"/>
+                                    </td>
+                                    <td>
+                                        <input  ng-model="consignment.eta_date"
+                                                ng-click="openETADate($event)"
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                min-mode="time"
+                                                datepicker-mode="time"
+                                                is-open="opened_eta"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="false"
+                                                show-weeks="false"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="input-group" style="padding-bottom:5px">
-                            <span class="input-group-addon">Notes</span>
-                            <textarea ng-model="consignment.notes" class="form-control" style="width:50%;height:100px"/>
-                        </div>
-                        <div class="input-group" style="padding-bottom:5px">
-                            <span ng-click="open($event)" class="input-group-addon" style="cursor:pointer">Pickup Date</span>
-                            <input  ng-model="consignment.pickupDate"
-                                    type="text" class="form-control"
-                                    style="width:150px"
-                                    datepicker-popup="dd-MMM-yyyy hh:mm"
-                                    min-mode="time"
-                                    datepicker-mode="time"
-                                    is-open="opened"
-                                    close-on-date-selection="true"
-                                    date-disabled="disabled(date, mode)"
-                                    show-button-bar="false"
-                                    show-weeks="false"/>
-                        </div>
-                        <div style="width:100%;padding-top:20px">
-                            <label>Items</label>
-                            <div class="input-group" style="width:100%;padding-bottom:5px">
-                                <div ng-if="!consignment.items || consignment.items.length == 0" class="well" style="width:100%">
-                                    No items added
-                                </div>
-                                <table ng-if="consignment.items.length > 0" class="table table-bordered table-striped table-condensed" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Description</th>
-                                            <th>Width</th>
-                                            <th>Length</th>
-                                            <th>Height</th>
-                                            <th>Weight</th>
-                                            <th>Env</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="item in consignment.items">
-                                            <td style="width:20%">
-                                                <div ng-if="!item.isNew">^^item.description^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <input ng-model="item.description" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!item.isNew">^^item.width^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <input ng-model="item.width" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!item.isNew">^^item.length^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <input ng-model="item.length" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!item.isNew">^^item.height^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <input ng-model="item.height" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!item.isNew">^^item.weight^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <input ng-model="item.weight" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!item.isNew">^^item.temp^^</div>
-                                                <div ng-if="item.isNew">
-                                                    <select ng-model="item.temp" ng-options="env for env in environments track by env" class="form-control" style="width:250px">
-                                                        <option value="">-- Choose Environment --</option>
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td class="numeric" style="text-align:center">
-                                                <div ng-if="!item.isNew">
-                                                    <button ng-click="removeItem($index)" type="button" class="btn btn-danger">Remove</button>
-                                                </div>
-                                                <div ng-if="item.isNew">
-                                                    <button ng-click="doneAddItem($index)" type="button" class="btn btn-success">Done</button>
-                                                    <button ng-click="cancelAddItem($index)" type="button" class="btn btn-danger">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div style="margin-top:-15px;text-align:right">
-                                    <button ng-click="addItem()" type="button" class="btn btn-primary">Add Item</button>
-                                </div>
-                            </div>
-                            <div style="width:100%;padding-top:20px">
-                            <label>Charges</label>
-                            <div class="input-group" style="width:100%;padding-bottom:5px">
-                                <div ng-if="!consignment.charges || consignment.charges.length == 0" class="well" style="width:100%">
-                                    No charges added
-                                </div>
-                                <table ng-if="consignment.charges.length > 0" class="table table-bordered table-striped table-condensed" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Description</th>
-                                            <th>Quantity</th>
-                                            <th>Cost</th>
-                                            <th>Total</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="charge in consignment.charges">
-                                            <td style="width:55%">
-                                                <div ng-if="!charge.isNew">^^charge.description^^</div>
-                                                <div ng-if="charge.isNew">
-                                                    <input ng-model="charge.description" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!charge.isNew">^^charge.quantity^^</div>
-                                                <div ng-if="charge.isNew">
-                                                    <input ng-model="charge.quantity" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div ng-if="!charge.isNew">^^charge.cost^^</div>
-                                                <div ng-if="charge.isNew">
-                                                    <input ng-model="charge.cost" class="form-control round-input">
-                                                </div>
-                                            </td>
-                                            <td style="width:10%">
-                                                <div>^^total($index).toFixed(2)^^</div>
-                                            </td>
-                                            <td class="numeric" style="text-align:center">
-                                                <div ng-if="!charge.isNew">
-                                                    <button ng-click="removeCharge($index)" type="button" class="btn btn-danger">Remove</button>
-                                                </div>
-                                                <div ng-if="charge.isNew">
-                                                    <button ng-click="doneAddCharge($index)" type="button" class="btn btn-success">Done</button>
-                                                    <button ng-click="cancelAddCharge($index)" type="button" class="btn btn-danger">Cancel</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total:</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>^^grandTotal().toFixed(2)^^</td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div style="margin-top:-15px;text-align:right">
-                                    <button ng-click="addCharge()" type="button" class="btn btn-primary">Add Charges</button>
-                                </div>
-                            </div>
-                            <div>
-                                <button ng-click="save()" type="button" class="btn btn-info">Save Consignment</button>
-                            </div>
+                        <div ng-include="'../static/js/app/views/partials/consignments/items.html'" />
+                        <div ng-include="'../static/js/app/views/partials/consignments/supplies.html'" />
+                        <div ng-include="'../static/js/app/views/partials/consignments/charges.html'" />
+                        <div>
+                            <button ng-click="save()" type="button" class="btn btn-info">Save Consignment</button>
                         </div>
                     </form>
                 </div>

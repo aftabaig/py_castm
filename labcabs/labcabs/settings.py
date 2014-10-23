@@ -4,7 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('Aftab Baig', 'aftabaig@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -20,7 +20,7 @@ DATABASES = {
     },
     'default2': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'labcabs',
+        'NAME': 'lc',
         'USER': 'aftabaig',
         'PASSWORD': 'university',
         'HOST': 'localhost',
@@ -117,7 +117,7 @@ ROOT_URLCONF = 'labcabs.urls'
 WSGI_APPLICATION = 'labcabs.wsgi.application'
 
 TEMPLATE_DIRS = (
-    TEMPLATE_ROOT
+    (TEMPLATE_ROOT),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     'api',
+    'south'
 )
 
 REST_FRAMEWORK = {
@@ -161,22 +162,27 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
         }
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
         }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
+        'api': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
             'propagate': True,
         },
     }

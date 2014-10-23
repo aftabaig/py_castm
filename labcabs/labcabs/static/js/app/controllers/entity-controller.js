@@ -3,20 +3,12 @@ lc.controller("EntityController", ['$scope', '$rootScope', '$location', '$localS
   $rootScope.activeMenu = "Entities";
   $rootScope.currentUser = $localStorage.user;
 
-  $scope.promise = null;
-  $scope.message = "";
-
-  $scope.alert = {
-    "show": false,
-    "title": "",
-    "message": ""
-  }
-
   $scope.entity = entity;
   if ($scope.entity) {
     $scope.isNew = false;
   }
   else {
+    $scope.entity = {}
     $scope.isNew = true;
   }
 
@@ -38,16 +30,26 @@ lc.controller("EntityController", ['$scope', '$rootScope', '$location', '$localS
     }
   }
 
-  $scope.confirmDelete = function(index) {
-    $scope.selectedIndex = index;
-    $scope.alert.title = "Delete " + $scope.leases[index].name;
-    $scope.alert.message = "Are you sure to delete this lease?";
-    $scope.alert.show = true;
-
+  $scope.addAccount = function() {
+    if (!$scope.entity.accounts) {
+        $scope.entity.accounts = [];
+    }
+    $scope.entity.accounts.push({
+        "description": "",
+        "isNew": true
+    });
   }
 
-  $scope.hideAlert = function() {
-    $scope.alert.show = false;
+  $scope.doneAddAccount = function(index) {
+    $scope.entity.accounts[index].isNew = false;
+  }
+
+  $scope.cancelAddAccount = function(index) {
+    $scope.entity.accounts.splice(index, 1);
+  }
+
+  $scope.removeAccount = function(index) {
+    $scope.entity.accounts.splice(index, 1);
   }
 
 }]);

@@ -4,8 +4,7 @@ lc.controller("ConsignmentsController", ['$scope', '$rootScope', '$localStorage'
     $rootScope.currentUser = $localStorage.user;
 
     $scope.consignments = consignments;
-    console.log("consignments:");
-    console.dir($scope.consignments);
+
     $scope.delete = function(index) {
         var consignment = $scope.consignments[index];
         if (consignment)
