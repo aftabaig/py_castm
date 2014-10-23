@@ -1,11 +1,12 @@
-Django==1.5.4
+Django==1.6
 psycopg2
-dj-static
+dj-static==0.0.6
 django-filter==0.7
 django-tastypie==0.11.0
-djangorestframework==2.3.8
+djangorestframework==2.4.3
 gunicorn==18.0
 python-dateutil==1.5
 virtualenv==1.10.1
 django-admin-bootstrapped
 django-keyedcache
+south==1.0
