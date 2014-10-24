@@ -23,6 +23,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="consignment.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="167" column="64" selection-start="11883" selection-end="11899" vertical-scroll-proportion="-7.5833335" vertical-offset="2323" max-vertical-offset="2970">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -32,32 +41,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/api/views.py">
+      <file leaf-file-name="jquery.datetimepicker.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="42" selection-start="1823" selection-end="1823" vertical-scroll-proportion="-9.807693" vertical-offset="735" max-vertical-offset="2250">
-              <folding>
-                <element signature="e#1#15#0" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="6345">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/api/urls.py">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="99" selection-start="752" selection-end="752" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="600">
+            <state line="12" column="89" selection-start="540" selection-end="540" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="2130">
               <folding />
             </state>
           </provider>
@@ -72,71 +68,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/urls.py">
+      <file leaf-file-name="datetime.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/datetime.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="35" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="465">
+            <state line="10" column="3" selection-start="301" selection-end="301" vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="240">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="consignment-service.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js">
+      <file leaf-file-name="ui-bootstrap-0.11.0.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/bootstrap/ui-bootstrap-0.11.0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="49" selection-start="914" selection-end="914" vertical-scroll-proportion="-6.6" vertical-offset="210" max-vertical-offset="1425">
+            <state line="1559" column="35" selection-start="51107" selection-end="51107" vertical-scroll-proportion="-3.509804" vertical-offset="23206" max-vertical-offset="61830">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search-controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="494" column="75" selection-start="14786" selection-end="14786" vertical-scroll-proportion="-6.4313726" vertical-offset="7082" max-vertical-offset="7950">
+            <state line="6" column="67" selection-start="129" selection-end="129" vertical-scroll-proportion="-3.6" vertical-offset="0" max-vertical-offset="2115">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html">
+      <file leaf-file-name="jquery.datetimepicker.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="122" selection-start="13035" selection-end="13133" vertical-scroll-proportion="-9.791667" vertical-offset="2840" max-vertical-offset="3525">
-              <folding>
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#header#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#td#0;n#tr#1;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#9;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#10;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#10;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#10;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#10;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="results.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="16" selection-start="1226" selection-end="1226" vertical-scroll-proportion="-8.125" vertical-offset="180" max-vertical-offset="1110">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="24585">
               <folding />
             </state>
           </provider>
@@ -172,26 +134,28 @@
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignment_supplies.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/supply-service.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments/supplies.html" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/urls.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/entity-service.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/supplies.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/search-service.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/css/style.css" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entity.html" />
         <option value="$PROJECT_DIR$/labcabs/api/serializers.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entities.html" />
         <option value="$PROJECT_DIR$/labcabs/api/urls.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/labcabs/api/views.py" />
-        <option value="$PROJECT_DIR$/labcabs/api/models.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js" />
+        <option value="$PROJECT_DIR$/labcabs/api/models.py" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/datetime.js" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/libs/bootstrap/ui-bootstrap-0.11.0.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
       </list>
     </option>
@@ -296,6 +260,92 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labcabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -331,188 +381,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="search" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -571,6 +439,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/images" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/images" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers" />
@@ -757,36 +626,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entity-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="39" selection-start="990" selection-end="990" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="35" selection-start="2519" selection-end="2542" vertical-scroll-proportion="0.0" vertical-offset="1155" max-vertical-offset="1485" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="102" selection-start="1909" selection-end="1909" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="705" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entities-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="211" selection-end="211" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="315" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="31" selection-start="1359" selection-end="1369" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="585" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entity.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="121" selection-start="1701" selection-end="1701" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="585" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/entity-service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="28" selection-start="1147" selection-end="1147" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1125">
@@ -906,23 +745,9 @@
         <state line="4265" column="22" selection-start="75760" selection-end="75760" vertical-scroll-proportion="0.4296875" vertical-offset="63810" max-vertical-offset="70020" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="2175">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="360">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="59" selection-start="2434" selection-end="2434" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="3855">
           <folding />
         </state>
       </provider>
@@ -931,16 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="32" selection-start="1110" selection-end="1110" vertical-scroll-proportion="2.44" vertical-offset="526" max-vertical-offset="1155">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="42" selection-start="2594" selection-end="2594" vertical-scroll-proportion="-5.0833335" vertical-offset="403" max-vertical-offset="2970">
-          <folding>
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,30 +787,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="26" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="2400">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="40" selection-start="3638" selection-end="3651" vertical-scroll-proportion="-15.0" vertical-offset="1185" max-vertical-offset="2115">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="0" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
           <folding />
         </state>
       </provider>
@@ -1039,13 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="44" selection-start="1077" selection-end="1077" vertical-scroll-proportion="-4.6516585" vertical-offset="2368" max-vertical-offset="2850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entities.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="46" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-1.6666666" vertical-offset="650" max-vertical-offset="1095">
@@ -1060,9 +847,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="16" selection-start="1226" selection-end="1226" vertical-scroll-proportion="-8.125" vertical-offset="180" max-vertical-offset="1110">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="205" column="122" selection-start="13035" selection-end="13133" vertical-scroll-proportion="-9.791667" vertical-offset="2840" max-vertical-offset="3525">
+        <state line="210" column="109" selection-start="13484" selection-end="13484" vertical-scroll-proportion="-7.9166665" vertical-offset="2960" max-vertical-offset="3525">
           <folding>
             <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#div#0;n#header#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
@@ -1092,16 +886,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="16" selection-start="1226" selection-end="1226" vertical-scroll-proportion="-8.125" vertical-offset="180" max-vertical-offset="1110">
+        <state line="498" column="4" selection-start="14827" selection-end="14827" vertical-scroll-proportion="-4.6666665" vertical-offset="7232" max-vertical-offset="7920">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="494" column="75" selection-start="14786" selection-end="14786" vertical-scroll-proportion="-6.4313726" vertical-offset="7082" max-vertical-offset="7950">
+        <state line="94" column="9" selection-start="3013" selection-end="3013" vertical-scroll-proportion="-3.4" vertical-offset="1325" max-vertical-offset="3855">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/api/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="26" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.39099526" vertical-offset="390" max-vertical-offset="2400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="43" selection-start="4806" selection-end="4806" vertical-scroll-proportion="0.7109005" vertical-offset="1140" max-vertical-offset="2850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="24585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="67" selection-start="129" selection-end="129" vertical-scroll-proportion="-3.6" vertical-offset="0" max-vertical-offset="2115">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="89" selection-start="540" selection-end="540" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="2130">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/datetime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="3" selection-start="301" selection-end="301" vertical-scroll-proportion="-6.0" vertical-offset="0" max-vertical-offset="240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="64" selection-start="11883" selection-end="11899" vertical-scroll-proportion="-7.5833335" vertical-offset="2323" max-vertical-offset="2970">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/bootstrap/ui-bootstrap-0.11.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1559" column="35" selection-start="51107" selection-end="51107" vertical-scroll-proportion="-3.509804" vertical-offset="23206" max-vertical-offset="61830">
           <folding />
         </state>
       </provider>

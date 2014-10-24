@@ -4,7 +4,7 @@ function onError(e) {
 }
 
 // Create module.
-var lc = angular.module('lc', ['ngResource', 'ngRoute', 'ngStorage', 'datePicker', 'ui.bootstrap', 'cgBusy']);
+var lc = angular.module('lc', ['ngResource', 'ngRoute', 'ngStorage', 'ui.bootstrap', 'cgBusy']);
 
 lc.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('^^');

@@ -1557,9 +1557,9 @@ function ($compile, $parse, $document, $position, dateFilter, dateParser, datepi
           var today = new Date();
           if (angular.isDate(ngModel.$modelValue)) {
             date = new Date(ngModel.$modelValue);
-            date.setFullYear(today.getFullYear(), today.getMonth(), today.getDate());
+            date = new Date(today);
           } else {
-            date = new Date(today.setHours(0, 0, 0, 0));
+            date = new Date(today);
           }
         }
         scope.dateSelection( date );
