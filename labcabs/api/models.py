@@ -99,8 +99,8 @@ class Consignment(models.Model):
     delivery_country = models.CharField("Country", max_length=255, blank=True)
     mode = models.CharField('Mode', max_length=64, blank=False)
     status = models.CharField('Status', max_length=64, blank=False)
-    pickupDate = models.DateTimeField('Pickup Date', auto_now=True, auto_now_add=True, default=datetime.datetime.now())
-    eta_date = models.DateTimeField('ETA', auto_now=True, auto_now_add=True, default=datetime.datetime.now())
+    pickupDate = models.DateTimeField('Pickup Date', default=datetime.datetime.now())
+    eta_date = models.DateTimeField('ETA', default=datetime.datetime.now())
     notes = models.CharField('Notes', max_length=512, blank=True)
     customer_reference = models.CharField('Customer Reference', max_length=255, blank=True)
 

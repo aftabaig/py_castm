@@ -496,8 +496,6 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
   }
 
   $scope.export = function() {
-    console.dir($scope);
-    alert($scope.exportableConsignmentId);
     ConsignmentService.email($scope.exportableConsignmentId, $scope.exportTo)
     .then(function(data) {
         console.log("email sent");

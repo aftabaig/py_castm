@@ -208,7 +208,7 @@
                             <table style="width:100%">
                                 <tr>
                                     <td style="width:auto;margin-right:5px">
-                                        <button ng-click="export()" class="btn btn-primary" type="button">Export to</button>
+                                        <button ng-disabled="exportableConsignmentId == 0 || exportTo == null" ng-click="export()" class="btn btn-primary" type="button">Export to</button>
                                     </td>
                                     <td style="width:200px;margin-left:5px">
                                         <select ng-options="entity as entity.name for entity in entities"
