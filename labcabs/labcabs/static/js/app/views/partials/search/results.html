@@ -23,7 +23,7 @@
     <tbody>
         <tr ng-repeat="consignment in filteredConsignments">
             <td>
-                <input type="checkbox"/>
+                <input type="radio" id="id_^^consignment.id^^" name="export" ng-click="markAsExport($index)" value="^^consignment.id^^"/>
             </td>
             <td>
                 <a href="/#/consignments/^^consignment.id^^">^^consignment.id^^</a>

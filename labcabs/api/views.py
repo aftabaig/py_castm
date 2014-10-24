@@ -1,9 +1,12 @@
 
 import logging
+from django.core.mail import send_mail
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.routers import DefaultRouter
 from rest_framework.decorators import list_route
+from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 
 # serializers
 from serializers import EntitySerializer
@@ -58,6 +61,15 @@ class ConsignmentMixin(object):
 
 class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
 
+    @detail_route(methods=['post', ])
+    def send_as_email(self, request, pk=None):
+        consignment = self.get_object()
+        html_body = consignment.as_email()
+        entity = request.DATA.get("entity")
+        logger.debug(entity)
+        send_mail('Consignment # %s' % (consignment.id, ), 'Message', 'info@labcabs.com', [entity.get("email"), ], html_message=html_body)
+        return Response(None)
+
     def post_save(self, obj, created=False):
         if not created:
             ConsignmentSupply.objects.filter(consignment_id=obj.id).delete()
@@ -71,6 +83,9 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
                 supply = Supply.objects.get(id=supply_id)
                 ConsignmentSupply.objects.get_or_create(consignment=obj, supply=supply, amount=amount)
 
+consignment_email = ConsignmentViewSet.as_view({
+    'post': 'send_as_email',
+})
 consignment_list = ConsignmentViewSet.as_view({
     'get': 'list',
     'post': 'create'
@@ -78,8 +93,9 @@ consignment_list = ConsignmentViewSet.as_view({
 consignment_detail = ConsignmentViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
-    'delete': 'destroy'
+    'delete': 'destroy',
 })
+
 
 consignment_router = DefaultRouter()
 consignment_router.register(r'consignments', ConsignmentViewSet)

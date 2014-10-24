@@ -6,12 +6,21 @@
                 <div class="input-group" style="padding-bottom:5px">
                     Search Consignments
                     <div style="text-align:right">
-                        <select ng-options="search as search.name for search in mySearches"
-                                ng-change="loadSearch()"
-                                ng-model="selectedSearch"
-                                class="form-control">
-                            <option value="">-- Saved Searches --</option>
-                        </select>
+                        <table>
+                            <tr>
+                                <td>
+                                    <select ng-options="search as search.name for search in mySearches"
+                                        ng-change="loadSearch()"
+                                        ng-model="selectedSearch"
+                                        class="form-control">
+                                        <option value="">-- Saved Searches --</option>
+                                    </select>
+                                </td>
+                                <td style="padding-left:5px">
+                                    <button ng-if="selectedSearch.name" ng-click="removeSelectedSearch()" class="btn btn-danger" type="button">Remove</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </header>
@@ -188,14 +197,29 @@
                                 <span class="input-group-btn">
                                     <button ng-click="setSaveMode(false)" class="btn btn-danger" type="button">Cancel</button>
                                 </span>
-                                <input ng-model="searchName" placeholder="Give your search a name" type="text" class="form-control">
+                                <input ng-model="$parent.searchName" placeholder="Give your search a name" type="text" class="form-control">
                                 <span class="input-group-btn">
                                     <button ng-click="save()" class="btn btn-info" type="button">Save</button>
                                 </span>
                             </div>
                         </div>
-
                         <div ng-include="'../static/js/app/views/partials/search/results.html'" style="margin-top:20px" />
+                        <div style="margin-top:-10px;text-align:right">
+                            <table style="width:100%">
+                                <tr>
+                                    <td style="width:auto;margin-right:5px">
+                                        <button ng-click="export()" class="btn btn-primary" type="button">Export to</button>
+                                    </td>
+                                    <td style="width:200px;margin-left:5px">
+                                        <select ng-options="entity as entity.name for entity in entities"
+                                        ng-model="exportTo"
+                                        class="form-control">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </section>

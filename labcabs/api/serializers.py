@@ -35,6 +35,7 @@ class EntitySerializer(serializers.ModelSerializer):
         fields = ('id',
                   'name',
                   'type',
+                  'email',
                   'tenancy',
                   'street_num',
                   'street',

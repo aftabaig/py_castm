@@ -1,9 +1,9 @@
-lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localStorage', 'SearchService', 'EntityHelper', 'mySearches', 'consignments', 'entities', function($scope, $rootScope, $location, $localStorage, SearchService, EntityHelper, mySearches, consignments, entities) {
+lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localStorage', 'SearchService', 'ConsignmentService', 'EntityHelper', 'mySearches', 'consignments', 'entities', function($scope, $rootScope, $location, $localStorage, SearchService, ConsignmentService, EntityHelper, mySearches, consignments, entities) {
 
   $rootScope.activeMenu = "Search";
   $rootScope.currentUser = $localStorage.user;
 
-  $scope.searchName = "";
+  $scope.exportableConsignmentId = 8;
 
   $scope.saveMode = false;
   $scope.setSaveMode = function(mode) {
@@ -315,7 +315,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
 
     // Create a new search object.
     var searchObj = {}
-    searchObj.name = "test";
+    searchObj.name = $scope.searchName;
     searchObj.fields = $scope.fields;
 
     searchObj.criteria = [];
@@ -387,7 +387,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     }
     if ($scope.endDate) {
         searchObj.criteria.push({
-            "criteria": "end_date",
+            "criterion": "end_date",
             "criterion_value": $scope.endDate
         });
     }
@@ -396,6 +396,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     SearchService.add(searchObj)
     .then(function(data) {
         $scope.mySearches.unshift(searchObj);
+        $scope.setSaveMode(false);
     });
 
   }
@@ -403,43 +404,80 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
   $scope.loadSearch = function() {
 
     var mySearch = $scope.selectedSearch;
-    console.log("mySearch");
-    console.dir(mySearch);
-    mySearch.criteria.forEach(function(criterion) {
-        if (criterion.criterion === "consignor") {
-            $scope.consignor = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "consignee") {
-            $scope.consignee = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "pickup_postcode") {
-            $scope.pickupPostcode = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "pickup_state") {
-            $scope.pickupState = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "delivery_postcode") {
-            $scope.deliveryPostcode = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "delivery_state") {
-            $scope.deliveryState = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "account") {
-            $scope.account = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "mode") {
-            $scope.mode = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "status") {
-            $scope.status = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "start_date") {
-            $scope.startDate = criterion.criterion_value;
-        }
-        else if (criterion.criterion === "end_date") {
-            $scope.endDate = criterion.criterion_value;
-        }
 
+    $scope.consignor = "";
+    $scope.consignee = "";
+    $scope.pickupPostcode = "";
+    $scope.pickupState = "";
+    $scope.deliveryPostcode = "";
+    $scope.deliveryState= "";
+    $scope.account = "";
+    $scope.customerReference = "";
+    $scope.mode = "";
+    $scope.status = "";
+    $scope.startDate = "";
+    $scope.endDate = "";
+
+    if (mySearch) {
+        mySearch.criteria.forEach(function(criterion) {
+            if (criterion.criterion === "consignor") {
+                $scope.consignor = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "consignee") {
+                $scope.consignee = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "pickup_postcode") {
+                $scope.pickupPostcode = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "pickup_state") {
+                $scope.pickupState = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "delivery_postcode") {
+                $scope.deliveryPostcode = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "delivery_state") {
+                $scope.deliveryState = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "account") {
+                $scope.account = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "customer_reference") {
+                $scope.customerReference = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "mode") {
+                $scope.mode = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "status") {
+                $scope.status = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "start_date") {
+                $scope.startDate = criterion.criterion_value;
+            }
+            else if (criterion.criterion === "end_date") {
+                $scope.endDate = criterion.criterion_value;
+            }
+         });
+         $scope.fields = mySearch.fields;
+    }
+    else {
+        $scope.selectAllFields();
+    }
+    $scope.search();
+  }
+
+  $scope.removeSelectedSearch = function() {
+
+    SearchService.delete($scope.selectedSearch.id)
+    .then(function(data) {
+        var index = $scope.mySearches.indexOf($scope.selectedSearch);
+        $scope.mySearches.splice(index, 1);
+    });
+
+  }
+
+  $scope.selectAllFields = function() {
+    $scope.fields.forEach(function(field) {
+        field.selected = true;
     });
   }
 
@@ -451,6 +489,19 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     });
     return selected;
+  }
+
+  $scope.markAsExport = function(index) {
+    $scope.exportableConsignmentId = $scope.filteredConsignments[index].id;
+  }
+
+  $scope.export = function() {
+    console.dir($scope);
+    alert($scope.exportableConsignmentId);
+    ConsignmentService.email($scope.exportableConsignmentId, $scope.exportTo)
+    .then(function(data) {
+        console.log("email sent");
+    });
   }
 
   $scope.openStart = function($event) {

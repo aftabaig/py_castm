@@ -10,6 +10,75 @@ logger = logging.getLogger(__name__)
 
 
 class Consignment(models.Model):
+    def as_email(self):
+        html = ('<table style=\'border-style:solid;border-width:1px\'>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Consignor</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>'
+                '\t<tr>' +
+                '\t\t<td><strong>Consignee</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>'
+                '\t<tr>' +
+                '\t\t<td><strong>Originator</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>'
+                '\t<tr>' +
+                '\t\t<td><strong>Account</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Pickup Address</strong></td>' +
+                '\t\t<td>%s %s %s %s %s %s %s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Delivery Address</strong></td>' +
+                '\t\t<td>%s %s %s %s %s %s %s</td>' +
+                '\t</tr>'
+                '\t\t<td><strong>Mode</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Status</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Pickup Date</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>ETA Date</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Notes</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>' +
+                '\t<tr>' +
+                '\t\t<td><strong>Customer Ref.</strong></td>' +
+                '\t\t<td>%s</td>' +
+                '\t</tr>'
+                '</table>') % (self.consignor.name,
+                               self.consignee.name,
+                               self.originator.name,
+                               self.account.description,
+                               self.pickup_tenancy, self.pickup_street_num, self.pickup_street,
+                               self.pickup_town, self.pickup_postcode, self.pickup_state, self.pickup_country,
+                               self.delivery_tenancy, self.delivery_street_num, self.delivery_street,
+                               self.delivery_town, self.delivery_postcode, self.delivery_state, self.delivery_country,
+                               self.mode,
+                               self.status,
+                               self.pickupDate,
+                               self.eta_date,
+                               self.notes,
+                               self.customer_reference
+                               )
+        return html
+
+
+
     consignor = models.ForeignKey('Entity', default=0, related_name='consignment_consignor')
     consignee = models.ForeignKey('Entity', default=0, related_name='consignment_consignee')
     originator = models.ForeignKey('Entity', default=0, related_name='consignment_originator')
@@ -74,6 +143,9 @@ class Entity(models.Model):
     country = models.CharField("Country", max_length=255, blank=True)
     email = models.EmailField("Email", max_length=64, blank=True)
 
+    class Meta:
+        ordering = ['name']
+
 
 class EntityAccount(models.Model):
     description = models.CharField("Description", max_length=255, blank=False)
@@ -93,12 +165,18 @@ class Supply(models.Model):
 class Search(models.Model):
     name = models.CharField('Name', max_length=255, blank=False)
 
+    class Meta:
+        ordering = ['-id']
+
 
 class SearchField(models.Model):
     search = models.ForeignKey('Search', related_name='fields')
     name = models.CharField('Field', max_length=255, blank=False)
     title = models.CharField('Title', max_length=255, blank=False)
     selected = models.BooleanField('Selected', default=True)
+
+    class Meta:
+        ordering = ['id']
 
 
 class SearchCriterion(models.Model):

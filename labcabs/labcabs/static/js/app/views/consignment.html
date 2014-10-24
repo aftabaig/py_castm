@@ -7,6 +7,25 @@
                 <div class="panel-body">
                     <form role="form">
                         <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                           <label style="padding-top:20px">Originator/Account</label>
+                           <table>
+                               <tr>
+                                   <td>
+                                       <select ng-model="consignment.originator" ng-change="onOriginatorChange(consignment.originator, false)" class="form-control">
+                                           <option value="">-- Choose Originator --</option>
+                                           <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.originator===entity.id^^">^^entity.name^^</option>
+                                       </select>
+                                   </td>
+                                   <td>
+                                        <select ng-model="consignment.account" class="form-control">
+                                            <option value="">-- Choose an Account --</option>
+                                            <option ng-repeat="account in selectedAccounts" value="^^account.id^^" ng-selected="^^consignment.account===account.id^^">^^account.description^^</option>
+                                        </select>
+                                   </td>
+                               </tr>
+                           </table>
+                        </div>
+                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
                             <label>Consignor</label>
                             <select ng-model="consignment.consignor" ng-change="onConsignorChange(consignment.consignor)" class="form-control" style-="width:500px">
                                 <option value="">-- Choose a Consignor --</option>
@@ -97,25 +116,6 @@
                                     </td>
                                 </tr>
                             </table>
-                        </div>
-                       <div class="input-group" style="padding-bottom:5px;padding-right:5px">
-                           <label style="padding-top:20px">Originator/Account</label>
-                           <table>
-                               <tr>
-                                   <td>
-                                       <select ng-model="consignment.originator" ng-change="onOriginatorChange(consignment.originator, false)" class="form-control">
-                                           <option value="">-- Choose Originator --</option>
-                                           <option ng-repeat="entity in entities" value="^^entity.id^^" ng-selected="^^consignment.originator===entity.id^^">^^entity.name^^</option>
-                                       </select>
-                                   </td>
-                                   <td>
-                                        <select ng-model="consignment.account" class="form-control">
-                                            <option value="">-- Choose an Account --</option>
-                                            <option ng-repeat="account in selectedAccounts" value="^^account.id^^" ng-selected="^^consignment.account===account.id^^">^^account.description^^</option>
-                                        </select>
-                                   </td>
-                               </tr>
-                           </table>
                         </div>
                         <div class="input-group" style="padding-bottom:5px;padding-right:5px">
                             <label style="padding-top:20px">Mode/Status</label>

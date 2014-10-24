@@ -16,6 +16,22 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        email: function(consignmentId, entity) {
+            var data = {
+                "entity": entity
+            }
+            var defer = $q.defer();
+            $http({
+                method: 'POST',
+                url: api_url + consignmentId + "/send_as_email/",
+                data: data
+            }).success(function(data, status, header, config) {
+                    defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                    defer.reject(status);
+            });
+            return defer.promise;
+        },
         all: function() {
             var defer = $q.defer();
             $http({
