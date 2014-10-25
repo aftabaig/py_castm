@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.4587156" vertical-offset="0" max-vertical-offset="3030">
+            <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
               <folding />
             </state>
           </provider>
@@ -88,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="4" selection-start="5116" selection-end="5189" vertical-scroll-proportion="-11.25" vertical-offset="1500" max-vertical-offset="2130">
+            <state line="43" column="72" selection-start="1898" selection-end="1898" vertical-scroll-proportion="0.1904762" vertical-offset="525" max-vertical-offset="2130">
               <folding />
             </state>
           </provider>
@@ -165,10 +165,10 @@
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/libs/others/moment.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
       </list>
     </option>
   </component>
@@ -1116,13 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="4" selection-start="5116" selection-end="5189" vertical-scroll-proportion="-11.25" vertical-offset="1500" max-vertical-offset="2130">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="164" column="78" selection-start="11688" selection-end="11708" vertical-scroll-proportion="-10.708333" vertical-offset="2203" max-vertical-offset="2985">
@@ -1139,7 +1132,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.4587156" vertical-offset="0" max-vertical-offset="3030">
+        <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="72" selection-start="1898" selection-end="1898" vertical-scroll-proportion="0.1904762" vertical-offset="525" max-vertical-offset="2130">
           <folding />
         </state>
       </provider>
