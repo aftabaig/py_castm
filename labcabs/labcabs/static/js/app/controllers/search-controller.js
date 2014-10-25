@@ -3,8 +3,6 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
   $rootScope.activeMenu = "Search";
   $rootScope.currentUser = $localStorage.user;
 
-  $scope.exportableConsignmentId = 8;
-
   $scope.saveMode = false;
   $scope.setSaveMode = function(mode) {
     $scope.saveMode = mode;
@@ -148,23 +146,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     if ($scope.pickupPostcode) {
 
         var re = new RegExp($scope.pickupPostcode, 'i');
-        var filteredEntities = []
-        for (i=0; i<$scope.entities.length; i++) {
-            var entity = $scope.entities[i];
-            if (entity.postcode.match(re)) {
-                filteredEntities.push(entity.id);
-            }
-        }
-
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var found = false;
-            filteredEntities.forEach(function(entity) {
-                if (consignment.consignor === entity) {
-                    found = true;
-                }
-            });
-            if (!found) {
+            if (!consignment.pickup_postcode.match(re)) {
                 $scope.filteredConsignments.splice(i--, 1);
             }
         }
@@ -174,23 +158,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     if ($scope.pickupState) {
 
         var re = new RegExp($scope.pickupState, 'i');
-        var filteredEntities = []
-        for (i=0; i<$scope.entities.length; i++) {
-            var entity = $scope.entities[i];
-            if (entity.state.match(re)) {
-                filteredEntities.push(entity.id);
-            }
-        }
-
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var found = false;
-            filteredEntities.forEach(function(entity) {
-                if (consignment.consignor == entity) {
-                    found = true;
-                }
-            });
-            if (!found) {
+            if (!consignment.pickup_state.match(re)) {
                 $scope.filteredConsignments.splice(i--, 1);
             }
         }
@@ -200,23 +170,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     if ($scope.deliveryPostcode) {
 
         var re = new RegExp($scope.deliveryPostcode, 'i');
-        var filteredEntities = []
-        for (i=0; i<$scope.entities.length; i++) {
-            var entity = $scope.entities[i];
-            if (entity.postcode.match(re)) {
-                filteredEntities.push(entity.id);
-            }
-        }
-
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var found = false;
-            filteredEntities.forEach(function(entity) {
-                if (consignment.consignee === entity) {
-                    found = true;
-                }
-            });
-            if (!found) {
+            if (!consignment.delivery_postcode.match(re)) {
                 $scope.filteredConsignments.splice(i--, 1);
             }
         }
@@ -226,23 +182,9 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     if ($scope.deliveryState) {
 
         var re = new RegExp($scope.deliveryState, 'i');
-        var filteredEntities = []
-        for (i=0; i<$scope.entities.length; i++) {
-            var entity = $scope.entities[i];
-            if (entity.state.match(re)) {
-                filteredEntities.push(entity.id);
-            }
-        }
-
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var found = false;
-            filteredEntities.forEach(function(entity) {
-                if (consignment.consignee == entity) {
-                    found = true;
-                }
-            });
-            if (!found) {
+            if (!consignment.delivery_state.match(re)) {
                 $scope.filteredConsignments.splice(i--, 1);
             }
         }
@@ -491,12 +433,30 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
     return selected;
   }
 
-  $scope.markAsExport = function(index) {
-    $scope.exportableConsignmentId = $scope.filteredConsignments[index].id;
+  $scope.toggleExportable = function(index, $event) {
+    var consignment = $scope.filteredConsignments[index];
+    var checkbox = $event.target;
+    consignment.exportable = checkbox.checked;
   }
 
   $scope.export = function() {
-    ConsignmentService.email($scope.exportableConsignmentId, $scope.exportTo)
+
+    var exportIds = [];
+    $scope.filteredConsignments.forEach(function(consignment) {
+        if (consignment.exportable) {
+            exportIds.push(consignment.id);
+        }
+    });
+
+    var subject;
+    if ($scope.selectedSearch) {
+        subject = "Your Consignments - " + $scope.selectedSearch.name;
+    }
+    else {
+        subject = "Your Consignments";
+    }
+
+    ConsignmentService.send(subject, exportIds, $scope.exportTo, $scope.fields)
     .then(function(data) {
         console.log("email sent");
     });
@@ -518,6 +478,62 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
 
   $scope.formatAddress = function(entity) {
     return EntityHelper.formattedAddress(entity);
+  }
+
+  $scope.formatPickupAddress = function(consignment) {
+
+    var address = '';
+    if (consignment.pickup_tenancy) {
+        address = address + ' ' + consignment.pickup_tenancy;
+    }
+    if (consignment.pickup_street_num) {
+        address = address + ' Street # ' + consignment.pickup_street_num;
+    }
+    if (consignment.pickup_street) {
+        address = address + ' ' + consignment.pickup_street;
+    }
+    if (consignment.pickup_town) {
+        address = address + ' ' + consignment.pickup_town;
+    }
+    if (consignment.pickup_postcode) {
+        address = address + ' ' + consignment.pickup_postcode;
+    }
+    if (consignment.pickup_state) {
+        address = address + ' ' + consignment.pickup_state;
+    }
+    if (consignment.pickup_country) {
+        address = address + ' ' + consignment.pickup_country;
+    }
+    return address;
+
+  }
+
+  $scope.formatDeliveryAddress = function(consignment) {
+
+    var address = '';
+    if (consignment.delivery_tenancy) {
+        address = address + ' ' + consignment.delivery_tenancy;
+    }
+    if (consignment.delivery_street_num) {
+        address = address + ' Street # ' + consignment.delivery_street_num;
+    }
+    if (consignment.delivery_street) {
+        address = address + ' ' + consignment.delivery_street;
+    }
+    if (consignment.delivery_town) {
+        address = address + ' ' + consignment.delivery_town;
+    }
+    if (consignment.delivery_postcode) {
+        address = address + ' ' + consignment.delivery_postcode;
+    }
+    if (consignment.delivery_state) {
+        address = address + ' ' + consignment.delivery_state;
+    }
+    if (consignment.delivery_country) {
+        address = address + ' ' + consignment.delivery_country;
+    }
+    return address;
+
   }
 
 }]);

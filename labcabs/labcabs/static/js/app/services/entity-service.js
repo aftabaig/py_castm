@@ -20,8 +20,6 @@ lc.factory("EntityService", function($http, $q, $localStorage) {
                 method: 'GET',
                 url: api_url
             }).success(function(data, status, header, config) {
-                console.log("entities");
-                console.dir(data);
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
                 defer.reject(status);

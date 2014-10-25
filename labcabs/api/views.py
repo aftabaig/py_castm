@@ -61,13 +61,68 @@ class ConsignmentMixin(object):
 
 class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
 
-    @detail_route(methods=['post', ])
-    def send_as_email(self, request, pk=None):
-        consignment = self.get_object()
-        html_body = consignment.as_email()
+    @list_route(methods=['post', ])
+    def send(self, request):
+
+        consignment_ids = request.DATA.get("consignment_ids")
         entity = request.DATA.get("entity")
-        logger.debug(entity)
-        send_mail('Consignment # %s' % (consignment.id, ), 'Message', 'info@labcabs.com', [entity.get("email"), ], html_message=html_body)
+        subject = request.DATA.get("subject")
+        fields = request.DATA.get("fields")
+
+        html = ""
+        html += "<table style='width:100%;border-style:solid;border-width:1px'>"
+        html += "\t<tr>"
+        html += "\t\t<td>"
+        html += "\t\t\t<strong>#"
+        html += "\t\t</td>"
+
+        for f in fields:
+            if f.get("selected"):
+                html += "\t\t<td>"
+                html += "\t\t\t<strong>%s</strong>" % (f.get("title"), )
+                html += "\t\t</td>"
+        html += "\t</tr>"
+
+        for c_id in consignment_ids:
+            logger.debug(c_id)
+            c = Consignment.objects.get(pk=c_id)
+            html += "\t<tr>"
+            html += "\t\t<td>%s</td>" % (c.id, )
+            for f in fields:
+                if f.get("selected"):
+                    html += "\t\t<td>"
+                    name = f.get("name")
+                    if name == 'consignor':
+                        html += "%s" % (c.consignor.name, )
+                    elif name == 'consignee':
+                        html += "%s" % (c.consignee.name, )
+                    elif name == 'originator':
+                        html += "%s" % (c.originator.name, )
+                    elif name == 'account':
+                        html += "%s" % (c.account.description, )
+                    elif name == 'pickup_address':
+                        html += "%s %s %s %s %s %s %s" % (c.pickup_tenancy, c.pickup_street_num, c.pickup_street, c.pickup_town, c.pickup_postcode, c.pickup_state, c.pickup_country, )
+                    elif name == 'delivery_address':
+                        html += "%s %s %s %s %s %s %s" % (c.delivery_tenancy, c.delivery_street_num, c.delivery_street, c.delivery_town, c.delivery_postcode, c.delivery_state, c.delivery_country, )
+                    elif name == 'mode':
+                        html += "%s" % (c.mode, )
+                    elif name == 'status':
+                        html += "%s" % (c.status, )
+                    elif name == 'pickup_date':
+                        html += "%s" % (c.pickupDate, )
+                    elif name == 'eta_date':
+                        html += "%s" % (c.eta_date, )
+                    elif name == 'notes':
+                        html += "%s" % (c.notes, )
+                    elif name == 'customer_reference':
+                        html += "%s" % (c.customer_reference, )
+                    html += "\t\t</td>"
+            html += "\t</tr>"
+
+
+        html += "</table>"
+
+        send_mail(subject, 'Message', 'info@labcabs.com', [entity.get("email"), ], html_message=html)
         return Response(None)
 
     def post_save(self, obj, created=False):
@@ -85,6 +140,9 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
 
 consignment_email = ConsignmentViewSet.as_view({
     'post': 'send_as_email',
+})
+consignments_send = ConsignmentViewSet.as_view({
+    'post': 'send'
 })
 consignment_list = ConsignmentViewSet.as_view({
     'get': 'list',

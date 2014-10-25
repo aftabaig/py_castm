@@ -231,6 +231,17 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
     return grandTotal;
   }
 
+  $scope.calculateETA = function() {
+
+    if ($scope.consignment.mode == "Overnight Air") {
+        var eta = new moment($scope.consignment.pickupDate)
+                    .add("days", 1)
+                    .startOf("day")
+                    .add("hours", 9);
+        $scope.consignment.eta_date = eta.format("DD-MMM-YYYY hh:mm");
+    }
+  }
+
   $scope.formatAddress = function(entity) {
     return EntityHelper.formattedAddress(entity);
   }

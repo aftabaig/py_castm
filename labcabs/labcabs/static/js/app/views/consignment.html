@@ -122,7 +122,7 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <select ng-model="consignment.mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
+                                        <select ng-model="consignment.mode" ng-change="calculateETA()"  ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
                                             <option value="">-- Choose a Mode --</option>
                                         </select>
                                     </td>
@@ -149,6 +149,7 @@
                                     <td>
                                         <input  ng-model="consignment.pickupDate"
                                                 ng-click="openPickupDate($event)"
+                                                ng-change="calculateETA()"
                                                 type="text" class="form-control"
                                                 style="width:150px"
                                                 datepicker-popup="dd-MMM-yyyy hh:mm"

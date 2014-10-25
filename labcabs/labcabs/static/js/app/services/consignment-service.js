@@ -16,14 +16,17 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        email: function(consignmentId, entity) {
+        send: function(subject, consignmentIds, entity, fields) {
             var data = {
-                "entity": entity
+                "subject": subject,
+                "consignment_ids": consignmentIds,
+                "entity": entity,
+                "fields": fields
             }
             var defer = $q.defer();
             $http({
                 method: 'POST',
-                url: api_url + consignmentId + "/send_as_email/",
+                url: api_url + "send/",
                 data: data
             }).success(function(data, status, header, config) {
                     defer.resolve(data);
