@@ -19,7 +19,7 @@
         <!--<li class="divider"/>-->
         <li ng-repeat="entity in entities" style="text-align:left;margin-left:10px">
             <input type="checkbox" ng-disabled="!entity.email" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
-            <!--<div ng-class="{disabled: !entity.email, enabled: entity.email}" >^^entity.name^^ (^^entity.type^^)</div>-->
+            <div ng-class="{disabled: !entity.email, enabled: entity.email}" >^^entity.name^^ (^^entity.type^^)</div>
         </li>
     </ul>
 </div>
