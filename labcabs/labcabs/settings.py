@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
+    'default2': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd40tvfn336lcnk',
         'USER': 'lkyalvwryxwoke',
@@ -18,7 +18,7 @@ DATABASES = {
         'HOST': 'ec2-54-225-102-235.compute-1.amazonaws.com',
         'PORT': '5432',
     },
-    'default2': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'lc',
         'USER': 'aftabaig',

@@ -4,7 +4,7 @@
 <table ng-if="filteredConsignments.length > 0" class="table table-bordered table-striped table-condensed">
     <thead>
         <tr>
-            <th></th>
+            <th><input type="checkbox" ng-model="allConsignments" ng-click="toggleAllConsignments($event)" ng-checked="allConsignmentsSelected()"/></th>
             <th>#</th>
             <th ng-if="isFieldSelected('consignor')">Consignor</th>
             <th ng-if="isFieldSelected('consignee')">Consignee</th>
@@ -23,7 +23,7 @@
     <tbody>
         <tr ng-repeat="consignment in filteredConsignments">
             <td>
-                <input type="checkbox" ng-click="toggleExportable($index, $event)"/>
+                <input type="checkbox" ng-model="consignment.exportable" ng-click="toggleConsignment($index, $event)" ng-checked="consignment.exportable"/>
             </td>
             <td>
                 <a href="/#/consignments/^^consignment.id^^">^^consignment.id^^</a>

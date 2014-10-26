@@ -65,7 +65,7 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
     def send(self, request):
 
         consignment_ids = request.DATA.get("consignment_ids")
-        entity = request.DATA.get("entity")
+        entities = request.DATA.get("entities")
         subject = request.DATA.get("subject")
         fields = request.DATA.get("fields")
 
@@ -122,7 +122,9 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
 
         html += "</table>"
 
-        send_mail(subject, 'Message', 'info@labcabs.com', [entity.get("email"), ], html_message=html)
+        for entity in entities:
+            send_mail(subject, 'Message', 'info@labcabs.com', [entity.get("email"), ], html_message=html)
+
         return Response(None)
 
     def post_save(self, obj, created=False):

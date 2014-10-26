@@ -77,8 +77,6 @@ class Consignment(models.Model):
                                )
         return html
 
-
-
     consignor = models.ForeignKey('Entity', default=0, related_name='consignment_consignor')
     consignee = models.ForeignKey('Entity', default=0, related_name='consignment_consignee')
     originator = models.ForeignKey('Entity', default=0, related_name='consignment_originator')

@@ -9,7 +9,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <select ng-options="search as search.name for search in mySearches"
+                                    <select
+                                        ng-options="search as search.name for search in mySearches"
                                         ng-change="loadSearch()"
                                         ng-model="selectedSearch"
                                         class="form-control">
@@ -61,35 +62,51 @@
                                     <td>
                                         <label>By Pickup Address</label>
                                     </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
                                     <td>
-                                        <label>By Delivery Address</label>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        State
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class="input-group" style="padding-bottom:5px;padding-right:5px">
-                                            <span class="input-group-addon">Postcode</span>
-                                            <input ng-model="pickupPostcode" type="text" class="form-control" style="width:100px">
+                                            <input ng-model="pickupPostcode" type="text" class="form-control" style="width:150px">
                                         </div>
                                     </td>
                                     <td style="padding-right:5px">
                                         <div class="input-group" style="padding-bottom:5px">
-                                            <span class="input-group-addon">Postcode</span>
-                                            <input ng-model="deliveryPostcode" type="text" class="form-control" style="width:100px">
+                                            <input ng-model="pickupState" type="text" class="form-control" style="width:150px">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
+                                        <label>By Delivery Address</label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Postcode
+                                    </td>
+                                    <td>
+                                        State
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <div class="input-group" style="padding-bottom:5px">
-                                            <span class="input-group-addon">State</span>
-                                            <input ng-model="pickupState" type="text" class="form-control" style="width:100px">
+                                            <input ng-model="deliveryPostcode" type="text" class="form-control" style="width:150px">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="input-group" style="padding-bottom:5px">
-                                            <span class="input-group-addon">State</span>
-                                            <input ng-model="deliveryState" type="text" class="form-control" style="width:100px">
+                                            <input ng-model="deliveryState" type="text" class="form-control" style="width:150px">
                                         </div>
                                     </td>
                                 </tr>
@@ -98,15 +115,13 @@
                         <div style="width:100%;padding-top:20px">
                             <label>By Account</label>
                             <div class="input-group" style="padding-bottom:5px">
-                                <span class="input-group-addon">Account</span>
-                                <input ng-model="account" type="text" class="form-control" style="width:250px">
+                                <input ng-model="account" type="text" class="form-control" style="width:310px">
                             </div>
                         </div>
                         <div style="width:100%;padding-top:20px">
                             <label>By Customer Reference</label>
                             <div class="input-group" style="padding-bottom:5px">
-                                <span class="input-group-addon">Customer Reference</span>
-                                <input ng-model="customerReference" type="text" class="form-control" style="width:250px">
+                                <input ng-model="customerReference" type="text" class="form-control" style="width:310px">
                             </div>
                         </div>
                         <div style="width:100%;padding-top:20px">
@@ -122,14 +137,14 @@
                                 <tr>
                                     <td>
                                         <div class="input-group" style="padding-bottom:5px;padding-right:5px">
-                                            <select ng-model="mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:250px">
+                                            <select ng-model="mode" ng-options="mode for mode in modes track by mode" class="form-control" style="width:150px">
                                                 <option value="">-- Any Mode --</option>
                                             </select>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="input-group" style="padding-bottom:5px">
-                                            <select ng-model="status" ng-options="status for status in statuses track by status" class="form-control" style="width:250px">
+                                            <select ng-model="status" ng-options="status for status in statuses track by status" class="form-control" style="width:150px">
                                                 <option value="">-- Any Status --</option>
                                             </select>
                                         </div>
@@ -141,23 +156,33 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <label>By Pickup Date - From</label>
+                                        <label>By Pickup Date</label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        From
                                     </td>
                                     <td>
-                                        <label>To</label>
+                                        To
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
-                                            <span ng-click="openStart($event)" class="input-group-addon" style="cursor:pointer">From</span>
-                                            <input  ng-model="startDate"
+                                        <div class="input-group" style="padding-bottom:5px;padding-right:5px" style="cursor:pointer">
+                                            <span ng-click="openPickupStart($event)" class="input-group-addon">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input
+                                                ng-model="pickupStartDate"
+                                                ng-click="openPickupStart($event)"
                                                 type="text" class="form-control"
                                                 style="width:150px"
-                                                datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                datepicker-popup="dd-MMM-yyyy HH:mm"
                                                 min-mode="time"
                                                 datepicker-mode="time"
-                                                is-open="openedStart"
+                                                is-open="openedPickupStart"
                                                 close-on-date-selection="true"
                                                 date-disabled="disabled(date, mode)"
                                                 show-button-bar="false"
@@ -166,19 +191,97 @@
                                     </td>
                                     <td>
                                         <div class="input-group" style="padding-bottom:5px">
-                                            <span ng-click="openEnd($event)" class="input-group-addon" style="cursor:pointer">To</span>
-                                            <input  ng-model="endDate"
-                                            type="text" class="form-control"
-                                            style="width:150px"
-                                            datepicker-popup="dd-MMM-yyyy hh:mm"
-                                            min-mode="time"
-                                            datepicker-mode="time"
-                                            is-open="openedEnd"
-                                            close-on-date-selection="true"
-                                            date-disabled="disabled(date, mode)"
-                                            show-button-bar="false"
-                                            show-weeks="false"/>
+                                            <span ng-click="openPickupEnd($event)" class="input-group-addon" style="cursor:pointer">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input
+                                                ng-model="pickupEndDate"
+                                                ng-click="openPickupEnd($event)"
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy HH:mm"
+                                                min-mode="time"
+                                                datepicker-mode="time"
+                                                is-open="openedPickupEnd"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="false"
+                                                show-weeks="false"/>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <button ng-click="pickupStartDate = yesterday().start;pickupEndDate=yesterday().end;" class="btn btn-primary btn-sm">Yesterday</button>
+                                        <button ng-click="pickupStartDate = today().start;pickupEndDate=today().end;" class="btn btn-info btn-sm">Today</button>
+                                        <button ng-click="pickupStartDate = tomorrow().start;pickupEndDate=tomorrow().end;" class="btn btn-warning btn-sm">Tomorrow</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="width:100%;padding-top:20px">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label>By Delivery Date</label>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        From
+                                    </td>
+                                    <td>
+                                        To
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                                            <span ng-click="openETAStart($event)" class="input-group-addon" style="cursor:pointer">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input
+                                                ng-model="etaStartDate"
+                                                ng-click="openETAStart($event)"
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                min-mode="time"
+                                                datepicker-mode="time"
+                                                is-open="openedETAStart"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="false"
+                                                show-weeks="false"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-group" style="padding-bottom:5px">
+                                            <span ng-click="openETAEnd($event)" class="input-group-addon" style="cursor:pointer">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input
+                                                ng-model="etaEndDate"
+                                                ng-click="openETAEnd($event)"
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                min-mode="time"
+                                                datepicker-mode="time"
+                                                is-open="openedETAEnd"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="false"
+                                                show-weeks="false"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <button ng-click="etaStartDate = yesterday().start;etaEndDate=yesterday().end;" class="btn btn-primary btn-sm">Yesterday</button>
+                                        <button ng-click="etaStartDate = today().start;etaEndDate=today().end;" class="btn btn-info btn-sm">Today</button>
+                                        <button ng-click="etaStartDate = tomorrow().start;etaEndDate=tomorrow().end;" class="btn btn-warning btn-sm">Tomorrow</button>
                                     </td>
                                 </tr>
                             </table>
@@ -207,15 +310,8 @@
                         <div style="margin-top:-10px;text-align:right">
                             <table style="width:100%">
                                 <tr>
-                                    <td style="width:auto;margin-right:5px">
-                                        <button ng-disabled="exportableConsignmentId == 0 || exportTo == null" ng-click="export()" class="btn btn-primary" type="button">Export to</button>
-                                    </td>
                                     <td style="width:200px;margin-left:5px">
-                                        <select ng-options="entity as entity.name for entity in entities"
-                                        ng-model="exportTo"
-                                        class="form-control">
-                                        <option value="">-- Select --</option>
-                                    </select>
+                                        <multi-entity-selector export-action="export()" entities="entities"></multi-entity-selector>
                                     </td>
                                 </tr>
                             </table>

@@ -147,22 +147,31 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <input  ng-model="consignment.pickupDate"
-                                                ng-click="openPickupDate($event)"
-                                                ng-change="calculateETA()"
-                                                type="text" class="form-control"
-                                                style="width:150px"
-                                                datepicker-popup="dd-MMM-yyyy hh:mm"
-                                                min-mode="time"
-                                                datepicker-mode="time"
-                                                is-open="opened_pickup"
-                                                close-on-date-selection="true"
-                                                date-disabled="disabled(date, mode)"
-                                                show-button-bar="true"
-                                                show-weeks="false"/>
+                                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                                            <span ng-click="openPickupDate($event)" class="input-group-addon" style="cursor:pointer">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input  ng-model="consignment.pickupDate"
+                                                    ng-click="openPickupDate($event)"
+                                                    ng-change="calculateETA()"
+                                                    type="text" class="form-control"
+                                                    style="width:150px"
+                                                    datepicker-popup="dd-MMM-yyyy hh:mm"
+                                                    min-mode="time"
+                                                    datepicker-mode="time"
+                                                    is-open="opened_pickup"
+                                                    close-on-date-selection="true"
+                                                    date-disabled="disabled(date, mode)"
+                                                    show-button-bar="true"
+                                                    show-weeks="false"/>
+                                        </div>
                                     </td>
                                     <td>
-                                        <input  ng-model="consignment.eta_date"
+                                        <div class="input-group" style="padding-bottom:5px;padding-right:5px">
+                                            <span ng-click="openETADate($event)" class="input-group-addon" style="cursor:pointer">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                            </span>
+                                            <input  ng-model="consignment.eta_date"
                                                 ng-click="openETADate($event)"
                                                 type="text" class="form-control"
                                                 style="width:150px"
@@ -174,6 +183,7 @@
                                                 date-disabled="disabled(date, mode)"
                                                 show-button-bar="true"
                                                 show-weeks="false"/>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>

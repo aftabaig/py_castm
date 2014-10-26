@@ -1,0 +1,13 @@
+<div class="btn-group">
+    <button type="button" ng-click="exportAction()" class="btn btn-primary" style="width:200px">Export</button>
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu" style="width:225px">
+        <li ng-repeat="entity in entities" style="text-align:left;margin-left:10px">
+            <input type="checkbox" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
+            ^^entity.name^^ (^^entity.type^^)
+        </li>
+    </ul>
+</div>
