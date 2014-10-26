@@ -1,3 +1,11 @@
+<style>
+    disabled: {
+        text-decoration: line-through;
+    },
+    enabled: {
+        text-decoration: none;
+    }
+</style>
 <div class="btn-group">
     <button type="button" ng-click="exportAction()" class="btn btn-primary" style="width:200px">Export</button>
     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -10,8 +18,8 @@
         <!--</li>-->
         <!--<li class="divider"/>-->
         <li ng-repeat="entity in entities" style="text-align:left;margin-left:10px">
-            <input type="checkbox" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
-            ^^entity.name^^ (^^entity.type^^)
+            <input type="checkbox" ng-disabled="!entity.email" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
+            <!--<div ng-class="{disabled: !entity.email, enabled: entity.email}" >^^entity.name^^ (^^entity.type^^)</div>-->
         </li>
     </ul>
 </div>
