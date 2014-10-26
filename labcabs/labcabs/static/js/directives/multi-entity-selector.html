@@ -21,8 +21,8 @@
         <!--<li class="divider"/>-->
         <li ng-repeat="entity in entities" style="text-align:left;margin-left:10px">
             <input type="checkbox" ng-disabled="!entity.email" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
-            <span ng-if="entity.email" style="text-color:grey;text-decoration:line-through">^^entity.name^^ (^^entity.type^^)</span>
-            <span ng-if="!entity.email" style="text-color:black;text-decoration:none">^^entity.name^^ (^^entity.type^^)</span>
+            <span ng-if="!entity.email" style="color:grey;text-decoration:line-through">^^entity.name^^ (^^entity.type^^)</span>
+            <span ng-if="entity.email" style="color:black;text-decoration:none">^^entity.name^^ (^^entity.type^^)</span>
         </li>
     </ul>
 </div>
