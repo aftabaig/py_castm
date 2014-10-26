@@ -84,19 +84,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="consignment-controller.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="consignment-controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="0" selection-start="3205" selection-end="3205" vertical-scroll-proportion="-7.52" vertical-offset="1282" max-vertical-offset="4125">
+            <state line="119" column="38" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.5677083" vertical-offset="1567" max-vertical-offset="4200">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi-entity-selector.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="multi-entity-selector.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="26" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.9220779" vertical-offset="5" max-vertical-offset="495">
+            <state line="24" column="26" selection-start="1205" selection-end="1205" vertical-scroll-proportion="-14.791667" vertical-offset="5" max-vertical-offset="495">
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
@@ -108,15 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="results.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
+      <file leaf-file-name="consignments-controller.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="23" selection-start="1555" selection-end="1555" vertical-scroll-proportion="-13.75" vertical-offset="90" max-vertical-offset="1275">
-              <folding>
-                <element signature="n#style#0;n#table#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="-3.6" vertical-offset="0" max-vertical-offset="360">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,12 +177,12 @@
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js" />
         <option value="$PROJECT_DIR$/labcabs/api/views.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
       </list>
     </option>
   </component>
@@ -935,11 +931,6 @@
         <state line="4265" column="22" selection-start="75760" selection-end="75760" vertical-scroll-proportion="0.4296875" vertical-offset="63810" max-vertical-offset="70020" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="360" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="0" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="600" />
@@ -1131,13 +1122,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3205" selection-end="3205" vertical-scroll-proportion="-7.52" vertical-offset="1282" max-vertical-offset="4125">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="580" column="87" selection-start="17483" selection-end="17483" vertical-scroll-proportion="-10.6" vertical-offset="8435" max-vertical-offset="10320">
@@ -1177,7 +1161,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="26" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.9220779" vertical-offset="5" max-vertical-offset="495">
+        <state line="24" column="26" selection-start="1205" selection-end="1205" vertical-scroll-proportion="-14.791667" vertical-offset="5" max-vertical-offset="495">
           <folding>
             <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
@@ -1185,6 +1169,20 @@
             <element signature="n#style#0;n#span#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="-3.6" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="38" selection-start="3934" selection-end="3934" vertical-scroll-proportion="0.5677083" vertical-offset="1567" max-vertical-offset="4200">
+          <folding />
         </state>
       </provider>
     </entry>

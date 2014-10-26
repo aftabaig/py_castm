@@ -113,7 +113,12 @@ lc.controller("ConsignmentController", ['$scope', '$filter', '$rootScope', '$loc
         $scope.message = "Updating ...";
         $scope.promise = ConsignmentService.update($scope.consignment)
         .then(function(data) {
-            $location.path('consignments/').replace;
+            if ($scope.isNew) {
+                $location.path('consignments/new').replace;
+            }
+            else {
+                $location.path('search').replace;
+            }
         });
     }
   }
