@@ -37,6 +37,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="3030">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multi-entity-selector.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="220" selection-end="220" vertical-scroll-proportion="-4.8" vertical-offset="0" max-vertical-offset="360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="search.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,15 +102,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="consignment-service.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="36" selection-start="872" selection-end="872" vertical-scroll-proportion="-10.2" vertical-offset="75" max-vertical-offset="1470">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="consignment-controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,23 +111,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="supplies-controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/supplies-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="12" selection-start="1167" selection-end="1167" vertical-scroll-proportion="-12.4" vertical-offset="260" max-vertical-offset="900">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multi-entity-selector.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="multi-entity-selector.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="111" selection-start="588" selection-end="588" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="270">
+            <state line="10" column="29" selection-start="523" selection-end="523" vertical-scroll-proportion="0.24350649" vertical-offset="0" max-vertical-offset="616">
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -133,6 +133,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2130">
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="results.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -142,19 +158,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search-service.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/search-service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="32" selection-start="1110" selection-end="1110" vertical-scroll-proportion="-0.0" vertical-offset="465" max-vertical-offset="1155">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search-controller.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="search-controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="4" selection-start="3393" selection-end="3393" vertical-scroll-proportion="0.5110357" vertical-offset="1679" max-vertical-offset="10110">
+            <state line="132" column="4" selection-start="3393" selection-end="3393" vertical-scroll-proportion="-5.901961" vertical-offset="1679" max-vertical-offset="10110">
               <folding />
             </state>
           </provider>
@@ -204,19 +211,19 @@
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/entity-service.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/libs/others/moment.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
         <option value="$PROJECT_DIR$/labcabs/api/models.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/angularjs-dropdown-multiselect.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js" />
         <option value="$PROJECT_DIR$/labcabs/api/views.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/templates/index.html" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js" />
+        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html" />
       </list>
     </option>
   </component>
@@ -1021,13 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="79" column="69" selection-start="3202" selection-end="3202" vertical-scroll-proportion="0.0" vertical-offset="907" max-vertical-offset="2820">
@@ -1052,27 +1052,6 @@
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="5" selection-start="351" selection-end="351" vertical-scroll-proportion="-9.0" vertical-offset="0" max-vertical-offset="2115">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="68" selection-start="5563" selection-end="5563" vertical-scroll-proportion="-11.916667" vertical-offset="1544" max-vertical-offset="2160">
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="159" selection-end="159" vertical-scroll-proportion="-3.0" vertical-offset="0" max-vertical-offset="360">
           <folding />
         </state>
       </provider>
@@ -1102,17 +1081,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="12" selection-start="1167" selection-end="1167" vertical-scroll-proportion="-12.4" vertical-offset="260" max-vertical-offset="900">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="111" selection-start="588" selection-end="588" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="270">
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1196,8 +1164,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="4" selection-start="3393" selection-end="3393" vertical-scroll-proportion="0.5110357" vertical-offset="1679" max-vertical-offset="10110">
+        <state line="132" column="4" selection-start="3393" selection-end="3393" vertical-scroll-proportion="-5.901961" vertical-offset="1679" max-vertical-offset="10110">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2130">
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#header#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="3030">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="220" selection-end="220" vertical-scroll-proportion="-4.8" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="29" selection-start="523" selection-end="523" vertical-scroll-proportion="0.24350649" vertical-offset="0" max-vertical-offset="616">
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
