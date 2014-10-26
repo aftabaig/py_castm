@@ -5,8 +5,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.routers import DefaultRouter
 from rest_framework.decorators import list_route
-from rest_framework.decorators import detail_route
-from rest_framework.decorators import action
+from datetime import timedelta
 
 # serializers
 from serializers import EntitySerializer
@@ -68,6 +67,8 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
         entities = request.DATA.get("entities")
         subject = request.DATA.get("subject")
         fields = request.DATA.get("fields")
+        zone = request.DATA.get("zone")
+        offset = int(zone) * -1
 
         html = ""
         html += "<table style='width:100%;border-style:solid;border-width:1px'>"
@@ -109,9 +110,9 @@ class ConsignmentViewSet(ConsignmentMixin, viewsets.ModelViewSet):
                     elif name == 'status':
                         html += "%s" % (c.status, )
                     elif name == 'pickup_date':
-                        html += "%s" % (c.pickupDate, )
+                        html += "%s" % ((c.pickupDate + timedelta(minutes=offset)).strftime("%d-%b-%Y %H:%M"), )
                     elif name == 'eta_date':
-                        html += "%s" % (c.eta_date, )
+                        html += "%s" % ((c.eta_date + timedelta(minutes=offset)).strftime("%d-%b-%Y %H:%M"), )
                     elif name == 'notes':
                         html += "%s" % (c.notes, )
                     elif name == 'customer_reference':

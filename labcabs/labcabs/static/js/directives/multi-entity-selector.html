@@ -5,10 +5,10 @@
         <span class="sr-only">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu" role="menu" style="width:225px">
-        <li>
-            <input placeholder="Filter" type="text" class="form-control"/>
-        </li>
-        <li class="divider"/>
+        <!--<li style="margin-left:8px;margin-right:8px;margin-top:2px">-->
+            <!--<input placeholder="Filter" type="text" class="form-control"/>-->
+        <!--</li>-->
+        <!--<li class="divider"/>-->
         <li ng-repeat="entity in entities" style="text-align:left;margin-left:10px">
             <input type="checkbox" ng-click="toggleEntity($event, $index)" ng-checked="entity.selectedForExport" name="e[]" value="" id=""/>
             ^^entity.name^^ (^^entity.type^^)

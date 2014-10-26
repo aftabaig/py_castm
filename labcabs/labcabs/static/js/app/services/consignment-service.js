@@ -16,12 +16,13 @@ lc.factory("ConsignmentService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        send: function(subject, consignmentIds, entities, fields) {
+        send: function(subject, consignmentIds, entities, fields, zone) {
             var data = {
                 "subject": subject,
                 "consignment_ids": consignmentIds,
                 "entities": entities,
-                "fields": fields
+                "fields": fields,
+                "zone": zone
             }
             var defer = $q.defer();
             $http({

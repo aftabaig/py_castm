@@ -26,7 +26,18 @@
                 <input type="checkbox" ng-model="consignment.exportable" ng-click="toggleConsignment($index, $event)" ng-checked="consignment.exportable"/>
             </td>
             <td>
-                <a href="/#/consignments/^^consignment.id^^">^^consignment.id^^</a>
+                <table style="padding:0px;margin:0px">
+                    <tr>
+                        <td style="padding:2px">
+                            ^^consignment.id^^
+                        </td>
+                        <td style="padding:2px">
+                            <a href="/#/consignments/^^consignment.id^^">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
             </td>
             <td ng-if="isFieldSelected('consignor')">
                 <div>^^consignment.consignorObj.name^^</div>

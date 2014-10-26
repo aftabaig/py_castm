@@ -96,7 +96,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
   $scope.selectedSearch = {}
 
   $scope.entities.forEach(function(entity) {
-    entity.selectedForExport = true;
+    entity.selectedForExport = false;
   })
 
   $scope.consignments.forEach(function(consignment) {
@@ -247,25 +247,37 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     }
 
+    console.log("pickup-startdate", $scope.pickupStartDate);
+    console.log("pickup-enddate", $scope.pickupEndDate);
+
     // Search for pickup date.
     if ($scope.pickupStartDate && $scope.pickupEndDate) {
+
+        var pickup_start_date = new moment($scope.pickupStartDate);
+        var pickup_end_date = new moment($scope.pickupEndDate);
+
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var pickupDate = new Date(consignment.pickupDate);
-            if (pickupDate >= $scope.pickupStartDate && pickupDate <= $scope.pickupEndDate) {
+            var pickup_date = new moment(consignment.pickupDate);
+            if (pickup_date >= pickup_start_date && pickup_date <= pickup_end_date) {
             }
             else {
                 $scope.filteredConsignments.splice(i--, 1);
             }
         }
+
     }
 
     // Search for eta date.
     if ($scope.etaStartDate && $scope.etaEndDate) {
+
+        var eta_start_date = new moment($scope.etaStartDate);
+        var eta_end_date = new moment($scope.etaEndDate);
+
         for (i=0; i<$scope.filteredConsignments.length; i++) {
             var consignment = $scope.filteredConsignments[i];
-            var etaDate = new Date(consignment.eta_date);
-            if (etaDate >= $scope.etaStartDate && etaDate <= $scope.etaEndDate) {
+            var eta_date = new Date(consignment.eta_date);
+            if (eta_date >= eta_start_date && eta_date <= eta_end_date) {
             }
             else {
                 $scope.filteredConsignments.splice(i--, 1);
@@ -549,6 +561,8 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     });
 
+    var zone = moment().local().zone();
+
     var subject;
     if ($scope.selectedSearch.name) {
         subject = "Your Consignments - " + $scope.selectedSearch.name;
@@ -564,7 +578,7 @@ lc.controller("SearchController", ['$scope', '$rootScope', '$location', '$localS
         }
     });
 
-    ConsignmentService.send(subject, exportIds, exportableEntities, $scope.fields)
+    ConsignmentService.send(subject, exportIds, exportableEntities, $scope.fields, zone)
     .then(function(data) {
         console.log("email sent");
     });

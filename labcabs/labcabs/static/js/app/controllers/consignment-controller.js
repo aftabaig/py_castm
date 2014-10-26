@@ -1,4 +1,4 @@
-lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$localStorage', 'ConsignmentService', 'EntityHelper', 'consignment', 'entities', 'supplies', function($scope, $rootScope, $location, $localStorage, ConsignmentService, EntityHelper, consignment, entities, supplies) {
+lc.controller("ConsignmentController", ['$scope', '$filter', '$rootScope', '$location', '$localStorage', 'ConsignmentService', 'EntityHelper', 'consignment', 'entities', 'supplies', function($scope, $filter, $rootScope, $location, $localStorage, ConsignmentService, EntityHelper, consignment, entities, supplies) {
 
   $rootScope.activeMenu = "Consignments";
   $rootScope.currentUser = $localStorage.user;
@@ -93,6 +93,13 @@ lc.controller("ConsignmentController", ['$scope', '$rootScope', '$location', '$l
   ];
 
   $scope.save = function() {
+
+    var pickup_date = moment($scope.consignment.pickupDate).local().format();
+    var eta_date = moment($scope.consignment.eta_date).local().format();
+
+    $scope.consignment.pickupDate = pickup_date;
+    $scope.consignment.eta_date = eta_date;
+
     if ($scope.isNew) {
         $scope.message = "Adding ...";
         console.log("consignment-dates:");
