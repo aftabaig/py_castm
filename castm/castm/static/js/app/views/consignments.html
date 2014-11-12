@@ -1,0 +1,48 @@
+<section class="panel">
+    <div class="panel-body">
+        <section id="unseen">
+            <header class="panel-heading big-font">Consignments</header>
+            <div class="panel-body">
+                <div ng-if="consignments.length == 0" class="well">
+                    No Consignments
+                </div>
+                <table ng-if="consignments.length > 0" class="table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Pick-up Date</th>
+                            <th>Account</th>
+                            <th>Mode</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="consignment in consignments">
+                            <td style="width:20%">
+                                <div>^^ consignment.pickupDate | date:'dd-MM-yyyy HH:mm' ^^</div>
+                            </td>
+                            <td style="width:20%">
+                                <div>^^consignment.account^^</div>
+                            </td>
+                            <td style="width:20%">
+                                <div>^^consignment.mode^^</div>
+                            </td>
+                            <td style="width:20%">
+                                <div>^^consignment.status^^</div>
+                            </td>
+                            <td class="numeric">
+                                <div>
+                                    <a href="#/consignments/^^consignment.id^^" class="btn btn-warning">Edit</a>
+                                    <button ng-click="deleteConsignment($index)" type="button" class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#/consignments/new" class="btn btn-default">Add Consignment</a>
+            </div>
+        </section>
+    </div>
+</section>
+
+<div ng-include="'../static/js/app/views/alert.html'" />

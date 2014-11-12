@@ -23,126 +23,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="consignment.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/castm/um/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="51" selection-start="14559" selection-end="14559" vertical-scroll-proportion="-51.625" vertical-offset="1986" max-vertical-offset="3540">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#1;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#2;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#3;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#5;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#6;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#2;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#3;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#4;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#5;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#6;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#td#0;n#tr#0;n#table#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#select#0;n#td#1;n#tr#0;n#table#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="25" selection-start="3284" selection-end="3284" vertical-scroll-proportion="-9.6" vertical-offset="1185" max-vertical-offset="2025">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="serializers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/api/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="40" selection-start="3606" selection-end="3606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2445">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="consignment-controller.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="211" column="0" selection-start="6037" selection-end="6037" vertical-scroll-proportion="-0.0" vertical-offset="3165" max-vertical-offset="4170">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="17" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="12" selection-start="4720" selection-end="4794" vertical-scroll-proportion="-8.038462" vertical-offset="2086" max-vertical-offset="3015">
+            <state line="17" column="57" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/labcabs/views.py">
+        <entry file="file://$PROJECT_DIR$/castm/um/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+            <state line="49" column="71" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.0" vertical-offset="772" max-vertical-offset="1425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/labcabs/api/views.py">
+      <file leaf-file-name="fields.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/rest_framework/fields.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="114" column="80" selection-start="4101" selection-end="4101" vertical-scroll-proportion="2.53125" vertical-offset="0" max-vertical-offset="3075">
+            <state line="120" column="6" selection-start="3409" selection-end="3409" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="15720">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="permissions.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/castm/talent/permissions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="44" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generics.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/rest_framework_bulk/generics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="64" column="6" selection-start="2420" selection-end="2420" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1905">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="serializers.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/castm/talent/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="39" column="51" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
+        <entry file="file://$PROJECT_DIR$/castm/talent/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="0" selection-start="5265" selection-end="5265" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="2880">
+            <state line="32" column="33" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0001_initial.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/castm/talent/migrations/0001_initial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/castm/castm/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="47" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="3105">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="requirements.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="24" selection-start="151" selection-end="151" vertical-scroll-proportion="0.16079633" vertical-offset="0" max-vertical-offset="653">
               <folding />
             </state>
           </provider>
@@ -158,23 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/labcabs/dz/settings.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/leases.html" />
-        <option value="$PROJECT_DIR$/labcabs/main/models.py" />
-        <option value="$PROJECT_DIR$/labcabs/main/serializers.py" />
-        <option value="$PROJECT_DIR$/labcabs/main/views.py" />
-        <option value="$PROJECT_DIR$/labcabs/manage.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignments.html" />
-        <option value="$PROJECT_DIR$/Procfile" />
-        <option value="$PROJECT_DIR$/labcabs/wsgi.py" />
-        <option value="$PROJECT_DIR$/labcabs/__init__.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/wsgi.py" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entities-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entity-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/supplies-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/charges.html" />
-        <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignment_items.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignment_supplies.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/supply-service.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments/supplies.html" />
@@ -199,7 +147,6 @@
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/settings.py" />
         <option value="$PROJECT_DIR$/labcabs/api/migrations/0003_auto_20141028_0139.py" />
         <option value="$PROJECT_DIR$/labcabs/api/migrations/0002_auto_20141028_0138.py" />
@@ -207,6 +154,26 @@
         <option value="$PROJECT_DIR$/labcabs/api/serializers.py" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js" />
         <option value="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html" />
+        <option value="$PROJECT_DIR$/castm/web/settings.py" />
+        <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/castm/manage.py" />
+        <option value="$PROJECT_DIR$/castm/castm/wsgi.py" />
+        <option value="$PROJECT_DIR$/castm/user/models.py" />
+        <option value="$PROJECT_DIR$/castm/castm/templates/index.html" />
+        <option value="$PROJECT_DIR$/castm/api_users/models.py" />
+        <option value="$PROJECT_DIR$/castm/um/serializers.py" />
+        <option value="$PROJECT_DIR$/castm/um/models.py" />
+        <option value="$PROJECT_DIR$/castm/um/permissions.py" />
+        <option value="$PROJECT_DIR$/castm/castm/urls.py" />
+        <option value="$PROJECT_DIR$/castm/um/urls.py" />
+        <option value="$PROJECT_DIR$/castm/talent/permissions.py" />
+        <option value="$PROJECT_DIR$/castm/talent/urls.py" />
+        <option value="$PROJECT_DIR$/castm/um/views.py" />
+        <option value="$PROJECT_DIR$/castm/talent/models.py" />
+        <option value="$PROJECT_DIR$/castm/talent/views.py" />
+        <option value="$PROJECT_DIR$/castm/talent/serializers.py" />
+        <option value="$PROJECT_DIR$/castm/castm/settings.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
       </list>
     </option>
   </component>
@@ -241,6 +208,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -248,14 +225,6 @@
               <option name="myItemId" value="py_labcabs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Python 2.7.2 (/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python) &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -263,15 +232,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; Python 2.7.2 (/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python) &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="site-packages" />
+              <option name="myItemId" value="py_castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -281,7 +242,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemId" value="py_castm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -291,29 +256,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemId" value="py_castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemId" value="castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
+              <option name="myItemId" value="um" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -323,197 +274,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
+              <option name="myItemId" value="py_castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
+              <option name="myItemId" value="castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="directives" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="labcabs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
+              <option name="myItemId" value="castm" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -521,17 +295,17 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../py-mf" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/castm" />
+      <recent name="$PROJECT_DIR$/castm/um" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/directives" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery" />
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/images" />
-      <recent name="$PROJECT_DIR$/labcabs/labcabs/images" />
-      <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments" />
@@ -682,7 +456,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -690,11 +464,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -714,24 +488,88 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
+    <entry file="file://$PROJECT_DIR$/castm/talent/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="360" />
+        <state line="12" column="0" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
+    <entry file="file://$PROJECT_DIR$/castm/talent/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="580" column="87" selection-start="17483" selection-end="17483" vertical-scroll-proportion="0.0" vertical-offset="8435" max-vertical-offset="10320" />
+        <state line="41" column="37" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="825">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/__init__.py">
+    <entry file="file://$PROJECT_DIR$/castm/um/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90" />
+        <state line="49" column="71" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.0" vertical-offset="772" max-vertical-offset="1425">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/fields.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="40" selection-start="40" selection-end="40" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90" />
+        <state line="120" column="6" selection-start="3409" selection-end="3409" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="15720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="44" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework_bulk/generics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="6" selection-start="2420" selection-end="2420" vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="1905">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="23" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="1020">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="6" selection-start="306" selection-end="306" vertical-scroll-proportion="0.0" vertical-offset="7" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/castm/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="24" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="3105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="17" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="17" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="240">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log">
@@ -739,298 +577,201 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10365" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/css/bootstrap-reset.css">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="1" selection-start="2020" selection-end="2020" vertical-scroll-proportion="0.0" vertical-offset="2339" max-vertical-offset="5715" />
+        <state line="0" column="41" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="445" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/manage.py">
+    <entry file="file://$PROJECT_DIR$/castm/castm/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="60" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225" />
+        <state line="61" column="29" selection-start="2609" selection-end="2609" vertical-scroll-proportion="34.041668" vertical-offset="1732" max-vertical-offset="2130" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/south_migrations/__init__.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entities-controller.js">
+    <entry file="file://$PROJECT_DIR$/castm/manage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="21" selection-start="702" selection-end="702" vertical-scroll-proportion="0.3409091" vertical-offset="0" max-vertical-offset="660" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/supply-service.js">
+    <entry file="file://$PROJECT_DIR$/castm/castm/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="12" selection-start="1013" selection-end="1013" vertical-scroll-proportion="-5.4" vertical-offset="300" max-vertical-offset="1125" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/__init__.py">
+    <entry file="file:///Library/Python/2.7/site-packages/djangorestframework-2.4.3-py2.7.egg-info/dependency_links.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="653" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/tests.py">
+    <entry file="file:///Library/Python/2.7/site-packages/djangorestframework-2.4.3-py2.7.egg-info/installed-files.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1770" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments/supplies.html">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="173" selection-start="1060" selection-end="1060" vertical-scroll-proportion="-11.875" vertical-offset="0" max-vertical-offset="780" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments/charges.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="6" selection-start="2979" selection-end="2979" vertical-scroll-proportion="-33.208332" vertical-offset="133" max-vertical-offset="1020" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignments.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="36" selection-start="164" selection-end="192" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="795" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/consignments/items.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="20" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/alert.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/supplies.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="97" selection-start="1289" selection-end="1289" vertical-scroll-proportion="0.0" vertical-offset="403" max-vertical-offset="1020" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4265" column="22" selection-start="75760" selection-end="75760" vertical-scroll-proportion="0.4296875" vertical-offset="63810" max-vertical-offset="70020" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="671" selection-end="671" vertical-scroll-proportion="0.0" vertical-offset="178" max-vertical-offset="600" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="35" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="465" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6345" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/jquery/jquery.datetimepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="24585" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/bootstrap/ui-bootstrap-0.11.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1559" column="35" selection-start="51107" selection-end="51107" vertical-scroll-proportion="-3.509804" vertical-offset="23206" max-vertical-offset="61830" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="90" selection-start="743" selection-end="743" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/entity-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="27" selection-start="2940" selection-end="3732" vertical-scroll-proportion="-19.16" vertical-offset="1171" max-vertical-offset="1800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/libs/others/moment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2821" column="0" selection-start="91656" selection-end="91656" vertical-scroll-proportion="0.0" vertical-offset="14746" max-vertical-offset="42915" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entity.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="41" selection-start="2325" selection-end="2325" vertical-scroll-proportion="6.1666665" vertical-offset="778" max-vertical-offset="2055" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/entities.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="46" selection-start="2128" selection-end="2128" vertical-scroll-proportion="-9.791667" vertical-offset="455" max-vertical-offset="1095" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/search-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="32" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="1155" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/supplies-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="12" selection-start="1167" selection-end="1167" vertical-scroll-proportion="-12.4" vertical-offset="260" max-vertical-offset="900" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/entity-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="24" selection-start="661" selection-end="661" vertical-scroll-proportion="0.6" vertical-offset="315" max-vertical-offset="930" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="4" selection-start="547" selection-end="547" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="2130" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/partials/search/results.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="23" selection-start="1555" selection-end="1555" vertical-scroll-proportion="-13.75" vertical-offset="90" max-vertical-offset="1275" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignments-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="335" selection-end="335" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="0" selection-end="892" vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="525" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="285" column="138" selection-start="17951" selection-end="17951" vertical-scroll-proportion="0.0" vertical-offset="4379" max-vertical-offset="4995" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/services/consignment-service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="28" selection-start="942" selection-end="942" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1485" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/search-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="580" column="87" selection-start="17483" selection-end="17483" vertical-scroll-proportion="0.0" vertical-offset="8435" max-vertical-offset="10320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/directives/multi-entity-selector.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="240" selection-end="240" vertical-scroll-proportion="0.29220778" vertical-offset="0" max-vertical-offset="616" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/controllers/consignment-controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="0" selection-start="6037" selection-end="6037" vertical-scroll-proportion="-0.0" vertical-offset="3165" max-vertical-offset="4170">
+        <state line="576" column="8" selection-start="20059" selection-end="20059" vertical-scroll-proportion="0.35625" vertical-offset="8217" max-vertical-offset="17280">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/migrations/0003_auto_20141028_0139.py">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/generics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="41" selection-start="201" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+        <state line="428" column="27" selection-start="16018" selection-end="16071" vertical-scroll-proportion="0.0" vertical-offset="6008" max-vertical-offset="8400">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/migrations/0002_auto_20141028_0138.py">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/authtoken/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="8" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+        <state line="9" column="21" selection-start="319" selection-end="334" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="653" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="12" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="653" />
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/mixins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="9" selection-start="724" selection-end="725" vertical-scroll-proportion="-8.038462" vertical-offset="1" max-vertical-offset="2910">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/models.py">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/viewsets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="5265" selection-end="5265" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="2880">
+        <state line="7" column="8" selection-start="295" selection-end="299" vertical-scroll-proportion="9.230769" vertical-offset="345" max-vertical-offset="2115" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="44" selection-start="170" selection-end="210" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450" />
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/decorators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="26" selection-start="1795" selection-end="1795" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2520">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/app.js">
+    <entry file="file://$PROJECT_DIR$/castm/castm/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="25" selection-start="3284" selection-end="3284" vertical-scroll-proportion="-9.6" vertical-offset="1185" max-vertical-offset="2025">
+        <state line="23" column="0" selection-start="477" selection-end="477" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="0" selection-end="43" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/castm/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="676" />
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/relations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="24" selection-start="952" selection-end="952" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8835">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/static/js/app/views/consignment.html">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework/fields.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="51" selection-start="14559" selection-end="14559" vertical-scroll-proportion="-51.625" vertical-offset="1986" max-vertical-offset="3540">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#1;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#2;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#6;n#tr#0;n#thead#0;n#table#0;n#div#3;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#4;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#6;n#tr#0;n#thead#0;n#table#0;n#div#5;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#td#0;n#tr#0;n#table#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#td#1;n#tr#0;n#table#0;n#div#6;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#7;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#div#8;n#form#0;n#div#0;n#section#0;n#section#0;n#div#0;n#section#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="150">
+        <state line="120" column="6" selection-start="3409" selection-end="3409" vertical-scroll-proportion="0.0" vertical-offset="3627" max-vertical-offset="15345">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/serializers.py">
+    <entry file="file://$PROJECT_DIR$/castm/talent/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="40" selection-start="3606" selection-end="3606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2445">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="1665">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/labcabs/settings.py">
+    <entry file="file:///Library/Python/2.7/site-packages/rest_framework_bulk/generics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="12" selection-start="4720" selection-end="4794" vertical-scroll-proportion="-8.038462" vertical-offset="2086" max-vertical-offset="3015">
+        <state line="64" column="6" selection-start="2420" selection-end="2420" vertical-scroll-proportion="0.0" vertical-offset="698" max-vertical-offset="1860">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="71" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="1425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="44" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="57" selection-start="318" selection-end="318" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="33" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="64" selection-start="1333" selection-end="1333" vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/talent/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="51" selection-start="1191" selection-end="1191" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/castm/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="47" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="3105">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="206" selection-end="206" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/labcabs/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="80" selection-start="4101" selection-end="4101" vertical-scroll-proportion="2.53125" vertical-offset="0" max-vertical-offset="3075">
+        <state line="7" column="24" selection-start="151" selection-end="151" vertical-scroll-proportion="0.16079633" vertical-offset="0" max-vertical-offset="653">
           <folding />
         </state>
       </provider>

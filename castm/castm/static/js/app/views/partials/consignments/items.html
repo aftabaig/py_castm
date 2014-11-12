@@ -1,0 +1,83 @@
+<div style="width:100%;padding-top:20px">
+    <label>Items</label>
+    <div class="input-group" style="width:100%;padding-bottom:5px">
+        <div ng-if="!consignment.items || consignment.items.length == 0" class="well" style="width:100%">
+            No items added
+        </div>
+        <table ng-if="consignment.items.length > 0" class="table table-bordered table-striped table-condensed" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Width</th>
+                    <th>Length</th>
+                    <th>Height</th>
+                    <th>Dead Weight</th>
+                    <th>Vol. Weight</th>
+                    <th>Chargeable Weight</th>
+                    <th>Env</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in consignment.items">
+                    <td style="width:20%">
+                        <div ng-if="!item.isNew">^^item.description^^</div>
+                        <div ng-if="item.isNew">
+                            <input ng-model="item.description" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.isNew">^^item.width^^</div>
+                        <div ng-if="item.isNew">
+                            <input ng-model="item.width" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.isNew">^^item.length^^</div>
+                        <div ng-if="item.isNew">
+                            <input ng-model="item.length" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.isNew">^^item.height^^</div>
+                        <div ng-if="item.isNew">
+                            <input ng-model="item.height" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.isNew">^^item.dead_weight^^</div>
+                        <div ng-if="item.isNew">
+                            <input ng-model="item.dead_weight" class="form-control round-input">
+                        </div>
+                    </td>
+                    <td>
+                        <div>^^volumetricWeight($index).toFixed(2)^^</div>
+                    </td>
+                    <td>
+                        <div>^^chargeableWeight($index).toFixed(2)^^</div>
+                    </td>
+                    <td>
+                        <div ng-if="!item.isNew">^^item.temp^^</div>
+                        <div ng-if="item.isNew">
+                            <select ng-model="item.temp" ng-options="env for env in environments track by env" class="form-control" style="width:250px">
+                                <option value="">-- Choose Environment --</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="numeric" style="width:15%;text-align:center">
+                        <div ng-if="!item.isNew">
+                            <button ng-click="removeItem($index)" type="button" class="btn btn-danger">Remove</button>
+                        </div>
+                        <div ng-if="item.isNew">
+                            <button ng-click="doneAddItem($index)" type="button" class="btn btn-success">Done</button>
+                            <button ng-click="cancelAddItem($index)" type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top:-15px;text-align:right">
+            <button ng-click="addItem()" type="button" class="btn btn-primary">Add Item</button>
+        </div>
+    </div>
+</div>
