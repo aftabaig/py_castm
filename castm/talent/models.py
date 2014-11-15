@@ -23,7 +23,7 @@ class TalentProfile(models.Model):
     height_feet = models.IntegerField("Height (Feet)", default=0)
     height_inches = models.IntegerField("Height (Inches)", default=0)
     weight = models.IntegerField("Weight", default=0)
-    birth_day = models.DateField("Birthday", null=True)
+    birth_day = models.DateField("Birthday", null=True, blank=True)
     hair_color = models.CharField("Hair Color", max_length=32, blank=True)
     eye_color = models.CharField("Eye Color", max_length=32, blank=True)
     race = models.CharField("Race", max_length=1, choices=race_choices, blank=True)
