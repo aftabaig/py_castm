@@ -7,20 +7,25 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
-from rest_framework.status import HTTP_201_CREATED
-from rest_framework.status import HTTP_400_BAD_REQUEST
-from rest_framework.status import HTTP_200_OK
-
-# serializers
-from serializers import UserSerializer
-
-from permissions import IsTalent
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_200_OK
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 # django
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
+# models
+from models import MyUser
 from talent.models import TalentProfile
+
+# serializers
+from serializers import UserSerializer
+
+
+
+# permissions
+from permissions import IsTalent
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +58,44 @@ def sign_up(request):
         return Response(serializer.data, status=HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['POST', ])
+def authenticate(request):
+    """
+    Authenticates user with username/password.\n
+    HTTP Method:\n
+        POST\n
+    Accepts:\n
+        {
+            "username": "abc@gmail.com",
+            "password": "abc123"
+        }\n
+    Returns:\n
+        {
+            "token": "b95175a8e01d3ac718d12669f1ca8ddd37bf6f3d",
+            "type": 'S',
+            "sub_type": ''
+        }\n
+    """
+    serializer = AuthTokenSerializer(data=request.DATA)
+    if serializer.is_valid():
+        token, created = Token.objects.get_or_create(user=serializer.object['user'])
+        my_user = MyUser.objects.filter(user=serializer.object['user']).first()
+        type = None
+        sub_type = None
+        if my_user:
+            type = my_user.type
+            sub_type = my_user.sub_type
+        response = {
+            'token': token.key,
+            'type': type,
+            'sub_type': sub_type,
+        }
+        return Response(response)
+    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
 
 
 @api_view(['POST', ])

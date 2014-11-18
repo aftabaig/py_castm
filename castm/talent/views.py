@@ -2,23 +2,21 @@ import logging
 
 # rest_framework
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.relations import  PrimaryKeyRelatedField
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
-from rest_framework_bulk import ListBulkCreateUpdateDestroyAPIView
+from django.contrib.auth.models import User
+
+# um
 from um.permissions import IsTalent
 
 # serializers
-from serializers import ProfileSerializer
-from serializers import ResumeCategorySerializer
-from serializers import BulkCategorySerializer
-
-from models import ResumeCategory
+from serializers import PlainProfileSerializer
+from serializers import MyPlainProfileSerializer
 
 # models
-from um.models import MyUser
 from models import TalentProfile
-from models import ResumeCategory
+from models import PlainProfile
+from models import Notification
 
 logger = logging.getLogger(__name__)
 
@@ -27,19 +25,36 @@ def public_profile(request, user_id=None):
     """
     View a user's profile publicly.\n
     Allowed HTTP methods are:\n
-    1. GET to view\n
-    Returns:\n
-    1. 200 on success
-    2. 404 if talent's profile wasn't found.\n
+        1. GET to view\n
+        Returns:\n
+        {
+            "username": "aftab.flash@gmail.com",
+            "email": "aftab.flash@gmail.com",
+            "first_name": "",
+            "last_name": "",
+            "stage_first_name": "Aftab",
+            "stage_last_name": "Baig",
+            "title": "",
+            "height_feet": 0,
+            "height_inches": 0,
+            "weight": 0,
+            "birth_day": null,
+            "hair_color": "",
+            "eye_color": "",
+            "race": "",
+            "resume_categories": ""
+        }\n
+    Status:\n
+        1. 200 on success
+        2. 404 if talent's profile wasn't found.\n
     Notes:\n
-    1. This API would be used to view other talent's profile.\n
+        1. This API would be used to view other talent's profile.\n
     """
-    my_user = MyUser.objects.filter(user_id=user_id).first()
-    if my_user:
-        profile = TalentProfile.objects.get(my_user_id=my_user.id)
-        logger.debug("profile")
-        logger.debug(profile)
-        serializer = ProfileSerializer(profile)
+    user = User.objects.filter(id=user_id).first()
+    profile = TalentProfile.objects.get(user_id=user_id)
+    if user and profile:
+        plain_profile = PlainProfile(user=user, profile=profile)
+        serializer = PlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
     return Response(status=HTTP_404_NOT_FOUND)
 
@@ -50,55 +65,52 @@ def my_profile(request):
     """
     View/Update user's own profile.\n
     Allowed HTTP methods are:\n
-    1. GET to view\n
-    2. PUT to update.\n
-    Returns:\n
-    1. 200 on success\n
-    2. 400 if some error occurs\n
+        1. GET to view\n
+            Returns:\n
+            {
+                "username": "aftab.flash@gmail.com",
+                "email": "aftab.flash@gmail.com",
+                "first_name": "",
+                "last_name": "",
+                "stage_first_name": "Aftab",
+                "stage_last_name": "Baig",
+                "title": "",
+                "height_feet": 0,
+                "height_inches": 0,
+                "weight": 0,
+                "birth_day": null,
+                "hair_color": "",
+                "eye_color": "",
+                "race": "",
+                "resume_categories": "",
+                "notifications_count": 5,
+                "links_count": 6
+            }\n
+        2. PUT to update\n
+            - You need to create a dictionary of items (mentioned above) that you need to update.\n
+            - You can change any item apart from username, email, notifications_count & links_count.\n
+    Status:\n
+        1. 200 on success
+        2. 400 if some error occurs
+        3. 401 if un-authorized
     Notes:\n
-    1. Require user's token to be sent in the header as:\n
-        Authorization: Token [token]\n
-    2. This API won't update user's categories and jobs/lists.\n
-        Separate APIs would be available to update categories and jobs/lists.
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
     """
-    profile = TalentProfile.objects.get(user_id=request.user.id)
+    user = request.user
+    profile = TalentProfile.objects.get(user_id=user.id)
+    notification = Notification.get_notifications(user.id)
+    plain_profile = PlainProfile(user=user, profile=profile, notification=notification)
     if request.method == 'GET':
-        logger.debug("profile")
-        logger.debug(profile)
-        serializer = ProfileSerializer(profile)
+        serializer = MyPlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
     else:
-        serializer = ProfileSerializer(profile, data=request.DATA)
+        serializer = MyPlainProfileSerializer(plain_profile, data=request.DATA)
         if serializer.is_valid():
+            logger.debug("after")
             serializer.save()
             return Response(serializer.data, HTTP_200_OK)
         return Response(serializer.errors, HTTP_400_BAD_REQUEST)
-
-@api_view(['POST', ])
-def resume_categories(request):
-    serializer = BulkCategorySerializer(data=request.DATA, many=True)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(status=HTTP_200_OK)
-    return Response(serializer.errors, status=HTTP_200_OK)
-
-
-class ResumeCategoryView(ListBulkCreateUpdateDestroyAPIView):
-    """
-    Create/Update resume categories of logged-in user in bulk.
-    The app will have to keep a track of new/updated categories.
-    1. Create: Send a POST request with an array of categories as payload.
-
-    """
-    model = ResumeCategory
-    serializer_class = ResumeCategorySerializer
-    permission_classes = [IsTalent, ]
-
-    def allow_bulk_destroy(self, qs, filtered):
-        return False
-
-
-
 
 
 

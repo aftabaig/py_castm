@@ -19,6 +19,13 @@ class AuthUserSerializer(serializers.ModelSerializer):
         )
 
 
+class BasicInfoSerializer(serializers.Serializer):
+    username = serializers.CharField(read_only=True, required=False)
+    email = serializers.EmailField(read_only=True, required=False)
+    first_name = serializers.CharField(read_only=True, required=False)
+    last_name = serializers.CharField(read_only=True, required=False)
+
+
 # cast'm user serializer.
 class UserSerializer(serializers.ModelSerializer):
     user = AuthUserSerializer()
