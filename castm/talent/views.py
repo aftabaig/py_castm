@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 
 # um
 from um.permissions import IsTalent
+from um.views import error_as_text
 
 # serializers
 from serializers import PlainProfileSerializer
@@ -30,6 +31,7 @@ def public_profile(request, user_id=None):
         {
             "username": "aftab.flash@gmail.com",
             "email": "aftab.flash@gmail.com",
+            "is_stage_name": false,
             "first_name": "",
             "last_name": "",
             "stage_first_name": "Aftab",
@@ -42,6 +44,16 @@ def public_profile(request, user_id=None):
             "hair_color": "",
             "eye_color": "",
             "race": "",
+            "personal_add1": "",
+            "personal_add2": "",
+            "personal_mobile": "",
+            "personal_office": "",
+            "personal_email": "",
+            "is_agency_contact": "",
+            "agency": "",
+            "agency_name": "",
+            "agency_add1": "",
+            "agency_add2": "",
             "resume_categories": ""
         }\n
     Status:\n
@@ -51,12 +63,15 @@ def public_profile(request, user_id=None):
         1. This API would be used to view other talent's profile.\n
     """
     user = User.objects.filter(id=user_id).first()
-    profile = TalentProfile.objects.get(user_id=user_id)
+    profile = TalentProfile.objects.filter(user_id=user_id).first()
     if user and profile:
         plain_profile = PlainProfile(user=user, profile=profile)
         serializer = PlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
-    return Response(status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "User not found",
+    }, status=HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET', 'PUT', ])
@@ -70,6 +85,7 @@ def my_profile(request):
             {
                 "username": "aftab.flash@gmail.com",
                 "email": "aftab.flash@gmail.com",
+                "is_stage_name": false,
                 "first_name": "",
                 "last_name": "",
                 "stage_first_name": "Aftab",
@@ -82,7 +98,17 @@ def my_profile(request):
                 "hair_color": "",
                 "eye_color": "",
                 "race": "",
-                "resume_categories": "",
+                "personal_add1": "",
+                "personal_add2": "",
+                "personal_mobile": "",
+                "personal_office": "",
+                "personal_email": "",
+                "is_agency_contact": "",
+                "agency": "",
+                "agency_name": "",
+                "agency_add1": "",
+                "agency_add2": "",
+                "resume_categories": ""
                 "notifications_count": 5,
                 "links_count": 6
             }\n
@@ -107,10 +133,9 @@ def my_profile(request):
     else:
         serializer = MyPlainProfileSerializer(plain_profile, data=request.DATA)
         if serializer.is_valid():
-            logger.debug("after")
             serializer.save()
             return Response(serializer.data, HTTP_200_OK)
-        return Response(serializer.errors, HTTP_400_BAD_REQUEST)
+        return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
 
 
 

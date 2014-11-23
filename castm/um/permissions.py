@@ -22,3 +22,12 @@ class IsCasting(permissions.IsAuthenticated):
             return False
         my_user = MyUser.objects.get(user_id=request.user.id)
         return my_user.type == 'C'
+
+
+class IsTalentOrCasting(permissions.IsAuthenticated):
+    def has_permission(self, request, view):
+        is_authenticated = super(IsTalentOrCasting, self).has_permission(request, view)
+        if not is_authenticated:
+            return False
+        my_user = MyUser.objects.get(user_id=request.user.id)
+        return my_user.type == 'T' or my_user.type == 'C'

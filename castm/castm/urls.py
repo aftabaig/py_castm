@@ -21,6 +21,13 @@ urlpatterns += patterns(
     url(r'^api/talent/', include('talent.urls')),
 )
 
+# urls from notifications.
+# contains notifications related urls.
+urlpatterns += patterns(
+    'notifications.views',
+    url(r'^api/notifications/', include('notifications.urls')),
+)
+
 
 
 

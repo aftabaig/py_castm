@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'um',
     'talent',
+    'notifications',
 )
 
 REST_FRAMEWORK = {

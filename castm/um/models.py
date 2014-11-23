@@ -15,7 +15,7 @@ class MyUser(models.Model):
         ('C', 'Casting')
     )
 
-    user = models.OneToOneField(User, related_name='user')
+    user = models.OneToOneField(User, related_name='my_user')
     type = models.CharField("Account Type", choices=type_choices, max_length=1, blank=False)
     sub_type = models.CharField("Account Sub Type", max_length=1, blank=True)
 

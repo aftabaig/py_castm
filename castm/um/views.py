@@ -29,6 +29,35 @@ from permissions import IsTalent
 
 logger = logging.getLogger(__name__)
 
+# returns error as plain text.
+# TODO: This is only 2 level deep.
+# To dig deep, we might need a recursive method.
+def error_as_text(errors, status):
+    keys = errors.keys()
+    error = errors[keys[0]]
+    first_error = error[0]
+    if type(first_error) is unicode:
+        if keys[0] == "non_field_errors":
+            message = first_error
+        else:
+            message = keys[0] + ' - ' + first_error
+        return {
+            "status": status,
+            "message": message
+        }
+    else:
+        keys = first_error.keys()
+        error = first_error[keys[0]]
+        first_error = error[0]
+        if keys[0] == "non_field_errors":
+            message = first_error
+        else:
+            message = keys[0] + ' - ' + first_error
+        return {
+            "status": status,
+            "message": message
+        }
+
 @api_view(['POST', ])
 def sign_up(request):
 
@@ -57,7 +86,7 @@ def sign_up(request):
 
         return Response(serializer.data, status=HTTP_201_CREATED)
     else:
-        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+        return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
 
 
@@ -94,7 +123,7 @@ def authenticate(request):
             'sub_type': sub_type,
         }
         return Response(response)
-    return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+    return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
 
 
@@ -110,6 +139,7 @@ def change_password(request):
             return Response(status=HTTP_200_OK)
         return Response(status=HTTP_400_BAD_REQUEST)
     return Response(status=HTTP_400_BAD_REQUEST)
+
 
 @api_view(['POST', ])
 def forgot_password(request):
