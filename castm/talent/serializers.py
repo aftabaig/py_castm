@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 
 from models import TalentProfile
+from models import TalentHeadshot
 from models import PlainProfile
 
 logger = logging.getLogger(__name__)
@@ -127,3 +128,11 @@ class MyPlainProfileSerializer(PlainProfileSerializer):
             instance.links_count = attrs.get('links_count', instance.links_count)
             return instance
         return PlainProfile(**attrs)
+
+
+class HeadshotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TalentHeadshot
+        exclude = (
+            'user',
+        )

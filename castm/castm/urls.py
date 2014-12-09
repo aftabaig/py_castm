@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
 
@@ -27,6 +27,9 @@ urlpatterns += patterns(
     'notifications.views',
     url(r'^api/notifications/', include('notifications.urls')),
 )
+
+urlpatterns += staticfiles_urlpatterns()
+
 
 
 

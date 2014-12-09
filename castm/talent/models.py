@@ -31,13 +31,18 @@ class TalentProfile(models.Model):
     personal_add2 = models.CharField("Personal Address 2", max_length=1024, blank=True)
     personal_mobile = models.CharField("Mobile #", max_length=32, blank=True)
     personal_office = models.CharField("Office #", max_length=32, blank=True)
-    personal_email = models.CharField("Email Address", max_length=32, blank=True)
+    personal_email = models.CharField("Email Address", max_length=32, blank=True, default=False)
     is_agency_contact = models.BooleanField("Have an agent?", blank=True)
     agency = models.CharField("Agency", max_length=255, blank=True)
     agency_name = models.CharField("Agency Name", max_length=255, blank=True)
     agency_add1 = models.CharField("Agency Address 1", max_length=1024, blank=True)
     agency_add2 = models.CharField("Agency Address 2", max_length=1024, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
+
+
+class TalentHeadshot(models.Model):
+    user = models.ForeignKey(User)
+    headshot = models.ImageField(upload_to='headshots')
 
 
 class Notification(object):

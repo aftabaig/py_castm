@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
+    'default2': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd6d5qqq01mghh9',
         'USER': 'purgrthgrzsbyr',
@@ -18,7 +18,7 @@ DATABASES = {
         'HOST': 'ec2-54-163-249-168.compute-1.amazonaws.com',
         'PORT': '5432',
     },
-    'default2': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cast\'em',
         'USER': 'aftabaig',
@@ -57,7 +57,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold api_users-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/headshots/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -192,6 +192,12 @@ LOGGING = {
             'propagate': True,
         }
     }
+}
+
+CLOUDINARY = {
+    'cloud_name': 'flash-solutions',
+    'api_key': '242359747124272',
+    'api_secret': 'If_a6ZxmJ-QZX775G1oo6DuLTIg'
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

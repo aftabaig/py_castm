@@ -1,7 +1,11 @@
 import logging
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # rest_framework
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, renderer_classes
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
 from django.contrib.auth.models import User
@@ -13,9 +17,11 @@ from um.views import error_as_text
 # serializers
 from serializers import PlainProfileSerializer
 from serializers import MyPlainProfileSerializer
+from serializers import HeadshotSerializer
 
 # models
 from models import TalentProfile
+from models import TalentHeadshot
 from models import PlainProfile
 from models import Notification
 
@@ -136,6 +142,22 @@ def my_profile(request):
             serializer.save()
             return Response(serializer.data, HTTP_200_OK)
         return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+
+
+class HeadshotViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsTalent, )
+    queryset = TalentHeadshot.objects.all()
+    serializer_class = HeadshotSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.queryset.filter(user=request.user)
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+    def pre_save(self, obj):
+        response = cloudinary.uploader.upload(self.request.FILES['headshot'])
+        obj.headshot = response['url']
+        obj.user = self.request.user
 
 
 
