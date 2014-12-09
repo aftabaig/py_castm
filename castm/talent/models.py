@@ -17,7 +17,7 @@ class TalentProfile(models.Model):
     )
     user = models.ForeignKey(User)
     my_user = models.OneToOneField(MyUser)
-    is_stage_name = models.BooleanField("Stage Name?", blank=True)
+    is_stage_name = models.BooleanField("Stage Name?", blank=True, default=False)
     stage_first_name = models.CharField("Stage First Name", max_length=32, blank=True)
     stage_last_name = models.CharField("Stage Last Name", max_length=32, blank=True)
     title = models.CharField("Title", max_length=255, blank=True)
