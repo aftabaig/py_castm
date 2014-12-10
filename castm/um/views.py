@@ -134,7 +134,7 @@ def authenticate(request):
         type = None
         sub_type = None
         if my_user:
-            if my_user.is_active:
+            if my_user.user.is_active:
                 type = my_user.type
                 sub_type = my_user.sub_type
                 response = {
