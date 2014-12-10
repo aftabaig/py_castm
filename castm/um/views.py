@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 # django
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
@@ -21,8 +22,6 @@ from talent.models import TalentProfile
 
 # serializers
 from serializers import UserSerializer
-
-
 
 # permissions
 from permissions import IsTalent
@@ -58,12 +57,22 @@ def error_as_text(errors, status):
             "message": message
         }
 
+
+def message(msg):
+    return {
+        'message': msg,
+        'status': HTTP_200_OK
+    }
+
 @api_view(['POST', ])
 def sign_up(request):
 
     # create serializer from request-data.
     serializer = UserSerializer(data=request.DATA)
     if serializer.is_valid():
+
+        activation_key = MyUser.generate_activation_key()
+        serializer.object.activation_key = activation_key
 
         # saves user data (in both auth-user and my-user models.
         serializer.save()
@@ -74,6 +83,7 @@ def sign_up(request):
         user = serializer.object.user
         password = request.DATA.get("user").get("password")
         user.set_password(password)
+        user.is_active = False
         user.save()
 
         # create token for the user
@@ -84,7 +94,16 @@ def sign_up(request):
             talent = TalentProfile(my_user=serializer.object, user=user)
             talent.save()
 
-        return Response(serializer.data, status=HTTP_201_CREATED)
+        # send activation e-mail.
+        subject = 'Cast\'M account activation'
+        relative_url = "/api/users/activate/%s" % (activation_key, )
+        msg = 'Hi %s<br/>' % (user.username, )
+        msg += 'Click on the following link to activate your account:<br/>'
+        msg += '<a href="%s">Activate</a>' % (request.build_absolute_uri(relative_url), )
+        logger.debug(msg)
+        send_mail(subject, 'Message', 'info@castm.com', (user.username, ), html_message=msg)
+
+        return Response(message('An activation link is sent to your email address.'), status=HTTP_200_OK)
     else:
         return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
@@ -115,14 +134,15 @@ def authenticate(request):
         type = None
         sub_type = None
         if my_user:
-            type = my_user.type
-            sub_type = my_user.sub_type
-        response = {
-            'token': token.key,
-            'type': type,
-            'sub_type': sub_type,
-        }
-        return Response(response)
+            if my_user.is_active:
+                type = my_user.type
+                sub_type = my_user.sub_type
+                response = {
+                    'token': token.key,
+                    'type': type,
+                    'sub_type': sub_type,
+                }
+                return Response(response)
     return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
 
@@ -153,10 +173,18 @@ def forgot_password(request):
             user.save()
             # create and send email.
             subject = 'Your Cast\'M password'
-            message = 'Your new password is <strong>%s</strong>' % (password, )
-            message += '<br/>You can change it from right within your app'
-            send_mail(subject, 'Message', 'info@castm.com', (email_address, ), html_message=message)
+            msg = 'Your new password is <strong>%s</strong>' % (password, )
+            msg += '<br/>You can change it from right within your app'
+            send_mail(subject, 'Message', 'info@castm.com', (email_address, ), html_message=msg)
             return Response(status=HTTP_200_OK)
         return Response(status=HTTP_400_BAD_REQUEST)
     return Response(status=HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET', ])
+def activate_user(request, activation_key):
+    my_user = get_object_or_404(MyUser, activation_key=activation_key)
+    user = User.objects.get(id=my_user.user.id)
+    user.is_active = True
+    user.save()
+    return Response(message('User activated'), 200)

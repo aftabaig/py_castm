@@ -1,5 +1,7 @@
 import datetime
 import logging
+import string
+import random
 
 # django
 from django.db import models
@@ -16,6 +18,11 @@ class MyUser(models.Model):
     )
 
     user = models.OneToOneField(User, related_name='my_user')
+    activation_key = models.CharField("Activation Key", max_length=32)
     type = models.CharField("Account Type", choices=type_choices, max_length=1, blank=False)
     sub_type = models.CharField("Account Sub Type", max_length=1, blank=True)
+
+    @staticmethod
+    def generate_activation_key(size=32, chars=string.ascii_uppercase + string.digits):
+        return ''.join(random.choice(chars) for _ in range(size))
 
