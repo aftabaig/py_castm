@@ -14,6 +14,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 # django
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
@@ -195,7 +196,9 @@ def activate_user(request, activation_key):
         user.is_active = True
         user.save()
         if request.mobile:
-            app_url = "castm://%s" % (user.username, )
-            return HttpResponseRedirect(app_url)
+            location = "castm://%s" % (user.username, )
+            response = HttpResponse(location, status=302)
+            response['Location'] = location
+            return response
         else:
             return HttpResponseRedirect('/activation')
