@@ -196,7 +196,7 @@ def activate_user(request, activation_key):
         user.is_active = True
         user.save()
         if request.mobile:
-            location = "castm://emailaddress?aftab@techver.com"
+            location = "castm://login?email_address=%s" % (user.username, )
             response = HttpResponse(location, status=302)
             response['Location'] = location
             return response
