@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/um/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2399" max-vertical-offset="3075">
-              <caret line="197" column="33" selection-start-line="197" selection-start-column="28" selection-end-line="197" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.7781065" vertical-offset="2399" max-vertical-offset="3075">
+              <caret line="197" column="34" selection-start-line="197" selection-start-column="34" selection-end-line="197" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/um/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33284023" vertical-offset="0" max-vertical-offset="676">
-              <caret line="15" column="95" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+              <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -151,9 +151,9 @@
         <option value="$PROJECT_DIR$/castm/castm/templates/activation.html" />
         <option value="$PROJECT_DIR$/castm/castm/views.py" />
         <option value="$PROJECT_DIR$/castm/castm/urls.py" />
-        <option value="$PROJECT_DIR$/castm/um/views.py" />
         <option value="$PROJECT_DIR$/castm/castm/settings.py" />
         <option value="$PROJECT_DIR$/castm/um/urls.py" />
+        <option value="$PROJECT_DIR$/castm/um/views.py" />
       </list>
     </option>
   </component>
@@ -894,21 +894,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/um/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2399" max-vertical-offset="3075">
-          <caret line="197" column="33" selection-start-line="197" selection-start-column="28" selection-end-line="197" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/um/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33284023" vertical-offset="0" max-vertical-offset="676">
-          <caret line="15" column="95" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+          <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/um/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7781065" vertical-offset="2399" max-vertical-offset="3075">
+          <caret line="197" column="34" selection-start-line="197" selection-start-column="34" selection-end-line="197" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

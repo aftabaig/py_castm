@@ -13,5 +13,4 @@ urlpatterns = patterns(
     url(r'^change-password/$', change_password),
     url(r'^forgot-password/$', forgot_password),
     url(r'^activate/(?P<activation_key>\w+)/$', activate_user),
-    url(r'^goto_iphone_app/(?P<email_address>\w+)/$', RedirectView.as_view(url='http://user.com')),
 )

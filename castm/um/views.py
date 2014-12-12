@@ -195,7 +195,7 @@ def activate_user(request, activation_key):
         user.is_active = True
         user.save()
         if request.mobile:
-            app_url = "/api/users/goto_iphone_app/%s" % (user.username, )
+            app_url = "castm://%s" % (user.username, )
             return HttpResponseRedirect(app_url)
         else:
             return HttpResponseRedirect('/activation')
