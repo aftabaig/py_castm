@@ -5,7 +5,8 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     'castm.views',
-    url(r'^$', 'home', name="home"))
+    url(r'^$', 'home', name="home"),
+    url(r'^activation/$', 'activation', name="activation"),)
 
 # urls from um.
 # contains user-management urls.

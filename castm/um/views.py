@@ -13,8 +13,11 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 # django
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+
+from mobi.decorators import detect_mobile
 
 # models
 from models import MyUser
@@ -181,10 +184,17 @@ def forgot_password(request):
     return Response(status=HTTP_400_BAD_REQUEST)
 
 
+@detect_mobile
 @api_view(['GET', ])
 def activate_user(request, activation_key):
-    my_user = get_object_or_404(MyUser, activation_key=activation_key)
-    user = User.objects.get(id=my_user.user.id)
-    user.is_active = True
-    user.save()
-    return Response(message('User activated'), 200)
+    logger.debug("is_mobile:")
+    logger.debug(request.mobile)
+    my_user = MyUser.objects.filter(activation_key=activation_key)[0]
+    if my_user:
+        user = User.objects.get(id=my_user.user.id)
+        user.is_active = True
+        user.save()
+        if request.mobile:
+            return HttpResponseRedirect('/api/users/goto_iphone')
+        else:
+            return HttpResponseRedirect('/activation')
