@@ -18,7 +18,7 @@ class PlainProfileSerializer(serializers.Serializer):
     stage_first_name = serializers.CharField(required=False)
     stage_last_name = serializers.CharField(required=False)
     title = serializers.CharField(required=False)
-    height = serializers.IntegerField(required=False)
+    height = serializers.CharField(required=False)
     weight = serializers.CharField(required=False)
     birth_day = serializers.CharField(required=False)
     hair_color = serializers.CharField(required=False)
