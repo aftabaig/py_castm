@@ -26,6 +26,38 @@ def my_notifications(request):
 @api_view(['GET', ])
 @permission_classes([IsTalentOrCasting, ])
 def my_links(request):
+    """
+    Returns all qualified links for the user.
+    Allowed HTTP methods are:\n
+        1. GET to view\n
+            Returns:\n
+            {
+                "talents": [
+                    {
+                    id=[link_id],
+                    first_name=[requester first name],
+                    last_name=[requester last name],
+                    title=[requester title],
+                    profile_url=[requester profile]
+                    }
+                ],
+                "casting": [
+                    {
+                        id=[link_id],
+                        first_name=[requester first name],
+                        last_name=[requester last name],
+                        title=[requester title],
+                        profile_url=[requester profile]
+                    },
+                ]
+            }
+    Status:\n
+        1. 200 on success
+        2. 401 if un-authorized
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
     user = request.user
     links = Link.user_links(user)
     talent_links = []
@@ -34,36 +66,89 @@ def my_links(request):
         if link.from_user.id == request.user.id:
             plain_link = PlainLink(
                 id=link.id,
-                first_name=link.to_user.first_name,
-                last_name=link.to_user.last_name,
-                title="",
-                profile_url=""
+                first_name=link.to_user.user_profile.first_name,
+                last_name=link.to_user.user_profile.last_name,
+                title=link.to_user.user_profile.title,
+                profile_url="",
             )
             if link.to_user.my_user.type == 'T':
-                plain_link.profile_url = "/api/talents/profile/" + str(link.to_user.id)
+                plain_link.profile_url = "/api/talents/profile/%s" % (link.to_user.id, )
                 talent_links.append(plain_link)
             else:
-                plain_link.profile_url = "/api/casting/profile/" + str(link.to_user.id)
+                plain_link.profile_url = "/api/casting/profile/%s" % (link.to_user.id, )
                 casting_links.append(plain_link)
         else:
             plain_link = PlainLink(
                 id=link.id,
-                first_name=link.from_user.first_name,
-                last_name=link.from_user.last_name,
-                title="",
-                profile_url=""
+                first_name=link.from_user.user_profile.first_name,
+                last_name=link.from_user.user_profile.last_name,
+                title=link.from_user.user_profile.title,
+                profile_url="",
             )
             if link.from_user.my_user.type == 'T':
-                plain_link.profile_url = "/api/talents/profile/" + str(link.from_user.id.str)
+                plain_link.profile_url = "/api/talents/profile/%s" % (link.from_user.id, )
                 talent_links.append(plain_link)
             else:
-                plain_link.profile_url = "/api/casting/profile/" + str(link.from_user.id)
+                plain_link.profile_url = "/api/casting/profile/%s" % (link.from_user.id, )
                 casting_links.append(plain_link)
 
     all_links = MyLinks(talent_links=talent_links, casting_links=casting_links)
     serializer = MyLinksSerializer(all_links)
     return Response(serializer.data)
 
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
+def my_link_requests(request):
+    """
+    Returns un-attended link requests for the user.
+    Allowed HTTP methods are:\n
+        1. GET to view\n
+            Returns:\n
+            {
+                "talents": [
+                    {
+                    id=[link_id],
+                    first_name=[requester first name],
+                    last_name=[requester last name],
+                    title=[requester title],
+                    profile_url=[requester profile]
+                    }
+                ],
+                "casting": [
+                    {
+                        id=[link_id],
+                        first_name=[requester first name],
+                        last_name=[requester last name],
+                        title=[requester title],
+                        profile_url=[requester profile]
+                    },
+                ]
+            }
+    Status:\n
+        1. 200 on success
+        2. 401 if un-authorized
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
+    user = request.user
+    links = Link.link_requests(user)
+    talent_requests = []
+    casting_requests = []
+    for link in links:
+        plain_link = PlainLink(
+            id=link.id,
+            first_name=link.from_user.user_profile.first_name,
+            last_name=link.from_user.user_profile.last_name,
+            title=link.from_user.user_profile.title,
+            profile_url="",
+        )
+        if link.from_user.my_user.type == 'T':
+            plain_link.profile_url = "/api/talents/profile/%s" % (link.from_user.id, )
+            talent_requests.append(plain_link)
+        else:
+            plain_link.profile_url = "/api/casting/profile/%s" % (link.from_user.id, )
+            casting_requests.append(plain_link)
 
 @api_view(['POST', ])
 @permission_classes([IsTalentOrCasting, ])
@@ -85,6 +170,21 @@ def send_link_request(request, user_id=0):
 @api_view(['POST', ])
 @permission_classes([IsTalentOrCasting, ])
 def accept_link_request(request, link_id=0):
+    """
+    Accepts a link request
+    Allowed HTTP methods are:\n
+        1. POST to accept\n
+            Returns:\n
+            . Accepted user's profile
+    Status:\n
+        1. 200 on success
+        2. 400 if some error occurs
+        3. 401 if un-authorized
+        4. 404 if link request not found.
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:
@@ -98,6 +198,21 @@ def accept_link_request(request, link_id=0):
 @api_view(['POST', ])
 @permission_classes([IsTalentOrCasting, ])
 def reject_link_request(request, link_id=0):
+    """
+    Rejects a link request
+    Allowed HTTP methods are:\n
+        1. POST to accept\n
+            Returns:\n
+            . Rejected user's profile
+    Status:\n
+        1. 200 on success
+        2. 400 if some error occurs
+        3. 401 if un-authorized
+        4. 404 if link request not found.
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:

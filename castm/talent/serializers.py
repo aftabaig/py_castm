@@ -42,6 +42,7 @@ class PlainProfileSerializer(serializers.Serializer):
     agency_state = serializers.CharField(required=False)
     agency_zip = serializers.CharField(required=False)
     resume_categories = serializers.CharField(required=False)
+    thumbnail = serializers.CharField(required=False)
 
     def restore_object(self, attrs, instance=None):
         logger.debug(attrs)
@@ -76,6 +77,7 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.agency_state = attrs.get('agency_state', instance.agency_state)
             instance.agency_zip = attrs.get('agency_zip', instance.agency_zip)
             instance.resume_categories = attrs.get('resume_categories', instance.resume_categories)
+            instance.thumbnail = attrs.get('thumbnail', instance.thumbnail)
             return instance
         return PlainProfile(**attrs)
 
@@ -142,6 +144,8 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.agency_zip = obj.agency_zip
         if obj.resume_categories:
             profile.resume_categories = obj.resume_categories
+        if obj.thumbnail:
+            profile.thumbnail = obj.thumbnail
         profile.save()
 
 

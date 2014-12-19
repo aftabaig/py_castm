@@ -15,7 +15,7 @@ class TalentProfile(models.Model):
         ('E', 'Ethnic'),
         ('R', 'Red-Headed'),
     )
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="user_profile")
     my_user = models.OneToOneField(MyUser)
     is_stage_name = models.BooleanField("Stage Name?", blank=True, default=False)
     stage_first_name = models.CharField("Stage First Name", max_length=32, blank=True)
@@ -45,6 +45,7 @@ class TalentProfile(models.Model):
     agency_state = models.CharField("State", max_length=16, blank=True)
     agency_zip = models.CharField("Zip", max_length=16, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
+    thumbnail = models.ImageField(upload_to='thumbnails')
 
 
 class TalentHeadshot(models.Model):
@@ -103,6 +104,7 @@ class PlainProfile(object):
             self.agency_state = profile.agency_state
             self.agency_zip = profile.agency_zip
             self.resume_categories = profile.resume_categories
+            self.thumbnail = profile.thumbnail
         if notification:
             self.notifications_count = notification.notifications_count
             self.links_count = notification.links_count

@@ -34,6 +34,13 @@ class Link(models.Model):
         q3 = models.Q(is_accepted=True)
         return Link.objects.filter((q1 | q2) & q3)
 
+    @staticmethod
+    def link_requests(user):
+        q1 = models.Q(to_user=user)
+        q2 = models.Q(is_accepted=False)
+        q3 = models.Q(is_rejected=False)
+        return Link.objects.filter(q1 & q2 & q3)
+
 
 class Callback(models.Model):
     pass

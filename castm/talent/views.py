@@ -66,7 +66,8 @@ def public_profile(request, user_id=None):
             "agency_city: "",
             "agency_state: "",
             "agency_zip: "",
-            "resume_categories": ""
+            "resume_categories": "",
+            "thumbnail": "thumbnail_url"
         }\n
     Status:\n
         1. 200 on success
@@ -125,7 +126,8 @@ def my_profile(request):
                 "agency_city": "",
                 "agency_state": "",
                 "agency_zip": "",
-                "resume_categories": ""
+                "resume_categories": "",
+                "thumbnail": "thumbnail_url",
                 "notifications_count": 5,
                 "links_count": 6
             }\n
@@ -153,6 +155,33 @@ def my_profile(request):
             serializer.save()
             return Response(serializer.data, HTTP_200_OK)
         return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+
+
+
+@api_view(['PUT', ])
+@permission_classes([IsTalent, ])
+def upload_thumbnail(request):
+    """
+    Upload user's thumbnail
+    Allowed HTTP methods are:\n
+        1. PUT to view\n
+            Returns:\n
+            "An empty string"
+    Status:\n
+        1. 200 on success
+        2. 401 if un-authorized
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+        2. The Content-Type header should be set as "multipart/form-data"\n
+        3. Both key/filename should be "thumbnail"
+    """
+    user = request.user
+    profile = TalentProfile.objects.get(user_id=user.id)
+    response = cloudinary.uploader.upload(request.FILES['thumbnail'])
+    profile.thumbnail = response['url']
+    profile.save()
+    return Response(HTTP_200_OK)
 
 
 class HeadshotViewSet(viewsets.ModelViewSet):
