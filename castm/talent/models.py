@@ -45,7 +45,7 @@ class TalentProfile(models.Model):
     agency_state = models.CharField("State", max_length=16, blank=True)
     agency_zip = models.CharField("Zip", max_length=16, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
-    thumbnail = models.ImageField(upload_to='headshots', default='http://res.cloudinary.com/flash-solutions/image/upload/v1419026575/default_acaywm.png')
+    thumbnail = models.CharField("Thumbnail", max_length=255, blank=True)
 
 
 class TalentHeadshot(models.Model):
