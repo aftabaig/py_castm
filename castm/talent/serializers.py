@@ -26,6 +26,9 @@ class PlainProfileSerializer(serializers.Serializer):
     race = serializers.CharField(required=False)
     personal_add1 = serializers.CharField(required=False)
     personal_add2 = serializers.CharField(required=False)
+    personal_city = serializers.CharField(required=False)
+    personal_state = serializers.CharField(required=False)
+    personal_zip = serializers.CharField(required=False)
     personal_mobile = serializers.CharField(required=False)
     personal_office = serializers.CharField(required=False)
     personal_email = serializers.CharField(required=False)
@@ -34,6 +37,9 @@ class PlainProfileSerializer(serializers.Serializer):
     agency_name = serializers.CharField(required=False)
     agency_add1 = serializers.CharField(required=False)
     agency_add2 = serializers.CharField(required=False)
+    agency_city = serializers.CharField(required=False)
+    agency_state = serializers.CharField(required=False)
+    agency_zip = serializers.CharField(required=False)
     resume_categories = serializers.CharField(required=False)
 
     def restore_object(self, attrs, instance=None):
@@ -53,6 +59,9 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.race = attrs.get('race', instance.race)
             instance.personal_add1 = attrs.get('personal_add1', instance.personal_add1)
             instance.personal_add2 = attrs.get('personal_add2', instance.personal_add2)
+            instance.personal_city = attrs.get('personal_city', instance.personal_city)
+            instance.personal_state = attrs.get('personal_state', instance.personal_state)
+            instance.personal_zip = attrs.get('personal_zip', instance.personal_zip)
             instance.personal_mobile = attrs.get('personal_mobile', instance.personal_mobile)
             instance.personal_office = attrs.get('personal_office', instance.personal_office)
             instance.personal_email = attrs.get('personal_email', instance.personal_email)
@@ -61,6 +70,9 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.agency_name = attrs.get('agency_name', instance.agency_name)
             instance.agency_add1 = attrs.get('agency_add1', instance.agency_add1)
             instance.agency_add2 = attrs.get('agency_add2', instance.agency_add2)
+            instance.agency_city = attrs.get('agency_city', instance.agency_city)
+            instance.agency_state = attrs.get('agency_state', instance.agency_state)
+            instance.agency_zip = attrs.get('agency_zip', instance.agency_zip)
             instance.resume_categories = attrs.get('resume_categories', instance.resume_categories)
             return instance
         return PlainProfile(**attrs)
@@ -98,6 +110,12 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.personal_add1 = obj.personal_add1
         if obj.personal_add2:
             profile.personal_add2 = obj.personal_add2
+        if obj.personal_city:
+            profile.personal_city = obj.personal_city
+        if obj.personal_state:
+            profile.personal_state = obj.personal_state
+        if obj.personal_zip:
+            profile.personal_zip = obj.personal_zip
         if obj.personal_mobile:
             profile.personal_mobile = obj.personal_mobile
         if obj.personal_office:
@@ -112,6 +130,12 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.agency_add1 = obj.agency_add1
         if obj.agency_add2:
             profile.agency_add2 = obj.agency_add2
+        if obj.agency_city:
+            profile.agency_city = obj.agency_city
+        if obj.agency_state:
+            profile.agency_state = obj.agency_state
+        if obj.agency_zip:
+            profile.agency_zip = obj.agency_zip
         if obj.resume_categories:
             profile.resume_categories = obj.resume_categories
         profile.save()

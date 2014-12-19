@@ -29,6 +29,9 @@ class TalentProfile(models.Model):
     race = models.CharField("Race", max_length=2, choices=race_choices, blank=True)
     personal_add1 = models.CharField("Personal Address 1", max_length=1024, blank=True)
     personal_add2 = models.CharField("Personal Address 2", max_length=1024, blank=True)
+    personal_city = models.CharField("City", max_length=16, blank=True)
+    personal_state = models.CharField("State", max_length=16, blank=True)
+    personal_zip = models.CharField("Zip", max_length=16, blank=True)
     personal_mobile = models.CharField("Mobile #", max_length=32, blank=True)
     personal_office = models.CharField("Office #", max_length=32, blank=True)
     personal_email = models.CharField("Email Address", max_length=32, blank=True)
@@ -37,6 +40,9 @@ class TalentProfile(models.Model):
     agency_name = models.CharField("Agency Name", max_length=255, blank=True)
     agency_add1 = models.CharField("Agency Address 1", max_length=1024, blank=True)
     agency_add2 = models.CharField("Agency Address 2", max_length=1024, blank=True)
+    agency_city = models.CharField("City", max_length=16, blank=True)
+    agency_state = models.CharField("State", max_length=16, blank=True)
+    agency_zip = models.CharField("Zip", max_length=16, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
 
 
@@ -80,6 +86,9 @@ class PlainProfile(object):
             self.race = profile.race
             self.personal_add1 = profile.personal_add1
             self.personal_add2 = profile.personal_add2
+            self.personal_city = profile.personal_city
+            self.personal_state = profile.personal_state
+            self.personal_zip = profile.personal_zip
             self.personal_mobile = profile.personal_mobile
             self.personal_office = profile.personal_office
             self.personal_email = profile.personal_email
@@ -88,6 +97,9 @@ class PlainProfile(object):
             self.agency_name = profile.agency_name
             self.agency_add1 = profile.agency_add1
             self.agency_add2 = profile.agency_add2
+            self.agency_city = profile.agency_city
+            self.agency_state = profile.agency_state
+            self.agency_zip = profile.agency_zip
             self.resume_categories = profile.resume_categories
         if notification:
             self.notifications_count = notification.notifications_count

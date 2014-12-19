@@ -52,6 +52,9 @@ def public_profile(request, user_id=None):
             "race": "",
             "personal_add1": "",
             "personal_add2": "",
+            "personal_city: "",
+            "personal_state: "",
+            "personal_zip: "",
             "personal_mobile": "",
             "personal_office": "",
             "personal_email": "",
@@ -60,6 +63,9 @@ def public_profile(request, user_id=None):
             "agency_name": "",
             "agency_add1": "",
             "agency_add2": "",
+            "agency_city: "",
+            "agency_state: "",
+            "agency_zip: "",
             "resume_categories": ""
         }\n
     Status:\n
@@ -105,6 +111,9 @@ def my_profile(request):
                 "race": "",
                 "personal_add1": "",
                 "personal_add2": "",
+                "personal_city: "",
+                "personal_state: "",
+                "personal_zip: "",
                 "personal_mobile": "",
                 "personal_office": "",
                 "personal_email": "",
@@ -113,6 +122,9 @@ def my_profile(request):
                 "agency_name": "",
                 "agency_add1": "",
                 "agency_add2": "",
+                "agency_city": "",
+                "agency_state": "",
+                "agency_zip": "",
                 "resume_categories": ""
                 "notifications_count": 5,
                 "links_count": 6
