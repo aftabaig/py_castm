@@ -69,6 +69,7 @@ def my_links(request):
                 first_name=link.to_user.user_profile.first_name,
                 last_name=link.to_user.user_profile.last_name,
                 title=link.to_user.user_profile.title,
+                thumbnail_url=link.to_user.user_profile.thumbnail,
                 profile_url="",
             )
             if link.to_user.my_user.type == 'T':
@@ -83,6 +84,7 @@ def my_links(request):
                 first_name=link.from_user.user_profile.first_name,
                 last_name=link.from_user.user_profile.last_name,
                 title=link.from_user.user_profile.title,
+                thumbnail_url=link.from_user.user_profile.thumbnail,
                 profile_url="",
             )
             if link.from_user.my_user.type == 'T':
@@ -141,6 +143,7 @@ def my_link_requests(request):
             first_name=link.from_user.user_profile.first_name,
             last_name=link.from_user.user_profile.last_name,
             title=link.from_user.user_profile.title,
+            thumbnail_url=link.from_user.user_profile.thumbnail,
             profile_url="",
         )
         if link.from_user.my_user.type == 'T':

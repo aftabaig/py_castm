@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from models import Link
 from models import Message
 
+
 class PlainLinkSerializer(serializers.Serializer):
     first_name = serializers.CharField(read_only=True)
     last_name = serializers.CharField(read_only=True)

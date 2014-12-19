@@ -47,11 +47,12 @@ class Callback(models.Model):
 
 
 class PlainLink(object):
-    def __init__(self, id=None, first_name=None, last_name=None, title=None, profile_url=None):
+    def __init__(self, id=None, first_name=None, last_name=None, title=None, thumbnail_url=None, profile_url=None):
         self.id = id
         self.first_name = first_name
         self.last_name = last_name
         self.title = title
+        self.thumbnail_url = thumbnail_url
         self.profile_url = profile_url
 
 

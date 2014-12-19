@@ -77,7 +77,8 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.agency_state = attrs.get('agency_state', instance.agency_state)
             instance.agency_zip = attrs.get('agency_zip', instance.agency_zip)
             instance.resume_categories = attrs.get('resume_categories', instance.resume_categories)
-            instance.thumbnail = attrs.get('thumbnail', instance.thumbnail)
+            if attrs.get('thumbnail'):
+                instance.thumbnail = attrs.get('thumbnail', instance.thumbnail)
             return instance
         return PlainProfile(**attrs)
 
