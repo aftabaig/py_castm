@@ -45,7 +45,7 @@ class TalentProfile(models.Model):
     agency_state = models.CharField("State", max_length=16, blank=True)
     agency_zip = models.CharField("Zip", max_length=16, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
-    thumbnail = models.ImageField(upload_to='thumbnails')
+    thumbnail = models.ImageField(upload_to='thumbnails', default='thumbnails/default.png')
 
 
 class TalentHeadshot(models.Model):
