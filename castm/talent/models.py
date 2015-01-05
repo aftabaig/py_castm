@@ -4,6 +4,8 @@ import logging
 # django
 from django.db import models
 from um.models import MyUser
+from links.models import Link
+from notifications.models import Notification
 
 from django.contrib.auth.models import User
 
@@ -18,9 +20,9 @@ class TalentProfile(models.Model):
     user = models.ForeignKey(User, related_name="user_profile")
     my_user = models.OneToOneField(MyUser)
     is_stage_name = models.BooleanField("Stage Name?", blank=True, default=False)
-    stage_first_name = models.CharField("Stage First Name", max_length=32, blank=True)
-    stage_last_name = models.CharField("Stage Last Name", max_length=32, blank=True)
-    title = models.CharField("Title", max_length=255, blank=True)
+    stage_first_name = models.CharField("Stage First Name", max_length=32, blank=True, db_index=True)
+    stage_last_name = models.CharField("Stage Last Name", max_length=32, blank=True, db_index=True)
+    title = models.CharField("Title", max_length=255, blank=True, db_index=True)
     height = models.CharField("Height", max_length=32, null=True, blank=True)
     weight = models.CharField("Weight", max_length=32, null=True, blank=True)
     birth_day = models.DateField("Birthday", null=True, blank=True)
@@ -53,16 +55,17 @@ class TalentHeadshot(models.Model):
     headshot = models.ImageField(upload_to='headshots')
 
 
-class Notification(object):
+class NotificationSummary(object):
     def __init__(self):
         self.notifications_count = 0
         self.links_count = 0
 
     @staticmethod
     def get_notifications(user_id):
-        notification = Notification()
-        notification.notifications_count = 5
-        notification.links_count = 7
+        user = User.objects.get(id=user_id)
+        notification = NotificationSummary()
+        notification.notifications_count = Notification.unseen_notifications_count(user)
+        notification.links_count = Link.links_count(user)
         return notification
 
 

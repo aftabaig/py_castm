@@ -122,7 +122,9 @@ def authenticate(request):
     Accepts:\n
         {
             "username": "abc@gmail.com",
-            "password": "abc123"
+            "password": "abc123",
+            "device": "[iPhone/Android/Desktop]",
+            "token": "[token]"
         }\n
     Returns:\n
         {

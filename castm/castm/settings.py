@@ -10,7 +10,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
+    'default2': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd6d5qqq01mghh9',
         'USER': 'purgrthgrzsbyr',
@@ -18,7 +18,7 @@ DATABASES = {
         'HOST': 'ec2-54-163-249-168.compute-1.amazonaws.com',
         'PORT': '5432',
     },
-    'default2': {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cast\'em',
         'USER': 'aftabaig',
@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'um',
     'talent',
+    'links',
     'notifications',
 )
 
@@ -190,7 +191,12 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
-        }
+        },
+        'links': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     }
 }
 
@@ -198,6 +204,12 @@ CLOUDINARY = {
     'cloud_name': 'flash-solutions',
     'api_key': '242359747124272',
     'api_secret': 'If_a6ZxmJ-QZX775G1oo6DuLTIg'
+}
+
+UA = {
+    'app_key': 'd6awtJp0T-Cyx5QRXUYr7Q',
+    'app_secret': 'Ysd7JB36S8GugZ29-e5YhQ',
+    'master_secret': 'tiEtq6i1Q-yZYZuyd1qSpg'
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

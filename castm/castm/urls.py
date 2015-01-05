@@ -29,6 +29,14 @@ urlpatterns += patterns(
     url(r'^api/notifications/', include('notifications.urls')),
 )
 
+# urls from links.
+# contains links related urls.
+urlpatterns += patterns(
+    'links.views',
+    url(r'^api/links/', include('links.urls')),
+)
+
+
 urlpatterns += staticfiles_urlpatterns()
 
 

@@ -14,3 +14,4 @@ django-keyedcache
 django-mobi==0.1.7
 pillow
 cloudinary
+urbanairship

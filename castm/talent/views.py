@@ -23,7 +23,7 @@ from serializers import HeadshotSerializer
 from models import TalentProfile
 from models import TalentHeadshot
 from models import PlainProfile
-from models import Notification
+from models import NotificationSummary
 
 logger = logging.getLogger(__name__)
 
@@ -144,7 +144,7 @@ def my_profile(request):
     """
     user = request.user
     profile = TalentProfile.objects.get(user_id=user.id)
-    notification = Notification.get_notifications(user.id)
+    notification = NotificationSummary.get_notifications(user.id)
     plain_profile = PlainProfile(user=user, profile=profile, notification=notification)
     if request.method == 'GET':
         serializer = MyPlainProfileSerializer(plain_profile)
