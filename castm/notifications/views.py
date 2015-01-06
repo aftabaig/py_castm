@@ -1,4 +1,5 @@
 import logging
+import urbanairship as ua
 
 # rest_framework
 from rest_framework.decorators import api_view, permission_classes
@@ -33,7 +34,16 @@ def send_message(request):
 def send_callback(request):
     pass
 
+
 def create_notification(type, for_user, title=None, message=None):
+
+        airship = ua.Airship('', '')
+        push = airship.create_push()
+        push.audience = ua.device_token(for_user.my_user.push_token)
+        push.notification = ua.notification(alert=message)
+        push.device_types = ua.device_types('all')
+        push.send()
+
         notification = Notification(type=type, for_user=for_user, title=title, message=message, seen=False, action_taken=False)
         notification.save()
         return notification

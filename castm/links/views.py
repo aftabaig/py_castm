@@ -342,7 +342,7 @@ def send_link_request(request, user_id=0):
         if not Link.is_already_link(me, other):
             link_request = Link()
             link_request.from_user = me
-            link_request.notification = create_notification("LR", other, "", "")
+            link_request.notification = create_notification("LR", other, "Link Request", "")
             link_request.to_user = other
             link_request.optional_message = ""
             link_request.save()
