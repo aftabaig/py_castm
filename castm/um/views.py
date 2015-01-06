@@ -68,6 +68,13 @@ def message(msg):
         'status': HTTP_200_OK
     }
 
+
+def error_message(msg, status=HTTP_400_BAD_REQUEST):
+    return {
+        'message': msg,
+        'status': status
+    }
+
 @api_view(['POST', ])
 def sign_up(request):
 
@@ -183,8 +190,8 @@ def forgot_password(request):
             msg += '<br/>You can change it from right within your app'
             send_mail(subject, 'Message', 'info@castm.com', (email_address, ), html_message=msg)
             return Response(status=HTTP_200_OK)
-        return Response(status=HTTP_400_BAD_REQUEST)
-    return Response(status=HTTP_400_BAD_REQUEST)
+        return Response(error_message("Account with this email does not exist."), status=HTTP_400_BAD_REQUEST)
+    return Response(error_message("Email is required."), status=HTTP_400_BAD_REQUEST)
 
 
 @detect_mobile
