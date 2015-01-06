@@ -186,13 +186,13 @@ def search_links(request):
     user = request.user
 
     logger.debug("hello")
-    logger.debug(request.DATA)
+    logger.debug(request.GET)
 
     # get query string.
     query_dict = {
         "query_string": "M"
     }
-    query_string = query_dict.get("query_string")
+    query_string = request.GET.get("query_string")
 
     logger.debug(query_string)
 
