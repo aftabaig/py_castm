@@ -185,9 +185,6 @@ def search_links(request):
     # get logged in user.
     user = request.user
 
-    logger.debug("hello")
-    logger.debug(request.GET)
-
     # get query string.
     query_dict = {
         "query_string": "M"
@@ -342,7 +339,7 @@ def send_link_request(request, user_id=0):
         if not Link.is_already_link(me, other):
             link_request = Link()
             link_request.from_user = me
-            link_request.notification = create_notification("LR", other, "Link Request", "")
+            link_request.notification = create_notification("LR", me, other, "Link Request", "")
             link_request.to_user = other
             link_request.optional_message = ""
             link_request.save()
@@ -373,7 +370,7 @@ def accept_link_request(request, link_id=0):
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:
-        link.notification = create_notification("LA", link.from_user, "", "")
+        link.notification = create_notification("LA", user, link.from_user, "", "")
         link.is_accepted = True
         link.is_rejected = False
         link.save()
@@ -403,7 +400,7 @@ def reject_link_request(request, link_id=0):
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:
-        link.notification = create_notification("LR", link.from_user, "", "")
+        link.notification = create_notification("LR", user, link.from_user, "", "")
         link.is_rejected = True
         link.is_accepted = False
         link.save()
