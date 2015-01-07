@@ -164,7 +164,13 @@ def notifications_messages(request):
 @permission_classes([IsTalentOrCasting, ])
 def mark_as_seen(request):
     """
-    Marks multiple notifications as seen.
+    Marks multiple notifications as seen.\n
+    Needs to send the following hash:\n
+    {\b
+        "notifications": [\n
+            1,2,3,4\n
+        ]\n
+    }\n
     Allowed HTTP methods are:\n
         1. PUT to update\n
             Returns:\n
