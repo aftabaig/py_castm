@@ -34,13 +34,13 @@ def get_notifications(user, type):
             user_id=notification.from_user.id,
             first_name=notification.from_user.first_name,
             last_name=notification.from_user.last_name,
-            title=notification.title,
+            title=notification.from_user.user_profile.get().title,
             description=notification.message,
             thumbnail_url=notification.from_user.user_profile.get().thumbnail,
             profile_url="",
         )
         if type == 'LR':
-            plain_notification.source_id = notification.link.id
+            plain_notification.source_id = notification.link.get().id
 
         my_notifications.append(plain_notification)
 

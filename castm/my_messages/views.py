@@ -15,7 +15,7 @@ from serializers import PlainMessageSerializer
 from serializers import MyMessagesSerializer
 
 from models import Message
-from models import Link
+from links.models import Link
 from models import PlainMessage
 from talent.models import TalentProfile
 from notifications.views import create_notification
@@ -146,7 +146,7 @@ def send_message(request):
     me = request.user
     to_id = request.DATA.get("to")
     msg = request.DATA.get("message")
-    to = User.object.filter(id=to_id).first()
+    to = User.objects.filter(id=to_id).first()
     if to:
         if Link.is_already_link(me, to):
             message = Message()
@@ -155,7 +155,7 @@ def send_message(request):
             message.to_user = to
             message.message = msg
             message.save()
-            serializer = PlainMessageSerializer(message.plain(me))
+            serializer = PlainMessageSerializer(message.plain())
             return Response(serializer.data)
         return Response({
             "status": HTTP_400_BAD_REQUEST,

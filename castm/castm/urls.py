@@ -29,6 +29,13 @@ urlpatterns += patterns(
     url(r'^api/notifications/', include('notifications.urls')),
 )
 
+# urls from my_messages.
+# contains my_messages related urls.
+urlpatterns += patterns(
+    'my_messages.views',
+    url(r'^api/messages/', include('my_messages.urls')),
+)
+
 # urls from links.
 # contains links related urls.
 urlpatterns += patterns(
