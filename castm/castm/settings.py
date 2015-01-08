@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'um',
     'talent',
     'links',
+    'my_messages',
     'notifications',
 )
 

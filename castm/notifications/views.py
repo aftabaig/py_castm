@@ -39,6 +39,9 @@ def get_notifications(user, type):
             thumbnail_url=notification.from_user.user_profile.get().thumbnail,
             profile_url="",
         )
+        if type == 'LR':
+            plain_notification.source_id = notification.link.id
+
         my_notifications.append(plain_notification)
 
     return PlainNotificationSerializer(my_notifications, many=True)

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class PlainNotificationSerializer(serializers.Serializer):
     notification_id = serializers.IntegerField(required=False, read_only=True)
+    source_id = serializers.IntegerField(required=False, read_only=True)
     notification_type = serializers.CharField(required=False, read_only=True)
     created_at = serializers.DateTimeField(required=False, read_only=True)
     user_id = serializers.IntegerField(required=False, read_only=True)

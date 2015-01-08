@@ -39,8 +39,9 @@ class Notification(models.Model):
 
 
 class PlainNotification(object):
-    def __init__(self, notification_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, description=None, thumbnail_url=None, profile_url=None):
+    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, description=None, thumbnail_url=None, profile_url=None):
         self.notification_id = notification_id
+        self.source_id = source_id
         self.notification_type = notification_type
         self.created_at = created_at
         self.user_id = user_id
