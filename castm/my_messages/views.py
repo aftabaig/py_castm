@@ -147,14 +147,15 @@ def send_message(request):
     to_id = request.DATA.get("to")
     msg = request.DATA.get("message")
     to = User.objects.filter(id=to_id).first()
+
     if to:
         if Link.is_already_link(me, to):
             message = Message()
             message.from_user = me
-            message.notification = create_notification("MSG", me, to, "New Message", msg)
             message.to_user = to
             message.message = msg
             message.save()
+            create_notification("MSG", message.id, me, to, message=msg)
             serializer = PlainMessageSerializer(message.plain())
             return Response(serializer.data)
         return Response({

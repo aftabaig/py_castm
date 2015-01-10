@@ -13,6 +13,12 @@ from um.permissions import IsCasting
 from notifications.serializers import PlainNotificationSerializer
 from notifications.serializers import MyNotificationSerializer
 
+from links.models import Link
+from links.serializers import PlainLinkSerializer
+from my_messages.models import Message
+from organizations.models import OrganizationMember
+from organizations.serializers import PlainMemberSerializer
+
 from notifications.models import Notification
 from notifications.models import PlainNotification
 from notifications.models import MyNotifications
@@ -34,20 +40,32 @@ def get_notifications(user, type):
             user_id=notification.from_user.id,
             first_name=notification.from_user.first_name,
             last_name=notification.from_user.last_name,
-            title=notification.from_user.user_profile.get().title,
             description=notification.message,
-            thumbnail_url=notification.from_user.user_profile.get().thumbnail,
-            profile_url="",
+            source_id=notification.source_id,
         )
-        if type == 'LR':
-            plain_notification.source_id = notification.link.get().id
+        if notification.from_user.my_user.type == 'T':
+            plain_notification.title = notification.from_user.user_profile.get().title,
+            plain_notification.thumbnail_url = notification.from_user.user_profile.get().thumbnail,
+            plain_notification.profile_url = "/api/talents/profile/%d" % (notification.from_user.id, ),
+        else:
+            plain_notification.title = "",
+            # plain_notification.thumbnail_url = notification.from_user.casting_profile.get().thumbnail,
+            # plain_notification.profile_url = "/api/casting/profile/%d" % (notification.from_user.id, ),
+
+        if type == 'LR' or type == 'LA' or type == 'LR':
+            plain_notification.source = Link.objects.filter(id=notification.source_id).first().plain()
+        elif type == 'MSG':
+            plain_notification.source = Message.objects.filter(id=notification.source_id).first().plain()
+        elif type == 'OMI' or type == 'OIA' or type == 'OIR' or type == 'OMR' or type == 'ORA' or type == 'ORR':
+            plain_notification.source = OrganizationMember.objects.filter(id=notification.source_id).first().plain()
+            logger.debug(plain_notification.source)
 
         my_notifications.append(plain_notification)
 
     return PlainNotificationSerializer(my_notifications, many=True)
 
 
-def create_notification(type, from_user, for_user, title=None, message=None):
+def create_notification(type, source_id, from_user, for_user, message=None):
 
         # airship = ua.Airship('', '')
         # push = airship.create_push()
@@ -56,7 +74,10 @@ def create_notification(type, from_user, for_user, title=None, message=None):
         # push.device_types = ua.device_types('all')
         # push.send()
 
-        notification = Notification(type=type, from_user=from_user, for_user=for_user, title=title, message=message, seen=False, action_taken=False)
+        notification = Notification(type=type, source_id=source_id,
+                                    from_user=from_user, for_user=for_user,
+                                    message=message, seen=False, action_taken=False)
+
         notification.save()
         return notification
 
@@ -162,6 +183,41 @@ def notifications_messages(request):
     type = "MSG"
     serializer = get_notifications(user, type)
     return Response(serializer.data)
+
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
+def notifications_membership_requests(request):
+    """
+    Returns membership requests notifications.
+    Allowed HTTP methods are:\n
+        1. GET to view\n
+            Returns:\n
+            [
+                {
+                    notification_id: 7,
+                    notification_type: "LR",
+                    created_at: "2015-01-07T12:35:59.396Z",
+                    user_id: 14,
+                    first_name: "Ikarma",
+                    last_name: "Khan",
+                    title: "Link Request",
+                    description: "",
+                    thumbnail_url: "",
+                    profile_url: "",
+                },
+            ]
+    Status:\n
+        1. 200 on success
+        2. 401 if un-authorized
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
+    user = request.user
+    type = "OMR"
+    serializer = get_notifications(user, type)
+    return Response(serializer.data)
+
 
 @api_view(['PUT', ])
 @permission_classes([IsTalentOrCasting, ])

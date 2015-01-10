@@ -11,7 +11,7 @@ from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_
 from django.contrib.auth.models import User
 
 # um
-from um.permissions import IsTalent
+from um.permissions import IsCasting
 from um.views import error_as_text
 
 # serializers
@@ -20,8 +20,8 @@ from serializers import MyPlainProfileSerializer
 from serializers import HeadshotSerializer
 
 # models
-from models import TalentProfile
-from models import TalentHeadshot
+from models import CastingProfile
+from models import CastingHeadshot
 from models import PlainProfile
 from models import NotificationSummary
 
@@ -37,36 +37,15 @@ def public_profile(request, user_id=None):
         {
             "username": "aftab.flash@gmail.com",
             "email": "aftab.flash@gmail.com",
-            "is_stage_name": false,
             "first_name": "",
             "last_name": "",
-            "stage_first_name": "Aftab",
-            "stage_last_name": "Baig",
-            "title": "",
-            "height_feet": 0,
-            "height_inches": 0,
-            "weight": 0,
-            "birth_day": null,
-            "hair_color": "",
-            "eye_color": "",
-            "race": "",
-            "personal_add1": "",
-            "personal_add2": "",
-            "personal_city: "",
-            "personal_state: "",
-            "personal_zip: "",
-            "personal_mobile": "",
-            "personal_office": "",
-            "personal_email": "",
-            "is_agency_contact": "",
-            "agency": "",
-            "agency_name": "",
-            "agency_add1": "",
-            "agency_add2": "",
-            "agency_city: "",
-            "agency_state: "",
-            "agency_zip: "",
-            "resume_categories": "",
+            "add1": "",
+            "add2": "",
+            "city: "",
+            "state: "",
+            "zip: "",
+            "mobile": "",
+            "office": "",
             "thumbnail": "thumbnail_url"
         }\n
     Status:\n
@@ -76,7 +55,7 @@ def public_profile(request, user_id=None):
         1. This API would be used to view other talent's profile.\n
     """
     user = User.objects.filter(id=user_id).first()
-    profile = TalentProfile.objects.filter(user_id=user_id).first()
+    profile = CastingProfile.objects.filter(user_id=user_id).first()
     if user and profile:
         plain_profile = PlainProfile(user=user, profile=profile)
         serializer = PlainProfileSerializer(plain_profile)
@@ -98,36 +77,16 @@ def my_profile(request):
             {
                 "username": "aftab.flash@gmail.com",
                 "email": "aftab.flash@gmail.com",
-                "is_stage_name": false,
                 "first_name": "",
                 "last_name": "",
-                "stage_first_name": "Aftab",
-                "stage_last_name": "Baig",
-                "title": "",
-                "height": "",
-                "weight": "",
-                "birth_day": null,
-                "hair_color": "",
-                "eye_color": "",
-                "race": "",
-                "personal_add1": "",
-                "personal_add2": "",
-                "personal_city: "",
-                "personal_state: "",
-                "personal_zip: "",
-                "personal_mobile": "",
-                "personal_office": "",
-                "personal_email": "",
-                "is_agency_contact": "",
-                "agency": "",
-                "agency_name": "",
-                "agency_add1": "",
-                "agency_add2": "",
-                "agency_city": "",
-                "agency_state": "",
-                "agency_zip": "",
-                "resume_categories": "",
-                "thumbnail": "thumbnail_url",
+                "add1": "",
+                "add2": "",
+                "city: "",
+                "state: "",
+                "zip: "",
+                "mobile": "",
+                "office": "",
+                "thumbnail": "thumbnail_url"
                 "notifications_count": 5,
                 "links_count": 6
             }\n
@@ -143,7 +102,7 @@ def my_profile(request):
             Authorization: Token [token]\n
     """
     user = request.user
-    profile = TalentProfile.objects.get(user_id=user.id)
+    profile = CastingProfile.objects.get(user_id=user.id)
     notification = NotificationSummary.get_notifications(user.id)
     plain_profile = PlainProfile(user=user, profile=profile, notification=notification)
     if request.method == 'GET':
@@ -157,8 +116,9 @@ def my_profile(request):
         return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
 
 
+
 @api_view(['PUT', ])
-@permission_classes([IsTalent, ])
+@permission_classes([IsCasting, ])
 def upload_thumbnail(request):
     """
     Upload user's thumbnail
@@ -176,7 +136,7 @@ def upload_thumbnail(request):
         3. Both key/filename should be "thumbnail"
     """
     user = request.user
-    profile = TalentProfile.objects.get(user_id=user.id)
+    profile = CastingProfile.objects.get(user_id=user.id)
     response = cloudinary.uploader.upload(request.FILES['thumbnail'])
     profile.thumbnail = response['url']
     profile.save()
@@ -184,8 +144,8 @@ def upload_thumbnail(request):
 
 
 class HeadshotViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsTalent, )
-    queryset = TalentHeadshot.objects.all()
+    permission_classes = (IsCasting, )
+    queryset = CastingHeadshot.objects.all()
     serializer_class = HeadshotSerializer
 
     def list(self, request, *args, **kwargs):

@@ -43,6 +43,12 @@ urlpatterns += patterns(
     url(r'^api/links/', include('links.urls')),
 )
 
+# urls from organizations.
+# contains organizations related urls.
+urlpatterns += patterns(
+    'organizations.views',
+    url(r'^api/organizations/', include('organizations.urls')),
+)
 
 urlpatterns += staticfiles_urlpatterns()
 

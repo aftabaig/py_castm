@@ -64,7 +64,7 @@ def my_talent_links(request):
                 last_name=link.to_user.last_name,
                 title=link.to_user.user_profile.get().title,
                 thumbnail_url=link.to_user.user_profile.get().thumbnail,
-                profile_url="/api/talents/profile/%d" % (link.to_user.id, )
+                profile_url="/api/talents/profile/%d" % (link.to_user.id, ),
             )
             talent_links.append(plain_link)
         else:
@@ -75,7 +75,7 @@ def my_talent_links(request):
                 last_name=link.from_user.last_name,
                 title=link.from_user.user_profile.get().title,
                 thumbnail_url=link.from_user.user_profile.get().thumbnail,
-                profile_url="/api/talents/profile/%d" % (link.from_user.id, )
+                profile_url="/api/talents/profile/%d" % (link.from_user.id, ),
             )
             talent_links.append(plain_link)
 
@@ -124,8 +124,8 @@ def my_casting_links(request):
                 created_at=link.created_at,
                 first_name=link.to_user.first_name,
                 last_name=link.to_user.last_name,
-                title=link.to_user.user_profile.get().title,
-                thumbnail_url=link.to_user.user_profile.get().thumbnail,
+                title="",
+                thumbnail_url=link.to_user.casting_profile.get().thumbnail,
                 profile_url="/api/casting/profile/%s" % (link.to_user.id, )
             )
             casting_links.append(plain_link)
@@ -136,8 +136,8 @@ def my_casting_links(request):
                 created_at=link.created_at,
                 first_name=link.from_user.first_name,
                 last_name=link.from_user.last_name,
-                title=link.from_user.user_profile.get().title,
-                thumbnail_url=link.from_user.user_profile.get().thumbnail,
+                title="",
+                thumbnail_url=link.from_user.casting_profile.get().thumbnail,
                 profile_url="/api/casting/profile/%s" % (link.from_user.id, )
             )
             casting_links.append(plain_link)
@@ -300,16 +300,24 @@ def my_link_requests(request):
     logger.debug(user.id)
     link_requests = []
     for link in links:
+        logger.debug("link:")
+        logger.debug(link.id)
+
         plain_link = PlainLink(
             id=link.id,
             link_type=link.from_user.my_user.type,
             created_at=link.created_at,
             first_name=link.from_user.first_name,
             last_name=link.from_user.last_name,
-            title=link.from_user.user_profile.get().title,
-            thumbnail_url=link.from_user.user_profile.get().thumbnail,
-            profile_url="",
         )
+        if link.from_user.my_user.type == 'T':
+            plain_link.title = link.from_user.user_profile.get().title,
+            plain_link.thumbnail_url = link.from_user.user_profile.get().thumbnail,
+            plain_link.profile_url = "/api/talents/profile/%d" % (link.from_user.id, ),
+        else:
+            plain_link.title = "",
+            plain_link.thumbnail_url = link.from_user.casting_profile.get().thumbnail,
+            plain_link.profile_url = "/api/casting/profile/%d" % (link.from_user.id, ),
         link_requests.append(plain_link)
 
     serializer = PlainLinkSerializer(link_requests)
@@ -339,10 +347,10 @@ def send_link_request(request, user_id=0):
         if not Link.is_already_link(me, other):
             link_request = Link()
             link_request.from_user = me
-            link_request.notification = create_notification("LR", me, other, "Link Request", "")
             link_request.to_user = other
             link_request.optional_message = ""
             link_request.save()
+            create_notification("LR", link_request.id, me, other, message="Link Request")
             serializer = PlainLinkSerializer(link_request.plain(me))
             return Response(serializer.data)
         return Response(status=HTTP_400_BAD_REQUEST)
@@ -370,10 +378,10 @@ def accept_link_request(request, link_id=0):
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:
-        link.notification = create_notification("LA", user, link.from_user, "", "")
         link.is_accepted = True
         link.is_rejected = False
         link.save()
+        create_notification("LA", link.id, user, link.from_user, message="Link Accepted")
         serializer = PlainLinkSerializer(link.plain(user))
         return Response(serializer.data)
     return Response(status=HTTP_404_NOT_FOUND)
@@ -400,10 +408,10 @@ def reject_link_request(request, link_id=0):
     user = request.user
     link = Link.objects.filter(id=link_id).first()
     if link and link.to_user == user:
-        link.notification = create_notification("LR", user, link.from_user, "", "")
         link.is_rejected = True
         link.is_accepted = False
         link.save()
+        create_notification("LD", link.id, user, link.from_user, message="Link Declined")
         serializer = PlainLinkSerializer(link.plain(user))
         return Response(serializer.data)
     return Response(status=HTTP_404_NOT_FOUND)

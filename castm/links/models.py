@@ -8,7 +8,6 @@ class Link(models.Model):
 
     from_user = models.ForeignKey(User, related_name="from_link")
     to_user = models.ForeignKey(User, related_name="to_link")
-    notification = models.ForeignKey(Notification, related_name="link")
     optional_message = models.CharField('Optional Message', max_length=1024, blank=True)
     is_accepted = models.BooleanField('Is Accepted', default=False, blank=False)
     is_rejected = models.BooleanField('Is Rejected', default=False, blank=False)
@@ -22,10 +21,16 @@ class Link(models.Model):
             user_id=self.to_user.id,
             first_name=self.to_user.first_name,
             last_name=self.to_user.last_name,
-            title=self.to_user.user_profile.get().title,
-            thumbnail_url=self.to_user.user_profile.get().thumbnail,
-            profile_url="/api/talents/profile/%d" % (self.to_user.id, ),
         )
+
+        if self.to_user.my_user.type == 'T':
+            plain_link.title = self.to_user.user_profile.get().title,
+            plain_link.thumbnail_url = self.to_user.user_profile.get().thumbnail,
+            plain_link.profile_url = "/api/talents/profile/%d" % (self.to_user.id, ),
+        else:
+            plain_link.title = "",
+            plain_link.thumbnail_url = self.to_user.casting_profile.get().thumbnail,
+            plain_link.profile_url = "/api/casting/profile/%d" % (self.to_user.id, ),
 
         if user:
             if self.is_accepted:

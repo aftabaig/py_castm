@@ -1,0 +1,298 @@
+import logging
+
+# rest_framework
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
+from django.contrib.auth.models import User
+
+from django.db import models
+
+from um.permissions import IsTalentOrCasting
+from um.permissions import IsCasting
+from um.views import error_as_text
+
+from serializers import PlainOrganizationSerializer
+from serializers import PlainMemberSerializer
+
+from models import Organization
+from models import PlainOrganization
+from models import OrganizationMember
+from models import PlainMember
+from casting.models import CastingProfile
+from notifications.views import create_notification
+
+logger = logging.getLogger(__name__)
+
+
+def get_organizations():
+    """
+    Get all organizations.
+    :return: List of plain organizations.
+    """
+    orgs = Organization.objects.all()
+    plain_orgs = []
+    for org in orgs:
+        plain_org = org.plain()
+        plain_orgs.append(plain_org)
+    return plain_orgs
+
+
+def get_organization(org_id):
+    """
+    Returns detail of an organization
+    :param org_id: id of the organization
+    :return: A plain organization
+    """
+    org = Organization.objects.filter(id=org_id).first()
+    return org.plain()
+
+
+def process_invitation(request, organization_id=None, invitation_id=None, accept=True):
+    """
+    Accepts/Rejects an invitation.
+    :param request: an HTTP request
+    :param organization_id: organization of the invitation
+    :param invitation_id: id of inivitation
+    :param accept: accept/reject
+    :return: Response with success/failure
+    """
+    user = request.user
+    organization = Organization.object.filter(id=organization_id).first()
+    invitation = OrganizationMember.objects.filter(id=invitation_id).first()
+    if organization:
+        if invitation:
+            if invitation.user == user:
+                if invitation.is_new():
+                    message = ""
+                    if accept:
+                        invitation.is_accepted = True
+                        message = "Your membership invitation has been accepted"
+                    else:
+                        invitation.is_rejected = True
+                        message = "Your membership invitation has been rejected"
+                    invitation.save()
+                    plain_invitation = invitation.plain()
+                    serializer = PlainMemberSerializer(plain_invitation)
+                    create_notification("", invitation.id, invitation.user, invitation.initiator, message=message)
+                    return Response(serializer.data)
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "This invitation had already been accepted/rejected"
+                }, status=HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You are not authorized to accept/reject this invitation"
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Invitation not found"
+        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
+def process_membership_request(request, organization_id=None, request_id=None, accept=True):
+    """
+    Accepts/Rejects a membership request.
+    :param request: an HTTP request
+    :param organization_id: organization of the request
+    :param request_id: id of membership request
+    :param accept: accept/reject
+    :return: Response with success/failure
+    """
+    user = request.user
+    organization = Organization.object.filter(id=organization_id).first()
+    membership = OrganizationMember.objects.filter(id=request_id).first()
+    if organization:
+        if membership:
+            if OrganizationMember.user_is_admin(organization, user):
+                if membership.is_new():
+                    message = ""
+                    if accept:
+                        membership.is_accepted = True
+                        message = "Your membership request has been accepted"
+                    else:
+                        membership.is_rejected = True
+                        message = "Your membership request has been rejected"
+                    membership.save()
+                    plain_invitation = membership.plain()
+                    serializer = PlainMemberSerializer(plain_invitation)
+                    create_notification("", membership.id, membership.inititator, membership.user, message=message)
+                    return Response(serializer.data)
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "This membership request had already been accepted/rejected"
+                }, status=HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You are not authorized to accept/reject this membership request"
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Membership request not found"
+        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET', 'POST', 'PUT', ])
+@permission_classes([IsCasting, ])
+def organizations(request, organization_id=None):
+    if request.method == 'GET':
+        if organization_id is None:
+            orgs = get_organizations()
+            serializer = PlainOrganizationSerializer(orgs, many=True)
+            return Response(serializer.data)
+        else:
+            org = get_organization(organization_id)
+            serializer = PlainOrganizationSerializer(org)
+            return Response(serializer.data)
+    elif request.method == 'POST':
+        serializer = PlainOrganizationSerializer(data=request.DATA)
+        if serializer.is_valid():
+            org = serializer.save()
+            admin = OrganizationMember()
+            admin.organization = Organization.objects.filter(id=org.organization_id).first()
+            admin.user = request.user
+            admin.role = 'ADM'
+            admin.is_accepted = True
+            admin.initiator = request.user
+            admin.save()
+            return Response(serializer.data)
+        return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+    elif request.method == 'PUT':
+        user = request.user
+        organization = Organization.objects.filter(id=organization_id).first()
+        if organization:
+            if OrganizationMember.user_is_admin(organization, user):
+                plain_org = organization.plain()
+                serializer = PlainOrganizationSerializer(plain_org, data=request.DATA)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You are not authorized to edit this organization",
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Organization not found",
+        }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+@permission_classes([IsCasting, ])
+def members(request, organization_id=None):
+    organization = Organization.objects.get(id=organization_id)
+    all_members = organization.members.all()
+    plain_members = []
+    for member in all_members:
+        plain_member = member.plain()
+        plain_members.append(plain_member)
+    serializer = PlainMemberSerializer(plain_members, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsCasting, ])
+def invite_user(request, organization_id=None):
+    initiator = request.user
+    organization = Organization.objects.filter(id=organization_id).first()
+    if organization:
+        if OrganizationMember.user_is_admin(organization, initiator):
+            user_id = request.DATA.get("to")
+            user = User.objects.filter(id=user_id).first()
+            role = request.DATA.get("role")
+            if not OrganizationMember.user_is_member_of(user, organization):
+                if not OrganizationMember.user_is_member_of(user):
+                    invitation = OrganizationMember()
+                    invitation.organization = organization
+                    invitation.user = user
+                    invitation.role = role
+                    invitation.initiator = initiator
+                    invitation.save()
+                    plain_member = invitation.plain()
+                    serializer = PlainMemberSerializer(plain_member)
+                    message = "You have been invited to join %s as %s" % (organization.name, "as an administrator" if invitation.role == "ADM" else "as a coordinator", )
+                    create_notification("", invitation.id, invitation.initiator, invitation.user, message=message)
+                    return Response(serializer.data)
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "The user is already a member of some other organization"
+                }, status=HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_400_BAD_REQUEST,
+                "message": "The user is already a member/awaiting membership of this organization"
+            }, status=HTTP_400_BAD_REQUEST)
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to send membership invitation"
+        }, status=HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def accept_invitation(request, organization_id=None, invitation_id=None):
+    return process_invitation(request, organization_id, invitation_id)
+
+
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def reject_invitation(request, organization_id=None, invitation_id=None):
+    return process_invitation(request, organization_id, invitation_id, accept=False)
+
+
+@api_view(['POST', ])
+@permission_classes([IsCasting, ])
+def request_membership(request, organization_id=None):
+    user = request.user
+    organization = Organization.objects.filter(id=organization_id).first()
+    if organization:
+        role = request.DATA.get("role")
+        if not OrganizationMember.user_is_member_of(user, organization):
+            if not OrganizationMember.user_is_member_of(user):
+                membership = OrganizationMember()
+                membership.organization = organization
+                membership.user = user
+                membership.role = role
+                membership.initiator = user
+                membership.save()
+                plain_member = membership.plain()
+                serializer = PlainMemberSerializer(plain_member)
+                message = "%s %s has requested membership of %s as %s" % (user.first_name, user.last_name, organization.name, "as an administrator" if membership.role == "ADM" else "as a coordinator", )
+                for admin in organization.administrators():
+                    create_notification("", membership.id, membership.user, admin.user, message=message)
+                return Response(serializer.data)
+            return Response({
+                "status": HTTP_400_BAD_REQUEST,
+                "message": "You are already a member/awaiting membership of some other organization"
+            }, status=HTTP_400_BAD_REQUEST)
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message": "You are already a member/awaiting membership of this organization"
+        }, status=HTTP_400_BAD_REQUEST)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def accept_request(request, organization_id=None, invitation_id=None):
+    return process_membership_request(request, organization_id, invitation_id)
+
+
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def reject_request(request, organization_id=None, invitation_id=None):
+    return process_membership_request(request, organization_id, invitation_id, accept=False)

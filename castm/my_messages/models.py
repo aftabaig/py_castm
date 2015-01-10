@@ -4,32 +4,40 @@ from django.contrib.auth.models import User
 from notifications.models import Notification
 
 
-
 class Message(models.Model):
     from_user = models.ForeignKey(User, related_name="message_from", null=True)
     to_user = models.ForeignKey(User, related_name="message_to", null=True)
-    notification = models.ForeignKey(Notification, related_name="msg")
     message = models.CharField('Message', max_length=1024, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def plain(self):
         plain_msg = PlainMessage(
             msg_id=self.id,
-            created_at=self.created_at,
+            # created_at=self.created_at,
             message=self.message,
             from_user_id=self.from_user.id,
             from_first_name=self.from_user.first_name,
             from_last_name=self.from_user.last_name,
-            from_title=self.from_user.user_profile.get().title,
-            from_thumbnail_url=self.from_user.user_profile.get().thumbnail,
-            from_profile_url="/api/talents/profile/%d" % (self.from_user.id, ),
             to_user_id=self.to_user.id,
             to_first_name=self.to_user.first_name,
             to_last_name=self.to_user.last_name,
-            to_title=self.to_user.user_profile.get().title,
-            to_thumbnail_url=self.to_user.user_profile.get().thumbnail,
-            to_profile_url="/api/talents/profile/%d" % (self.to_user.id, ),
         )
+        if self.from_user.my_user.type == 'T':
+            plain_msg.from_title = self.from_user.user_profile.get().title,
+            plain_msg.from_thumbnail_url = self.from_user.user_profile.get().thumbnail,
+            plain_msg.from_profile_url = "/api/talents/profile/%d" % (self.from_user.id, ),
+        else:
+            plain_msg.from_title = "",
+            # plain_msg.from_thumbnail_url = self.from_user.casting_profile.get().thumbnail,
+            # plain_msg.from_profile_url = "/api/casting/profile/%d" % (self.from_user.id, ),
+        if self.to_user.my_user.type == 'T':
+            plain_msg.to_title = self.to_user.user_profile.get().title,
+            plain_msg.to_thumbnail_url = self.to_user.user_profile.get().thumbnail,
+            plain_msg.to_profile_url = "/api/talents/profile/%d" % (self.to_user.id, ),
+        else:
+            plain_msg.to_title = "",
+            # plain_msg.to_thumbnail_url = self.to_user.casting_profile.get().thumbnail,
+            # plain_msg.to_profile_url = "/api/casting/profile/%d" % (self.to_user.id, ),
         return plain_msg
 
     @staticmethod

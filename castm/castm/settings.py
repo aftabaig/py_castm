@@ -135,7 +135,9 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'um',
     'talent',
+    'casting',
     'links',
+    'organizations',
     'my_messages',
     'notifications',
 )
@@ -198,6 +200,21 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'notifications': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'my_messages': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'organizations': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
     }
 }
 

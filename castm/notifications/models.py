@@ -9,13 +9,20 @@ class Notification(models.Model):
         ('CB', 'Callback'),
         ('LR', 'Link Request'),
         ('LA', 'Link Accepted'),
-        ('LR', 'Link Rejected'),
+        ('LD', 'Link Rejected'),
+        ('OMI', 'Organization Membership Invitation'),
+        ('OIA', 'Organization Invitation Accepted'),
+        ('OIR', 'Organization Invitation Rejected'),
+        ('OMR', 'Organization Membership Request'),
+        ('ORA', 'Organization Request Accepted'),
+        ('ORR', 'Organization Request Rejected'),
+
     )
 
     type = models.CharField("Notification Type", choices=type_choices, max_length=3, blank=False)
+    source_id = models.IntegerField("Notification Source Id", blank=False)
     from_user = models.ForeignKey(User, related_name="notification_from")
     for_user = models.ForeignKey(User, related_name="notification_for")
-    title = models.CharField('Notification Title', max_length=256, blank=False)
     message = models.CharField('Message', max_length=1024, blank=False)
     seen = models.BooleanField('Seen', default=False, blank=True)
     action_taken = models.BooleanField('Action taken?', default=False, blank=True)
@@ -39,7 +46,7 @@ class Notification(models.Model):
 
 
 class PlainNotification(object):
-    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, description=None, thumbnail_url=None, profile_url=None):
+    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, description=None, thumbnail_url=None, profile_url=None):
         self.notification_id = notification_id
         self.source_id = source_id
         self.notification_type = notification_type
@@ -47,7 +54,6 @@ class PlainNotification(object):
         self.user_id = user_id
         self.first_name = first_name
         self.last_name = last_name
-        self.title = title
         self.description = description
         self.thumbnail_url = thumbnail_url
         self.profile_url = profile_url
