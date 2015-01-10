@@ -22,6 +22,13 @@ urlpatterns += patterns(
     url(r'^api/talent/', include('talent.urls')),
 )
 
+# urls from casting.
+# contains casting related urls.
+urlpatterns += patterns(
+    'casting.views',
+    url(r'^api/casting/', include('casting.urls')),
+)
+
 # urls from notifications.
 # contains notifications related urls.
 urlpatterns += patterns(
@@ -48,6 +55,10 @@ urlpatterns += patterns(
 urlpatterns += patterns(
     'organizations.views',
     url(r'^api/organizations/', include('organizations.urls')),
+)
+
+urlpatterns += (
+    url(r'^api/docs/', include('rest_framework_swagger.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()

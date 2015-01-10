@@ -23,7 +23,6 @@ from serializers import HeadshotSerializer
 from models import CastingProfile
 from models import CastingHeadshot
 from models import PlainProfile
-from models import NotificationSummary
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +66,7 @@ def public_profile(request, user_id=None):
 
 
 @api_view(['GET', 'PUT', ])
-@permission_classes([IsTalent, ])
+@permission_classes([IsCasting, ])
 def my_profile(request):
     """
     View/Update user's own profile.\n

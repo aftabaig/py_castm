@@ -23,6 +23,7 @@ from mobi.decorators import detect_mobile
 # models
 from models import MyUser
 from talent.models import TalentProfile
+from casting.models import CastingProfile
 
 # serializers
 from serializers import UserSerializer
@@ -104,6 +105,9 @@ def sign_up(request):
         if serializer.object.type == 'T':
             talent = TalentProfile(my_user=serializer.object, user=user)
             talent.save()
+        else:
+            casting = CastingProfile(my_user=serializer.object, user=user)
+            casting.save()
 
         # send activation e-mail.
         subject = 'Cast\'M account activation'
