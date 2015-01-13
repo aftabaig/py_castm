@@ -60,6 +60,7 @@ def my_talent_links(request):
             plain_link = PlainLink(
                 link_id=link.id,
                 created_at=link.created_at,
+                user_id=link.to_user.id,
                 first_name=link.to_user.first_name,
                 last_name=link.to_user.last_name,
                 title=link.to_user.user_profile.get().title[0],
@@ -71,6 +72,7 @@ def my_talent_links(request):
             plain_link = PlainLink(
                 link_id=link.id,
                 created_at=link.created_at,
+                user_id=link.from_user.id,
                 first_name=link.from_user.first_name,
                 last_name=link.from_user.last_name,
                 title=link.from_user.user_profile.get().title,
@@ -122,6 +124,7 @@ def my_casting_links(request):
                 id=link.id,
                 link_type=link.to_user.my_user.type,
                 created_at=link.created_at,
+                user_id=link.to_user.id,
                 first_name=link.to_user.first_name,
                 last_name=link.to_user.last_name,
                 title="",
@@ -134,6 +137,7 @@ def my_casting_links(request):
                 id=link.id,
                 link_type=link.from_user.my_user.type,
                 created_at=link.created_at,
+                user_id=link.from_user.id,
                 first_name=link.from_user.first_name,
                 last_name=link.from_user.last_name,
                 title="",
