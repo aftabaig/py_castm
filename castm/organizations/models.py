@@ -1,5 +1,9 @@
+import logging
+
 from django.db import models
 from django.contrib.auth.models import User
+
+logger = logging.getLogger(__name__)
 
 
 class Organization(models.Model):
@@ -89,6 +93,15 @@ class OrganizationMember(models.Model):
             q = q & models.Q(organization=organization)
         return OrganizationMember.objects.filter(q).count() > 0
 
+    @staticmethod
+    def user_organization(user):
+        q = models.Q(user=user)
+        membership = OrganizationMember.objects.filter(q).first()
+        if membership:
+            return membership.organization
+        else:
+            return None
+
 
 class PlainOrganization(object):
 
@@ -136,6 +149,3 @@ class PlainMember(object):
         self.initiator_profile_url = initiator_profile_url
         self.is_accepted = is_accepted
         self.is_rejected = is_rejected
-
-
-

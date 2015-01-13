@@ -6,6 +6,8 @@ from models import CastingProfile
 from models import CastingHeadshot
 from models import PlainProfile
 
+from notifications.serializers import JSONField
+
 logger = logging.getLogger(__name__)
 
 
@@ -75,6 +77,7 @@ class PlainProfileSerializer(serializers.Serializer):
 class MyPlainProfileSerializer(PlainProfileSerializer):
     notifications_count = serializers.CharField(read_only=True)
     links_count = serializers.CharField(read_only=True)
+    organization = JSONField(read_only=True)
 
     def restore_object(self, attrs, instance=None):
         instance = super(MyPlainProfileSerializer, self).restore_object(attrs, instance)

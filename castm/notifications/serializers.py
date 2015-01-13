@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class JSONField(serializers.WritableField):
     def to_native(self, obj):
-        return json.dumps(obj.__dict__)
+        return obj.__dict__
 
     def from_native(self, value):
         return json.loads(value)

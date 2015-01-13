@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from links.models import Link
 
 
 class Notification(models.Model):
@@ -16,7 +17,9 @@ class Notification(models.Model):
         ('OMR', 'Organization Membership Request'),
         ('ORA', 'Organization Request Accepted'),
         ('ORR', 'Organization Request Rejected'),
-
+        ('ER', 'Event Attendance Request'),
+        ('ERA', 'Event Request Accepted'),
+        ('ERR', 'Event Request Rejected'),
     )
 
     type = models.CharField("Notification Type", choices=type_choices, max_length=3, blank=False)
@@ -46,7 +49,7 @@ class Notification(models.Model):
 
 
 class PlainNotification(object):
-    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, description=None, thumbnail_url=None, profile_url=None):
+    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, thumbnail_url=None, profile_url=None, description=None):
         self.notification_id = notification_id
         self.source_id = source_id
         self.notification_type = notification_type
@@ -54,12 +57,28 @@ class PlainNotification(object):
         self.user_id = user_id
         self.first_name = first_name
         self.last_name = last_name
-        self.description = description
+        self.title = title
         self.thumbnail_url = thumbnail_url
         self.profile_url = profile_url
+        self.description = description
 
 
 class MyNotifications(object):
     def __init__(self, notifications=None):
         self.notifications = notifications
+
+
+class NotificationSummary(object):
+    def __init__(self):
+        self.notifications_count = 0
+        self.links_count = 0
+
+    @staticmethod
+    def get_notifications(user_id):
+        user = User.objects.get(id=user_id)
+        notification = NotificationSummary()
+        notification.notifications_count = Notification.unseen_notifications_count(user)
+        notification.links_count = Link.links_count(user)
+        return notification
+
 

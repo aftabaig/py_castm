@@ -62,8 +62,8 @@ def my_talent_links(request):
                 created_at=link.created_at,
                 first_name=link.to_user.first_name,
                 last_name=link.to_user.last_name,
-                title=link.to_user.user_profile.get().title,
-                thumbnail_url=link.to_user.user_profile.get().thumbnail,
+                title=link.to_user.user_profile.get().title[0],
+                thumbnail_url=link.to_user.user_profile.get().thumbnail[0],
                 profile_url="/api/talents/profile/%d" % (link.to_user.id, ),
             )
             talent_links.append(plain_link)
@@ -311,13 +311,13 @@ def my_link_requests(request):
             last_name=link.from_user.last_name,
         )
         if link.from_user.my_user.type == 'T':
-            plain_link.title = link.from_user.user_profile.get().title,
-            plain_link.thumbnail_url = link.from_user.user_profile.get().thumbnail,
-            plain_link.profile_url = "/api/talents/profile/%d" % (link.from_user.id, ),
+            plain_link.title = link.from_user.user_profile.get().title
+            plain_link.thumbnail_url = link.from_user.user_profile.get().thumbnail
+            plain_link.profile_url = "/api/talents/profile/%d" % (link.from_user.id, )
         else:
-            plain_link.title = "",
-            plain_link.thumbnail_url = link.from_user.casting_profile.get().thumbnail,
-            plain_link.profile_url = "/api/casting/profile/%d" % (link.from_user.id, ),
+            plain_link.title = ""
+            plain_link.thumbnail_url = link.from_user.casting_profile.get().thumbnail
+            plain_link.profile_url = "/api/casting/profile/%d" % (link.from_user.id, )
         link_requests.append(plain_link)
 
     serializer = PlainLinkSerializer(link_requests)

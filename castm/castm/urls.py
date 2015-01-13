@@ -29,6 +29,13 @@ urlpatterns += patterns(
     url(r'^api/casting/', include('casting.urls')),
 )
 
+# urls from events.
+# contains events related urls.
+urlpatterns += patterns(
+    'events.views',
+    url(r'^api/events/', include('events.urls')),
+)
+
 # urls from notifications.
 # contains notifications related urls.
 urlpatterns += patterns(

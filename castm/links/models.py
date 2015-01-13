@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from notifications.models import Notification
-
 
 class Link(models.Model):
 
@@ -24,13 +22,13 @@ class Link(models.Model):
         )
 
         if self.to_user.my_user.type == 'T':
-            plain_link.title = self.to_user.user_profile.get().title,
-            plain_link.thumbnail_url = self.to_user.user_profile.get().thumbnail,
-            plain_link.profile_url = "/api/talents/profile/%d" % (self.to_user.id, ),
+            plain_link.title = self.to_user.user_profile.get().title
+            plain_link.thumbnail_url = self.to_user.user_profile.get().thumbnail
+            plain_link.profile_url = "/api/talents/profile/%d" % (self.to_user.id, )
         else:
-            plain_link.title = "",
-            plain_link.thumbnail_url = self.to_user.casting_profile.get().thumbnail,
-            plain_link.profile_url = "/api/casting/profile/%d" % (self.to_user.id, ),
+            plain_link.title = ""
+            plain_link.thumbnail_url = self.to_user.casting_profile.get().thumbnail
+            plain_link.profile_url = "/api/casting/profile/%d" % (self.to_user.id, )
 
         if user:
             if self.is_accepted:
@@ -105,6 +103,20 @@ class PlainLink(object):
         self.thumbnail_url = thumbnail_url
         self.profile_url = profile_url
         self.link_status = link_status
+
+    def __dict__(self):
+        return {
+            "link_id": self.link_id,
+            "link_type": self.link_type,
+            "created_at": self.created_at,
+            "user_id": self.user_id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "title": self.title,
+            "thumbnail_url": self.thumbnail_url,
+            "profile_url": self.profile_url,
+            "link_status": self.link_status
+        }
 
 
 class MyLinks(object):

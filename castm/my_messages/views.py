@@ -33,6 +33,7 @@ def message_detail(request, message_id=0):
                 {
                     "msg_id": [msg_id],
                     "created_at": [message_date],
+                    "title", [title],
                     "message": [message],
                     "from_user_id": [user_id],
                     "from_first_name": [first_name],
@@ -86,6 +87,7 @@ def message_thread(request, user_id=0):
                 {
                     "msg_id": [msg_id],
                     "created_at": [message_date],
+                    "title": [title],
                     "message": [message],
                     "from_user_id": [user_id],
                     "from_first_name": [first_name],
@@ -130,6 +132,7 @@ def send_message(request):
             Accepts following hash:\n
             . {\n
                 "to": [user_id],\n
+                "title": [message_title],\n
                 "message": [the_message]\n
             }\n
             Returns:\n
@@ -145,6 +148,7 @@ def send_message(request):
     """
     me = request.user
     to_id = request.DATA.get("to")
+    title = request.DATA.get("title")
     msg = request.DATA.get("message")
     to = User.objects.filter(id=to_id).first()
 
@@ -153,6 +157,7 @@ def send_message(request):
             message = Message()
             message.from_user = me
             message.to_user = to
+            message.title = title
             message.message = msg
             message.save()
             create_notification("MSG", message.id, me, to, message=msg)

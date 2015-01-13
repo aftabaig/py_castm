@@ -7,6 +7,7 @@ from notifications.models import Notification
 class Message(models.Model):
     from_user = models.ForeignKey(User, related_name="message_from", null=True)
     to_user = models.ForeignKey(User, related_name="message_to", null=True)
+    title = models.CharField('Title', max_length=64, blank=False)
     message = models.CharField('Message', max_length=1024, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -23,21 +24,21 @@ class Message(models.Model):
             to_last_name=self.to_user.last_name,
         )
         if self.from_user.my_user.type == 'T':
-            plain_msg.from_title = self.from_user.user_profile.get().title,
-            plain_msg.from_thumbnail_url = self.from_user.user_profile.get().thumbnail,
-            plain_msg.from_profile_url = "/api/talents/profile/%d" % (self.from_user.id, ),
+            plain_msg.from_title = self.from_user.user_profile.get().title
+            plain_msg.from_thumbnail_url = self.from_user.user_profile.get().thumbnail
+            plain_msg.from_profile_url = "/api/talents/profile/%d" % (self.from_user.id, )
         else:
-            plain_msg.from_title = "",
-            # plain_msg.from_thumbnail_url = self.from_user.casting_profile.get().thumbnail,
-            # plain_msg.from_profile_url = "/api/casting/profile/%d" % (self.from_user.id, ),
+            plain_msg.from_title = ""
+            # plain_msg.from_thumbnail_url = self.from_user.casting_profile.get().thumbnail
+            # plain_msg.from_profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
         if self.to_user.my_user.type == 'T':
-            plain_msg.to_title = self.to_user.user_profile.get().title,
-            plain_msg.to_thumbnail_url = self.to_user.user_profile.get().thumbnail,
-            plain_msg.to_profile_url = "/api/talents/profile/%d" % (self.to_user.id, ),
+            plain_msg.to_title = self.to_user.user_profile.get().title
+            plain_msg.to_thumbnail_url = self.to_user.user_profile.get().thumbnail
+            plain_msg.to_profile_url = "/api/talents/profile/%d" % (self.to_user.id, )
         else:
             plain_msg.to_title = "",
-            # plain_msg.to_thumbnail_url = self.to_user.casting_profile.get().thumbnail,
-            # plain_msg.to_profile_url = "/api/casting/profile/%d" % (self.to_user.id, ),
+            # plain_msg.to_thumbnail_url = self.to_user.casting_profile.get().thumbnail
+            # plain_msg.to_profile_url = "/api/casting/profile/%d" % (self.to_user.id, )
         return plain_msg
 
     @staticmethod
@@ -51,11 +52,12 @@ class Message(models.Model):
 
 
 class PlainMessage(object):
-    def __init__(self, msg_id=None, created_at=None, message=None,
+    def __init__(self, msg_id=None, created_at=None, title=None, message=None,
                  from_user_id=None, from_first_name=None, from_last_name=None, from_title=None, from_thumbnail_url=None, from_profile_url=None,
                  to_user_id=None, to_first_name=None, to_last_name=None, to_title=None, to_thumbnail_url=None, to_profile_url=None):
         self.msg_id = msg_id
         self.created_at = created_at
+        self.title = title
         self.message = message
         self.from_user_id = from_user_id
         self.from_first_name = from_first_name
@@ -69,7 +71,6 @@ class PlainMessage(object):
         self.to_title = to_title
         self.to_thumbnail_url = to_thumbnail_url
         self.to_profile_url = to_profile_url
-
 
 class MyLinks(object):
     def __init__(self, links=None):

@@ -23,7 +23,7 @@ from serializers import HeadshotSerializer
 from models import TalentProfile
 from models import TalentHeadshot
 from models import PlainProfile
-from models import NotificationSummary
+from notifications.models import NotificationSummary
 
 logger = logging.getLogger(__name__)
 

@@ -55,20 +55,6 @@ class TalentHeadshot(models.Model):
     headshot = models.ImageField(upload_to='headshots')
 
 
-class NotificationSummary(object):
-    def __init__(self):
-        self.notifications_count = 0
-        self.links_count = 0
-
-    @staticmethod
-    def get_notifications(user_id):
-        user = User.objects.get(id=user_id)
-        notification = NotificationSummary()
-        notification.notifications_count = Notification.unseen_notifications_count(user)
-        notification.links_count = Link.links_count(user)
-        return notification
-
-
 class PlainProfile(object):
     def __init__(self, user=None, profile=None, notification=None):
         if user:

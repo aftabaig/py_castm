@@ -4,7 +4,7 @@ import urbanairship as ua
 # rest_framework
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from django.contrib.auth.models import User
 
 from um.permissions import IsTalentOrCasting
@@ -44,13 +44,13 @@ def get_notifications(user, type):
             source_id=notification.source_id,
         )
         if notification.from_user.my_user.type == 'T':
-            plain_notification.title = notification.from_user.user_profile.get().title,
-            plain_notification.thumbnail_url = notification.from_user.user_profile.get().thumbnail,
-            plain_notification.profile_url = "/api/talents/profile/%d" % (notification.from_user.id, ),
+            plain_notification.title = notification.from_user.user_profile.get().title
+            plain_notification.thumbnail_url = notification.from_user.user_profile.get().thumbnail
+            plain_notification.profile_url = "/api/talents/profile/%d" % (notification.from_user.id, )
         else:
-            plain_notification.title = "",
-            # plain_notification.thumbnail_url = notification.from_user.casting_profile.get().thumbnail,
-            # plain_notification.profile_url = "/api/casting/profile/%d" % (notification.from_user.id, ),
+            plain_notification.title = "SS"
+            # plain_notification.thumbnail_url = notification.from_user.casting_profile.get().thumbnail
+            # plain_notification.profile_url = "/api/casting/profile/%d" % (notification.from_user.id, )
 
         if type == 'LR' or type == 'LA' or type == 'LR':
             plain_notification.source = Link.objects.filter(id=notification.source_id).first().plain()
@@ -80,6 +80,33 @@ def create_notification(type, source_id, from_user, for_user, message=None):
 
         notification.save()
         return notification
+
+@api_view(['DELETE'])
+@permission_classes([IsTalentOrCasting, ])
+def delete_notification(request, notification_id=None):
+    """
+    Deletes a notification.
+    Status:\n
+        1. 204 on success
+        2. 401 if un-authorized
+        3. 404 if notification not found
+    Notes:\n
+        1. Require user's token to be sent in the header as:\n
+            Authorization: Token [token]\n
+    """
+    user = request.user
+    notification = Notification.objects.filter(id=notification_id)
+    if notification:
+        if notification.for_user == user:
+            notification.delete()
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to delete this notification"
+        }, HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Notification not found"
+    }, HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET', ])

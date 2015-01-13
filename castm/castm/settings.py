@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'rest_framework_swagger',
     'rest_framework.authtoken',
     'um',
+    'events',
     'talent',
     'casting',
     'links',
@@ -192,6 +193,16 @@ LOGGING = {
             'propagate': True,
         },
         'talent': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'casting': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'events': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,

@@ -58,7 +58,7 @@ def process_invitation(request, organization_id=None, invitation_id=None, accept
     :return: Response with success/failure
     """
     user = request.user
-    organization = Organization.object.filter(id=organization_id).first()
+    organization = Organization.objects.filter(id=organization_id).first()
     invitation = OrganizationMember.objects.filter(id=invitation_id).first()
     if organization:
         if invitation:
@@ -104,7 +104,7 @@ def process_membership_request(request, organization_id=None, request_id=None, a
     :return: Response with success/failure
     """
     user = request.user
-    organization = Organization.object.filter(id=organization_id).first()
+    organization = Organization.objects.filter(id=organization_id).first()
     membership = OrganizationMember.objects.filter(id=request_id).first()
     if organization:
         if membership:
@@ -143,6 +143,11 @@ def process_membership_request(request, organization_id=None, request_id=None, a
 @api_view(['GET', 'POST', 'PUT', ])
 @permission_classes([IsCasting, ])
 def organizations(request, organization_id=None):
+    """
+    :param request:
+    :param organization_id:
+    :return:
+    """
     if request.method == 'GET':
         if organization_id is None:
             orgs = get_organizations()

@@ -23,6 +23,9 @@ from serializers import HeadshotSerializer
 from models import CastingProfile
 from models import CastingHeadshot
 from models import PlainProfile
+from notifications.models import NotificationSummary
+from organizations.models import Organization
+from organizations.models import OrganizationMember
 
 logger = logging.getLogger(__name__)
 
@@ -85,13 +88,15 @@ def my_profile(request):
                 "zip: "",
                 "mobile": "",
                 "office": "",
-                "thumbnail": "thumbnail_url"
+                "thumbnail": "thumbnail_url",
+                "organization_id": 6,
+                "organization_name": [organization_name],
                 "notifications_count": 5,
                 "links_count": 6
             }\n
         2. PUT to update\n
             - You need to create a dictionary of items (mentioned above) that you need to update.\n
-            - You can change any item apart from username, email, notifications_count & links_count.\n
+            - You can change any item apart from username, email, organization_id, organization_name, notifications_count & links_count.\n
     Status:\n
         1. 200 on success
         2. 400 if some error occurs
@@ -103,7 +108,12 @@ def my_profile(request):
     user = request.user
     profile = CastingProfile.objects.get(user_id=user.id)
     notification = NotificationSummary.get_notifications(user.id)
-    plain_profile = PlainProfile(user=user, profile=profile, notification=notification)
+    organization = OrganizationMember.user_organization(user).plain()
+    organization.members = None
+    plain_profile = PlainProfile(user=user,
+                                 profile=profile,
+                                 notification=notification,
+                                 organization=organization)
     if request.method == 'GET':
         serializer = MyPlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
