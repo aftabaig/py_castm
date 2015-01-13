@@ -14,6 +14,6 @@ urlpatterns = patterns(
     url(r'^messages/$', notifications_messages),
     url(r'^membership-requests', notifications_membership_requests),
     url(r'^seen/$', mark_as_seen),
-    url(r'^(?P<link_id>[0-9]+)/responded/$', action_taken),
+    url(r'^(?P<notification_id>[0-9]+)/responded/$', action_taken),
 
 )
