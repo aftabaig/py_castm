@@ -104,20 +104,6 @@ class PlainLink(object):
         self.profile_url = profile_url
         self.link_status = link_status
 
-    def __dict__(self):
-        return {
-            "link_id": self.link_id,
-            "link_type": self.link_type,
-            "created_at": self.created_at,
-            "user_id": self.user_id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
-            "title": self.title,
-            "thumbnail_url": self.thumbnail_url,
-            "profile_url": self.profile_url,
-            "link_status": self.link_status
-        }
-
 
 class MyLinks(object):
     def __init__(self, links=None):
