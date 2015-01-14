@@ -48,10 +48,10 @@ class PlainProfile(object):
             self.mobile = profile.mobile
             self.office = profile.office
             self.thumbnail = profile.thumbnail
+        if organization:
             self.organization = organization
         else:
-            self.organization_id = None
-            self.organization_name = None
+            self.organization = None
         if notification:
             self.notifications_count = notification.notifications_count
             self.links_count = notification.links_count
