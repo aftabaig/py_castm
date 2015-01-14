@@ -274,14 +274,25 @@ def mark_as_seen(request):
             Authorization: Token [token]\n
     """
     user = request.user
-    notifications = request.DATA.get("notifications")
+    str_notifications = request.DATA.get("notifications")
+    notification_ids = str_notifications.split(str=",")
 
-    for notification_id in notifications:
-        notification = Notification.objects.get(pk=notification_id)
-        if notification.for_user == user:
-            notification.seen = True
-            notification.save()
-
+    for notification_id in notification_ids:
+        notification = Notification.objects.filter(id=notification_id).first()
+        if notification:
+            if notification.for_user == user:
+                notification.seen = True
+                notification.save()
+            else:
+                return Response({
+                    "status": HTTP_401_UNAUTHORIZED,
+                    "message": "You are not authorized to process this notification"
+                }, HTTP_401_UNAUTHORIZED)
+        else:
+            return Response({
+                "status": HTTP_404_NOT_FOUND,
+                "message": "Notification not found"
+            }, HTTP_404_NOT_FOUND)
     return Response({
         "status": HTTP_200_OK,
         "message": "OK"

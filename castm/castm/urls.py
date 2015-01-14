@@ -36,6 +36,13 @@ urlpatterns += patterns(
     url(r'^api/events/', include('events.urls')),
 )
 
+# urls from schedules.
+# contains schedules related urls.
+urlpatterns += patterns(
+    'schedules.views',
+    url(r'^api/events/(?P<event_id>[0-9]+)/schedules/', include('schedules.urls'))
+)
+
 # urls from notifications.
 # contains notifications related urls.
 urlpatterns += patterns(

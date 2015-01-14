@@ -6,8 +6,6 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from django.contrib.auth.models import User
 
-from django.db import models
-
 from um.permissions import IsTalentOrCasting
 from um.permissions import IsCasting
 from um.views import error_as_text

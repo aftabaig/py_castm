@@ -84,7 +84,8 @@ class OrganizationMember(models.Model):
         q1 = models.Q(organization=organization)
         q2 = models.Q(user=user)
         q3 = models.Q(role='ADM')
-        return OrganizationMember.objects.filter(q1 & q2 & q3).count() > 0
+        q4 = models.Q(is_accepted=True)
+        return OrganizationMember.objects.filter(q1 & q2 & q3 & q4).count() > 0
 
     @staticmethod
     def user_is_member_of(user, organization=None):

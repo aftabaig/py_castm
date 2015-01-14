@@ -111,7 +111,7 @@ def message_thread(request, user_id=0):
             Authorization: Token [token]\n
     """
     user = request.user
-    other = User.objects.filter(id=user_id)
+    other = User.objects.filter(id=user_id).first()
     messages = Message.thread(user, other)
     plain_msgs = []
     for message in messages:

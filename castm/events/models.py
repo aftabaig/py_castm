@@ -17,6 +17,7 @@ class Event(models.Model):
     callback_date = models.DateField(auto_now_add=True)
     callback_time_from = models.TimeField()
     callback_time_to = models.TimeField()
+    schedule_published = models.BooleanField(default=False, blank=True)
 
     def plain(self):
         plain_event = PlainEvent(
@@ -30,6 +31,7 @@ class Event(models.Model):
             callback_date=self.callback_date,
             callback_time_from=self.callback_time_from,
             callback_time_to=self.callback_time_to,
+            schedule_published=self.schedule_published,
         )
         return plain_event
 
@@ -108,7 +110,8 @@ class EventAttendee(models.Model):
 class PlainEvent(object):
     def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None,
                  audition_date=None, audition_time_from=None, audition_time_to=None,
-                 callback_date=None, callback_time_from=None, callback_time_to=None):
+                 callback_date=None, callback_time_from=None, callback_time_to=None,
+                 schedule_published=None):
         self.event_id = event_id
         self.name = name
         self.owner_id = owner_id
@@ -119,6 +122,7 @@ class PlainEvent(object):
         self.callback_date = callback_date
         self.callback_time_from = callback_time_from
         self.callback_time_to = callback_time_to
+        self.schedule_published = schedule_published
 
 
 class PlainAttendee(object):

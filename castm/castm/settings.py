@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'um',
     'events',
+    'schedules',
     'talent',
     'casting',
     'links',
@@ -226,7 +227,12 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
-        }
+        },
+        'schedules': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     }
 }
 

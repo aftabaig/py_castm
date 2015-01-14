@@ -45,7 +45,6 @@ class PlainProfileSerializer(serializers.Serializer):
     thumbnail = serializers.CharField(required=False)
 
     def restore_object(self, attrs, instance=None):
-        logger.debug(attrs)
         if instance is not None:
             instance.first_name = attrs.get('first_name', instance.first_name)
             instance.last_name = attrs.get('last_name', instance.last_name)
