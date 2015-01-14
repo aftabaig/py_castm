@@ -106,7 +106,7 @@ def my_profile(request):
             Authorization: Token [token]\n
     """
     user = request.user
-    profile = CastingProfile.objects.filter(user_id=user.id).first
+    profile = CastingProfile.objects.filter(user_id=user.id).first()
     if profile:
         notification = NotificationSummary.get_notifications(user.id)
         organization = OrganizationMember.user_organization(user)
