@@ -15,6 +15,7 @@ from notifications.serializers import MyNotificationSerializer
 
 from links.models import Link
 from links.serializers import PlainLinkSerializer
+
 from my_messages.models import Message
 from organizations.models import OrganizationMember
 from organizations.serializers import PlainMemberSerializer
@@ -322,11 +323,16 @@ def action_taken(request, notification_id):
     """
     user = request.user
     notification = Notification.objects.get(pk=notification_id)
+    if notification.type == "MSG":
+        related_notifications = Notification.unread_notifications(user, "MSG")
+        for related_notification in related_notifications:
+            related_notification.action_taken = True
+            related_notification.seen = True
+            related_notification.save()
     if notification.for_user == user:
         notification.action_taken = True
         notification.seen = True
         notification.save()
-
     return Response({
         "status": HTTP_200_OK,
         "message": "OK"

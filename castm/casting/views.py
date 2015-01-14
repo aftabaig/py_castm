@@ -109,7 +109,9 @@ def my_profile(request):
     profile = CastingProfile.objects.filter(user_id=user.id).first
     if profile:
         notification = NotificationSummary.get_notifications(user.id)
-        organization = OrganizationMember.user_organization(user).plain()
+        organization = OrganizationMember.user_organization(user)
+        if organization:
+            organization = organization.plain()
         plain_profile = PlainProfile(user=user,
                                      profile=profile,
                                      notification=notification,
