@@ -76,6 +76,8 @@ class PlainOrganizationSerializer(serializers.Serializer):
             org.mobile = obj.mobile
         if obj.office:
             org.office = obj.office
+        if obj.logo:
+            org.logo = obj.logo
         org.save()
 
         obj.organization_id = org.id
