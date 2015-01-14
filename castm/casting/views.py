@@ -106,23 +106,27 @@ def my_profile(request):
             Authorization: Token [token]\n
     """
     user = request.user
-    profile = CastingProfile.objects.get(user_id=user.id)
-    notification = NotificationSummary.get_notifications(user.id)
-    organization = OrganizationMember.user_organization(user).plain()
-    organization.members = None
-    plain_profile = PlainProfile(user=user,
-                                 profile=profile,
-                                 notification=notification,
-                                 organization=organization)
-    if request.method == 'GET':
-        serializer = MyPlainProfileSerializer(plain_profile)
-        return Response(serializer.data, HTTP_200_OK)
-    else:
-        serializer = MyPlainProfileSerializer(plain_profile, data=request.DATA)
-        if serializer.is_valid():
-            serializer.save()
+    profile = CastingProfile.objects.filter(user_id=user.id).first
+    if profile:
+        notification = NotificationSummary.get_notifications(user.id)
+        organization = OrganizationMember.user_organization(user).plain()
+        plain_profile = PlainProfile(user=user,
+                                     profile=profile,
+                                     notification=notification,
+                                     organization=organization)
+        if request.method == 'GET':
+            serializer = MyPlainProfileSerializer(plain_profile)
             return Response(serializer.data, HTTP_200_OK)
-        return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+        else:
+            serializer = MyPlainProfileSerializer(plain_profile, data=request.DATA)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, HTTP_200_OK)
+            return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "User not found"
+    }, HTTP_404_NOT_FOUND)
 
 
 
