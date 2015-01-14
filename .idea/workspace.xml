@@ -54,10 +54,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/organizations/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66715974" vertical-offset="644" max-vertical-offset="1320">
+            <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="1320">
               <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
               <folding />
             </state>
@@ -84,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="5130">
-              <caret line="277" column="50" selection-start-line="277" selection-start-column="50" selection-end-line="277" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.75739646" vertical-offset="3688" max-vertical-offset="5130">
+              <caret line="281" column="24" selection-start-line="281" selection-start-column="24" selection-end-line="281" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -183,10 +183,10 @@
         <option value="$PROJECT_DIR$/castm/schedules/views.py" />
         <option value="$PROJECT_DIR$/castm/schedules/urls.py" />
         <option value="$PROJECT_DIR$/castm/casting/views.py" />
-        <option value="$PROJECT_DIR$/castm/notifications/views.py" />
         <option value="$PROJECT_DIR$/castm/um/models.py" />
         <option value="$PROJECT_DIR$/castm/castm/settings.py" />
         <option value="$PROJECT_DIR$/castm/organizations/serializers.py" />
+        <option value="$PROJECT_DIR$/castm/notifications/views.py" />
       </list>
     </option>
   </component>
@@ -982,14 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3523" max-vertical-offset="5130">
-          <caret line="277" column="50" selection-start-line="277" selection-start-column="50" selection-end-line="277" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/um/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
@@ -1042,8 +1034,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/organizations/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66715974" vertical-offset="644" max-vertical-offset="1320">
+        <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="1320">
           <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75739646" vertical-offset="3688" max-vertical-offset="5130">
+          <caret line="281" column="24" selection-start-line="281" selection-start-column="24" selection-end-line="281" selection-end-column="24" />
           <folding />
         </state>
       </provider>

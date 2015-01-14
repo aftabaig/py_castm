@@ -278,7 +278,7 @@ def mark_as_seen(request):
     notification_ids = str_notifications.split(",")
 
     for notification_id in notification_ids:
-        notification = Notification.objects.filter(id=notification_id).first()
+        notification = Notification.objects.filter(id=int(notification_id)).first()
         if notification:
             if notification.for_user == user:
                 notification.seen = True
