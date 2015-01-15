@@ -32,60 +32,55 @@ logger = logging.getLogger(__name__)
 
 
 def get_notifications(user, type):
-
     notifications = Notification.unread_notifications(user, type)
     my_notifications = []
     for notification in notifications:
-        plain_notification = PlainNotification(
-            notification_id=notification.id,
-            notification_type=notification.type,
-            created_at=notification.created_at,
-            user_id=notification.from_user.id,
-            first_name=notification.from_user.first_name,
-            last_name=notification.from_user.last_name,
-            description=notification.message,
-            source_id=notification.source_id,
-        )
-        if notification.from_user.my_user.type == 'T':
-            plain_notification.title = notification.from_user.user_profile.get().title
-            plain_notification.thumbnail_url = notification.from_user.user_profile.get().thumbnail
-            plain_notification.profile_url = "/api/talents/profile/%d" % (notification.from_user.id, )
-        else:
-            plain_notification.title = "SS"
-            # plain_notification.thumbnail_url = notification.from_user.casting_profile.get().thumbnail
-            # plain_notification.profile_url = "/api/casting/profile/%d" % (notification.from_user.id, )
-
-        if type == 'LR' or type == 'LA' or type == 'LR':
-            plain_notification.source = Link.objects.filter(id=notification.source_id).first().plain()
-        elif type == 'MSG':
-            plain_notification.source = Message.objects.filter(id=notification.source_id).first().plain()
-        elif type == 'OMI' or type == 'OIA' or type == 'OIR' or type == 'OMR' or type == 'ORA' or type == 'ORR':
-            plain_notification.source = OrganizationMember.objects.filter(id=notification.source_id).first().plain()
-        elif type == 'CB':
-            plain_notification.source = CallbackTalent.objects.filter(id=notification.source_id).first().plain()
-
+        plain_notification = notification.plain()
         my_notifications.append(plain_notification)
-
     return PlainNotificationSerializer(my_notifications, many=True)
 
 
 def create_notification(type, source_id, from_user, for_user, message=None):
 
-        # airship = ua.Airship('', '')
-        # push = airship.create_push()
-        # push.audience = ua.device_token(for_user.my_user.push_token)
-        # push.notification = ua.notification(alert=message)
-        # push.device_types = ua.device_types('all')
-        # push.send()
+        airship = ua.Airship('', '')
+        push = airship.create_push()
+        push.audience = ua.device_token(for_user.my_user.push_token)
+        push.notification = ua.notification(alert=message)
+        push.device_types = ua.device_types('all')
+        push.send()
 
-        notification = Notification(type=type, source_id=source_id,
+
+        notification = Notification(type=type,
+                                    source_id=source_id,
                                     from_user=from_user, for_user=for_user,
                                     message=message, seen=False, action_taken=False)
 
         notification.save()
         return notification
 
-@api_view(['DELETE'])
+
+@api_view(['GET'])
+@permission_classes([IsTalentOrCasting, ])
+def get_notification(request, notification_id=None):
+    user = request.user
+    notification = Notification.objects.filter(id=notification_id).first()
+    if notification:
+        if user == notification.for_user:
+            plain_notification = notification.plain()
+            serializer = PlainNotificationSerializer(plain_notification)
+            return Response(serializer.data)
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to perform this action"
+        }, status=HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Notification not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
+
+@api_view(['DELETE', ])
 @permission_classes([IsTalentOrCasting, ])
 def delete_notification(request, notification_id=None):
     """
@@ -105,7 +100,7 @@ def delete_notification(request, notification_id=None):
             notification.delete()
         return Response({
             "status": HTTP_401_UNAUTHORIZED,
-            "message": "You are not authorized to delete this notification"
+            "message": "You are not authorized to perform this action"
         }, HTTP_401_UNAUTHORIZED)
     return Response({
         "status": HTTP_404_NOT_FOUND,

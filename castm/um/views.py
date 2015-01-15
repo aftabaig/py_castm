@@ -135,7 +135,7 @@ def authenticate(request):
         {
             "username": "abc@gmail.com",
             "password": "abc123",
-            "device": "[iPhone/Android/Desktop]",
+            "device_type": "[iPhone/Android/Desktop]",
             "token": "[token]",
             "push_token": [push_token]"
         }\n
@@ -150,6 +150,7 @@ def authenticate(request):
     if serializer.is_valid():
         token, created = Token.objects.get_or_create(user=serializer.object['user'])
         my_user = MyUser.objects.filter(user=serializer.object['user']).first()
+        my_user.device_type = request.DATA.get("device_type")
         my_user.push_token = request.DATA.get("push_token")
         my_user.save()
         type = None

@@ -1,6 +1,10 @@
 from django.db import models
+
 from django.contrib.auth.models import User
 from links.models import Link
+from my_messages.models import Message
+from organizations.models import OrganizationMember
+from callbacks.models import CallbackTalent
 
 
 class Notification(models.Model):
@@ -33,6 +37,39 @@ class Notification(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+    def plain(self):
+
+        plain_notification = PlainNotification(
+            notification_id=self.id,
+            notification_type=self.type,
+            created_at=self.created_at,
+            user_id=self.from_user.id,
+            first_name=self.from_user.first_name,
+            last_name=self.from_user.last_name,
+            description=self.message,
+            source_id=self.source_id,
+        )
+
+        if self.from_user.my_user.type == 'T':
+            plain_notification.title = self.from_user.user_profile.get().title
+            plain_notification.thumbnail_url = self.from_user.user_profile.get().thumbnail
+            plain_notification.profile_url = "/api/talents/profile/%d" % (self.from_user.id, )
+        else:
+            plain_notification.title = ""
+            plain_notification.thumbnail_url = self.from_user.casting_profile.get().thumbnail
+            plain_notification.profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
+
+        if type == 'LR' or type == 'LA' or type == 'LR':
+            plain_notification.source = Link.objects.filter(id=self.source_id).first().plain()
+        elif type == 'MSG':
+            plain_notification.source = Message.objects.filter(id=self.source_id).first().plain()
+        elif type == 'OMI' or type == 'OIA' or type == 'OIR' or type == 'OMR' or type == 'ORA' or type == 'ORR':
+            plain_notification.source = OrganizationMember.objects.filter(id=self.source_id).first().plain()
+        elif type == 'CB':
+            plain_notification.source = CallbackTalent.objects.filter(id=self.source_id).first().plain()
+
+        return plain_notification
 
     @staticmethod
     def unread_notifications(user, type):

@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from notifications.models import Notification
-
 
 class Message(models.Model):
     from_user = models.ForeignKey(User, related_name="message_from", null=True)
