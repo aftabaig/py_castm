@@ -121,7 +121,7 @@ def my_casting_links(request):
     for link in links:
         if link.from_user.id == request.user.id:
             plain_link = PlainLink(
-                id=link.id,
+                link_id=link.id,
                 link_type=link.to_user.my_user.type,
                 created_at=link.created_at,
                 user_id=link.to_user.id,
@@ -134,7 +134,7 @@ def my_casting_links(request):
             casting_links.append(plain_link)
         else:
             plain_link = PlainLink(
-                id=link.id,
+                link_id=link.id,
                 link_type=link.from_user.my_user.type,
                 created_at=link.created_at,
                 user_id=link.from_user.id,
