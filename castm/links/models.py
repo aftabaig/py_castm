@@ -72,8 +72,8 @@ class Link(models.Model):
         q1 = models.Q(from_user=user)
         q2 = models.Q(to_user=user)
         q3 = models.Q(is_accepted=True)
-        # q4 = models.Q(from_user__my_user__type__startswith='T')
-        return Link.objects.filter((q1 | q2) & q3)
+        q4 = models.Q(from_user__my_user__type__startswith='T')
+        return Link.objects.filter((q1 | q2) & q3 & q4)
 
     @staticmethod
     def casting_links(user):
