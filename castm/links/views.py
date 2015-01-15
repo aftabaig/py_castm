@@ -304,11 +304,8 @@ def my_link_requests(request):
     logger.debug(user.id)
     link_requests = []
     for link in links:
-        logger.debug("link:")
-        logger.debug(link.id)
-
         plain_link = PlainLink(
-            id=link.id,
+            link_id=link.id,
             link_type=link.from_user.my_user.type,
             created_at=link.created_at,
             first_name=link.from_user.first_name,

@@ -37,7 +37,7 @@ def delete_schedule_attendance(attendance_id):
 
 @api_view(['GET', 'POST', ])
 @permission_classes([IsTalentOrCasting, ])
-def schedules(request, event_id=None):
+def get_schedules(request, event_id=None):
     if request.method == 'GET':
         user = request.user
         event = Event.objects.filter(id=event_id).first()
@@ -79,7 +79,7 @@ def schedules(request, event_id=None):
 
 @api_view(['PUT', 'DELETE', ])
 @permission_classes([IsTalentOrCasting, ])
-def single_schedule(request, event_id=None, schedule_id=None):
+def get_schedule(request, event_id=None, schedule_id=None):
     if request.method == 'PUT':
         user = request.user
         event = Event.objects.filter(id=event_id).first()

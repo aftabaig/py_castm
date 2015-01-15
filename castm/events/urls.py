@@ -1,14 +1,15 @@
 from django.conf.urls import patterns, url
 
 # views
-from views import events, qualified_talent_attendees, qualified_casting_attendees
+from views import get_events, get_event
+from views import qualified_talent_attendees, qualified_casting_attendees
 from views import pending_talent_attendees, pending_casting_attendees
 from views import request_attendance, accept_request, reject_request
 
 urlpatterns = patterns(
     'events.views',
-    url(r'^$', events),
-    url(r'^(?P<event_id>[0-9]+)/$', events),
+    url(r'^$', get_events),
+    url(r'^(?P<event_id>[0-9]+)/$', get_event),
     url(r'^(?P<event_id>[0-9]+)/attendees/$', qualified_talent_attendees),
     url(r'^(?P<event_id>[0-9]+)/attendees/pending/$', pending_talent_attendees),
     url(r'^(?P<event_id>[0-9]+)/casting/$', qualified_casting_attendees),

@@ -96,8 +96,9 @@ class OrganizationMember(models.Model):
 
     @staticmethod
     def user_organization(user):
-        q = models.Q(user=user)
-        membership = OrganizationMember.objects.filter(q).first()
+        q1 = models.Q(user=user)
+        q2 = models.Q(is_accepted=True)
+        membership = OrganizationMember.objects.filter(q1 & q2).first()
         if membership:
             return membership.organization
         else:

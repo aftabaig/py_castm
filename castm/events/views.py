@@ -99,16 +99,24 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
 
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
-def events(request, event_id=None):
-    if request.method == 'GET':
-        if event_id is None:
-            all_events = get_events()
-            serializer = PlainEventSerializer(all_events, many=True)
-            return Response(serializer.data)
-        else:
-            org = get_event(event_id)
-            serializer = PlainEventSerializer(org)
-            return Response(serializer.data)
+def get_events(request):
+        events = get_events()
+        serializer = PlainEventSerializer(events, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
+def get_event(request, event_id=None):
+    event = Event.objects.filter(id=event_id).first()
+    if event:
+        plain_event = event.plain()
+        serializer = PlainEventSerializer(plain_event)
+        return Response(serializer.data)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, status=HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET', ])

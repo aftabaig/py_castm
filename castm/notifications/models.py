@@ -60,13 +60,13 @@ class Notification(models.Model):
             plain_notification.thumbnail_url = self.from_user.casting_profile.get().thumbnail
             plain_notification.profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
 
-        if type == 'LR' or type == 'LA' or type == 'LR':
+        if self.type == 'LR' or self.type == 'LA' or self.type == 'LR':
             plain_notification.source = Link.objects.filter(id=self.source_id).first().plain()
-        elif type == 'MSG':
+        elif self.type == 'MSG':
             plain_notification.source = Message.objects.filter(id=self.source_id).first().plain()
-        elif type == 'OMI' or type == 'OIA' or type == 'OIR' or type == 'OMR' or type == 'ORA' or type == 'ORR':
+        elif self.type == 'OMI' or self.type == 'OIA' or self.type == 'OIR' or self.type == 'OMR' or self.type == 'ORA' or self.type == 'ORR':
             plain_notification.source = OrganizationMember.objects.filter(id=self.source_id).first().plain()
-        elif type == 'CB':
+        elif self.type == 'CB':
             plain_notification.source = CallbackTalent.objects.filter(id=self.source_id).first().plain()
 
         return plain_notification

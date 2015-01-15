@@ -23,10 +23,14 @@ class Callback(models.Model):
         )
 
     @staticmethod
-    def organization_callback_exists(organization, event):
+    def organization_callback(organization, event):
         q1 = models.Q(callback_ogranization=organization)
         q2 = models.Q(event=event)
-        return Callback.objects.filter(q1 & q2).count() > 0
+        return Callback.objects.filter(q1 & q2)
+
+    @staticmethod
+    def organization_callback_exists(organization, event):
+        return Callback.organization_callback(organization, event).count() > 0
 
 
 class CallbackTalent(models.Model):
