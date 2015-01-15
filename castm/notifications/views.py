@@ -19,6 +19,8 @@ from links.serializers import PlainLinkSerializer
 from my_messages.models import Message
 from organizations.models import OrganizationMember
 from organizations.serializers import PlainMemberSerializer
+from callbacks.models import Callback
+from callbacks.models import CallbackTalent
 
 from notifications.models import Notification
 from notifications.models import PlainNotification
@@ -59,7 +61,8 @@ def get_notifications(user, type):
             plain_notification.source = Message.objects.filter(id=notification.source_id).first().plain()
         elif type == 'OMI' or type == 'OIA' or type == 'OIR' or type == 'OMR' or type == 'ORA' or type == 'ORR':
             plain_notification.source = OrganizationMember.objects.filter(id=notification.source_id).first().plain()
-            logger.debug(plain_notification.source)
+        elif type == 'CB':
+            plain_notification.source = CallbackTalent.objects.filter(id=notification.source_id).first().plain()
 
         my_notifications.append(plain_notification)
 

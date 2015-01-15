@@ -1,4 +1,5 @@
 import logging
+import exceptions
 import json
 from rest_framework import serializers
 
@@ -7,7 +8,10 @@ from django.contrib.auth.models import User
 
 class JSONField(serializers.WritableField):
     def to_native(self, obj):
-        return obj.__dict__
+        try:
+            return obj.__dict__
+        except exceptions.AttributeError:
+            return None
 
     def from_native(self, value):
         return json.loads(value)

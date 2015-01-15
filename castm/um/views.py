@@ -30,6 +30,7 @@ from serializers import UserSerializer
 
 # permissions
 from permissions import IsTalent
+from permissions import IsTalentOrCasting
 
 logger = logging.getLogger(__name__)
 
@@ -167,8 +168,8 @@ def authenticate(request):
 
 
 
-@api_view(['POST', ])
-@permission_classes([IsTalent, ])
+@api_view(['PUT', ])
+@permission_classes([IsTalentOrCasting, ])
 def change_password(request):
     current_password = request.DATA.get("current_password")
     new_password = request.DATA.get("new_password")
@@ -177,7 +178,10 @@ def change_password(request):
             request.user.set_password(new_password)
             request.user.save()
             return Response(status=HTTP_200_OK)
-        return Response(status=HTTP_400_BAD_REQUEST)
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message": "Invalid password"
+        }, status=HTTP_400_BAD_REQUEST)
     return Response(status=HTTP_400_BAD_REQUEST)
 
 

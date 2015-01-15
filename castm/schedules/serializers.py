@@ -7,6 +7,7 @@ from models import Schedule, PlainSchedule
 from models import ScheduleAttendee, PlainScheduleAttendee
 from events.models import Event
 
+
 class PlainScheduleSerializer(serializers.Serializer):
     schedule_id = serializers.IntegerField(required=False, read_only=True)
     schedule_title = serializers.CharField(required=False, read_only=True)
