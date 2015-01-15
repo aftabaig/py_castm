@@ -38,16 +38,6 @@ def get_organizations():
     return plain_orgs
 
 
-def get_organization(org_id):
-    """
-    Returns detail of an organization
-    :param org_id: id of the organization
-    :return: A plain organization
-    """
-    org = Organization.objects.filter(id=org_id).first()
-    return org.plain()
-
-
 def process_invitation(request, organization_id=None, invitation_id=None, accept=True):
     """
     Accepts/Rejects an invitation.
@@ -140,29 +130,19 @@ def process_membership_request(request, organization_id=None, request_id=None, a
     }, status=HTTP_404_NOT_FOUND)
 
 
-@api_view(['GET', 'POST', 'PUT', ])
+@api_view(['GET', ])
 @permission_classes([IsCasting, ])
-def organizations(request, organization_id=None):
-    """
-    :param request:
-    :param organization_id:
-    :return:
-    """
+def add_or_get_organizations(request):
     if request.method == 'GET':
-        if organization_id is None:
-            orgs = get_organizations()
-            serializer = PlainOrganizationSerializer(orgs, many=True)
-            return Response(serializer.data)
-        else:
-            org = get_organization(organization_id)
-            serializer = PlainOrganizationSerializer(org)
-            return Response(serializer.data)
+        organizations = get_organizations()
+        serializer = PlainOrganizationSerializer(organizations, many=True)
+        return Response(serializer.data)
     elif request.method == 'POST':
         serializer = PlainOrganizationSerializer(data=request.DATA)
         if serializer.is_valid():
-            org = serializer.save()
+            organization = serializer.save()
             admin = OrganizationMember()
-            admin.organization = Organization.objects.filter(id=org.organization_id).first()
+            admin.organization = Organization.objects.filter(id=organization.organization_id).first()
             admin.user = request.user
             admin.role = 'ADM'
             admin.is_accepted = True
@@ -171,10 +151,33 @@ def organizations(request, organization_id=None):
             return Response(serializer.data)
         return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
     elif request.method == 'PUT':
-        user = request.user
-        organization = Organization.objects.filter(id=organization_id).first()
-        if organization:
-            if OrganizationMember.user_is_admin(organization, user):
+        pass
+
+@api_view(['GET', 'PUT', ])
+@permission_classes([IsCasting, ])
+def get_or_update_organization(request, organization_id=None):
+    """
+    View/Update details about an organization.
+    You pass in the organization_id of the organization you need to view/update.
+    You must be a member of the organization to view.
+    You must be an admin of the organization to edit.
+    """
+    user = request.user
+    organization = Organization.objects.filter(id=organization_id)
+    if organization:
+        if request.method == 'GET':
+            is_member = OrganizationMember.user_is_member_of(user, organization)
+            if is_member:
+                plain_organization = organization.plain()
+                serializer = PlainOrganizationSerializer(plain_organization)
+                return Response(serializer.data)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You are not authorized to view details of this organization"
+            }, HTTP_401_UNAUTHORIZED)
+        else:
+            is_admin = OrganizationMember.user_is_admin(organization, user)
+            if is_admin:
                 plain_org = organization.plain()
                 serializer = PlainOrganizationSerializer(plain_org, data=request.DATA)
                 if serializer.is_valid():
@@ -185,23 +188,29 @@ def organizations(request, organization_id=None):
                 "status": HTTP_401_UNAUTHORIZED,
                 "message": "You are not authorized to edit this organization",
             }, status=HTTP_401_UNAUTHORIZED)
-        return Response({
-            "status": HTTP_404_NOT_FOUND,
-            "message": "Organization not found",
-        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
 
 
 @api_view(['GET'])
 @permission_classes([IsCasting, ])
-def members(request, organization_id=None):
+def get_organization_members(request, organization_id=None):
     organization = Organization.objects.get(id=organization_id)
-    all_members = organization.members.all()
-    plain_members = []
-    for member in all_members:
-        plain_member = member.plain()
-        plain_members.append(plain_member)
-    serializer = PlainMemberSerializer(plain_members, many=True)
-    return Response(serializer.data)
+    if organization:
+        all_members = organization.members.all()
+        plain_members = []
+        for member in all_members:
+            plain_member = member.plain()
+            plain_members.append(plain_member)
+            serializer = PlainMemberSerializer(plain_members, many=True)
+        return Response(serializer.data)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
 
 
 @api_view(['POST'])
@@ -247,12 +256,18 @@ def invite_user(request, organization_id=None):
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def accept_invitation(request, organization_id=None, invitation_id=None):
+    """
+    Accepts an invitation.
+    """
     return process_invitation(request, organization_id, invitation_id)
 
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def reject_invitation(request, organization_id=None, invitation_id=None):
+    """
+    Rejects an invitation.
+    """
     return process_invitation(request, organization_id, invitation_id, accept=False)
 
 
@@ -301,3 +316,4 @@ def accept_request(request, organization_id=None, invitation_id=None):
 @permission_classes([IsCasting, ])
 def reject_request(request, organization_id=None, invitation_id=None):
     return process_membership_request(request, organization_id, invitation_id, accept=False)
+
