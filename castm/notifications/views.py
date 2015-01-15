@@ -42,20 +42,31 @@ def get_notifications(user, type):
 
 def create_notification(type, source_id, from_user, for_user, message=None):
 
-        airship = ua.Airship('', '')
-        push = airship.create_push()
-        push.audience = ua.device_token(for_user.my_user.push_token)
-        push.notification = ua.notification(alert=message)
-        push.device_types = ua.device_types('all')
-        push.send()
-
-
         notification = Notification(type=type,
                                     source_id=source_id,
                                     from_user=from_user, for_user=for_user,
                                     message=message, seen=False, action_taken=False)
 
         notification.save()
+
+        extra = {
+            "id": notification.id
+        }
+
+        try:
+            airship = ua.Airship('', '')
+            push = airship.create_push()
+            push.audience = ua.device_token(for_user.my_user.push_token)
+            push.notification = ua.notification(ios=ua.ios(alert=message,
+                                                           badge="+1",
+                                                           extra=extra),
+                                                android=ua.android(alert=message,
+                                                                   extra=extra))
+            push.device_types = ua.device_types('all')
+            push.send()
+        except ua.AirshipFailure:
+            pass
+
         return notification
 
 
