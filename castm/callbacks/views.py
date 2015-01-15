@@ -210,3 +210,49 @@ def send_callbacks_to_event_organization(request, event_id=None):
         "status": HTTP_404_NOT_FOUND,
         "message": "Event not found"
     }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def send_callbacks_to_talent(request, event_id=None):
+    user = request.user
+    event = Event.objects.filter(id=event_id).first()
+    str_talent_callbacks = request.DATA.get("talent_callbacks")
+    instructions = request.DATA.get("instructions")
+    if event:
+        user_organization = OrganizationMember.user_organization(user)
+        if user_organization:
+            is_admin = OrganizationMember.user_is_admin(user_organization, user)
+            if is_admin:
+                talent_callback_ids = str_talent_callbacks.split(",")
+                for talent_callback_id in talent_callback_ids:
+                    talent_callback = CallbackTalent.objects.filter(id=talent_callback_id).first()
+                    if talent_callback:
+                        if talent_callback.callback.callback_organization == user_organization:
+                            talent_callback.callback.instructions_by_callback = instructions
+                            talent_callback.sent_to_event_organization = True
+                            talent_callback.save()
+                        else:
+                            return Response({
+                                "status": HTTP_401_UNAUTHORIZED
+                            }, status=HTTP_401_UNAUTHORIZED)
+                    return Response({
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "Talent callback not found"
+                    }, status=HTTP_404_NOT_FOUND)
+                return Response({
+                    "status": HTTP_200_OK,
+                    "message": "OK"
+                }, status=HTTP_200_OK)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You must be an admin of your organization to be able to delete a callback"
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You need to be an approved member of some organization to perform this action"
+        }, status=HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, status=HTTP_404_NOT_FOUND)
