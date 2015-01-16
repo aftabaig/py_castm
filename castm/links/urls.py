@@ -1,13 +1,14 @@
 from django.conf.urls import patterns, url
 
 # views
-from views import my_talent_links, my_casting_links
+from views import my_links, my_talent_links, my_casting_links
 from views import my_link_requests, send_link_request
 from views import accept_link_request, reject_link_request
 from views import search_links
 
 urlpatterns = patterns(
     'links.views',
+    url(r'^all/$', my_links),
     url(r'^talents/$', my_talent_links),
     url(r'^casting/$', my_casting_links),
     url(r'^search/$', search_links),

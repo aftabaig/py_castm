@@ -24,6 +24,25 @@ logger = logging.getLogger(__name__)
 
 @api_view(['GET', ])
 @permission_classes([IsTalentOrCasting, ])
+def my_links(request):
+    user = request.user
+    links = Link.all_links(user)
+    all_links = []
+    for link in links:
+        if link.from_user.id == user.id:
+            all_links.append({
+                "user_id": link.to_user.id,
+                "user_name": link.to_user.username,
+            })
+        else:
+            all_links.append({
+                "user_id": link.from_user.id,
+                "user_name": link.from_user.username,
+            })
+    return Response(all_links)
+
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
 def my_talent_links(request):
     """
     Returns all qualified talent links for the user.
