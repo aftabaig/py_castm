@@ -72,44 +72,38 @@ def add_talent_callback(request, event_id=None):
     if event:
         user_organization = OrganizationMember.user_organization(user)
         if user_organization:
-            is_admin = OrganizationMember.user_is_admin(user_organization, user)
-            if is_admin:
-                is_attending = Event.user_is_already_attending(user, event)
-                if is_attending:
-                    talent_id = request.DATA.get("talent")
-                    if talent_id:
-                        talent = User.objects.filter(id=talent_id).first()
-                        if talent:
-                            callback_already_sent = CallbackTalent.callback_already_sent(talent, user_organization, event)
-                            if not callback_already_sent:
-                                callback = Callback.organization_callback(user_organization, event)
-                                if not callback:
-                                    callback = Callback()
-                                    callback.event = event
-                                    callback.callback_organization = user_organization
-                                    callback.save()
-                                callback_talent = CallbackTalent()
-                                callback_talent.callback = callback
-                                callback_talent.talent = talent
-                                callback_talent.save()
-                                plain_callback_talent = callback_talent.plain()
-                                serializer = PlainCallbackTalentSerializer(plain_callback_talent)
-                                return Response(serializer.data)
-                        return Response({
-                            "status": HTTP_404_NOT_FOUND,
-                            "message": "Talent not found"
-                        }, status=HTTP_404_NOT_FOUND)
+            is_attending = Event.user_is_already_attending(user, event)
+            if is_attending:
+                talent_id = request.DATA.get("talent")
+                if talent_id:
+                    talent = User.objects.filter(id=talent_id).first()
+                    if talent:
+                        callback_already_sent = CallbackTalent.callback_already_sent(talent, user_organization, event)
+                        if not callback_already_sent:
+                            callback = Callback.organization_callback(user_organization, event)
+                            if not callback:
+                                callback = Callback()
+                                callback.event = event
+                                callback.callback_organization = user_organization
+                                callback.save()
+                            callback_talent = CallbackTalent()
+                            callback_talent.callback = callback
+                            callback_talent.talent = talent
+                            callback_talent.save()
+                            plain_callback_talent = callback_talent.plain()
+                            serializer = PlainCallbackTalentSerializer(plain_callback_talent)
+                            return Response(serializer.data)
                     return Response({
-                        "status": HTTP_400_BAD_REQUEST,
-                        "message": "talent-id - This field is required"
-                    }, status=HTTP_400_BAD_REQUEST)
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "Talent not found"
+                    }, status=HTTP_404_NOT_FOUND)
                 return Response({
-                    "status": HTTP_401_UNAUTHORIZED,
-                    "message": "Your organization must be a approved attendee of the event in order to send a callback"
-                }, status=HTTP_401_UNAUTHORIZED)
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "talent-id - This field is required"
+                }, status=HTTP_400_BAD_REQUEST)
             return Response({
                 "status": HTTP_401_UNAUTHORIZED,
-                "message": "You must be an admin of your organization to be able to send a callback"
+                "message": "Your organization must be an approved attendee of the event in order to send a callback"
             }, status=HTTP_401_UNAUTHORIZED)
         return Response({
             "status": HTTP_401_UNAUTHORIZED,
@@ -234,7 +228,8 @@ def send_callbacks_to_talent(request, event_id=None):
                             talent_callback.save()
                         else:
                             return Response({
-                                "status": HTTP_401_UNAUTHORIZED
+                                "status": HTTP_401_UNAUTHORIZED,
+                                "message": "You are not authorized to perform this action"
                             }, status=HTTP_401_UNAUTHORIZED)
                     return Response({
                         "status": HTTP_404_NOT_FOUND,

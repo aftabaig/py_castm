@@ -30,15 +30,26 @@ def my_links(request):
     all_links = []
     for link in links:
         if link.from_user.id == user.id:
-            all_links.append({
+            l = {
                 "user_id": link.to_user.id,
-                "user_name": link.to_user.username,
-            })
+            }
+            l["full_name"] = "%s %s" % (link.to_user.first_name, link.to_user.last_name, )
+            if link.to_user.my_user.type == 'T':
+                talent_profile = link.to_user.user_profile.get()
+                if talent_profile.is_stage_name:
+                    l.full_name = "%s %s" % (talent_profile.stage_first_name, talent_profile.stage_last_name, )
         else:
-            all_links.append({
+            l = {
                 "user_id": link.from_user.id,
-                "user_name": link.from_user.username,
-            })
+            }
+            l["full_name"] = "%s %s" % (link.from_user.first_name, link.from_user.last_name, )
+            if link.from_user.my_user.type == 'T':
+                talent_profile = link.from_user.user_profile.get()
+                if talent_profile.is_stage_name:
+                    l["full_name"] = "%s %s" % (talent_profile.stage_first_name, talent_profile.stage_last_name, )
+
+        all_links.append(l)
+
     return Response(all_links)
 
 @api_view(['GET', ])
@@ -212,10 +223,7 @@ def search_links(request):
     # get logged in user.
     user = request.user
 
-    # get query string.
-    query_dict = {
-        "query_string": "M"
-    }
+    # get query_string.
     query_string = request.GET.get("query_string")
 
     logger.debug(query_string)
