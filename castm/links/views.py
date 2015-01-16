@@ -120,6 +120,8 @@ def my_casting_links(request):
     casting_links = []
     for link in links:
         if link.from_user.id == request.user.id:
+            logger.debug(request.user.id)
+            logger.debug(link.to_user.id)
             plain_link = PlainLink(
                 link_id=link.id,
                 link_type=link.to_user.my_user.type,
@@ -133,6 +135,7 @@ def my_casting_links(request):
             )
             casting_links.append(plain_link)
         else:
+            logger.debug("no")
             plain_link = PlainLink(
                 link_id=link.id,
                 link_type=link.from_user.my_user.type,
