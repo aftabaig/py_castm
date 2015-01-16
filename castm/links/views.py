@@ -63,7 +63,7 @@ def my_talent_links(request):
                 user_id=link.to_user.id,
                 first_name=link.to_user.first_name,
                 last_name=link.to_user.last_name,
-                title=link.to_user.user_profile.get().title[0],
+                title=link.to_user.user_profile.get().title,
                 thumbnail_url=link.to_user.user_profile.get().thumbnail[0],
                 profile_url="/api/talents/profile/%d" % (link.to_user.id, ),
             )
