@@ -22,6 +22,9 @@ DATABASES = {
     },
 }
 
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'castm.wsgi.application'
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ['castm.herokuapp.com', ]
