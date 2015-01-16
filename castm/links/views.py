@@ -17,6 +17,7 @@ from serializers import MyLinksSerializer
 from models import Link
 from models import PlainLink
 from talent.models import TalentProfile
+from casting.models import CastingProfile
 from notifications.views import create_notification
 
 logger = logging.getLogger(__name__)
@@ -211,6 +212,10 @@ def search_links(request):
     q = q | models.Q(user__last_name__icontains=query_string)
     talents = TalentProfile.objects.filter(q)
 
+    q = models.Q(user__first_name__icontains=query_string)
+    q = q | models.Q(user__last_name__icontains=query_string)
+    castings = CastingProfile.objects.filter(q)
+
     # loop through the talents and build a link model.
     for talent in talents:
 
@@ -233,7 +238,59 @@ def search_links(request):
                 last_name=talent.user.last_name,
                 title=talent.title,
                 thumbnail_url=talent.thumbnail,
-                profile_url="/api/casting/profile/%s" % (talent.user.id, ),
+                profile_url="/api/talent/profile/%s" % (talent.user.id, ),
+                link_status="U"
+            )
+
+            # here, we determine the link status.
+            # U  - Unknown (no link)
+            # F  - Friends
+            # RH - Rejected by him (the other user)
+            # PH - Pending by him
+            # RY - Rejected by you (logged-in user)
+            # PY - Pending by you
+            if link:
+                plain_link.link_id = link.id
+                if link.is_accepted:
+                    plain_link.link_status = "F"
+                else:
+                    if link.from_user == user:
+                        if link.is_rejected:
+                            plain_link.link_status = "RH"
+                        else:
+                            plain_link.link_status = "PH"
+                    else:
+                        if link.is_rejected:
+                            plain_link.link_status = "RY"
+                        else:
+                            plain_link.link_status = "PY"
+
+            # finally, add the link to search results.
+            search_results.append(plain_link)
+
+    # loop through the talents and build a link model.
+    for casting in castings:
+
+        if casting.user.id != user.id:
+
+            # build a link search query that will return
+            # a link if the current user and the talent
+            # are friends or the link requests are pending.
+            q1 = models.Q(from_user=casting.user)
+            q2 = models.Q(to_user=casting.user)
+            q3 = models.Q(from_user=user)
+            q4 = models.Q(to_user=user)
+            link = Link.objects.filter((q1 & q4) | (q2 & q3)).first()
+
+            # create a plain link model.
+            plain_link = PlainLink(
+                link_type=casting.my_user.type,
+                user_id=casting.user.id,
+                first_name=casting.user.first_name,
+                last_name=casting.user.last_name,
+                title="",
+                thumbnail_url=casting.thumbnail,
+                profile_url="/api/casting/profile/%s" % (casting.user.id, ),
                 link_status="U"
             )
 
