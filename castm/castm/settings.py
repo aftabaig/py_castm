@@ -11,7 +11,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'ec2-54-197-241-82.compute-1.amazonaws.com',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd8uhhr96jkq0u1',
         'USER': 'nqxhgafsvkdiro',
         'PASSWORD': 'JZFisCffJ24183Xs_fYWTB7iZY',
