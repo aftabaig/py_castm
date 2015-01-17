@@ -12,10 +12,10 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd54ovhpaf92qe4',
-        'USER': 'aluqecqbhimpge',
-        'PASSWORD': 'uOMLQTmp_bPVGDpHjHzX139gtb',
-        'HOST': 'ec2-107-20-229-112.compute-1.amazonaws.com',
+        'NAME': 'cast\'em',
+        'USER': 'aftabaig',
+        'PASSWORD': 'university',
+        'HOST': 'localhost',
         'PORT': '5432',
     },
 }

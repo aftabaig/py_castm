@@ -37,7 +37,7 @@ def delete_schedule_attendance(attendance_id):
 
 @api_view(['GET', 'POST', ])
 @permission_classes([IsTalentOrCasting, ])
-def get_schedules(request, event_id=None):
+def get_or_add_schedules(request, event_id=None):
     if request.method == 'GET':
         user = request.user
         event = Event.objects.filter(id=event_id).first()
