@@ -17,7 +17,7 @@ DATABASES = {
         'PASSWORD': 'JZFisCffJ24183Xs_fYWTB7iZY',
         'HOST': 'ec2-54-197-241-82.compute-1.amazonaws.com',
         'PORT': '5432',
-    },
+    }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
