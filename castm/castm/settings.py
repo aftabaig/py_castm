@@ -1,6 +1,6 @@
 # Django settings for cast'em project.
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework_swagger',
     'rest_framework.authtoken',
+    'gunicorn',
     'um',
     'events',
     'schedules',
@@ -251,7 +252,7 @@ SWAGGER_SETTINGS = {
         'patch',
         'delete'
     ],
-    "api_key": '65bdf35749989106a3ee6b0419d160e032b63323', # An API key
+    "api_key": '', # An API key
     "is_authenticated": False,  # Set to True to enforce user authentication,
     "is_superuser": False,  # Set to True to enforce admin only access
 }

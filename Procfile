@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath=./castm  castm.wsgi:application
+web: gunicorn --pythonpath=./castm castm.wsgi:application
