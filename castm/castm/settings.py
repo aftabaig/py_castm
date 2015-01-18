@@ -264,3 +264,4 @@ EMAIL_HOST_USER = 'aftab@techverx.com'
 EMAIL_HOST_PASSWORD = 'Chaghi25BigMac'
 EMAIL_PORT = 587
 
+SECRET_KEY = "SECRET_KEY"
