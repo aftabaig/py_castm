@@ -163,7 +163,7 @@ def get_or_update_organization(request, organization_id=None):
     You must be an admin of the organization to edit.
     """
     user = request.user
-    organization = Organization.objects.filter(id=organization_id)
+    organization = Organization.objects.filter(id=organization_id).first()
     if organization:
         if request.method == 'GET':
             is_member = OrganizationMember.user_is_member_of(user, organization)
