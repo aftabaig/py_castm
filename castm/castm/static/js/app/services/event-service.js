@@ -15,9 +15,25 @@ castM.factory("EventService", function($http, $q, $localStorage) {
                 defer.reject(data);
             });
             return defer.promise;
-        }
-        qualifiedTalentAttendees: function(eventId) {
+        },
+        allTalentAttendees: function(eventId) {
             var url = "/api/events/" + eventId + "/attendees/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'GET',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(data);
+            });
+            return defer.promise;
+        },
+        approvedTalentAttendees: function(eventId) {
+            var url = "/api/events/" + eventId + "/attendees/approved/";
             var defer = $q.defer();
             $http({
                 headers: {
@@ -48,8 +64,24 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        qualifiedCastingAttendees: function(eventId) {
+        allCastingAttendees: function(eventId) {
             var url = "/api/events/" + eventId + "/casting/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'GET',
+                url: url,
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(data);
+            });
+            return defer.promise;
+        },
+        approvedCastingAttendees: function(eventId) {
+            var url = "/api/events/" + eventId + "/casting/approved/";
             var defer = $q.defer();
             $http({
                 headers: {

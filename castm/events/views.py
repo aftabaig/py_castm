@@ -121,6 +121,19 @@ def get_event(request, event_id=None):
 
 @api_view(['GET', ])
 @permission_classes([IsTalentOrCasting, ])
+def all_talent_attendees(request, event_id=None):
+    event = Event.objects.filter(id=event_id)
+    all_attendees = EventAttendee.all_attendees(event)
+    plain_attendees = []
+    for attendee in all_attendees:
+        plain_attendee = attendee.plain()
+        plain_attendees.append(plain_attendee)
+    serializer = PlainAttendeeSerializer(plain_attendees, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
 def qualified_talent_attendees(request, event_id=None):
     event = Event.objects.filter(id=event_id)
     all_attendees = EventAttendee.qualified_attendees(event)
@@ -147,9 +160,21 @@ def pending_talent_attendees(request, event_id=None):
 
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
+def all_casting_attendees(request, event_id=None):
+    event = Event.objects.filter(id=event_id)
+    all_attendees = EventAttendee.all_attendees(event, talents=False)
+    plain_attendees = []
+    for attendee in all_attendees:
+        plain_attendee = attendee.plain()
+        plain_attendees.append(plain_attendee)
+    serializer = PlainAttendeeSerializer(plain_attendees, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
 def qualified_casting_attendees(request, event_id=None):
     event = Event.objects.filter(id=event_id)
-    logger.debug("okok")
     all_attendees = EventAttendee.qualified_attendees(event, talents=False)
     logger.debug("23")
     plain_attendees = []

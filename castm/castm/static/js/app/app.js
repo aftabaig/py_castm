@@ -27,17 +27,11 @@ castM.config(function($routeProvider) {
                 event = function($route, EventService) {
                     return EventService.eventDetail($route.current.params.eventId);
                 },
-                qualifiedTalentAttendees: function($route, EventService) {
-                    return EventService.qualifiedTalentAttendees($route.current.params.eventId);
+                talentAttendees: function($route, EventService) {
+                    return EventService.allTalentAttendees($route.current.params.eventId);
                 },
-                qualifiedCastingAttendees: function($route, EventService) {
-                    return EventService.qualifiedCastingAttendees($route.current.params.eventId);
-                },
-                pendingTalentAttendees: function($route, EventService) {
-                    return EventService.pendingTalentAttendees($route.current.params.eventId);
-                },
-                pendingCastingAttendees: function($route, EventService) {
-                    return EventService.pendingCastingAttendees($route.current.params.eventId);
+                castingAttendees: function($route, EventService) {
+                    return EventService.allCastingAttendees($route.current.params.eventId);
                 }
             }
         })

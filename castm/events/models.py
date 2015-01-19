@@ -81,13 +81,19 @@ class EventAttendee(models.Model):
         return EventAttendee.objects.filter(q).count() > 0
 
     @staticmethod
+    def all_attendees(event, talents=True):
+        q = models.Q(event=event)
+        if talents:
+            q = q & models.Q(organization__isnull=True)
+        else:
+            q = q & models.Q(organization__isnull=False)
+        return EventAttendee.objects.filter(q)
+
+    @staticmethod
     def qualified_attendees(event, talents=True):
         q = models.Q(event=event)
-        logger.debug("1")
         q = q & models.Q(is_accepted=True)
-        logger.debug("2")
         q = q & models.Q(is_rejected=False)
-        logger.debug("3")
         if talents:
             q = q & models.Q(organization__isnull=True)
         else:
