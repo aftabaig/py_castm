@@ -53,7 +53,7 @@ class PlainProfileSerializer(serializers.Serializer):
         profile = CastingProfile.objects.get(id=obj.profile_id)
         if obj.add1:
             profile.add1 = obj.add1
-        if obj.personal_add2:
+        if obj.add2:
             profile.add2 = obj.add2
         if obj.city:
             profile.city = obj.city

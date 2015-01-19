@@ -1,43 +1,16 @@
-castM.controller("LinksController", ['$scope', '$rootScope', '$location', '$localStorage', 'EventService', function($scope, $rootScope, $location, $localStorage, UserService) {
+castM.controller("LinksController", ['$scope', '$rootScope', '$location', '$localStorage', 'EventService', 'event', 'qualifiedTalentAttendees', 'qualifiedCastingAttendees', 'pendingTalentAttendees', 'pendingCastingAttendees', function($scope, $rootScope, $location, $localStorage, EventService, event, qualifiedTalentAttendees, qualifiedCastingAttendees, pendingTalentAttendees, pendingCastingAttendees) {
 
-    $scope.doLogin = function() {
+    $scope.event = event;
+    $scope.qualifiedTalentAttendees = qualifiedTalentAttendees;
+    $scope.qualifiedCastingAttendees = qualifiedCastingAttendees;
+    $scope.pendingTalentAttendees = pendingTalentAttendees;
+    $scope.pendingCastingAttendees = pendingCastingAttendees;
 
-        UserService.authenticate($scope.emailAddress, $scope.password)
-        .then(function(user) {
-            /*
-            {
-                "token": "b95175a8e01d3ac718d12669f1ca8ddd37bf6f3d",
-                "type": 'C',
-                "sub_type": ''
-            }
-            */
-            console.dir(user);
-            if (user.type != 'C') {
-                $scope.errorMessage = "The web app is currently designed for the casting users only.";
-            }
-            else {
-                $localStorage.user = user;
-                UserService.profile()
-                .then(function(profile) {
-                    console.dir(profile);
-                    $localStorage.profile = profile;
-                }, function(error) {
-                    $scope.errorMessage = error.message;
-                    $scope.emailAddress = "";
-                    $scope.password = "";
-                });
-            }
-        }, function(error) {
-            /*
-            {
-                "code": [400],
-                "message": [message]
-            }
-            */
-            $scope.errorMessage = error.message;
-            $scope.emailAddress = "";
-            $scope.password = "";
-        });
+    $scope.acceptRequest = function(requestId) {
+
+    }
+
+    $scope.rejectRequest = function(requestId) {
 
     }
 

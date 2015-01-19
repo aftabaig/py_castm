@@ -3,7 +3,7 @@ function onError(e) {
   console.log(e);
 }
 
-// Create module.
+// Create CastM module.
 var castM = angular.module('castM', ['ngResource', 'ngRoute', 'ngStorage', 'ui.bootstrap', 'cgBusy']);
 
 castM.config(function($interpolateProvider) {
@@ -24,6 +24,9 @@ castM.config(function($routeProvider) {
             templateUrl: "static/js/app/views/links.html",
             controller: "LinksController",
             resolve: {
+                event = function($route, EventService) {
+                    return EventService.eventDetail($route.current.params.eventId);
+                },
                 qualifiedTalentAttendees: function($route, EventService) {
                     return EventService.qualifiedTalentAttendees($route.current.params.eventId);
                 },
