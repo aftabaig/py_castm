@@ -33,7 +33,7 @@ def get_organizations():
     orgs = Organization.objects.all()
     plain_orgs = []
     for org in orgs:
-        plain_org = org.plain()
+        plain_org = org.plain(include_members=True)
         plain_orgs.append(plain_org)
     return plain_orgs
 
@@ -168,7 +168,7 @@ def get_or_update_organization(request, organization_id=None):
         if request.method == 'GET':
             is_member = OrganizationMember.user_is_member_of(user, organization)
             if is_member:
-                plain_organization = organization.plain()
+                plain_organization = organization.plain(include_members=True)
                 serializer = PlainOrganizationSerializer(plain_organization)
                 return Response(serializer.data)
             return Response({

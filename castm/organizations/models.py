@@ -18,7 +18,7 @@ class Organization(models.Model):
     logo = models.CharField("Logo", max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def plain(self):
+    def plain(self, include_members=False):
         plain_org = PlainOrganization(
             organization_id=self.id,
             name=self.name,
@@ -32,10 +32,11 @@ class Organization(models.Model):
             logo=self.logo,
             created_at=self.created_at,
         )
-        # members = self.members.all()
-        # plain_org.members = []
-        # for member in members:
-        #     plain_org.members.append(member.plain())
+        if include_members:
+            members = self.members.all()
+            plain_org.members = []
+            for member in members:
+                plain_org.members.append(member.plain())
         return plain_org
 
     def administrators(self):
