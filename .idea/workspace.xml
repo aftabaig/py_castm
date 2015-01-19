@@ -30,7 +30,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/organizations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5325444" vertical-offset="2400" max-vertical-offset="4875">
+            <state vertical-scroll-proportion="-0.28846154" vertical-offset="2955" max-vertical-offset="4875">
               <caret line="184" column="51" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="51" />
               <folding />
             </state>
@@ -104,8 +104,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/organizations/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
-              <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -192,10 +192,10 @@
         <option value="$PROJECT_DIR$/castm/castm/static/js/app/controllers/schedule-controller.js" />
         <option value="$PROJECT_DIR$/castm/castm/static/js/app/app.js" />
         <option value="$PROJECT_DIR$/castm/castm/static/js/app/services/schedule-service.js" />
-        <option value="$PROJECT_DIR$/castm/organizations/serializers.py" />
         <option value="$PROJECT_DIR$/castm/talent/urls.py" />
         <option value="$PROJECT_DIR$/castm/talent/views.py" />
         <option value="$PROJECT_DIR$/castm/organizations/views.py" />
+        <option value="$PROJECT_DIR$/castm/organizations/serializers.py" />
       </list>
     </option>
   </component>
@@ -1266,16 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/organizations/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
-          <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/talent/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2579" max-vertical-offset="3360">
@@ -1312,9 +1302,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/castm/organizations/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/castm/organizations/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5325444" vertical-offset="2400" max-vertical-offset="4875">
+        <state vertical-scroll-proportion="-0.28846154" vertical-offset="2955" max-vertical-offset="4875">
           <caret line="184" column="51" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="51" />
           <folding />
         </state>
