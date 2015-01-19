@@ -6,7 +6,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'GET',
                 url: url
@@ -21,7 +21,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'GET',
                 url: url
@@ -37,7 +37,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'POST',
                 url: url,
@@ -54,7 +54,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'PUT',
                 url: url,
@@ -66,12 +66,12 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        deleteSchedule: function(eventId, scheduleId) {
+        removeSchedule: function(eventId, scheduleId) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'DELETE',
                 url: url
@@ -87,7 +87,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'POST',
                 url: url,
@@ -99,12 +99,12 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        deleteAttendee: function(eventId, scheduleId, attendeeId) {
+        removeAttendee: function(eventId, scheduleId, attendeeId) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/attendees/" + attendeeId + "/";
             var defer = $q.defer();
             $http({
                 headers: {
-                    'Authorization': 'Token ' + $localStorage.token
+                    'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'DELETE',
                 url: url

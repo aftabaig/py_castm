@@ -44,6 +44,21 @@ castM.config(function($routeProvider) {
                 }
             }
         })
+        .when("/events/:eventId/schedules", {
+            templateUrl: "static/js/app/views/schedules.html",
+            controller: "ScheduleController",
+            resolve: {
+                event: function($route, EventService) {
+                    return EventService.eventDetail($route.current.params.eventId);
+                },
+                schedules: function($route, ScheduleService) {
+                    return ScheduleService.getSchedules($route.current.params.eventId);
+                },
+                talentAttendees: function($route, EventService) {
+                    return EventService.approvedTalentAttendees($route.current.params.eventId);
+                }
+            }
+        })
         .otherwise({
             redirectTo: "/login"
         });
