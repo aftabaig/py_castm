@@ -180,7 +180,9 @@ def upload_thumbnail(request):
     response = cloudinary.uploader.upload(request.FILES['thumbnail'])
     profile.thumbnail = response['url']
     profile.save()
-    return Response(HTTP_200_OK)
+    return Response({
+        "thumbnail_url": profile.thumbnail
+    })
 
 
 class HeadshotViewSet(viewsets.ModelViewSet):

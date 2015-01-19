@@ -15,7 +15,7 @@ castM.factory("EventService", function($http, $q, $localStorage) {
                 defer.reject(data);
             });
             return defer.promise;
-        }
+        },
         eventDetail: function(eventId) {
             var url = "/api/events/" + eventId + "/";
             var defer = $q.defer();

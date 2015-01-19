@@ -17,7 +17,7 @@ castM.controller("LoginController", ['$scope', '$rootScope', '$location', '$loca
             }
             else {
                 $localStorage.user = user;
-
+                $location.path("/home")
             }
         }, function(error) {
             /*

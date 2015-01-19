@@ -21,10 +21,10 @@ castM.config(function($routeProvider) {
             }
         })
         .when("/home", {
-            templateUrl: "static/js/app/views/home.html",
+            templateUrl: "static/js/app/views/casting_home.html",
             controller: "HomeController",
             resolve: {
-                profile = function($route, UserService) {
+                profile: function($route, UserService) {
                     return UserService.profile()
                 }
             }
@@ -33,7 +33,7 @@ castM.config(function($routeProvider) {
             templateUrl: "static/js/app/views/links.html",
             controller: "LinksController",
             resolve: {
-                event = function($route, EventService) {
+                event: function($route, EventService) {
                     return EventService.eventDetail($route.current.params.eventId);
                 },
                 talentAttendees: function($route, EventService) {
