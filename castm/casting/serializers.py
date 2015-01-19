@@ -16,6 +16,7 @@ class PlainProfileSerializer(serializers.Serializer):
     email = serializers.CharField(read_only=True)
     first_name = serializers.CharField(required=False, error_messages="")
     last_name = serializers.CharField(required=False)
+    sub_type = serializers.CharField(required=False)
     add1 = serializers.CharField(required=False)
     add2 = serializers.CharField(required=False)
     city = serializers.CharField(required=False)
