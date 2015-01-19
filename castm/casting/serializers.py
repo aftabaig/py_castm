@@ -51,10 +51,6 @@ class PlainProfileSerializer(serializers.Serializer):
         user.save()
 
         profile = CastingProfile.objects.get(id=obj.profile_id)
-        if obj.stage_first_name:
-            profile.stage_first_name = obj.stage_first_name
-        if obj.stage_last_name:
-            profile.stage_last_name = obj.stage_last_name
         if obj.add1:
             profile.add1 = obj.add1
         if obj.personal_add2:
