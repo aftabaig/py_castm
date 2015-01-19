@@ -182,7 +182,7 @@ def get_or_update_organization(request, organization_id=None):
                 serializer = PlainOrganizationSerializer(plain_org, data=request.DATA)
                 if serializer.is_valid():
                     serializer.save()
-                    return Response(plain_org)
+                    return Response(serializer.data)
                 return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
             return Response({
                 "status": HTTP_401_UNAUTHORIZED,
