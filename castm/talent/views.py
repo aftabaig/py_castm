@@ -185,6 +185,19 @@ def upload_thumbnail(request):
     })
 
 
+@api_view(['GET', ])
+def public_headshots(request, user_id=None):
+    user = User.objects.filter(id=user_id).first()
+    if user:
+        headshots = TalentHeadshot.objects.filter(user=user)
+        serializer = HeadshotSerializer(headshots, many=True)
+        return Response(serializer.data)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Talent not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
 class HeadshotViewSet(viewsets.ModelViewSet):
     permission_classes = (IsTalent, )
     queryset = TalentHeadshot.objects.all()
