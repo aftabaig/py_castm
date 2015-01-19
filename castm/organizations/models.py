@@ -61,11 +61,13 @@ class OrganizationMember(models.Model):
             member_id=self.id,
             member_role=self.role,
             user_id=self.user.id,
+            user_email_address=self.user.email,
             user_first_name=self.user.first_name,
             user_last_name=self.user.last_name,
             user_thumbnail_url="",
             user_profile_url="",
             initiator_id=self.initiator.id,
+            initiator_email_address=self.initiator.email,
             initiator_first_name=self.initiator.first_name,
             initiator_last_name=self.initiator.last_name,
             initiator_thumbnail_url="",
@@ -135,17 +137,19 @@ class PlainOrganization(object):
 
 class PlainMember(object):
     def __init__(self, member_id, member_role=None,
-                 user_id=None, user_first_name=None, user_last_name=None, user_thumbnail_url=None, user_profile_url=None,
-                 initiator_id=None, initiator_first_name=None, initiator_last_name=None, initiator_thumbnail_url=None, initiator_profile_url=None,
+                 user_id=None, user_email_address=None, user_first_name=None, user_last_name=None, user_thumbnail_url=None, user_profile_url=None,
+                 initiator_id=None, initiator_email_address=None, initiator_first_name=None, initiator_last_name=None, initiator_thumbnail_url=None, initiator_profile_url=None,
                  is_accepted=None, is_rejected=None):
         self.member_id = member_id
         self.member_role = member_role
         self.user_id = user_id
+        self.user_email_address = user_email_address
         self.user_first_name = user_first_name
         self.user_last_name = user_last_name
         self.user_thumbnail_url = user_thumbnail_url
         self.user_profile_url = user_profile_url
         self.initiator_id = initiator_id
+        self.initiator_email_address = initiator_email_address
         self.initiator_first_name = initiator_first_name
         self.initiator_last_name = initiator_last_name
         self.initiator_thumbnail_url = initiator_thumbnail_url
