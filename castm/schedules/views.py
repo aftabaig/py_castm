@@ -79,7 +79,7 @@ def get_or_add_schedules(request, event_id=None):
 
 @api_view(['PUT', 'DELETE', ])
 @permission_classes([IsTalentOrCasting, ])
-def get_schedule(request, event_id=None, schedule_id=None):
+def update_or_delete_schedule(request, event_id=None, schedule_id=None):
     if request.method == 'PUT':
         user = request.user
         event = Event.objects.filter(id=event_id).first()

@@ -15,7 +15,7 @@
 
 </head>
 
-<body ng-app="lc" class="full-width" cg-busy="{promise:promise,message:message}">
+<body ng-app="castM" class="full-width" cg-busy="{promise:promise,message:message}">
 
     <section id="container" class="">
         <!--header start-->
@@ -28,9 +28,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!--logo start-->
-                <a style="margin-top:5px" href="#" class="logo" ><img src="{{ STATIC_URL }}images/logo.png"></a>
-                <!--logo end-->
+
 
                 <div class="horizontal-menu navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
@@ -118,17 +116,8 @@
     <script src="{{ STATIC_URL }}js/libs/others/vfs_fonts.js" ></script>
     <script src="{{ STATIC_URL }}js/libs/bootstrap/ui-bootstrap-0.11.0.js"></script>
     <script src="{{ STATIC_URL }}js/app/app.js"></script>
-    <script src="{{ STATIC_URL }}js/directives/multi-entity-selector.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/entity-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/consignment-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/supply-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/search-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/entities-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/entity-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/consignments-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/consignment-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/supplies-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/search-controller.js"></script>
+    <script src="{{ STATIC_URL }}js/app/services/user-service.js"></script>
+    <script src="{{ STATIC_URL }}js/app/controllers/login-controller.js"></script>
     <!-- script ends -->
 
 

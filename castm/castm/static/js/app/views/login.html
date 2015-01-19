@@ -1,9 +1,10 @@
 <div ng-controller="LoginController" class="form-signin" style="margin-top:0px">
-    <h2 cg-busy="{promise:promise,message:message}" class="form-signin-heading">Login to D&Z</h2>
+    <h2 cg-busy="{promise:promise,message:message}" class="form-signin-heading">Login to Cast'M</h2>
         <div class="login-wrap">
-            <input ng-model="username" type="text" class="form-control" placeholder="Username" autofocus="">
+            <span>^^errorMessage^^</span>
+            <input ng-model="emailAddress" type="text" class="form-control" placeholder="Username" autofocus="">
             <input ng-model="password" ng-enter="login()" type="password" class="form-control" placeholder="Password">
-            <button ng-click="login()" class="btn btn-lg btn-login btn-block">Sign in</button>
+            <button ng-click="doLogin()" class="btn btn-lg btn-login btn-block">Sign in</button>
 
         </div>
 

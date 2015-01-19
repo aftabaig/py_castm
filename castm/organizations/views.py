@@ -130,7 +130,7 @@ def process_membership_request(request, organization_id=None, request_id=None, a
     }, status=HTTP_404_NOT_FOUND)
 
 
-@api_view(['GET', ])
+@api_view(['GET', 'POST', ])
 @permission_classes([IsCasting, ])
 def add_or_get_organizations(request):
     if request.method == 'GET':

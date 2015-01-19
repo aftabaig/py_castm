@@ -1,10 +1,13 @@
-lc.factory("ScheduleService", function($http, $q, $localStorage) {
+castM.factory("ScheduleService", function($http, $q, $localStorage) {
     var api_url = "/api/events/"
     return {
-        info: function(eventId, scheduleId) {
-            var url = api_url + eventId + "/schedules/" + scheduleId + "/";
+        getSchedules: function(eventId) {
+            var url = api_url + eventId + "/schedules/";
             var defer = $q.defer();
             $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -14,33 +17,14 @@ lc.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-
-        send: function(subject, consignmentIds, entities, fields, zone) {
-            var data = {
-                "subject": subject,
-                "consignment_ids": consignmentIds,
-                "entities": entities,
-                "fields": fields,
-                "zone": zone
-            }
-            var defer = $q.defer();
+        getSchedule: function(eventId, scheduleId) {
+            var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             $http({
-                method: 'POST',
-                url: api_url + "send/",
-                data: data
-            }).success(function(data, status, header, config) {
-                    defer.resolve(data);
-            }).error(function(data, status, header, config) {
-                    defer.reject(status);
-            });
-            return defer.promise;
-        },
-        all: function(eventId) {
-            var url = "/api/events/" + eventId + "/";
-            var defer = $q.defer();
-            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
                 method: 'GET',
-                url: api_url
+                url: url
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
@@ -48,12 +32,16 @@ lc.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        add: function(consignment) {
+        addSchedule: function(eventId, schedule) {
+            var url = api_url + eventId + "/schedules/";
             var defer = $q.defer();
             $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
                 method: 'POST',
-                url: api_url,
-                data: consignment
+                url: url,
+                data: schedule
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
@@ -61,15 +49,16 @@ lc.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        update: function(consignment) {
-            console.log("consignment:");
-            console.dir(consignment);
-            var url = api_url + consignment.id + "/";
+        updateSchedule: function(eventId, scheduleId, schedule) {
+            var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             var defer = $q.defer();
             $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
                 method: 'PUT',
                 url: url,
-                data: consignment
+                data: schedule
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
@@ -77,10 +66,13 @@ lc.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
-        delete: function(consignment_id) {
-            var url = api_url + consignment_id + "/";
+        deleteSchedule: function(eventId, scheduleId) {
+            var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             var defer = $q.defer();
             $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
                 method: 'DELETE',
                 url: url
             }).success(function(data, status, header, config) {
@@ -90,5 +82,38 @@ lc.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        addAttendee: function(eventId, scheduleId, attendee) {
+            var url = api_url + eventId + "/schedules/" + scheduleId + "/attendees/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
+                method: 'POST',
+                url: url,
+                data: attendee
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
+        },
+        deleteAttendee: function(eventId, scheduleId, attendeeId) {
+            var url = api_url + eventId + "/schedules/" + scheduleId + "/attendees/" + attendeeId + "/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.token
+                },
+                method: 'DELETE',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
+        }
     }
 });
