@@ -32,10 +32,10 @@ class Organization(models.Model):
             logo=self.logo,
             created_at=self.created_at,
         )
-        members = self.members.all()
-        plain_org.members = []
-        for member in members:
-            plain_org.members.append(member.plain())
+        # members = self.members.all()
+        # plain_org.members = []
+        # for member in members:
+        #     plain_org.members.append(member.plain())
         return plain_org
 
     def administrators(self):
