@@ -18,6 +18,11 @@ class Event(models.Model):
     callback_time_from = models.TimeField()
     callback_time_to = models.TimeField()
     schedule_published = models.BooleanField(default=False, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    archived = models.BooleanField(default=False, blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
 
     def plain(self):
         plain_event = PlainEvent(

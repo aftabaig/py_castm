@@ -1,5 +1,21 @@
 castM.factory("EventService", function($http, $q, $localStorage) {
     return {
+        myEvents: function() {
+            var url = "/api/events/my/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'GET',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(data);
+            });
+            return defer.promise;
+        }
         eventDetail: function(eventId) {
             var url = "/api/events/" + eventId + "/";
             var defer = $q.defer();

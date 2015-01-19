@@ -26,14 +26,18 @@ from notifications.views import create_notification
 logger = logging.getLogger(__name__)
 
 
-def get_events():
+def all_events(organization=None):
     """
     Get all events.
     :return: List of plain events.
     """
-    all_events = Event.objects.all()
+    events = None
+    if organization:
+        events = Event.objects.filter(owner=organization)
+    else:
+        events = Event.objects.all()
     plain_events = []
-    for event in all_events:
+    for event in events:
         plain_event = event.plain()
         plain_events.append(plain_event)
     return plain_events
@@ -100,9 +104,24 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
 def get_events(request):
-        events = get_events()
+        events = all_events()
         serializer = PlainEventSerializer(events, many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
+def my_events(request):
+    user = request.user
+    organization = OrganizationMember.user_organization(user)
+    if organization:
+        events = all_events(organization=organization)
+        serializer = PlainEventSerializer(events, many=True)
+        return Response(serializer.data)
+    return Response({
+        "status": HTTP_400_BAD_REQUEST,
+        "message": "You don't have any associated organization"
+    }, status=HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', ])

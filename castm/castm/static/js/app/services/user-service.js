@@ -19,7 +19,7 @@ castM.factory("UserService", function($http, $q, $localStorage) {
             return defer.promise;
         },
         profile: function() {
-            var url = "/api/casting/profile";
+            var url = "/api/casting/profile/";
             var defer = $q.defer();
             $http({
                 headers: {

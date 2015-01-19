@@ -17,15 +17,7 @@ castM.controller("LoginController", ['$scope', '$rootScope', '$location', '$loca
             }
             else {
                 $localStorage.user = user;
-                UserService.profile()
-                .then(function(profile) {
-                    console.dir(profile);
-                    $localStorage.profile = profile;
-                }, function(error) {
-                    $scope.errorMessage = error.message;
-                    $scope.emailAddress = "";
-                    $scope.password = "";
-                });
+
             }
         }, function(error) {
             /*

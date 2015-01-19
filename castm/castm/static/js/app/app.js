@@ -20,6 +20,15 @@ castM.config(function($routeProvider) {
 
             }
         })
+        .when("/home", {
+            templateUrl: "static/js/app/views/home.html",
+            controller: "HomeController",
+            resolve: {
+                profile = function($route, UserService) {
+                    return UserService.profile()
+                }
+            }
+        })
         .when("/events/:eventId/links", {
             templateUrl: "static/js/app/views/links.html",
             controller: "LinksController",
