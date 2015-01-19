@@ -55,16 +55,19 @@ def process_invitation(request, organization_id=None, invitation_id=None, accept
             if invitation.user == user:
                 if invitation.is_new():
                     message = ""
+                    notification_type = ""
                     if accept:
                         invitation.is_accepted = True
                         message = "Your membership invitation has been accepted"
+                        notification_type = "OIA"
                     else:
                         invitation.is_rejected = True
                         message = "Your membership invitation has been rejected"
+                        notification_type = "OIR"
                     invitation.save()
                     plain_invitation = invitation.plain()
                     serializer = PlainMemberSerializer(plain_invitation)
-                    create_notification("", invitation.id, invitation.user, invitation.initiator, message=message)
+                    create_notification(notification_type, invitation.id, invitation.user, invitation.initiator, message=message)
                     return Response(serializer.data)
                 return Response({
                     "status": HTTP_400_BAD_REQUEST,
@@ -101,12 +104,15 @@ def process_membership_request(request, organization_id=None, request_id=None, a
             if OrganizationMember.user_is_admin(organization, user):
                 if membership.is_new():
                     message = ""
+                    notification_type = ""
                     if accept:
                         membership.is_accepted = True
                         message = "Your membership request has been accepted"
+                        notification_type = "ORA"
                     else:
                         membership.is_rejected = True
                         message = "Your membership request has been rejected"
+                        notification_type = "ORR"
                     membership.save()
                     plain_invitation = membership.plain()
                     serializer = PlainMemberSerializer(plain_invitation)
@@ -234,7 +240,7 @@ def invite_user(request, organization_id=None):
                     plain_member = invitation.plain()
                     serializer = PlainMemberSerializer(plain_member)
                     message = "You have been invited to join %s as %s" % (organization.name, "as an administrator" if invitation.role == "ADM" else "as a coordinator", )
-                    create_notification("", invitation.id, invitation.initiator, invitation.user, message=message)
+                    create_notification("OMI", invitation.id, invitation.initiator, invitation.user, message=message)
                     return Response(serializer.data)
                 return Response({
                     "status": HTTP_400_BAD_REQUEST,
@@ -290,7 +296,7 @@ def request_membership(request, organization_id=None):
                 serializer = PlainMemberSerializer(plain_member)
                 message = "%s %s has requested membership of %s as %s" % (user.first_name, user.last_name, organization.name, "as an administrator" if membership.role == "ADM" else "as a coordinator", )
                 for admin in organization.administrators():
-                    create_notification("", membership.id, membership.user, admin.user, message=message)
+                    create_notification("OMR", membership.id, membership.user, admin.user, message=message)
                 return Response(serializer.data)
             return Response({
                 "status": HTTP_400_BAD_REQUEST,
