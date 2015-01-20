@@ -26,6 +26,7 @@ class PlainProfileSerializer(serializers.Serializer):
     office = serializers.CharField(required=False)
     thumbnail = serializers.CharField(required=False)
 
+
     def restore_object(self, attrs, instance=None):
         logger.debug(attrs)
         if instance is not None:
@@ -75,6 +76,7 @@ class MyPlainProfileSerializer(PlainProfileSerializer):
     notifications_count = serializers.CharField(read_only=True)
     links_count = serializers.CharField(read_only=True)
     organization = JSONField(required=False, read_only=True)
+    invitation = JSONField(required=False, read_only=True)
 
     def restore_object(self, attrs, instance=None):
         instance = super(MyPlainProfileSerializer, self).restore_object(attrs, instance)

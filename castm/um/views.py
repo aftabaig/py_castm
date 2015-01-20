@@ -167,6 +167,10 @@ def authenticate(request):
                 return Response(response)
     return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
+@api_view(['POST', ])
+@permission_classes([IsTalentOrCasting, ])
+def logout(request):
+    pass
 
 
 @api_view(['PUT', ])
@@ -209,8 +213,6 @@ def forgot_password(request):
 @detect_mobile
 @api_view(['GET', ])
 def activate_user(request, activation_key):
-    logger.debug("is_mobile:")
-    logger.debug(request.mobile)
     my_user = MyUser.objects.filter(activation_key=activation_key)[0]
     if my_user:
         user = User.objects.get(id=my_user.user.id)

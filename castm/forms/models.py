@@ -20,7 +20,7 @@ class FormField(models.Model):
     type = models.CharField("Field Type", max_length=5, choices=type_choices, blank=False)
     title = models.CharField("Field Title", max_length=1024, blank=False)
     max_value = models.IntegerField("Max Value", blank=True, null=True)
-    use_stars = models.BooleanField(default=False, blank=True, null=True)
+    use_stars = models.BooleanField(default=False, blank=True)
 
 
 class FieldItem(models.Model):

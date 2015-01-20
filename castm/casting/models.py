@@ -31,7 +31,7 @@ class CastingHeadshot(models.Model):
 
 
 class PlainProfile(object):
-    def __init__(self, user=None, profile=None, notification=None, organization=None):
+    def __init__(self, user=None, profile=None, notification=None, organization=None, invitation=None):
         if user:
             self.user_id = user.id
             self.username = user.username
@@ -53,6 +53,10 @@ class PlainProfile(object):
             self.organization = organization
         else:
             self.organization = None
+        if invitation:
+            self.invitation = invitation
+        else:
+            self.invitation = None
         if notification:
             self.notifications_count = notification.notifications_count
             self.links_count = notification.links_count

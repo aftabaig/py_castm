@@ -108,14 +108,21 @@ def my_profile(request):
     user = request.user
     profile = CastingProfile.objects.filter(user_id=user.id).first()
     if profile:
+
         notification = NotificationSummary.get_notifications(user.id)
         organization = OrganizationMember.user_organization(user)
+        invitation = OrganizationMember.user_invitation(user)
+
         if organization:
             organization = organization.plain()
+        if invitation:
+            invitation = invitation.plain()
+
         plain_profile = PlainProfile(user=user,
                                      profile=profile,
                                      notification=notification,
-                                     organization=organization)
+                                     organization=organization,
+                                     invitation=invitation)
         if request.method == 'GET':
             serializer = MyPlainProfileSerializer(plain_profile)
             return Response(serializer.data, HTTP_200_OK)

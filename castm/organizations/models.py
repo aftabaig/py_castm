@@ -107,6 +107,14 @@ class OrganizationMember(models.Model):
         else:
             return None
 
+    @staticmethod
+    def user_invitation(user):
+        q1 = models.Q(user=user)
+        q2 = ~models.Q(initiator=user)
+        q3 = models.Q(is_accepted=False)
+        q4 = models.Q(is_rejected=False)
+        return OrganizationMember.objects.filter(q1 & q2 & q3 & q4).first()
+
 
 class PlainOrganization(object):
 

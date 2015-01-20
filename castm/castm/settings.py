@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'organizations',
     'my_messages',
     'notifications',
+    'forms'
 )
 
 REST_FRAMEWORK = {
