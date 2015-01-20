@@ -76,6 +76,13 @@ class EventAttendee(models.Model):
         return q1 and q2
 
     @staticmethod
+    def is_user_attending_event(user, event):
+        q1 = models.Q(attendee=user)
+        q2 = models.Q(event=event)
+        q3 = models.Q(is_accepted=True)
+        return EventAttendee.objects.filter(q1 & q2 & q3).count() > 0
+
+    @staticmethod
     def user_is_already_attending(user, event):
         q = models.Q(event=event)
         if user.my_user.type == 'T':

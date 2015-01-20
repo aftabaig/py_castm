@@ -39,6 +39,12 @@ class ScheduleAttendee(models.Model):
             attendee_profile_url=""
         )
 
+    @staticmethod
+    def user_is_already_scheduled(user, event):
+        q1 = models.Q(attendee=user)
+        q2 = models.Q(schedule__event=event)
+        return ScheduleAttendee.objects.filter(q1 & q2).count() > 0
+
 
 class PlainSchedule(object):
     def __init__(self, schedule_id=None, schedule_title=None,

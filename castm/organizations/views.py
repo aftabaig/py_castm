@@ -1,4 +1,7 @@
 import logging
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # rest_framework
 from rest_framework.decorators import api_view, permission_classes
@@ -200,6 +203,29 @@ def get_or_update_organization(request, organization_id=None):
     }, status=HTTP_404_NOT_FOUND)
 
 
+@api_view(['PUT'])
+@permission_classes([IsCasting])
+def upload_logo(request, organization_id=None):
+    user = request.user
+    organization = Organization.objects.filter(id=organization_id).first()
+    if organization:
+        is_admin = OrganizationMember.user_is_admin(organization, user)
+        if is_admin:
+            response = cloudinary.uploader.upload(request.FILES['logo'])
+            organization.logo = response['url']
+            organization.save()
+            return Response({
+                "thumbnail_url": organization.logo
+            })
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to perform this operation"
+        }, status=HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, status=HTTP_404_NOT_FOUND)
+
 
 @api_view(['GET'])
 @permission_classes([IsCasting, ])
@@ -258,6 +284,7 @@ def invite_user(request, organization_id=None):
         "status": HTTP_404_NOT_FOUND,
         "message": "Organization not found"
     }, status=HTTP_404_NOT_FOUND)
+
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])

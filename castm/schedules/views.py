@@ -7,8 +7,9 @@ from rest_framework.status import HTTP_200_OK, HTTP_204_NO_CONTENT, HTTP_404_NOT
 
 from models import Schedule
 from models import ScheduleAttendee
-from events.models import Event
+from events.models import Event, EventAttendee
 from organizations.models import Organization, OrganizationMember
+from django.contrib.auth.models import User
 
 from um.permissions import IsTalentOrCasting, IsCasting
 
@@ -64,8 +65,38 @@ def get_or_add_schedules(request, event_id=None):
             is_event_admin = OrganizationMember.user_is_admin(event_owner, user)
             if is_event_admin:
                 serializer = PlainScheduleSerializer(data=request.DATA)
+                str_user_ids = request.DATA.get("user_ids")
+                user_ids = str_user_ids.split(",")
+                for user_id in user_ids:
+                    user = User.objects.filter(id=user_id).first()
+                    if user:
+                        if user.my_user.type == 'T':
+                            is_attending = EventAttendee.is_user_attending_event(user, event)
+                            if is_attending:
+                                already_scheduled = ScheduleAttendee.user_is_already_scheduled(user, event)
+                                if not already_scheduled:
+                                    pass
+                                return Response({
+                                    "status": HTTP_400_BAD_REQUEST,
+                                    "message": "User is already scheduled"
+                                }, status=HTTP_400_BAD_REQUEST)
+                            return Response({
+                                "status": HTTP_400_BAD_REQUEST,
+                                "message": "User is not an approved attendee for the event"
+                            })
+                        return Response({
+                            "status": HTTP_400_BAD_REQUEST,
+                            "message": "Only talent users can be added as an attendee for a schedule"
+                        }, status=HTTP_400_BAD_REQUEST)
+                    return Response({
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "User not found"
+                    }, status=HTTP_404_NOT_FOUND)
                 if serializer.is_valid():
                     serializer.save()
+                    for user_id in user_ids:
+                        attendee = User.objects.filter(id=user_id).first()
+                        schedule = None
                     return Response(serializer.data)
             return Response({
                 "status": HTTP_401_UNAUTHORIZED,
