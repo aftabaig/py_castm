@@ -341,12 +341,12 @@ def request_membership(request, organization_id=None):
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
-def accept_request(request, organization_id=None, invitation_id=None):
-    return process_membership_request(request, organization_id, invitation_id)
+def accept_request(request, organization_id=None, request_id=None):
+    return process_membership_request(request, organization_id, request_id)
 
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
-def reject_request(request, organization_id=None, invitation_id=None):
-    return process_membership_request(request, organization_id, invitation_id, accept=False)
+def reject_request(request, organization_id=None, request_id=None):
+    return process_membership_request(request, organization_id, request_id, accept=False)
 
