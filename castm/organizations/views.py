@@ -147,20 +147,26 @@ def add_or_get_organizations(request):
         serializer = PlainOrganizationSerializer(organizations, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = PlainOrganizationSerializer(data=request.DATA)
-        if serializer.is_valid():
-            organization = serializer.save()
-            admin = OrganizationMember()
-            admin.organization = Organization.objects.filter(id=organization.organization_id).first()
-            admin.user = request.user
-            admin.role = 'ADM'
-            admin.is_accepted = True
-            admin.initiator = request.user
-            admin.save()
-            return Response(serializer.data)
-        return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
-    elif request.method == 'PUT':
-        pass
+        user = request.user
+        has_no_organization = OrganizationMember.user_organization(user) is None
+        if has_no_organization:
+            serializer = PlainOrganizationSerializer(data=request.DATA)
+            if serializer.is_valid():
+                organization = serializer.save()
+                admin = OrganizationMember()
+                admin.organization = Organization.objects.filter(id=organization.organization_id).first()
+                admin.user = request.user
+                admin.role = 'ADM'
+                admin.is_accepted = True
+                admin.initiator = request.user
+                admin.save()
+                return Response(serializer.data)
+            return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message":"You can only create/join one organization at the mex",
+        }, status=HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET', 'PUT', ])
 @permission_classes([IsCasting, ])
