@@ -55,64 +55,25 @@ castM.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function(
         }
     })
     .state('event.schedules', {
-        url: '/events/:eventId/schedules.html'
-    })
+        url: '/events/:eventId/schedules',
+        parent: 'casting',
+        templateUrl: 'static/js/app/views/casting/schedules.html',
+        controller: 'ScheduleController',
+        resolve: {
+            event: function($stateParams, EventService) {
+                return EventService.eventDetail($stateParams.eventId);
+            },
+            schedules: function($stateParams, ScheduleService) {
+                return ScheduleService.getSchedules($stateParams.eventId);
+            },
+            talentAttendees: function($stateParams, EventService) {
+                return EventService.approvedTalentAttendees($stateParams.eventId);
+            }
+        }
+    });
+
 
 }
-
-castM.config(function($routeProvider) {
-    $routeProvider
-        .when("/login", {
-            templateUrl: 'static/js/app/views/login.html',
-            controller: 'LoginController',
-            resolve: {
-
-            }
-        })
-        .when("/home", {
-            templateUrl: static/js/app/views/casting_home.html",
-            controller: "HomeController",
-            resolve: {
-                profile: function($route, UserService) {
-                    return UserService.profile()
-                }
-            }
-        })
-        .when("/events/:eventId/links", {
-            templateUrl: "static/js/app/views/links.html",
-            controller: "LinksController",
-            resolve: {
-                event: function($route, EventService) {
-                    return EventService.eventDetail($route.current.params.eventId);
-                },
-                talentAttendees: function($route, EventService) {
-                    return EventService.allTalentAttendees($route.current.params.eventId);
-                },
-                castingAttendees: function($route, EventService) {
-                    return EventService.allCastingAttendees($route.current.params.eventId);
-                }
-            }
-        })
-        .when("/events/:eventId/schedules", {
-            templateUrl: "static/js/app/views/schedules.html",
-            controller: "ScheduleController",
-            resolve: {
-                event: function($route, EventService) {
-                    return EventService.eventDetail($route.current.params.eventId);
-                },
-                schedules: function($route, ScheduleService) {
-                    return ScheduleService.getSchedules($route.current.params.eventId);
-                },
-                talentAttendees: function($route, EventService) {
-                    return EventService.approvedTalentAttendees($route.current.params.eventId);
-                }
-            }
-        })
-        .otherwise({
-            redirectTo: "/login"
-        });
-});
-
 
 castM.directive('ngEnter', function () {
     return function (scope, element, attrs) {

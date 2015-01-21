@@ -171,7 +171,6 @@ def get_or_update_organization(request, organization_id=None):
     You must be a member of the organization to view.
     You must be an admin of the organization to edit.
     """
-    logger.debug("hellooooo")
     user = request.user
     organization = Organization.objects.filter(id=organization_id).first()
     logger.debug(organization)

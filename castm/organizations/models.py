@@ -60,6 +60,8 @@ class OrganizationMember(models.Model):
         plain_member = PlainMember(
             member_id=self.id,
             member_role=self.role,
+            organization_id=self.organization.id,
+            organization_name=self.organization.name,
             user_id=self.user.id,
             user_email_address=self.user.email,
             user_first_name=self.user.first_name,
@@ -145,11 +147,14 @@ class PlainOrganization(object):
 
 class PlainMember(object):
     def __init__(self, member_id, member_role=None,
+                 organization_id=None, organization_name=None,
                  user_id=None, user_email_address=None, user_first_name=None, user_last_name=None, user_thumbnail_url=None, user_profile_url=None,
                  initiator_id=None, initiator_email_address=None, initiator_first_name=None, initiator_last_name=None, initiator_thumbnail_url=None, initiator_profile_url=None,
                  is_accepted=None, is_rejected=None):
         self.member_id = member_id
         self.member_role = member_role
+        self.organization_id = organization_id
+        self.organization_name = organization_name
         self.user_id = user_id
         self.user_email_address = user_email_address
         self.user_first_name = user_first_name
