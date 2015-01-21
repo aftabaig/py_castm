@@ -10,7 +10,7 @@ forms = RatingFormViewSet.as_view({
 })
 
 router = DefaultRouter()
-router.register(r'forms', RatingFormViewSet)
+router.register(r'', RatingFormViewSet)
 
 urlpatterns = patterns(
     'forms.views',

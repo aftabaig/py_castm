@@ -171,13 +171,16 @@ def get_or_update_organization(request, organization_id=None):
     You must be a member of the organization to view.
     You must be an admin of the organization to edit.
     """
+    logger.debug("hellooooo")
     user = request.user
     organization = Organization.objects.filter(id=organization_id).first()
+    logger.debug(organization)
     if organization:
         if request.method == 'GET':
             is_member = OrganizationMember.user_is_member_of(user, organization)
             if is_member:
                 plain_organization = organization.plain(include_members=True)
+                logger.debug(plain_organization)
                 serializer = PlainOrganizationSerializer(plain_organization)
                 return Response(serializer.data)
             return Response({

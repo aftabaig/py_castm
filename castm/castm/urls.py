@@ -47,7 +47,7 @@ urlpatterns += patterns(
 # contains rating forms related urls.
 urlpatterns += patterns(
     'forms.views',
-    url(r'^api/organizations/(?P<organization_id>[0-9]+)/', include('forms.urls'))
+    url(r'^api/organizations/(?P<organization_id>[0-9]+)/forms/', include('forms.urls'))
 )
 
 # urls from notifications.
