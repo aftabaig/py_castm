@@ -4,24 +4,73 @@ function onError(e) {
 }
 
 // Create CastM module.
-var castM = angular.module('castM', ['ngResource', 'ngRoute', 'ngStorage', 'ui.bootstrap', 'cgBusy']);
+var castM = angular.module('castM', ['ngResource', 'ui.router', 'ngStorage', 'ui.bootstrap', 'cgBusy']);
 
 castM.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('^^');
   $interpolateProvider.endSymbol('^^');
 });
 
+castM.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function($httpProvider, $stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+    .state('login', {
+        url:'/login',
+        templateUrl: "static/js/app/views/login.html",
+        controller: "LoginController",
+        resolve: {
+
+        }
+    })
+    .state('casting', {
+        templateUrl: "static/js/app/views/casting/base.html",
+        abstract: true
+    })
+    .state('casting.home', {
+        url: '/home',
+        parent: 'casting',
+        templateUrl: 'static/js/app/views/casting/home.html'
+        controller: 'HomeController',
+        resolve: {
+            profile: function(UserService) {
+                return UserService.profile()
+            }
+        }
+    })
+    .state('event.links', {
+        url:'/events/:eventId/links',
+        parent: 'casting',
+        templateUrl: 'static/js/app/views/casting/links.html'
+        controller: 'LinksController',
+        resolve: {
+            event: function($stateParams, EventService) {
+                return EventService.eventDetail($stateParams.eventId);
+            },
+            talentAttendees: function($stateParams, EventService) {
+                return EventService.allTalentAttendees($stateParams.eventId);
+            },
+            castingAttendees: function($stateParams, EventService) {
+                return EventService.allCastingAttendees($stateParams.eventId);
+            }
+        }
+    })
+    .state('event.schedules', {
+        url: '/events/:eventId/schedules.html'
+    })
+
+}
+
 castM.config(function($routeProvider) {
     $routeProvider
         .when("/login", {
-            templateUrl: "static/js/app/views/login.html",
-            controller: "LoginController",
+            templateUrl: 'static/js/app/views/login.html',
+            controller: 'LoginController',
             resolve: {
 
             }
         })
         .when("/home", {
-            templateUrl: "static/js/app/views/casting_home.html",
+            templateUrl: static/js/app/views/casting_home.html",
             controller: "HomeController",
             resolve: {
                 profile: function($route, UserService) {

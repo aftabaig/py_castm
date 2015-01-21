@@ -56,3 +56,7 @@ target/
 *.pyc
 
 settings_dev.py
+
+# bower
+bower.json
+.bowerrc
