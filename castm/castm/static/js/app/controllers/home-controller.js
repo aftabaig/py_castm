@@ -1,6 +1,6 @@
-castM.controller("HomeController", ['$scope', '$rootScope', '$location', '$localStorage', 'UserService', 'profile', function($scope, $rootScope, $location, $localStorage, UserService, profile) {
+castM.controller("HomeController", ['$scope', '$rootScope', '$location', '$localStorage', function($scope, $rootScope, $location, $localStorage) {
 
-    $scope.profile = profile;
+
 
 
 

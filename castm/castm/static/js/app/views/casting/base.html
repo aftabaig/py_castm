@@ -2,7 +2,7 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <a class="brand" href="index.html">
-                <img src="img/logo.png" alt="Admin Lab" />
+                <img src="static/theme/img/logo.png" />
             </a>
             <a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
@@ -30,62 +30,6 @@
                             <i class="icon-envelope-alt"></i>
                             <span class="badge badge-important">5</span>
                         </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <li>
-                                <p>You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									    <span class="from">Dulal Khan</span>
-									    <span class="time">Just now</span>
-									</span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									    <span class="from">Rafiqul Islam</span>
-									    <span class="time">10 mins</span>
-									</span>
-									<span class="message">
-									 Hi, Mosaddek Bhai how are you ?
-									</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									    <span class="from">Sumon Ahmed</span>
-									    <span class="time">3 hrs</span>
-									</span>
-									<span class="message">
-									    This is awesome dashboard templates
-									</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img src="./img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									    <span class="from">Dulal Khan</span>
-									    <span class="time">Just now</span>
-                                    </span>
-									<span class="message">
-									    Hello, this is an example messages please check
-									</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all messages</a>
-                            </li>
-                        </ul>
                     </li>
                     <!-- End Inbox dropdown -->
 
@@ -95,47 +39,6 @@
                             <i class="icon-bell-alt"></i>
                             <span class="badge badge-warning">7</span>
                         </a>
-                        <ul class="dropdown-menu extended notification">
-                            <li>
-                                <p>You have 7 new notifications</p>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-important"><i class="icon-bolt"></i></span>
-                                    Server #3 overloaded.
-                                    <span class="small italic">34 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-warning"><i class="icon-bell"></i></span>
-                                    Server #10 not respoding.
-                                    <span class="small italic">1 Hours</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-important"><i class="icon-bolt"></i></span>
-                                    Database overloaded 24%.
-                                    <span class="small italic">4 hrs</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="label label-success"><i class="icon-plus"></i></span>
-                                    New user registered.
-                                    <span class="small italic">Just now</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#"><span class="label label-info"><i class="icon-bullhorn"></i></span>
-                                    Application error.<span class="small italic">10 mins</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">See all notifications</a>
-                            </li>
-                        </ul>
                     </li>
                     <!-- End Notification dropdown -->
                 </ul>
@@ -144,25 +47,11 @@
 
             <div class="top-nav ">
                 <ul class="nav pull-right top-menu" >
-
-                    <!-- Begin Support -->
-                    <li class="dropdown mtop5">
-                        <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Chat">
-                            <i class="icon-comments-alt"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown mtop5">
-                        <a class="dropdown-toggle element" data-placement="bottom" data-toggle="tooltip" href="#" data-original-title="Help">
-                            <i class="icon-headphones"></i>
-                        </a>
-                    </li>
-                    <!-- End Support -->
-
                     <!-- Begin User-Login Dropdown -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="img/avatar1_small.jpg" alt="">
-                            <span class="username">Mosaddek Hossain</span>
+                            <img src="^^profile.thumbnail^^" alt="" style="border-radius:100%;width:29px">
+                            <span class="username">^^profile.first_name^^ ^^profile.last_name^^</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
@@ -197,26 +86,31 @@
         <!-- Begin Sidebar Menu -->
         <ul class="sidebar-menu">
             <center>
-                <img src="img/team-1.jpg" style=" border-radius: 100%;border: solid 5px #fff;width: 119px; margin-bottom: 20px;">
+                <img src="^^profile.thumbnail^^" style=" border-radius: 100%;border: solid 5px #fff;width: 119px; margin-bottom: 20px;">
             </center>
             <li class="has-sub" style="text-align:center;">
-                <a href="javascript:;" class="">
-                    <span class="badge badge-important">5</span> Notifications
-                </a>
+                <a ng-click="toggleMyOrganization()" style="cursor:pointer">My Organization</a>
+            </li>
+            <li ng-if="showOrganization" class=has-sub" style="text-align:center;background-color:black">
+                ^^profile.organization.name^^
+            </li>
+            <li ng-if="showOrganization" class="has-sub" style="text-align:center;background-color:gray">
+                <a href="javascript:;" class="">Rating Form</a>
             </li>
             <li class="has-sub" style="text-align:center;">
-                <a href="javascript:;" class="">
-                    <span class="badge badge-important">47</span> Likes
-                </a>
+                <a ng-click="toggleMyEvents()" style="cursor:pointer">My Events</a>
             </li>
-            <li class="has-sub" style="text-align:center;">
-                <a href="javascript:;" class="">Profile</a>
+            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:black">
+                SETC
             </li>
-            <li class="has-sub" style="text-align:center;">
-                <a href="javascript:;" class="">Auditions</a>
+            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+                <a href="javascript:;" class="">Link Requests</a>
             </li>
-            <li class="has-sub" style="text-align:center;">
-                <a href="javascript:;" class="">Logout</a>
+            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+                <a href="javascript:;" class="">Schedules</a>
+            </li>
+            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+                <a href="javascript:;" class="">Callbacks</a>
             </li>
         </ul>
         <!-- End Sidebar Menu -->
@@ -224,37 +118,7 @@
     <!-- End Sidebar -->
 
     <!-- Begin Page -->
-    <div id="main-content">
-        <!-- Begin Page Container -->
-        <div class="container-fluid">
-            <!-- Begin Page Header -->
-            <div class="row-fluid">
-                <div class="span12">
-                    <h3 class="page-title">Home Page</h3>
-                </div>
-            </div>
-            <!-- End Page Header -->
-            <!-- Begin Page Content -->
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="widget">
-                        <div class="widget-title">
-                            <h4><i class="icon-globe"></i>Blank Page</h4>
-                            <span class="tools">
-                                <a href="javascript:;" class="icon-chevron-down"></a>
-                                <a href="javascript:;" class="icon-remove"></a>
-                            </span>
-                        </div>
-                        <div class="widget-body">
-                           <div ui-view=""></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Page Content -->
-        </div>
-        <!-- End Page Container -->
-    </div>
+    <div ui-view id="main-content"></div>
     <!-- End Page -->
 
 </div>

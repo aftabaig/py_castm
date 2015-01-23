@@ -1,79 +1,80 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html ng-app="castM">
 
-<head>
-    <meta charset="utf-8" />
-    <title>CastM</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <head>
 
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/style_responsive.css" rel="stylesheet" />
-    <link href="css/style_default.css" rel="stylesheet" id="style_color" />
+        <meta charset="utf-8" />
+        <title>CastM</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
 
-    <link href="assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="assets/uniform/css/uniform.default.css" />
-</head>
+        <link href="{{ STATIC_URL }}theme/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/assets/bootstrap/css/bootstrap-fileupload.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/css/style.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/css/style_responsive.css" rel="stylesheet" />
+        <link href="{{ STATIC_URL }}theme/css/style_default.css" rel="stylesheet" id="style_color" />
 
-<body class="fixed-top">
+    </head>
 
-    <div ui-view=""></div>
+    <body class="fixed-top">
 
-    <div id="login-copyright">2015 &copy; CastM..</div>
+        <div ui-view></div>
 
-    <!-- Begin Java-scripts -->
+        <div id="login-copyright">2015 &copy; CastM</div>
 
-    <!-- Begin jquery/bootstrap scripts -->
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/jquery.blockui.js"></script>
-    <!-- End jquery/bootstrap scripts -->
+        <!-- Begin Java-scripts -->
 
-    <!-- ie8 fixes -->
-    <!--[if lt IE 9]>
-    <script src="js/excanvas.js"></script>
-    <script src="js/respond.js"></script>
-    <![endif]-->
+        <!-- Begin jquery/bootstrap scripts -->
+        <script src="{{ STATIC_URL }}theme/js/jquery-1.8.3.min.js"></script>
+        <script src="{{ STATIC_URL }}theme/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ STATIC_URL }}theme/js/jquery.blockui.js"></script>
+        <!-- End jquery/bootstrap scripts -->
 
-    <!-- Begin angular and dependencies -->
-    <script src="{{ STATIC_URL }}js/libs/angular/angular.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-animate/angular-animate.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-resource/angular-resource.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-route/angular-route.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-ui-router/angular-ui-router.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-storage/angular-storage.js"></script>
-    <script src="{{ STATIC_URL }}js/libs/angular-busy/angular-busy.js"></script>
-    <!-- Ends angular and dependencies -->
+        <!-- ie8 fixes -->
+        <!--[if lt IE 9]>
+        <script src="{{ STATIC_URL }}theme/js/excanvas.js"></script>
+        <script src="{{ STATIC_URL }}theme/js/respond.js"></script>
+        <![endif]-->
 
-    <script src="{{ STATIC_URL }}js/libs/moment/moment.js" ></script>
+        <!-- Begin angular and dependencies -->
+        <script src="{{ STATIC_URL }}js/libs/angular/angular.min.js"></script>
+        <script src="{{ STATIC_URL }}js/libs/angular-animate/angular-animate.min.js"></script>
+        <script src="{{ STATIC_URL }}js/libs/angular-resource/angular-resource.min.js"></script>
+        <script src="{{ STATIC_URL }}js/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="{{ STATIC_URL }}js/libs/ngstorage/ngStorage.min.js"></script>
+        <script src="{{ STATIC_URL }}js/libs/angular-busy/angular-busy.js"></script>
+        <!-- Ends angular and dependencies -->
 
-    <!-- Begin app scripts -->
-    <script src="{{ STATIC_URL }}js/app/app.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/user-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/services/event-service.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/login-controller.js"></script>
-    <script src="{{ STATIC_URL }}js/app/controllers/home-controller.js"></script>
-    <!-- End app scripts -->
+        <script src="{{ STATIC_URL }}js/libs/moment/moment.js" ></script>
 
-    <!-- Begin template related scripts -->
-    <script type="text/javascript" src="assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
-    <script type="text/javascript" src="assets/uniform/jquery.uniform.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <!-- End template related scripts -->
+        <!-- Begin app scripts -->
+        <script src="{{ STATIC_URL }}js/app/app.js"></script>
+        <script src="{{ STATIC_URL }}js/app/services/user-service.js"></script>
+        <script src="{{ STATIC_URL }}js/app/services/event-service.js"></script>
+        <script src="{{ STATIC_URL }}js/app/services/rating-service.js"></script>
+        <script src="{{ STATIC_URL }}js/app/controllers/login-controller.js"></script>
+        <script src="{{ STATIC_URL }}js/app/controllers/home-controller.js"></script>
+        <script src="{{ STATIC_URL }}js/app/controllers/rating-form-controller.js"></script>
+        <!-- End app scripts -->
 
-    <script>
-        jQuery(document).ready(function() {
-            App.init();
-        });
-    </script>
+        <!-- Begin template related scripts -->
+        <script src="{{ STATIC_URL }}theme/js/scripts.js"></script>
+        <!-- End template related script -->
 
-   <!-- End Java-scripts -->
+        <!-- Being Inline script -->
+        <script>
+            jQuery(document).ready(function() {
+                App.init();
+            });
+        </script>
+        <!-- End Inline script -->
 
-</body>
+       <!-- End Java-scripts -->
+
+
+    </body>
 
 </html>

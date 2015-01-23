@@ -11,10 +11,12 @@ logger = logging.getLogger(__name__)
 class Event(models.Model):
     name = models.CharField("Event Name", max_length=64, blank=False)
     owner = models.ForeignKey(Organization, related_name="events")
-    audition_date = models.DateField(auto_now_add=True)
+    audition_start_date = models.DateField(auto_now_add=True)
+    audition_end_date = models.DateField(auto_now_add=True)
     audition_time_from = models.TimeField()
     audition_time_to = models.TimeField()
-    callback_date = models.DateField(auto_now_add=True)
+    callback_start_date = models.DateField(auto_now_add=True)
+    callback_end_date = models.DateField(auto_now_add=True)
     callback_time_from = models.TimeField()
     callback_time_to = models.TimeField()
     schedule_published = models.BooleanField(default=False, blank=True)
@@ -30,10 +32,12 @@ class Event(models.Model):
             name=self.name,
             owner_id=self.owner.id,
             owner_name=self.owner.name,
-            audition_date=self.audition_date,
+            audition_start_date=self.audition_start_date,
+            audition_end_date=self.audition_end_date,
             audition_time_from=self.audition_time_from,
             audition_time_to=self.audition_time_to,
-            callback_date=self.callback_date,
+            callback_start_date=self.callback_start_date,
+            callback_end_date=self.callback_end_date,
             callback_time_from=self.callback_time_from,
             callback_time_to=self.callback_time_to,
             schedule_published=self.schedule_published,
@@ -127,17 +131,21 @@ class EventAttendee(models.Model):
 
 class PlainEvent(object):
     def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None,
-                 audition_date=None, audition_time_from=None, audition_time_to=None,
-                 callback_date=None, callback_time_from=None, callback_time_to=None,
+                 audition_start_date=None, audition_end_date=None,
+                 audition_time_from=None, audition_time_to=None,
+                 callback_start_date=None, callback_end_date=None,
+                 callback_time_from=None, callback_time_to=None,
                  schedule_published=None):
         self.event_id = event_id
         self.name = name
         self.owner_id = owner_id
         self.owner_name = owner_name
-        self.audition_date = audition_date
+        self.audition_start_date = audition_start_date
+        self.audition_end_date = audition_end_date
         self.audition_time_from = audition_time_from
         self.audition_time_to = audition_time_to
-        self.callback_date = callback_date
+        self.callback_start_date = callback_start_date
+        self.callback_end_date = callback_end_date
         self.callback_time_from = callback_time_from
         self.callback_time_to = callback_time_to
         self.schedule_published = schedule_published

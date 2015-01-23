@@ -6,7 +6,6 @@ from views import RatingFormViewSet
 forms = RatingFormViewSet.as_view({
     'get': 'list',
     'post': 'create',
-    'put': 'update',
 })
 
 router = DefaultRouter()

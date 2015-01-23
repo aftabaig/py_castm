@@ -1,0 +1,64 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Individual Talent Rating Form</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-title">
+                    <h4>New Field</h4>
+                    <span class="tools">
+                        <a href="javascript:;" class="icon-chevron-down"></a>
+                        <a href="javascript:;" class="icon-remove"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <div class="control-group">
+                        <label class="control-label">Field Title</label>
+                        <div class="controls">
+                            <input type="text" placeholder="" class="input-large">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Field Type</label>
+                        <div class="controls">
+                            <select ng-options="fieldType.key as fieldType.value for fieldType in fieldTypes"
+                                    ng-model="newField.type"
+                                    class="input-large m-wrap">
+                                <option value="">-- Choose a Type --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-if="newField.type == 'RAD'" class="control-group">
+                        <label class="control-label">Options</label>
+                        <div class="controls">
+                            <input type="text" placeholder="Option 1" class="input-large">
+                            <input type="text" placeholder="Option 2" class="input-large">
+                        </div>
+                    </div>
+                    <div ng-if="newField.type == 'SCL'" class="control-group">
+                        <label class="control-label">Options</label>
+                        <div class="controls">
+                            <input type="checkbox" value="">&nbsp
+                            <span style="margin-bottom:10px">Use stars</span>
+                            <input type="text" placeholder="Max. Value" class="input-medium">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button ng-click="addField()" class="btn blue">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Content -->
+</div>
+<!-- End Page Container -->
+
+

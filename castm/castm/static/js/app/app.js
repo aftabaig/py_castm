@@ -4,43 +4,55 @@ function onError(e) {
 }
 
 // Create CastM module.
-var castM = angular.module('castM', ['ngResource', 'ui.router', 'ngStorage', 'ui.bootstrap', 'cgBusy']);
+var castM = angular.module('castM', ['ngResource', 'ui.router', 'ngStorage', 'cgBusy']);
 
 castM.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('^^');
   $interpolateProvider.endSymbol('^^');
 });
 
-castM.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function($httpProvider, $stateProvider, $urlRouterProvider) {
+castM.config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/login");
 
     $stateProvider
     .state('login', {
         url:'/login',
         templateUrl: "static/js/app/views/login.html",
-        controller: "LoginController",
-        resolve: {
-
-        }
+        controller: "LoginController"
     })
     .state('casting', {
         templateUrl: "static/js/app/views/casting/base.html",
-        abstract: true
-    })
-    .state('casting.home', {
-        url: '/home',
-        parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/home.html'
-        controller: 'HomeController',
+        abstract: true,
+        controller: function($scope, profile) {
+            $scope.profile = profile;
+            $scope.showOrganization = false;
+            $scope.showEvents = false;
+            $scope.toggleMyOrganization = function() {
+                $scope.showOrganization = !$scope.showOrganization;
+                $scope.showEvents = false;
+            }
+            $scope.toggleMyEvents = function() {
+                $scope.showOrganization = false;
+                $scope.showEvents = !$scope.showEvents;
+            }
+        },
         resolve: {
             profile: function(UserService) {
                 return UserService.profile()
             }
         }
     })
-    .state('event.links', {
+    .state('casting.home', {
+        url: '/home',
+        parent: 'casting',
+        templateUrl: 'static/js/app/views/casting/home.html',
+        controller: 'HomeController'
+    })
+    .state('casting.links', {
         url:'/events/:eventId/links',
         parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/links.html'
+        templateUrl: 'static/js/app/views/casting/links.html',
         controller: 'LinksController',
         resolve: {
             event: function($stateParams, EventService) {
@@ -54,7 +66,7 @@ castM.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function(
             }
         }
     })
-    .state('event.schedules', {
+    .state('casting.schedules', {
         url: '/events/:eventId/schedules',
         parent: 'casting',
         templateUrl: 'static/js/app/views/casting/schedules.html',
@@ -70,10 +82,20 @@ castM.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function(
                 return EventService.approvedTalentAttendees($stateParams.eventId);
             }
         }
-    });
+    })
+    .state('casting.forms', {
+        url: '/organization/:organizationId/forms',
+        parent: 'casting',
+        templateUrl: 'static/js/app/views/casting/rating-form.html',
+        controller: 'RatingFormController',
+        resolve: {
+            fields: function($stateParams, RatingService) {
+                return RatingService.formFields($stateParams.organizationId);
+            }
+        }
+    })
 
-
-}
+});
 
 castM.directive('ngEnter', function () {
     return function (scope, element, attrs) {

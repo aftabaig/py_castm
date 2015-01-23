@@ -166,7 +166,7 @@ def add_or_get_organizations(request):
             "status": HTTP_400_BAD_REQUEST,
             "message":"You can only create/join one organization at the mex",
         }, status=HTTP_400_BAD_REQUEST)
-    
+
 
 @api_view(['GET', 'PUT', ])
 @permission_classes([IsCasting, ])
