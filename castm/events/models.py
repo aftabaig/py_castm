@@ -11,6 +11,11 @@ logger = logging.getLogger(__name__)
 class Event(models.Model):
     name = models.CharField("Event Name", max_length=64, blank=False)
     owner = models.ForeignKey(Organization, related_name="events")
+    add1 = models.CharField("Address 1", max_length=1024, blank=True, null=True)
+    add2 = models.CharField("Address 2", max_length=1024, blank=True, null=True)
+    city = models.CharField("City", max_length=16, blank=True, null=True)
+    state = models.CharField("State", max_length=16, blank=True, null=True)
+    zip = models.CharField("Zip", max_length=16, blank=True, null=True)
     audition_start_date = models.DateField(auto_now_add=True)
     audition_end_date = models.DateField(auto_now_add=True)
     audition_time_from = models.TimeField()
@@ -32,6 +37,11 @@ class Event(models.Model):
             name=self.name,
             owner_id=self.owner.id,
             owner_name=self.owner.name,
+            add1=self.add1,
+            add2=self.add2,
+            city=self.city,
+            state=self.state,
+            zip=self.zip,
             audition_start_date=self.audition_start_date,
             audition_end_date=self.audition_end_date,
             audition_time_from=self.audition_time_from,
@@ -131,6 +141,7 @@ class EventAttendee(models.Model):
 
 class PlainEvent(object):
     def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None,
+                 add1=None, add2=None, city=None, state=None, zip=None,
                  audition_start_date=None, audition_end_date=None,
                  audition_time_from=None, audition_time_to=None,
                  callback_start_date=None, callback_end_date=None,
@@ -140,6 +151,11 @@ class PlainEvent(object):
         self.name = name
         self.owner_id = owner_id
         self.owner_name = owner_name
+        self.add1 = add1
+        self.add2 = add2
+        self.city = city
+        self.state = state
+        self.zip = zip
         self.audition_start_date = audition_start_date
         self.audition_end_date = audition_end_date
         self.audition_time_from = audition_time_from
