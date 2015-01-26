@@ -50,6 +50,17 @@
                             <input type="text" placeholder="Max. Value" class="input-medium">
                         </div>
                     </div>
+                    <div ng-if="newField.type == 'CHK' || newField.type == 'DRPD'" class="control-group">
+                        <label class="control-label">Options</label>
+                        <div class="controls">
+                            <div style="margin-bottom:5px">
+                                <span ng-if="!newField.options" class="label label-important">No options yet</span>
+                                <span style="margin-right:2px;margin-top:2px" class="label label-success" ng-repeat="option in newField.options">^^option^^</span>
+                            </div>
+                            <input ng-model="$parent.newOption" type="text" placeholder="" class="input-medium">
+                            <button ng-click="addOption()" style="margin-top:-10px" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
                     <div class="form-actions">
                         <button ng-click="addField()" class="btn blue">Save</button>
                     </div>

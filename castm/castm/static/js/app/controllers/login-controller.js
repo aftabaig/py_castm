@@ -2,6 +2,8 @@ castM.controller("LoginController", ['$scope', '$rootScope', '$location', '$loca
 
     $scope.doLogin = function() {
 
+        $scope.errorMessage = "";
+
         UserService.authenticate($scope.emailAddress, $scope.password)
         .then(function(user) {
             /*

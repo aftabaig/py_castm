@@ -55,16 +55,16 @@ def create_notification(type, source_id, from_user, for_user, message=None):
 
         try:
             pass
-            # airship = ua.Airship('d6awtJp0T-Cyx5QRXUYr7Q', 'Ysd7JB36S8GugZ29-e5YhQ')
-            # push = airship.create_push()
-            # push.audience = ua.device_token(for_user.my_user.push_token)
-            # push.notification = ua.notification(ios=ua.ios(alert=message,
-            #                                                badge="+1",
-            #                                                extra=extra),
-            #                                     android=ua.android(alert=message,
-            #                                                        extra=extra))
-            # push.device_types = ua.device_types('all')
-            # push.send()
+            airship = ua.Airship('d6awtJp0T-Cyx5QRXUYr7Q', 'Ysd7JB36S8GugZ29-e5YhQ')
+            push = airship.create_push()
+            push.audience = ua.device_token(for_user.my_user.push_token)
+            push.notification = ua.notification(ios=ua.ios(alert=message,
+                                                           badge="+1",
+                                                           extra=extra),
+                                                android=ua.android(alert=message,
+                                                                   extra=extra))
+            push.device_types = ua.device_types('all')
+            push.send()
         except ua.AirshipFailure:
             pass
 

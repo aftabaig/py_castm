@@ -1,13 +1,17 @@
-body {
+.red-body {
     color: #868686;
-   background: #ff5a39;
-background: -moz-linear-gradient(top,  #ff5a39 0%, #fe2455 100%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff5a39), color-stop(100%,#fe2455));
-background: -webkit-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
-background: -o-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
-background: -ms-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
-background: linear-gradient(to bottom,  #ff5a39 0%,#fe2455 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5a39', endColorstr='#fe2455',GradientType=0 );
+    background: #ff5a39;
+    background: -moz-linear-gradient(top,  #ff5a39 0%, #fe2455 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff5a39), color-stop(100%,#fe2455));
+    background: -webkit-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
+    background: -o-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
+    background: -ms-linear-gradient(top,  #ff5a39 0%,#fe2455 100%);
+    background: linear-gradient(to bottom,  #ff5a39 0%,#fe2455 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5a39', endColorstr='#fe2455',GradientType=0 );
+}
+
+body {
+
 
 }
 #main-content {

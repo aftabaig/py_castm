@@ -22,4 +22,17 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
 
     }
 
+    $scope.addOption = function() {
+
+        if ($scope.newField) {
+            if (!$scope.newField.options) {
+                $scope.newField.options = [];
+            }
+            alert($scope.newOption);
+            $scope.newField.options.push($scope.newOption)
+            $scope.newOption = "";
+        }
+
+    }
+
 }]);
