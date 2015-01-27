@@ -125,7 +125,7 @@ def my_events(request):
 
 
 @api_view(['GET', ])
-@permission_classes([IsCasting, ])
+@permission_classes([IsTalentOrCasting, ])
 def get_event(request, event_id=None):
     event = Event.objects.filter(id=event_id).first()
     if event:

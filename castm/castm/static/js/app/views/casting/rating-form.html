@@ -3,7 +3,7 @@
     <!-- Begin Page Header -->
     <div class="row-fluid">
         <div class="span12">
-            <h3 class="page-title">Individual Talent Rating Form</h3>
+            <h3 class="page-title">Talent Rating Form</h3>
         </div>
     </div>
     <!-- End Page Header -->
@@ -14,19 +14,17 @@
                 <div class="widget-title">
                     <h4>New Field</h4>
                     <span class="tools">
-                        <a href="javascript:;" class="icon-chevron-down"></a>
-                        <a href="javascript:;" class="icon-remove"></a>
+                        <a ng-click="addNewField()" class="icon-ok-sign"></a>
+                        <a ng-click="clearField()" class="icon-remove-sign"></a>
                     </span>
                 </div>
                 <div class="widget-body">
-                    <div class="control-group">
-                        <label class="control-label">Field Title</label>
+                    <div style="margin-bottom:-5px" class="control-group">
                         <div class="controls">
-                            <input type="text" placeholder="" class="input-large">
+                            <input ng-model="newField.title" type="text" placeholder="Field Title" class="input-large">
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label">Field Type</label>
+                    <div style="margin-bottom:-5px" class="control-group">
                         <div class="controls">
                             <select ng-options="fieldType.key as fieldType.value for fieldType in fieldTypes"
                                     ng-model="newField.type"
@@ -36,33 +34,83 @@
                         </div>
                     </div>
                     <div ng-if="newField.type == 'RAD'" class="control-group">
-                        <label class="control-label">Options</label>
+                        <label class="control-label">Options:</label>
                         <div class="controls">
-                            <input type="text" placeholder="Option 1" class="input-large">
-                            <input type="text" placeholder="Option 2" class="input-large">
+                            <input ng-model="newField.option1" type="text" placeholder="Option 1" class="input-large">
+                            <input ng-model="newField.option2" type="text" placeholder="Option 2" class="input-large">
                         </div>
                     </div>
                     <div ng-if="newField.type == 'SCL'" class="control-group">
-                        <label class="control-label">Options</label>
-                        <div class="controls">
-                            <input type="checkbox" value="">&nbsp
-                            <span style="margin-bottom:10px">Use stars</span>
-                            <input type="text" placeholder="Max. Value" class="input-medium">
+                        <label class="control-label">Options:</label>
+                        <div style="margin-bottom:2px" class="controls">
+                            <span ng-click="toggleUseStars(0)" style="cursor:pointer" ng-class="{'label-info': newField.use_stars, 'label-primary': !newField.use_stars}" class="label">Use stars</span>
+                        </div>
+                        <div>
+                            <input ng-model="newField.max_value" type="text" placeholder="Max. Value" class="input-small">
                         </div>
                     </div>
                     <div ng-if="newField.type == 'CHK' || newField.type == 'DRPD'" class="control-group">
-                        <label class="control-label">Options</label>
+                        <label class="control-label">Options:</label>
                         <div class="controls">
                             <div style="margin-bottom:5px">
-                                <span ng-if="!newField.options" class="label label-important">No options yet</span>
-                                <span style="margin-right:2px;margin-top:2px" class="label label-success" ng-repeat="option in newField.options">^^option^^</span>
+                                <span ng-if="!newField.items" class="label label-important">No options yet</span>
+                                <span style="margin-right:2px;margin-top:2px" class="label label-success" ng-repeat="item in newField.items">^^item.title^^</span>
+                            </div>
+                            <input ng-model="$parent.newItem" type="text" placeholder="" class="input-medium">
+                            <button ng-click="addItem(0)" style="margin-top:-10px" class="btn btn-primary">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget" ng-repeat="field in fields">
+                <div class="widget-title">
+                    <h4>^^field.title^^</h4>
+                    <span class="tools">
+                        <a ng-click="updateField($index)" class="icon-ok-sign"></a>
+                        <a ng-click="deleteField($index)" class="icon-remove-sign"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <div style="margin-bottom:-5px" class="control-group">
+                        <div class="controls">
+                            <input ng-model="field.title" type="text" placeholder="Field Title" class="input-large">
+                        </div>
+                    </div>
+                    <div style="margin-bottom:-5px" class="control-group">
+                        <div class="controls">
+                            <select ng-options="fieldType.key as fieldType.value for fieldType in fieldTypes"
+                                    ng-model="field.type"
+                                    class="input-large m-wrap">
+                                <option value="">-- Choose a Type --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-if="field.type == 'RAD'" class="control-group">
+                        <label class="control-label">Options:</label>
+                        <div class="controls">
+                            <input ng-model="field.items[0].title" type="text" placeholder="Option 1" class="input-large">
+                            <input ng-model="field.items[1].title" type="text" placeholder="Option 2" class="input-large">
+                        </div>
+                    </div>
+                    <div ng-if="field.type == 'SCL'" class="control-group">
+                        <label class="control-label">Options:</label>
+                        <div style="margin-bottom:2px" class="controls">
+                            <span ng-click="toggleUseStars($index)" style="cursor:pointer" ng-class="{'label-info': field.use_stars, 'label-primary': !field.use_stars}" class="label">Use stars</span>
+                        </div>
+                        <div>
+                            <input ng-model="field.max_value" type="text" placeholder="Max. Value" class="input-small">
+                        </div>
+                    </div>
+                    <div ng-if="field.type == 'CHK' || field.type == 'DRPD'" class="control-group">
+                        <label class="control-label">Options:</label>
+                        <div class="controls">
+                            <div style="margin-bottom:5px">
+                                <span ng-if="!field.items" class="label label-important">No options yet</span>
+                                <span ng-click="removeItem($index, $parent.$index)" style="margin-right:2px;margin-top:2px" class="label label-success" ng-repeat="item in field.items">^^item.title^^</span>
                             </div>
                             <input ng-model="$parent.newOption" type="text" placeholder="" class="input-medium">
                             <button ng-click="addOption()" style="margin-top:-10px" class="btn btn-primary">Add</button>
                         </div>
-                    </div>
-                    <div class="form-actions">
-                        <button ng-click="addField()" class="btn blue">Save</button>
                     </div>
                 </div>
             </div>
@@ -72,4 +120,5 @@
 </div>
 <!-- End Page Container -->
 
+<div route-loader class="alert alert-success loader">Loading...</div>
 

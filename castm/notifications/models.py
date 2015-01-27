@@ -1,10 +1,13 @@
-from django.db import models
+import logging
 
+from django.db import models
 from django.contrib.auth.models import User
 from links.models import Link
 from my_messages.models import Message
 from organizations.models import OrganizationMember
 from callbacks.models import CallbackTalent
+
+logger = logging.getLogger(__name__)
 
 
 class Notification(models.Model):
@@ -65,6 +68,7 @@ class Notification(models.Model):
         elif self.type == 'MSG':
             plain_notification.source = Message.objects.filter(id=self.source_id).first().plain()
         elif self.type == 'OMI' or self.type == 'OIA' or self.type == 'OIR' or self.type == 'OMR' or self.type == 'ORA' or self.type == 'ORR':
+            logger.debug(self.source_id)
             plain_notification.source = OrganizationMember.objects.filter(id=self.source_id).first().plain()
         elif self.type == 'CB':
             plain_notification.source = CallbackTalent.objects.filter(id=self.source_id).first().plain()

@@ -16,6 +16,9 @@ castM.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/login");
 
     $stateProvider
+    .state('error', {
+        url:'/error'
+    })
     .state('login', {
         url:'/login',
         templateUrl: "static/js/app/views/login.html",
@@ -96,6 +99,28 @@ castM.config(function($stateProvider, $urlRouterProvider) {
     })
 
 });
+
+castM.run(function($rootScope) {
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+        console.dir(error);
+    });
+});
+
+
+
+// Directive for showing loading bar during state change.
+castM.directive('routeLoader', function($rootScope) {
+    return {
+        link: function(scope, element) {
+            element.addClass('ng-hide');
+            var unRegister = $rootScope.$on('$stateChangeStart', function() {
+                element.removeClass('ng-hide');
+            });
+            scope.$on('$destroy', unRegister);
+        }
+    };
+});
+
 
 castM.directive('ngEnter', function () {
     return function (scope, element, attrs) {

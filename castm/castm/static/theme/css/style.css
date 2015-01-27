@@ -3487,3 +3487,15 @@ ul.amounts li {
 #main-slider .carousel .carousel-content {
 margin-top: 14% !important;
 }
+
+
+.loader {
+    opacity:0.75;
+    text-align:center;
+    z-index: 2000;
+    width:10%;
+    top:10px;
+    left:45%;
+    position:absolute;
+    display:inline
+}
