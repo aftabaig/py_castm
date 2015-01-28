@@ -102,7 +102,7 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
 
 
 @api_view(['GET', ])
-@permission_classes([IsCasting, ])
+@permission_classes([IsTalentOrCasting, ])
 def get_events(request):
         events = all_events()
         serializer = PlainEventSerializer(events, many=True)
@@ -110,7 +110,7 @@ def get_events(request):
 
 
 @api_view(['GET', ])
-@permission_classes([IsTalentOrCasting, ])
+@permission_classes([IsCasting, ])
 def my_events(request):
     user = request.user
     organization = OrganizationMember.user_organization(user)

@@ -23,10 +23,8 @@
                 <div class="widget-body">
                     <table class="table table-bordered table-hover">
                         <tr ng-repeat="attendee in talentAttendees">
-                            <td>1</td>
-                            <td>Rafiqul</td>
-                            <td>Islam</td>
-                            <td class="hidden-phone">dk123</td>
+                            <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
+                            <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
                             <td><span class="label label-success">Approved</span></td>
                         </tr>
                     </table>
