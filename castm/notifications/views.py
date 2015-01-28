@@ -50,7 +50,8 @@ def create_notification(type, source_id, from_user, for_user, message=None):
         notification.save()
 
         extra = {
-            "id": notification.id
+            "id": notification.id,
+            "type": notification.type
         }
 
         # try:
