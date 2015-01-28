@@ -226,6 +226,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'urbanairship': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
     }
 }
 
