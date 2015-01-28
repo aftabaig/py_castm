@@ -36,11 +36,12 @@ def add_or_get_fields(request, organization_id=None):
                     form.save()
                 field.form = form
                 field.save()
-                for item in items:
-                    new_item = FieldItem(field=field)
-                    new_item.title = item.get("title")
-                    new_item.value = item.get("value")
-                    new_item.save()
+                if items:
+                    for item in items:
+                        new_item = FieldItem(field=field)
+                        new_item.title = item.get("title")
+                        new_item.value = item.get("value")
+                        new_item.save()
                 serializer = FormFieldSerializer(field)
                 return Response(serializer.data)
         return Response({
@@ -63,29 +64,36 @@ def update_or_delete_field(request, organization_id=None, field_id=None):
             if request.method == 'PUT':
                 form = RatingForm.objects.filter(organization=organization).first()
                 if form:
+
                     field.title = request.DATA.get("title")
                     field.type = request.DATA.get("type")
                     field.use_stars = request.DATA.get("use_stars")
                     field.max_value = request.DATA.get("max_value")
+                    field.save()
 
                     items = request.DATA.get("items")
-                    for item in items:
-                        item_id = item.get("id")
-                        field_item = FieldItem(field=field)
-                        if item_id:
-                            field_item = FieldItem.objects.filter(id=item_id).first()
-                        field_item.title = item.get("title")
-                        field_item.value = item.get("value")
-                        field_item.save()
+                    if items:
+                        for item in items:
+                            item_id = item.get("id")
+                            field_item = FieldItem(field=field)
+                            if item_id:
+                                field_item = FieldItem.objects.filter(id=item_id).first()
+                            field_item.title = item.get("title")
+                            field_item.value = item.get("value")
+                            field_item.save()
 
                     deleted_items = request.DATA.get("deleted_items")
-                    for item in deleted_items:
-                        item_id = item.get("id")
-                        field_item = FieldItem.objects.filter(id=item_id).first()
-                        if field_item:
-                            field_item.delete()
+                    if deleted_items:
+                        for item in deleted_items:
+                            item_id = item.get("id")
+                            if item_id:
+                                field_item = FieldItem.objects.filter(id=item_id).first()
+                                if field_item:
+                                    field_item.delete()
+
                     serializer = FormFieldSerializer(field)
                     return Response(serializer.data)
+
                 return Response({
                     "status": HTTP_404_NOT_FOUND,
                     "message": "No form found"

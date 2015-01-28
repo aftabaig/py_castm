@@ -28,6 +28,7 @@ class FieldItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = FieldItem
         fields = (
+            'id',
             'title',
             'value',
         )

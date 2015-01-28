@@ -3,6 +3,8 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
     $scope.fields = fields;
     $scope.fieldTypes = RatingService.fieldTypes();
     $scope.newField = {}
+    $scope.updating = false;
+    $scope.error = "";
 
     // Clears the new field.
     // Called after a new field is added.
@@ -10,14 +12,47 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
         $scope.newField = {}
     }
 
+    $scope.validate = function(field) {
+
+        if (!field.title || field.title.length == 0) {
+            field.message = "Title cannot be empty";
+            return false;
+        }
+        if (!field.type || field.type.length == 0) {
+            field.message = "Select type of field";
+            return false;
+        }
+        if (field.type === 'RAD') {
+            if (!field.option1 || field.option1.length == 0 ||
+                !field.option2 || field.option2.length == 0) {
+                field.message = "Both option1 and option2 are required"
+                return false;
+            }
+        }
+        if (field.type === 'DRPD' || field.type === 'CHK') {
+            if (!field.items || field.items.length < 2) {
+                field.message = "A drop-down/check-box needs to have at-lease 2 or more items"
+                return false;
+            }
+        }
+
+        field.message = "";
+        return true;
+
+    }
+
     // Sends add field request to server.
     $scope.addNewField = function() {
 
         var field = $scope.newField;
 
+        if (!$scope.validate(field)) {
+            return;
+        }
+
         // In case of a "Radio Button", manually fill-up
         // the items array with option1 and option2.
-        if (field.type === 'RDB') {
+        if (field.type === 'RAD') {
             var option1 = {
                 "title": $scope.newField.option1,
                 "value": $scope.newField.option1
@@ -37,13 +72,17 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
             field.items = []
         }
 
+        $scope.updating = true;
+
         // Finally, send add field request to server.
         RatingService.addField($scope.profile.organization.organization_id, field)
         .then(function(addedField) {
             $scope.newField = {}
             field.id = addedField.id;
-            $scope.fields.push(field)
+            $scope.fields.push(field);
+            $scope.updating = false;
         }, function(error) {
+            $scope.updating = false;
             alert(error.message);
         });
 
@@ -52,6 +91,11 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
     $scope.updateField = function(index) {
 
         var field = $scope.fields[index];
+
+        if (!$scope.validate(field)) {
+            return;
+        }
+
         if (field) {
 
             if (field.type === 'RDB') {
@@ -90,13 +134,17 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
                 field.items = []
             }
 
+            $scope.fields.forEach(function (field) {
+                field.updating = false;
+            })
+            field.updating = true;
+
             // Finally, send update field request to server.
             RatingService.updateField($scope.profile.organization.organization_id, field)
-            .then(function(addedField) {
-                $scope.newField = {}
-                field.id = addedField.id;
-                $scope.fields.push(field)
+            .then(function(updatedField) {
+                field.updating = false;
             }, function(error) {
+                field.updating = false;
                 alert(error.message);
             });
 
@@ -104,11 +152,20 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
 
     }
 
+    $scope.confirmDelete = function(index) {
+
+        var field = $scope.fields[index];
+        if (field) {
+            field.showDeleteConfirmation = true;
+        }
+    }
+
     // Sends delete field request to server.
     $scope.deleteField = function(index) {
 
         var field = $scope.fields[index];
         if (field) {
+            field.showDeleteConfirmation = false;
             RatingService.deleteField($scope.profile.organization.organization_id, field.id)
             .then(function(message) {
                 setTimeout(function() {
@@ -129,7 +186,7 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
         if (index > 0) {
             field = $scope.fields[index];
         }
-
+        console.log($scope.newItem);
         if (field) {
             if (!field.items) {
                 field.items = [];
@@ -137,7 +194,9 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
             field.items.push({
                 "title": $scope.newItem,
                 "value": $scope.newItem
-            })
+            });
+            console.log(index);
+            console.dir(field);
             $scope.newItem = "";
         }
 

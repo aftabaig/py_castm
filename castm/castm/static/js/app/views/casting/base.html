@@ -93,7 +93,7 @@
                 ^^profile.organization.name^^
             </li>
             <li ng-if="showOrganization" class="has-sub" style="text-align:center;background-color:gray">
-                <a href="javascript:;" class="">Rating Form</a>
+                <a ui-sref="casting.forms({'organizationId': profile.organization.organization_id})" class="">Rating Form</a>
             </li>
             <li class="has-sub" style="text-align:center;">
                 <a ng-click="toggleMyEvents()" style="cursor:pointer">My Events</a>
