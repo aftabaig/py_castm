@@ -110,7 +110,7 @@ def get_events(request):
 
 
 @api_view(['GET', ])
-@permission_classes([IsCasting, ])
+@permission_classes([IsTalentOrCasting, ])
 def my_events(request):
     user = request.user
     organization = OrganizationMember.user_organization(user)
@@ -184,6 +184,7 @@ def all_casting_attendees(request, event_id=None):
     all_attendees = EventAttendee.all_attendees(event, talents=False)
     plain_attendees = []
     for attendee in all_attendees:
+        logger.debug(attendee.attendee.id)
         plain_attendee = attendee.plain()
         plain_attendees.append(plain_attendee)
     serializer = PlainAttendeeSerializer(plain_attendees, many=True)

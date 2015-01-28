@@ -98,16 +98,18 @@
             <li class="has-sub" style="text-align:center;">
                 <a ng-click="toggleMyEvents()" style="cursor:pointer">My Events</a>
             </li>
+            <div>
             <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:black">
-                SETC
+                <span ng-if="myEvent">^^myEvent.name^^</span>
+                <span ng-if="!myEvent">You don't have any event</span>
             </li>
-            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+            <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                 <a href="javascript:;" class="">Link Requests</a>
             </li>
-            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+            <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                 <a href="javascript:;" class="">Schedules</a>
             </li>
-            <li ng-if="showEvents" class=has-sub" style="text-align:center;background-color:gray">
+            <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                 <a href="javascript:;" class="">Callbacks</a>
             </li>
         </ul>

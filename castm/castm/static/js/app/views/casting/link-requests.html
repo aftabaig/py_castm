@@ -1,0 +1,44 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Link Requests</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+
+            <!-- Talents -->
+            <div class="widget" ng-disabled="true">
+                <div class="widget-title">
+                    <h4 class="span3">Talent Attendees</h4>
+                    <span class="tools span1">
+                        <a ng-click="addNewField()" class="icon-ok-sign"></a>
+                        <a ng-click="clearField()" class="icon-remove-sign"></a>
+                    </span>
+                </div>
+                <div class="widget-body">
+                    <table class="table table-bordered table-hover">
+                        <tr ng-repeat="attendee in talentAttendees">
+                            <td>1</td>
+                            <td>Rafiqul</td>
+                            <td>Islam</td>
+                            <td class="hidden-phone">dk123</td>
+                            <td><span class="label label-success">Approved</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- Ends Talents -->
+
+        </div>
+        <!-- End Page Content -->
+    </div>
+    <!-- End Page Container -->
+</div>
+
+<div route-loader class="alert alert-success loader">Loading...</div>
+

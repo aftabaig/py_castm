@@ -83,7 +83,7 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
             $scope.updating = false;
         }, function(error) {
             $scope.updating = false;
-            alert(error.message);
+            field.message = error.message;
         });
 
     }
@@ -97,6 +97,10 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
         }
 
         if (field) {
+
+            if (field.updating) {
+                return;
+            }
 
             if (field.type === 'RDB') {
                 var option1 = {
@@ -134,9 +138,6 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
                 field.items = []
             }
 
-            $scope.fields.forEach(function (field) {
-                field.updating = false;
-            })
             field.updating = true;
 
             // Finally, send update field request to server.
@@ -145,7 +146,7 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
                 field.updating = false;
             }, function(error) {
                 field.updating = false;
-                alert(error.message);
+                field.error = error.message;
             });
 
         }
@@ -156,6 +157,9 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
 
         var field = $scope.fields[index];
         if (field) {
+            if (field.updating) {
+                return;
+            }
             field.showDeleteConfirmation = true;
         }
     }
@@ -165,16 +169,21 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
 
         var field = $scope.fields[index];
         if (field) {
+
             field.showDeleteConfirmation = false;
+            field.updating = true;
+
             RatingService.deleteField($scope.profile.organization.organization_id, field.id)
             .then(function(message) {
                 setTimeout(function() {
                     $scope.$apply(function() {
                        $scope.fields.splice(index, 1);
+                       field.updating = false;
                     })
                 }, 100)
             }, function(error) {
-                alert(error.message);
+                field.message = error.message;
+                field.updating = false;
             })
         }
 

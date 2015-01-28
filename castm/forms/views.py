@@ -47,7 +47,7 @@ def add_or_get_fields(request, organization_id=None):
         return Response({
             "status": HTTP_401_UNAUTHORIZED,
             "message": "You are not authorized to view this form"
-        })
+        }, status=HTTP_401_UNAUTHORIZED)
     return Response({
         "status": HTTP_404_NOT_FOUND,
         "message": "Organization not found"

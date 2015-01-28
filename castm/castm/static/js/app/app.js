@@ -17,7 +17,14 @@ castM.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
     .state('error', {
-        url:'/error'
+        url:'/error',
+        resolve: {
+            error: function() {
+                return this.self.error;
+            }
+        },
+        templateUrl: "static/js/app/views/error.html",
+        controller: "ErrorController"
     })
     .state('login', {
         url:'/login',
@@ -27,10 +34,13 @@ castM.config(function($stateProvider, $urlRouterProvider) {
     .state('casting', {
         templateUrl: "static/js/app/views/casting/base.html",
         abstract: true,
-        controller: function($scope, profile) {
+        controller: function($scope, profile, myEvents) {
             $scope.profile = profile;
             $scope.showOrganization = false;
             $scope.showEvents = false;
+            if (myEvents && myEvents.length > 0) {
+                $scope.myEvent = myEvents[0];
+            }
             $scope.toggleMyOrganization = function() {
                 $scope.showOrganization = !$scope.showOrganization;
                 $scope.showEvents = false;
@@ -43,6 +53,9 @@ castM.config(function($stateProvider, $urlRouterProvider) {
         resolve: {
             profile: function(UserService) {
                 return UserService.profile()
+            },
+            myEvents: function(EventService) {
+                return EventService.myEvents();
             }
         }
     })
@@ -55,7 +68,7 @@ castM.config(function($stateProvider, $urlRouterProvider) {
     .state('casting.links', {
         url:'/events/:eventId/links',
         parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/links.html',
+        templateUrl: 'static/js/app/views/casting/link-requests.html',
         controller: 'LinksController',
         resolve: {
             event: function($stateParams, EventService) {
@@ -87,7 +100,7 @@ castM.config(function($stateProvider, $urlRouterProvider) {
         }
     })
     .state('casting.forms', {
-        url: '/organization/:organizationId/forms',
+        url: '/organizations/:organizationId/forms',
         parent: 'casting',
         templateUrl: 'static/js/app/views/casting/rating-form.html',
         controller: 'RatingFormController',
@@ -100,9 +113,12 @@ castM.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-castM.run(function($rootScope) {
+castM.run(function($rootScope, $state) {
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-        console.dir(error);
+        console.log("ended");
+        event.preventDefault();
+        $state.get("error").error = error;
+        return $state.go("error");
     });
 });
 
@@ -114,6 +130,7 @@ castM.directive('routeLoader', function($rootScope) {
         link: function(scope, element) {
             element.addClass('ng-hide');
             var unRegister = $rootScope.$on('$stateChangeStart', function() {
+                console.log("started")
                 element.removeClass('ng-hide');
             });
             scope.$on('$destroy', unRegister);

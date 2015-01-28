@@ -95,7 +95,7 @@
                     </div>
                     <span class="tools span1">
                         <a ng-click="updateField($index)" class="icon-ok-sign"></a>
-                        <a ng-click="deleteField($index)" class="icon-remove-sign"></a>
+                        <a ng-click="confirmDelete($index)" class="icon-remove-sign"></a>
                     </span>
                 </div>
                 <div class="widget-body">
@@ -103,12 +103,10 @@
                         <button ng-click="field.message=''" class="close" data-dismiss="alert">×</button>
                         ^^field.message^^
                     </div>
-                    <div  class="alert alert-error">
+                    <div ng-if="field.showDeleteConfirmation"  class="alert alert-error">
                         Are you sure to delete this field?
-                        <span style="text-align:right">
-                            <button class="btn btn-small btn-danger">Delete</button>
-                            <button class="btn btn-small btn-info">Cancel</button>
-                        </span>
+                        <button ng-click="deleteField($index)" class="btn btn-small btn-danger">Delete</button>
+                        <button ng-click="field.showDeleteConfirmation=false;" class="btn btn-small btn-info">Cancel</button>
                     </div>
                     <div style="margin-bottom:-5px" class="control-group">
                         <div class="controls">
