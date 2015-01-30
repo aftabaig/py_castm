@@ -12,7 +12,7 @@ class Message(models.Model):
     def plain(self):
         plain_msg = PlainMessage(
             msg_id=self.id,
-            # created_at=self.created_at,
+            created_at=self.created_at,
             message=self.message,
             from_user_id=self.from_user.id,
             from_first_name=self.from_user.first_name,
