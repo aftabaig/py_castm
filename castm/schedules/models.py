@@ -17,8 +17,8 @@ class Schedule(models.Model):
             event_id=self.event.id,
             event_name=self.event.name,
             schedule_date=self.schedule_date,
-            schedule_time_from=self.schedule_time_from,
-            schedule_time_to=self.schedule_time_to
+            schedule_time_from="%s %s" % (self.schedule_date, self.schedule_time_from, ),
+            schedule_time_to="%s %s" % (self.schedule_date, self.schedule_time_to, ),
         )
         return plain_schedule
 
@@ -26,6 +26,7 @@ class Schedule(models.Model):
 class ScheduleAttendee(models.Model):
     schedule = models.ForeignKey(Schedule, related_name="schedule_attendees")
     attendee = models.ForeignKey(User)
+    attendee_unique_id = models.CharField("Unique Id", max_length=16, blank=True, null=True)
 
     def plain(self):
         return PlainScheduleAttendee(

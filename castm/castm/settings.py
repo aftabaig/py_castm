@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'um',
     'events',
     'schedules',
+    'callbacks',
     'talent',
     'casting',
     'links',

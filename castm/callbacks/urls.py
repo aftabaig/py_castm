@@ -1,15 +1,18 @@
 from django.conf.urls import patterns, url
 
 # views
-from views import schedules, single_schedule
-from views import add_attendee, delete_attendee
+from views import get_callbacks, get_callback_detail
+from views import add_talent_to_queue, remove_talent_from_queue
+from views import send_callbacks_to_event_organization, send_callbacks_to_talent
 
 urlpatterns = patterns(
     'callbacks.views',
-    url(r'^$', schedules),
-    url(r'^(?P<schedule_id>[0-9]+)/$', single_schedule),
-    url(r'^(?P<schedule_id>[0-9]+)/attendees/$', add_attendee),
-    url(r'^(?P<schedule_id>[0-9]+)/attendees/(?P<attendance_id>[0-9]+)/$', delete_attendee),
+    url(r'^$', get_callbacks),
+    url(r'^(?P<talent_callback_id>[0-9]+)/$', get_callback_detail),
+    url(r'^queue/$', add_talent_to_queue),
+    url(r'^queue/(?P<talent_callback_id>[0-9]+)/$', remove_talent_from_queue),
+    url(r'^send/$', send_callbacks_to_event_organization),
+    url(r'^send-to-talent/$', send_callbacks_to_talent),
 )
 
 

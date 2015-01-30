@@ -66,8 +66,9 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
     event = Event.objects.filter(id=event_id).first()
     attend_request = EventAttendee.objects.filter(id=request_id).first()
     if event:
+        organization = event.owner
         if attend_request:
-            if EventAttendee.user_is_admin(event, user):
+            if OrganizationMember.user_is_admin(organization, user):
                 if attend_request.is_new():
                     message = ""
                     n_type = "ERA"
@@ -81,7 +82,7 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
                     attend_request.save()
                     plain_request = attend_request.plain()
                     serializer = PlainAttendeeSerializer(plain_request)
-                    create_notification(n_type, plain_request.id, user, attend_request.attendee, message=message)
+                    create_notification(n_type, plain_request.attendance_id, user, attend_request.attendee, message=message)
                     return Response(serializer.data)
                 return Response({
                     "status": HTTP_400_BAD_REQUEST,
@@ -265,11 +266,11 @@ def request_attendance(request, event_id=None):
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
-def accept_request(request, organization_id=None, invitation_id=None):
-    return process_attendance_request(request, organization_id, invitation_id)
+def accept_request(request, event_id=None, request_id=None):
+    return process_attendance_request(request, event_id, request_id)
 
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
-def reject_request(request, organization_id=None, invitation_id=None):
-    return process_attendance_request(request, organization_id, invitation_id, accept=False)
+def reject_request(request, event_id=None, request_id=None):
+    return process_attendance_request(request, event_id, request_id, accept=False)

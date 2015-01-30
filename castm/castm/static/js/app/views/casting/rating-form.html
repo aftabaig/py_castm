@@ -68,7 +68,9 @@
                                       class="label label-important">
                                     No items yet
                                 </span>
-                                <span style="margin-right:2px;margin-top:2px" class="label label-success" ng-repeat="item in newField.items">
+                                <span ng-repeat="item in newField.items"
+                                      style="margin-right:2px;margin-top:2px;font-weight:14px"
+                                      class="label label-success">
                                     ^^item.title^^
                                     <span ng-click="removeItem($parent.$index, $index)"
                                           style="cursor:pointer"

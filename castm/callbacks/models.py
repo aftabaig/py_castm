@@ -1,5 +1,5 @@
 from django.db import models
-from events.models import Event
+from events.models import Event, EventOrganizationInfo
 from organizations.models import Organization
 
 from django.contrib.auth.models import User
@@ -8,17 +8,17 @@ from django.contrib.auth.models import User
 class Callback(models.Model):
     event = models.ForeignKey(Event, related_name="event_callbacks")
     callback_organization = models.ForeignKey(Organization, related_name="callbacks")
-    location = models.CharField("Callback Location", max_length=64, blank=False)
-    schedule_date = models.DateField(blank=True, null=True)
-    schedule_time_from = models.TimeField(blank=True, null=True)
-    schedule_time_to = models.TimeField(blank=True, null=True)
-    instructions_by_callback = models.CharField("Instructions by Callback Organization", max_length=1024, blank=True, null=True)
-    instructions_by_event = models.CharField("Instructions by Callback Organization", max_length=1024, blank=True, null=True)
 
     def plain(self):
+
+        q1 = models.Q(event=self.event)
+        q2 = models.Q(organization=self.callback_organization)
+        organization_info = EventOrganizationInfo.objects.filter(q1 & q2).first()
+
         return PlainCallback(
             callback=self,
             callback_organization=self.callback_organization,
+            organization_info=organization_info,
             event=self.event,
         )
 
@@ -34,16 +34,30 @@ class Callback(models.Model):
 
 
 class CallbackTalent(models.Model):
+
+    type_choices = (
+        ('RCB', 'Regular Callback'),
+        ('DCB', 'Dancer Callback'),
+        ('HCB', 'Headshot/Resume Callback')
+    )
+
     callback = models.ForeignKey(Callback, related_name="callback_talents")
     talent = models.ForeignKey(User, related_name="user_callback_talent")
+    callback_type = models.CharField("Callback Type", max_length=3, choices=type_choices, blank=False)
     sent_to_event_organization = models.BooleanField(default=False)
     sent_to_talent = models.BooleanField(default=False)
 
     def plain(self):
+
+        q1 = models.Q(event=self.callback.event)
+        q2 = models.Q(organization=self.callback.callback_organization)
+        organization_info = EventOrganizationInfo.objects.filter(q1 & q2).first()
+
         return PlainCallbackTalent(
             talent_callback_id=self.id,
             callback=self.callback,
             callback_organization=self.callback.callback_organization,
+            organization_info=organization_info,
             talent=self.talent,
             event=self.callback.event,
         )
@@ -76,17 +90,14 @@ class PlainCallback(object):
     def __init__(self,
                  callback=None,
                  callback_organization=None,
+                 organization_info=None,
                  event=None):
         self.callback_id = callback.id
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
         self.callback_organization_logo_url = callback_organization.logo
-        self.callback_location = callback.location
-        self.callback_schedule_date = callback.schedule_date
-        self.callback_schedule_time_from = callback.schedule_time_from
-        self.callback_schedule_time_to = callback.schedule_time_to
-        self.instructions_by_callback = callback.instructions_by_callback
-        self.instructions_by_event = callback.instructions_by_event
+        self.callback_location = organization_info.location
+        self.callback_notes = organization_info.notes
         self.event_id = event.id
         self.event_name = event.name
 
@@ -95,6 +106,7 @@ class PlainCallbackTalent(object):
     def __init__(self, talent_callback_id=None,
                  callback=None,
                  callback_organization=None,
+                 organization_info=None,
                  talent=None,
                  event=None,
                  ):
@@ -103,12 +115,9 @@ class PlainCallbackTalent(object):
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
         self.callback_organization_logo_url = callback_organization.logo
-        self.callback_location = callback.location
-        self.callback_schedule_date = callback.schedule_date
-        self.callback_schedule_time_from = callback.schedule_time_from
-        self.callback_schedule_time_to = callback.schedule_time_to
-        self.instructions_by_callback = callback.instructions_by_callback
-        self.instructions_by_event = callback.instructions_by_event
+        self.callback_type = callback.callback_type
+        self.callback_location = organization_info.location
+        self.callback_notes = organization_info.notes
         self.talent_id = talent.id
         self.talent_first_name = talent.first_name
         self.talent_last_name = talent.last_name

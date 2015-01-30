@@ -140,6 +140,22 @@ class EventAttendee(models.Model):
         return EventAttendee.objects.filter(q)
 
 
+class EventTalentInfo(models.Model):
+    event = models.ForeignKey(Event)
+    talent = models.ForeignKey(User)
+    availability_date_start = models.DateField("Availability - Start", blank=True, null=True)
+    availability_date_end = models.DateField("Availability - End", blank=True, null=True)
+    availability_flexible = models.NullBooleanField("Is Flexible", blank=True, null=True)
+    hiring_preferences = models.CharField("Hiring Preferences", max_length=1024, blank=True, null=True)
+
+
+class EventOrganizationInfo(models.Model):
+    event = models.ForeignKey(Event)
+    organization = models.ForeignKey(Organization)
+    location = models.CharField("Location", max_length=256, blank=True, null=True)
+    notes = models.CharField("Notes", max_length=1024, blank=True, null=True)
+
+
 class PlainEvent(object):
     def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None,
                  add1=None, add2=None, city=None, state=None, zip=None,

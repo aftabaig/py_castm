@@ -7,11 +7,13 @@ from django.contrib.auth.models import User
 from serializers import PlainCallbackSerializer, PlainCallbackTalentSerializer
 
 from um.permissions import IsTalentOrCasting
-from um.permissions import IsCasting
+from um.permissions import IsCasting, IsTalent
 from um.views import error_as_text
 
 from models import Callback, PlainCallback
 from models import CallbackTalent, PlainCallbackTalent
+
+from notifications.views import create_notification
 
 from events.models import Event, EventAttendee
 from organizations.models import Organization, OrganizationMember
@@ -26,20 +28,13 @@ def talent_callbacks(user, event):
     return plain_callbacks
 
 
-def callback_organization_callbacks(organization, event):
-    pass
-
-
-def event_organization_callbacks(organization, event):
-    pass
-
-
-def send_callback_to_event_organization(callback):
-    pass
-
-
-def notify_callback_to_talents(callback):
-    pass
+def organization_callbacks(organization, event):
+    o_callbacks = CallbackTalent.organization_event_callbacks(organization, event)
+    plain_callbacks = []
+    for callback in o_callbacks:
+        plain_callback = callback.plain()
+        plain_callbacks.append(plain_callback)
+    return plain_callbacks
 
 
 @api_view(['GET', ])
@@ -54,19 +49,58 @@ def get_callbacks(request, event_id=None):
             return Response(serializer.data)
         else:
             user_organization = OrganizationMember.user_organization(user)
-            if event.owner == user_organization:
-                pass
-            else:
-                pass
+            my_callbacks = organization_callbacks(user_organization, event)
+            serializer = PlainCallbackTalentSerializer(my_callbacks, many=True)
+            return Response(serializer.data)
     return Response({
         "status": HTTP_404_NOT_FOUND,
         "message": "Event not found"
     }, HTTP_404_NOT_FOUND)
 
 
+@api_view(['GET', ])
+@permission_classes([IsTalent])
+def get_callback_detail(request, event_id, talent_callback_id):
+    user = request.user
+    event = Event.objects.filter(id=event_id).first()
+    if event:
+        talent_callback = CallbackTalent.objects.filter(talent_callback_id).first()
+        if talent_callback:
+            if talent_callback.talent.id == user.id:
+                plain_callback = talent_callback.plain()
+                serializer = PlainCallbackTalentSerializer(plain_callback)
+                return Response(serializer.data)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You can only view your own callback"
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Callback not found"
+        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
 @api_view(['POST', ])
 @permission_classes([IsCasting, ])
-def add_talent_callback(request, event_id=None):
+def add_talent_to_queue(request, event_id=None):
+    """
+    Used by a casting user to add the talent to event's callback queue.
+    He/she needs to be an admin of the organization.
+    The organization must be an approved attendee of the event.
+    Payload:
+    {
+        "talent": [talent_id],
+        "callback_type": 'RCB/DCB/HCB'
+    }
+    Notes:
+    RCB - Regular Callback
+    DCB - Dancer Callback
+    HCB - Headshot/Resume Callback
+    """
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     if event:
@@ -75,6 +109,7 @@ def add_talent_callback(request, event_id=None):
             is_attending = Event.user_is_already_attending(user, event)
             if is_attending:
                 talent_id = request.DATA.get("talent")
+                callback_type = request.DATA.get("callback_type")
                 if talent_id:
                     talent = User.objects.filter(id=talent_id).first()
                     if talent:
@@ -89,10 +124,15 @@ def add_talent_callback(request, event_id=None):
                             callback_talent = CallbackTalent()
                             callback_talent.callback = callback
                             callback_talent.talent = talent
+                            callback_talent.callback_type = callback_type
                             callback_talent.save()
                             plain_callback_talent = callback_talent.plain()
                             serializer = PlainCallbackTalentSerializer(plain_callback_talent)
                             return Response(serializer.data)
+                        return Response({
+                            "status": HTTP_400_BAD_REQUEST,
+                            "message": "Callback to this talent has already been sent"
+                        }, status=HTTP_400_BAD_REQUEST)
                     return Response({
                         "status": HTTP_404_NOT_FOUND,
                         "message": "Talent not found"
@@ -117,7 +157,13 @@ def add_talent_callback(request, event_id=None):
 
 @api_view(['DELETE', ])
 @permission_classes([IsCasting, ])
-def delete_talent_callback(request, event_id=None, talent_callback_id=None):
+def remove_talent_from_queue(request, event_id=None, talent_callback_id=None):
+    """
+    Used by the a casting user to remove a talent from event's callback queue.
+    Needs to pass "talent_callback_id"
+    Notes:
+    Cannot remove it once it's sent to the event.
+    """
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     if event:
@@ -163,10 +209,19 @@ def delete_talent_callback(request, event_id=None, talent_callback_id=None):
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def send_callbacks_to_event_organization(request, event_id=None):
+    """
+    Used by casting user to send callbacks to the event on behalf of his/her organization.
+    The event will then actually pass these callbacks to the talent.
+    He/she needs to be an admin of the organization.
+    The organization must be an approved attendee of the event.
+    Payload:
+    {
+        "talent_callbacks": [comma separated talent_callback_id list]
+    }
+    """
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     str_talent_callbacks = request.DATA.get("talent_callbacks")
-    instructions = request.DATA.get("instructions")
     if event:
         user_organization = OrganizationMember.user_organization(user)
         if user_organization:
@@ -177,7 +232,6 @@ def send_callbacks_to_event_organization(request, event_id=None):
                     talent_callback = CallbackTalent.objects.filter(id=talent_callback_id).first()
                     if talent_callback:
                         if talent_callback.callback.callback_organization == user_organization:
-                            talent_callback.callback.instructions_by_callback = instructions
                             talent_callback.sent_to_event_organization = True
                             talent_callback.save()
                         else:
@@ -194,7 +248,7 @@ def send_callbacks_to_event_organization(request, event_id=None):
                 }, status=HTTP_200_OK)
             return Response({
                 "status": HTTP_401_UNAUTHORIZED,
-                "message": "You must be an admin of your organization to be able to delete a callback"
+                "message": "You must be an admin of your organization to be able to send callbacks"
             }, status=HTTP_401_UNAUTHORIZED)
         return Response({
             "status": HTTP_401_UNAUTHORIZED,
@@ -212,20 +266,19 @@ def send_callbacks_to_talent(request, event_id=None):
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     str_talent_callbacks = request.DATA.get("talent_callbacks")
-    instructions = request.DATA.get("instructions")
     if event:
         user_organization = OrganizationMember.user_organization(user)
         if user_organization:
             is_admin = OrganizationMember.user_is_admin(user_organization, user)
-            if is_admin:
+            if is_admin and event.owner.id == user_organization.id:
                 talent_callback_ids = str_talent_callbacks.split(",")
                 for talent_callback_id in talent_callback_ids:
                     talent_callback = CallbackTalent.objects.filter(id=talent_callback_id).first()
                     if talent_callback:
                         if talent_callback.callback.callback_organization == user_organization:
-                            talent_callback.callback.instructions_by_callback = instructions
                             talent_callback.sent_to_event_organization = True
                             talent_callback.save()
+                            create_notification("CB", talent_callback.id, user, talent_callback.talent.id, message="Callback Request")
                         else:
                             return Response({
                                 "status": HTTP_401_UNAUTHORIZED,
@@ -241,7 +294,7 @@ def send_callbacks_to_talent(request, event_id=None):
                 }, status=HTTP_200_OK)
             return Response({
                 "status": HTTP_401_UNAUTHORIZED,
-                "message": "You must be an admin of your organization to be able to delete a callback"
+                "message": "You must be an admin of the event's organization to be able to send callbacks to talents on behalf of the casting organization"
             }, status=HTTP_401_UNAUTHORIZED)
         return Response({
             "status": HTTP_401_UNAUTHORIZED,

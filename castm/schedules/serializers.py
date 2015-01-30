@@ -7,16 +7,18 @@ from models import Schedule, PlainSchedule
 from models import ScheduleAttendee, PlainScheduleAttendee
 from events.models import Event
 
+logger = logging.getLogger(__name__)
+
 
 class PlainScheduleSerializer(serializers.Serializer):
-    schedule_id = serializers.IntegerField(required=False, read_only=True)
-    schedule_title = serializers.CharField(required=False, read_only=True)
-    event_id = serializers.IntegerField(required=False, read_only=True)
-    event_name = serializers.CharField(required=False, read_only=True)
-    schedule_date = serializers.DateField(required=False, read_only=True)
-    schedule_time_from = serializers.TimeField(required=False, read_only=True)
-    schedule_time_to = serializers.TimeField(required=False, read_only=True)
-    attendees = JSONField(required=False, read_only=True)
+    schedule_id = serializers.IntegerField(required=False)
+    schedule_title = serializers.CharField(required=False)
+    event_id = serializers.IntegerField(required=False)
+    event_name = serializers.CharField(required=False)
+    schedule_date = serializers.DateField(required=False)
+    schedule_time_from = serializers.TimeField(required=False)
+    schedule_time_to = serializers.TimeField(required=False)
+    attendees = JSONField(required=False)
 
     def restore_object(self, attrs, instance=None):
         if instance is not None:
@@ -30,20 +32,29 @@ class PlainScheduleSerializer(serializers.Serializer):
             return instance
         return PlainSchedule(**attrs)
 
+    def from_native(self, data, files=None):
+        data['event_id'] = self.context['event_id']
+        logger.debug(data['schedule_time_from'])
+        return super(PlainScheduleSerializer, self).from_native(data, files)
+
     def save_object(self, obj, **kwargs):
-        schedule = Schedule.objects.filter(id=obj.schedule_id)
+        schedule = Schedule.objects.filter(id=obj.schedule_id).first()
         if not schedule:
+            logger.debug("no schedule")
             schedule = Schedule()
+        logger.debug(schedule)
         if obj.schedule_title:
             schedule.title = obj.schedule_title
         if obj.event_id:
-            schedule.event = Event.objects.filter(id=obj.event_id)
+            schedule.event = Event.objects.filter(id=obj.event_id).first()
         if obj.schedule_date:
             schedule.schedule_date = obj.schedule_date
         if obj.schedule_time_from:
             schedule.schedule_time_from = obj.schedule_time_from
         if obj.schedule_time_to:
-            schedule.schedule_time_from = obj.schedule_time_from
+            schedule.schedule_time_to = obj.schedule_time_to
+        logger.debug("event:")
+        logger.debug(obj.event_id)
         schedule.save()
 
         obj.schedule_id = schedule.id

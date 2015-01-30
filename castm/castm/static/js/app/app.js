@@ -4,7 +4,7 @@ function onError(e) {
 }
 
 // Create CastM module.
-var castM = angular.module('castM', ['ngResource', 'ui.router', 'ngStorage', 'cgBusy']);
+var castM = angular.module('castM', ['ngResource', 'ui.router', 'ui.calendar', 'ui.bootstrap', 'ngStorage', 'cgBusy']);
 
 castM.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('^^');

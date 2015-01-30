@@ -12,25 +12,78 @@
         <div class="span12">
 
             <!-- Talents -->
-            <div class="widget" ng-disabled="true">
-                <div class="widget-title">
-                    <h4 class="span3">Talent Attendees</h4>
-                    <span class="tools span1">
-                        <a ng-click="addNewField()" class="icon-ok-sign"></a>
-                        <a ng-click="clearField()" class="icon-remove-sign"></a>
-                    </span>
-                </div>
-                <div class="widget-body">
-                    <table class="table table-bordered table-hover">
-                        <tr ng-repeat="attendee in talentAttendees">
-                            <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
-                            <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
-                            <td><span class="label label-success">Approved</span></td>
-                        </tr>
-                    </table>
+            <div class="span6">
+                <div class="widget" ng-disabled="true">
+                    <div class="widget-title">
+                        <h4 class="span12">Talent Attendees</h4>
+                    </div>
+                    <div class="widget-body">
+                        <table class="table table-hover">
+                            <tr ng-repeat="attendee in talentAttendees">
+                                <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
+                                <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
+                                <td style="text-align:right">
+                                    <div ng-if="!attendee.is_accepted && !attendee.is_rejected">
+                                        <button ng-click="acceptRequest($parent.$index, true)" class="btn btn-primary">Accept</button>
+                                        <button ng-click="rejectRequest($parent.$index, true)" class="btn btn-danger">Reject</button>
+                                    </div>
+                                    <span ng-if="attendee.is_accepted"
+                                          class="label label-large label-success"
+                                          style="font-size:14px">
+                                        Approved
+                                    </span>
+                                    <span ng-if="attendee.is_rejected"
+                                          class="label label-important"
+                                          style="font-size:14px">
+                                        Rejected
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!-- Ends Talents -->
+
+             <!-- Casting -->
+            <div class="span6">
+                <div class="widget" ng-disabled="true">
+                    <div class="widget-title">
+                        <h4 class="span12">Casting Attendees</h4>
+                    </div>
+                    <div class="widget-body">
+                        <table class="table table-hover">
+                            <tr ng-repeat="attendee in castingAttendees">
+                                <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
+                                <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
+                                <td>^^attendee.organization_name^^</td>
+                                <td style="text-align:right">
+                                    <div ng-if="!attendee.is_accepted && !attendee.is_rejected && !attendee.updating">
+                                        <button ng-click="acceptRequest($index, false)" class="btn btn-primary">Accept</button>
+                                        <button ng-click="rejectRequest($index, false)" class="btn btn-danger">Reject</button>
+                                    </div>
+                                    <div ng-if="attendee.updating" style="padding-top:11px;width:100px;text-align:right">
+                                        <div class="progress progress-striped progress-success active">
+                                            <div style="width: 100%;" class="bar"></div>
+                                        </div>
+                                    </div>
+                                    <span ng-if="attendee.is_accepted"
+                                          class="label label-large label-success"
+                                          style="font-size:14px">
+                                        Approved
+                                    </span>
+                                    <span ng-if="attendee.is_rejected"
+                                          class="label label-danger"
+                                          style="font-weight:14px">
+                                        Rejected
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Ends Casting -->
 
         </div>
         <!-- End Page Content -->
