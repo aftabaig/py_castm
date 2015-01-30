@@ -22,10 +22,6 @@ class PlainEventSerializer(serializers.Serializer):
     callback_time_to = serializers.TimeField(required=False, read_only=True)
     my_attending_status = serializers.CharField(required=False, read_only=True)
 
-    def from_native(self, data, files=None):
-        data['my_attending_status'] = self.context['my_attending_status']
-        return super(PlainEventSerializer, self).from_native(data, files)
-
 
 class PlainAttendeeSerializer(serializers.Serializer):
     attendance_id = serializers.IntegerField(required=False, read_only=True)

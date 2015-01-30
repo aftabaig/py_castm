@@ -206,7 +206,7 @@ class PlainEvent(object):
                  audition_time_from=None, audition_time_to=None,
                  callback_start_date=None, callback_end_date=None,
                  callback_time_from=None, callback_time_to=None,
-                 schedule_published=None):
+                 schedule_published=None, my_attending_status=None):
         self.event_id = event_id
         self.name = name
         self.owner_id = owner_id

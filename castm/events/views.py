@@ -167,9 +167,8 @@ def get_event(request, event_id=None):
     if event:
         plain_event = event.plain()
         my_attending_status = EventAttendee.attendance_status(user, event)
-        serializer = PlainEventSerializer(plain_event, context={
-            'my_attending_status': my_attending_status
-        })
+        plain_event.my_attending_status = my_attending_status
+        serializer = PlainEventSerializer(plain_event)
         return Response(serializer.data)
     return Response({
         "status": HTTP_404_NOT_FOUND,
