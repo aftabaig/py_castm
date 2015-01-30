@@ -315,17 +315,23 @@ def reject_request(request, event_id=None, request_id=None):
 @permission_classes([IsTalentOrCasting, ])
 def talent_event_info(request, event_id=None, talent_id=None):
     user = User.objects.filter(id=talent_id).first()
-    if user:
-        if user.my_user.type == 'T':
-            talent_info = EventTalentInfo.get_talent_info(user)
-            plain_info = talent_info.plain()
-            serializer = PlainTalentEventInfoSerializer(plain_info)
-            return Response(serializer.data)
+    event = Event.objects.filter(id=event_id).first()
+    if event:
+        if user:
+            if user.my_user.type == 'T':
+                talent_info = EventTalentInfo.get_talent_info(user)
+                plain_info = talent_info.plain()
+                serializer = PlainTalentEventInfoSerializer(plain_info)
+                return Response(serializer.data)
+            return Response({
+                "status": HTTP_404_NOT_FOUND,
+                "message": "Talent not found"
+            }, status=HTTP_404_NOT_FOUND)
         return Response({
             "status": HTTP_404_NOT_FOUND,
             "message": "Talent not found"
         }, status=HTTP_404_NOT_FOUND)
     return Response({
         "status": HTTP_404_NOT_FOUND,
-        "message": "Talent not found"
+        "message": "Event not found"
     }, status=HTTP_404_NOT_FOUND)

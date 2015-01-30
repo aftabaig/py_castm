@@ -188,8 +188,8 @@ class EventTalentInfo(models.Model):
         )
 
     @staticmethod
-    def get_talent_info(talent):
-        return EventTalentInfo.objects.filter(talent=talent).first()
+    def get_talent_info(event, talent):
+        return EventTalentInfo.objects.filter(event=event, talent=talent).first()
 
 
 class EventOrganizationInfo(models.Model):
