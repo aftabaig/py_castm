@@ -42,7 +42,7 @@ class PlainAttendeeSerializer(serializers.Serializer):
 
 
 class PlainTalentEventInfoSerializer(serializers.Serializer):
-    availability_date_start = serializers.Dateield(required=False, read_only=True)
+    availability_date_start = serializers.DateField(required=False, read_only=True)
     availability_date_end = serializers.DateField(required=False, read_only=True)
     availability_flexible = serializers.BooleanField(required=False, read_only=True)
     hiring_preferences = serializers.CharField(required=False, read_only=True)
