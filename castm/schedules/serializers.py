@@ -34,7 +34,6 @@ class PlainScheduleSerializer(serializers.Serializer):
 
     def from_native(self, data, files=None):
         data['event_id'] = self.context['event_id']
-        logger.debug(data['schedule_time_from'])
         return super(PlainScheduleSerializer, self).from_native(data, files)
 
     def save_object(self, obj, **kwargs):

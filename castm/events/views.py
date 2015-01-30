@@ -12,11 +12,12 @@ from um.views import error_as_text
 
 from serializers import PlainEventSerializer
 from serializers import PlainAttendeeSerializer
+from serializers import PlainTalentEventInfoSerializer
 
-from models import Event
-from models import PlainEvent
-from models import EventAttendee
-from models import PlainAttendee
+from models import Event, PlainEvent
+from models import EventAttendee, PlainAttendee
+from models import EventTalentInfo, PlainEventTalentInfo
+
 from talent.models import TalentProfile
 from casting.models import CastingProfile
 from organizations.models import Organization
@@ -36,6 +37,24 @@ def all_events(organization=None):
         events = Event.objects.filter(owner=organization)
     else:
         events = Event.objects.all()
+    plain_events = []
+    for event in events:
+        plain_event = event.plain()
+        plain_events.append(plain_event)
+    return plain_events
+
+
+def talent_attending_events(user):
+    events = Event.talent_events(user)
+    plain_events = []
+    for event in events:
+        plain_event = event.plain()
+        plain_events.append(plain_event)
+    return plain_events
+
+
+def casting_attending_events(user):
+    events = Event.casting_events(user)
     plain_events = []
     for event in events:
         plain_event = event.plain()
@@ -127,11 +146,27 @@ def my_events(request):
 
 @api_view(['GET', ])
 @permission_classes([IsTalentOrCasting, ])
+def user_attending_events(request):
+    user = request.user
+    if user.my_user.type == 'T':
+        events = talent_attending_events(user)
+    else:
+        events = casting_attending_events(user)
+    serializer = PlainEventSerializer(events, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
 def get_event(request, event_id=None):
+    user = request.user
     event = Event.objects.filter(id=event_id).first()
     if event:
         plain_event = event.plain()
-        serializer = PlainEventSerializer(plain_event)
+        my_attending_status = EventAttendee.attendance_status(user, event)
+        serializer = PlainEventSerializer(plain_event, context={
+            'my_attending_status': my_attending_status
+        })
         return Response(serializer.data)
     return Response({
         "status": HTTP_404_NOT_FOUND,
@@ -274,3 +309,23 @@ def accept_request(request, event_id=None, request_id=None):
 @permission_classes([IsCasting, ])
 def reject_request(request, event_id=None, request_id=None):
     return process_attendance_request(request, event_id, request_id, accept=False)
+
+
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
+def talent_event_info(request, event_id=None, talent_id=None):
+    user = User.objects.filter(id=talent_id).first()
+    if user:
+        if user.my_user.type == 'T':
+            talent_info = EventTalentInfo.get_talent_info(user)
+            plain_info = talent_info.plain()
+            serializer = PlainTalentEventInfoSerializer(plain_info)
+            return Response(serializer.data)
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Talent not found"
+        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Talent not found"
+    }, status=HTTP_404_NOT_FOUND)

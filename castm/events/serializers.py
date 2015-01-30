@@ -20,6 +20,11 @@ class PlainEventSerializer(serializers.Serializer):
     callback_end_date = serializers.DateField(required=False, read_only=True)
     callback_time_from = serializers.TimeField(required=False, read_only=True)
     callback_time_to = serializers.TimeField(required=False, read_only=True)
+    my_attending_status = serializers.CharField(required=False, read_only=True)
+
+    def from_native(self, data, files=None):
+        data['my_attending_status'] = self.context['my_attending_status']
+        return super(PlainEventSerializer, self).from_native(data, files)
 
 
 class PlainAttendeeSerializer(serializers.Serializer):
@@ -34,3 +39,10 @@ class PlainAttendeeSerializer(serializers.Serializer):
     attendee_profile_url = serializers.CharField(required=False, read_only=True)
     is_accepted = serializers.BooleanField(required=False, read_only=True)
     is_rejected = serializers.BooleanField(required=False, read_only=True)
+
+
+class PlainTalentEventInfoSerializer(serializers.Serializer):
+    availability_date_start = serializers.Dateield(required=False, read_only=True)
+    availability_date_end = serializers.DateField(required=False, read_only=True)
+    availability_flexible = serializers.BooleanField(required=False, read_only=True)
+    hiring_preferences = serializers.CharField(required=False, read_only=True)

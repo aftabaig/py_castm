@@ -54,6 +54,20 @@ class Event(models.Model):
         )
         return plain_event
 
+    @staticmethod
+    def talent_events(talent_user):
+        """
+        :return: All events being attended by the talent.
+        """
+        return Event.objects.all()
+
+    @staticmethod
+    def casting_events(casting_user):
+        """
+        :return: All events being attended by the organization to which the casting user is attached.
+        """
+        return Event.objects.all()
+
 
 class EventAttendee(models.Model):
     event = models.ForeignKey(Event, related_name="attendees")
@@ -108,6 +122,23 @@ class EventAttendee(models.Model):
         return EventAttendee.objects.filter(q).count() > 0
 
     @staticmethod
+    def attendance_status(user, event):
+        q = models.Q(event=event)
+        if user.my_user.type == 'T':
+            q = q & models.Q(attendee=user)
+        else:
+            organization = OrganizationMember.user_organization(user)
+            q = q & models.Q(organization=organization)
+        attendee = EventAttendee.objects.filter(q).first()
+        if not attendee:
+            return 'NOL'
+        if attendee.is_accepted:
+            return 'LNK'
+        if attendee.is_rejected:
+            return 'REJ'
+        return 'PEND'
+
+    @staticmethod
     def all_attendees(event, talents=True):
         q = models.Q(event=event)
         if talents:
@@ -147,6 +178,18 @@ class EventTalentInfo(models.Model):
     availability_date_end = models.DateField("Availability - End", blank=True, null=True)
     availability_flexible = models.NullBooleanField("Is Flexible", blank=True, null=True)
     hiring_preferences = models.CharField("Hiring Preferences", max_length=1024, blank=True, null=True)
+
+    def plain(self):
+        return PlainEventTalentInfo(
+            availability_date_start=self.availability_date_start,
+            availability_date_end=self.availability_date_end,
+            availability_flexible=self.availability_flexible,
+            hiring_preferences=self.hiring_preferences
+        )
+
+    @staticmethod
+    def get_talent_info(talent):
+        return EventTalentInfo.objects.filter(talent=talent).first()
 
 
 class EventOrganizationInfo(models.Model):
@@ -200,3 +243,12 @@ class PlainAttendee(object):
         self.attendee_profile_url = attendee_profile_url
         self.is_accepted = is_accepted
         self.is_rejected = is_rejected
+
+
+class PlainEventTalentInfo(object):
+    def __init__(self, availability_date_start=None, availability_date_end=None, availability_flexible=None,
+                 hiring_preferences=None):
+        self.availability_date_start = availability_date_start
+        self.availability_date_end = availability_date_end
+        self.availability_flexible = availability_flexible
+        self.hiring_preferences = hiring_preferences
