@@ -42,6 +42,9 @@ def delete_schedule_attendance(attendance_id):
 @api_view(['GET', 'POST', ])
 @permission_classes([IsTalentOrCasting, ])
 def get_or_add_schedules(request, event_id=None):
+    """
+    POST NOT for mobiles
+    """
     if request.method == 'GET':
         user = request.user
         event = Event.objects.filter(id=event_id).first()
@@ -87,6 +90,9 @@ def get_or_add_schedules(request, event_id=None):
 @api_view(['PUT', 'DELETE', ])
 @permission_classes([IsTalentOrCasting, ])
 def update_or_delete_schedule(request, event_id=None, schedule_id=None):
+    """
+    NOT for mobiles
+    """
     if request.method == 'PUT':
         user = request.user
         event = Event.objects.filter(id=event_id).first()
@@ -149,6 +155,9 @@ def update_or_delete_schedule(request, event_id=None, schedule_id=None):
 @api_view(['POST', ])
 @permission_classes([IsCasting, ])
 def add_attendee(request, event_id=None, schedule_id=None):
+    """
+    NOT for mobiles
+    """
     if request.method == 'POST':
         user = request.user
         event = Event.objects.filter(id=event_id).first()
@@ -212,6 +221,9 @@ def add_attendee(request, event_id=None, schedule_id=None):
 @api_view(['DELETE', ])
 @permission_classes([IsCasting, ])
 def delete_attendee(request, event_id=None, schedule_id=None, attendance_id=None):
+    """
+    NOT for mobiles
+    """
     if request.method == 'DELETE':
         user = request.user
         event = Event.objects.filter(id=event_id).first()

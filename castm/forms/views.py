@@ -14,6 +14,9 @@ from organizations.models import Organization, OrganizationMember
 @api_view(['GET', 'POST', ])
 @permission_classes([IsCasting, ])
 def add_or_get_fields(request, organization_id=None):
+    """
+    POST NOT for mobiles
+    """
     user = request.user
     organization = Organization.objects.filter(id=organization_id).first()
     if organization:
@@ -57,6 +60,9 @@ def add_or_get_fields(request, organization_id=None):
 @api_view(['PUT', 'DELETE', ])
 @permission_classes([IsCasting, ])
 def update_or_delete_field(request, organization_id=None, field_id=None):
+    """
+    NOT for mobiles
+    """
     organization = Organization.objects.filter(id=organization_id).first()
     if organization:
         field = FormField.objects.filter(id=field_id).first()

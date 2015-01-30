@@ -263,6 +263,9 @@ def send_callbacks_to_event_organization(request, event_id=None):
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def send_callbacks_to_talent(request, event_id=None):
+    """
+    NOT for mobiles
+    """
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     str_talent_callbacks = request.DATA.get("talent_callbacks")

@@ -132,6 +132,9 @@ def get_events(request):
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
 def my_events(request):
+    """
+    NOT for mobiles
+    """
     user = request.user
     organization = OrganizationMember.user_organization(user)
     if organization:
@@ -216,6 +219,9 @@ def pending_talent_attendees(request, event_id=None):
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
 def all_casting_attendees(request, event_id=None):
+    """
+    NOT for mobiles
+    """
     event = Event.objects.filter(id=event_id)
     all_attendees = EventAttendee.all_attendees(event, talents=False)
     plain_attendees = []
@@ -230,6 +236,9 @@ def all_casting_attendees(request, event_id=None):
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
 def qualified_casting_attendees(request, event_id=None):
+    """
+    NOT for mobiles
+    """
     event = Event.objects.filter(id=event_id)
     all_attendees = EventAttendee.qualified_attendees(event, talents=False)
     logger.debug("23")
@@ -244,6 +253,9 @@ def qualified_casting_attendees(request, event_id=None):
 @api_view(['GET', ])
 @permission_classes([IsCasting, ])
 def pending_casting_attendees(request, event_id=None):
+    """
+    NOT for mobiles
+    """
     event = Event.objects.filter(id=event_id)
     all_attendees = EventAttendee.pending_attendees(event, talents=False)
     plain_attendees = []
@@ -302,12 +314,18 @@ def request_attendance(request, event_id=None):
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def accept_request(request, event_id=None, request_id=None):
+    """
+    NOT for mobiles
+    """
     return process_attendance_request(request, event_id, request_id)
 
 
 @api_view(['PUT', ])
 @permission_classes([IsCasting, ])
 def reject_request(request, event_id=None, request_id=None):
+    """
+    NOT for mobiles
+    """
     return process_attendance_request(request, event_id, request_id, accept=False)
 
 
