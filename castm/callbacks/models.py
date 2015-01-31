@@ -116,8 +116,9 @@ class PlainCallbackTalent(object):
         self.callback_organization_name = callback_organization.name
         self.callback_organization_logo_url = callback_organization.logo
         self.callback_type = talent_callback.callback_type
-        self.callback_location = organization_info.location
-        self.callback_notes = organization_info.notes
+        if organization_info:
+            self.callback_location = organization_info.location
+            self.callback_notes = organization_info.notes
         self.talent_id = talent.id
         self.talent_first_name = talent.first_name
         self.talent_last_name = talent.last_name
