@@ -341,7 +341,10 @@ def talent_event_info(request, event_id=None, talent_id=None):
                     plain_info = talent_info.plain()
                     serializer = PlainTalentEventInfoSerializer(plain_info)
                     return Response(serializer.data)
-                return Response({})
+                return Response({
+                    "status": HTTP_404_NOT_FOUND,
+                    "message": "No information given"
+                }, status=HTTP_404_NOT_FOUND)
             return Response({
                 "status": HTTP_404_NOT_FOUND,
                 "message": "Talent not found"
