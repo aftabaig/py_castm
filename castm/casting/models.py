@@ -65,6 +65,8 @@ class PlainProfile(object):
             self.links_count = 0
         if you:
             self.link_status = Link.link_status(user, you)
+        else:
+            self.link_status = "U"
 
 
 
