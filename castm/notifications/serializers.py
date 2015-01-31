@@ -12,8 +12,16 @@ class JSONField(serializers.WritableField):
     def to_native(self, obj):
         logger.debug("to_native")
         try:
-            return obj.__dict__
+            if isinstance(obj, list):
+                changed_list = []
+                for item in obj:
+                    changed_list.append(item.__dict__)
+                return changed_list
+            else:
+                logger.debug("dict")
+                return obj.__dict__
         except exceptions.AttributeError:
+            logger.debug("nothing")
             return None
 
     def from_native(self, value):

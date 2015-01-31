@@ -22,6 +22,7 @@ from organizations.models import Organization, OrganizationMember
 
 logger = logging.getLogger(__name__)
 
+
 def event_callbacks(event):
     callbacks = Callback.event_callbacks(event)
     plain_callbacks = []
@@ -82,7 +83,7 @@ def get_callback_detail(request, event_id, talent_callback_id):
     user = request.user
     event = Event.objects.filter(id=event_id).first()
     if event:
-        talent_callback = CallbackTalent.objects.filter(talent_callback_id).first()
+        talent_callback = CallbackTalent.objects.filter(id=talent_callback_id).first()
         if talent_callback:
             if talent_callback.talent.id == user.id:
                 plain_callback = talent_callback.plain()

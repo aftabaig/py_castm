@@ -1,0 +1,109 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Event Schedules</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+
+            <!-- Begins Schedule -->
+            <div class="span4">
+                <!-- Begins New Schedule -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4 class="span9">New Session</h4>
+                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
+                            <div class="progress progress-striped progress-success active">
+                                <div style="width: 100%;" class="bar"></div>
+                            </div>
+                        </div>
+                        <span class="tools span3" style="text-align:center">
+                            <a ng-click="addNewSchedule()" class="icon-ok-sign"></a>
+                            <a ng-click="clearField()" class="icon-remove-sign"></a>
+                        </span>
+                    </div>
+                    <div class="widget-body">
+                        <div ng-if="newField.message" class="alert alert-error">
+                            <button ng-click="newSchedule.message=''" class="close" data-dismiss="alert">×</button>
+                            ^^newField.message^^
+                        </div>
+                        <div style="margin-bottom:-5px" class="control-group">
+                            <div class="controls">
+                                <input ng-model="newSchedule.schedule_title" type="text" placeholder="Schedule Title" class="input-xlarge">
+                                <input  ng-model=""
+                                                type="text" class="form-control"
+                                                style="width:150px"
+                                                datepicker-popup="dd-MMM-yyyy HH:mm"
+                                                min-mode="time"
+                                                is-open="true"
+                                                close-on-date-selection="true"
+                                                date-disabled="disabled(date, mode)"
+                                                show-button-bar="true"
+                                                show-weeks="false"/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Ends New Schedule -->
+
+                <!-- Begins Schedules List -->
+                <div class="widget" ng-repeat="schedule in schedules">
+                    <div class="widget-title">
+                        <h4>^^schedule.schedule_title^^</h4>
+                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
+                            <div class="progress progress-striped progress-success active">
+                                <div style="width: 100%;" class="bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div style="margin-bottom:-5px" class="control-group">
+                            <div class="controls">
+                                <h5>
+                                    ^^schedule.schedule_date | date: 'd-MMM-yyyy'^^
+                                    ^^schedule.schedule_time_from | date: 'yyyy'^^ -
+                                    ^^schedule.schedule_time_to | date: 'H:mm'^^
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ends Schedules List -->
+
+            </div>
+            <!-- Ends Schedule -->
+
+            <!-- Begins Calendar -->
+            <div class="span8">
+                <div class="widget" ng-disabled="true">
+                    <div class="widget-title">
+                        <h4 class="span3">Add Schedule</h4>
+                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
+                            <div class="progress progress-striped progress-success active">
+                                <div style="width: 100%;" class="bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-body">
+                        <div ui-calendar="uiConfig.calendar" class="calendar" ng-model="calEntries"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ends Calendar -->
+
+        </div>
+    </div>
+    <!-- End Page Content -->
+</div>
+<!-- End Page Container -->
+
+<div route-loader class="alert alert-success loader">Loading...</div>
+
