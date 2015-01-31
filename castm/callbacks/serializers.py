@@ -15,6 +15,7 @@ class PlainCallbackSerializer(serializers.Serializer):
 
 class PlainCallbackTalentSerializer(serializers.Serializer):
     talent_callback_id = serializers.IntegerField(required=False, read_only=True)
+    callback_status = serializers.CharField(required=False, read_only=True)
     callback_id = serializers.IntegerField(required=False, read_only=True)
     callback_organization_id = serializers.IntegerField(required=False, read_only=True)
     callback_organization_name = serializers.CharField(required=False, read_only=True)

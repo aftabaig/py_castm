@@ -115,6 +115,14 @@ class PlainCallbackTalent(object):
                  event=None,
                  ):
         self.talent_callback_id = talent_callback.id
+        if not talent_callback.sent_to_event_organization:
+            self.callback_status = "INQ"
+        elif talent_callback.sent_to_event_organization and not talent_callback.sent_to_talent:
+            self.callback_status = "STE"
+        elif talent_callback.sent_to_event_organization and talent_callback.sent_to_talent:
+            self.callback_status = "STT"
+        self.sent_to_event_organization = talent_callback.sent_to_event_organization
+        self.sent_to_talent = talent_callback.sent_to_talent
         self.callback_id = callback.id
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
