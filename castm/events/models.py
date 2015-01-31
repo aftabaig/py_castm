@@ -225,6 +225,7 @@ class PlainEvent(object):
         self.callback_time_from = callback_time_from
         self.callback_time_to = callback_time_to
         self.schedule_published = schedule_published
+        self.my_attending_status = my_attending_status
 
 
 class PlainAttendee(object):
