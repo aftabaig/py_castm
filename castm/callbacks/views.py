@@ -112,7 +112,7 @@ def add_talent_to_queue(request, event_id=None):
                 callback_type = request.DATA.get("callback_type")
                 if talent_id:
                     talent = User.objects.filter(id=talent_id).first()
-                    if talent:
+                    if talent and talent.my_user.type == 'T':
                         callback_already_sent = CallbackTalent.callback_already_sent(talent, user_organization, event)
                         if not callback_already_sent:
                             callback = Callback.organization_callback(user_organization, event)

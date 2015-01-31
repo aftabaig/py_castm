@@ -26,7 +26,7 @@ class Callback(models.Model):
     def organization_callback(organization, event):
         q1 = models.Q(callback_organization=organization)
         q2 = models.Q(event=event)
-        return Callback.objects.filter(q1 & q2)
+        return Callback.objects.filter(q1 & q2).first()
 
     @staticmethod
     def organization_callback_exists(organization, event):
