@@ -96,8 +96,12 @@ class PlainCallback(object):
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
         self.callback_organization_logo_url = callback_organization.logo
-        self.callback_location = organization_info.location
-        self.callback_notes = organization_info.notes
+        if organization_info:
+            self.callback_location = organization_info.location
+            self.callback_notes = organization_info.notes
+        else:
+            self.callback_location = ""
+            self.callback_notes = ""
         self.event_id = event.id
         self.event_name = event.name
 
@@ -119,6 +123,9 @@ class PlainCallbackTalent(object):
         if organization_info:
             self.callback_location = organization_info.location
             self.callback_notes = organization_info.notes
+        else:
+            self.callback_location = ""
+            self.callback_notes = ""
         self.talent_id = talent.id
         self.talent_first_name = talent.first_name
         self.talent_last_name = talent.last_name
