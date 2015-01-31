@@ -254,12 +254,14 @@ def send_callbacks_to_event_organization(request, event_id=None):
                             talent_callback.save()
                         else:
                             return Response({
-                                "status": HTTP_401_UNAUTHORIZED
+                                "status": HTTP_401_UNAUTHORIZED,
+                                "message": "You are not authorized to perform this action"
                             }, status=HTTP_401_UNAUTHORIZED)
-                    return Response({
-                        "status": HTTP_404_NOT_FOUND,
-                        "message": "Talent callback not found"
-                    }, status=HTTP_404_NOT_FOUND)
+                    else:
+                        return Response({
+                            "status": HTTP_404_NOT_FOUND,
+                            "message": "Talent callback not found"
+                        }, status=HTTP_404_NOT_FOUND)
                 return Response({
                     "status": HTTP_200_OK,
                     "message": "OK"
