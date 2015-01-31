@@ -27,7 +27,7 @@ from notifications.views import create_notification
 logger = logging.getLogger(__name__)
 
 
-def all_events(organization=None):
+def all_events(organization=None, user=None):
     """
     Get all events.
     :return: List of plain events.
@@ -40,6 +40,9 @@ def all_events(organization=None):
     plain_events = []
     for event in events:
         plain_event = event.plain()
+        if user:
+            my_attending_status = EventAttendee.attendance_status(user, event)
+            plain_event.my_attending_status = my_attending_status
         plain_events.append(plain_event)
     return plain_events
 
@@ -49,6 +52,8 @@ def talent_attending_events(user):
     plain_events = []
     for event in events:
         plain_event = event.plain()
+        my_attending_status = EventAttendee.attendance_status(user, event)
+        plain_event.my_attending_status = my_attending_status
         plain_events.append(plain_event)
     return plain_events
 
@@ -58,6 +63,8 @@ def casting_attending_events(user):
     plain_events = []
     for event in events:
         plain_event = event.plain()
+        my_attending_status = EventAttendee.attendance_status(user, event)
+        plain_event.my_attending_status = my_attending_status
         plain_events.append(plain_event)
     return plain_events
 
@@ -124,9 +131,10 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
 @api_view(['GET', ])
 @permission_classes([IsTalentOrCasting, ])
 def get_events(request):
-        events = all_events()
-        serializer = PlainEventSerializer(events, many=True)
-        return Response(serializer.data)
+    user = request.user
+    events = all_events(user=user)
+    serializer = PlainEventSerializer(events, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET', ])
@@ -138,7 +146,7 @@ def my_events(request):
     user = request.user
     organization = OrganizationMember.user_organization(user)
     if organization:
-        events = all_events(organization=organization)
+        events = all_events(organization=organization, user=user)
         serializer = PlainEventSerializer(events, many=True)
         return Response(serializer.data)
     return Response({
