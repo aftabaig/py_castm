@@ -54,7 +54,7 @@ class CallbackTalent(models.Model):
         organization_info = EventOrganizationInfo.objects.filter(q1 & q2).first()
 
         return PlainCallbackTalent(
-            talent_callback_id=self.id,
+            talent_callback=self,
             callback=self.callback,
             callback_organization=self.callback.callback_organization,
             organization_info=organization_info,
@@ -103,19 +103,19 @@ class PlainCallback(object):
 
 
 class PlainCallbackTalent(object):
-    def __init__(self, talent_callback_id=None,
+    def __init__(self, talent_callback=None,
                  callback=None,
                  callback_organization=None,
                  organization_info=None,
                  talent=None,
                  event=None,
                  ):
-        self.talent_callback_id = talent_callback_id
+        self.talent_callback_id = talent_callback.id
         self.callback_id = callback.id
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
         self.callback_organization_logo_url = callback_organization.logo
-        self.callback_type = callback.callback_type
+        self.callback_type = talent_callback.callback_type
         self.callback_location = organization_info.location
         self.callback_notes = organization_info.notes
         self.talent_id = talent.id
