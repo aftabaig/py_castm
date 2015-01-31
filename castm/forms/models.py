@@ -6,6 +6,9 @@ class RatingForm(models.Model):
     organization = models.ForeignKey(Organization, related_name="forms")
     created_at = models.DateTimeField(auto_now_add=True)
 
+    @staticmethod
+    def organization_form(organization):
+        return RatingForm.objects.filter(organization=organization).first()
 
 class FormField(models.Model):
     type_choices = (

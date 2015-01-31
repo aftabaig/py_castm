@@ -106,7 +106,7 @@ def add_talent_to_queue(request, event_id=None):
     if event:
         user_organization = OrganizationMember.user_organization(user)
         if user_organization:
-            is_attending = Event.user_is_already_attending(user, event)
+            is_attending = EventAttendee.user_is_already_attending(user, event)
             if is_attending:
                 talent_id = request.DATA.get("talent")
                 callback_type = request.DATA.get("callback_type")
