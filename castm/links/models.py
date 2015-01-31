@@ -48,6 +48,31 @@ class Link(models.Model):
         return plain_link
 
     @staticmethod
+    def link_status(he, you):
+
+        q1 = models.Q(from_user=he)
+        q2 = models.Q(to_user=you)
+        q3 = models.Q(from_user=you)
+        q4 = models.Q(to_user=he)
+        link = Link.objects.filter((q1 & q4) | (q2 & q3)).first()
+        if link:
+            if link.is_accepted:
+                return "F"
+            else:
+                if link.from_user == you:
+                    if link.is_rejected:
+                        return "RH"
+                    else:
+                            return "PH"
+                else:
+                    if link.is_rejected:
+                        return "RY"
+                    else:
+                        return "PY"
+        else:
+            return "U"
+
+    @staticmethod
     def is_already_link(user_1, user_2):
         q1 = models.Q(from_user=user_1)
         q2 = models.Q(to_user=user_1)

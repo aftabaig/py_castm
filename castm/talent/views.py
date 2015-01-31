@@ -78,7 +78,7 @@ def public_profile(request, user_id=None):
     user = User.objects.filter(id=user_id).first()
     profile = TalentProfile.objects.filter(user_id=user_id).first()
     if user and profile:
-        plain_profile = PlainProfile(user=user, profile=profile)
+        plain_profile = PlainProfile(user=user, profile=profile, you=request.user)
         serializer = PlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
     return Response({

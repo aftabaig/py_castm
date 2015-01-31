@@ -197,6 +197,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'callbacks': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
         'events': {
             'handlers': ['console'],
             'level': 'DEBUG',

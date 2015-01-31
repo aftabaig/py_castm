@@ -1,8 +1,12 @@
+import logging
+
 from django.db import models
 from events.models import Event, EventOrganizationInfo
 from organizations.models import Organization
 
 from django.contrib.auth.models import User
+
+logger = logging.getLogger(__name__)
 
 
 class Callback(models.Model):
@@ -15,12 +19,23 @@ class Callback(models.Model):
         q2 = models.Q(organization=self.callback_organization)
         organization_info = EventOrganizationInfo.objects.filter(q1 & q2).first()
 
+        callback_talents = self.callback_talents.all()
+        plain_callback_talents = []
+        for callback_talent in callback_talents:
+            logger.debug("ok")
+            plain_callback_talents.append(callback_talent.plain())
+        logger.debug(plain_callback_talents)
         return PlainCallback(
             callback=self,
             callback_organization=self.callback_organization,
             organization_info=organization_info,
             event=self.event,
+            talent_callbacks=plain_callback_talents
         )
+
+    @staticmethod
+    def event_callbacks(event):
+        return Callback.objects.filter(event=event)
 
     @staticmethod
     def organization_callback(organization, event):
@@ -91,7 +106,8 @@ class PlainCallback(object):
                  callback=None,
                  callback_organization=None,
                  organization_info=None,
-                 event=None):
+                 event=None,
+                 talent_callbacks=None):
         self.callback_id = callback.id
         self.callback_organization_id = callback_organization.id
         self.callback_organization_name = callback_organization.name
@@ -102,6 +118,12 @@ class PlainCallback(object):
         else:
             self.callback_location = ""
             self.callback_notes = ""
+            logger.debug("__init__")
+            logger.debug(talent_callbacks)
+        if talent_callbacks:
+            self.talent_callbacks = talent_callbacks
+        else:
+            self.talent_callbacks = None
         self.event_id = event.id
         self.event_name = event.name
 

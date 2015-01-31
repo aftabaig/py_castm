@@ -25,6 +25,7 @@ class PlainProfileSerializer(serializers.Serializer):
     mobile = serializers.CharField(required=False)
     office = serializers.CharField(required=False)
     thumbnail = serializers.CharField(required=False)
+    link_status = serializers.CharField(required=False)
 
 
     def restore_object(self, attrs, instance=None):
@@ -41,6 +42,7 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.office = attrs.get('office', instance.office)
             if attrs.get('thumbnail'):
                 instance.thumbnail = attrs.get('thumbnail', instance.thumbnail)
+            instance.link_status = attrs.get('link_status', instance.link_status)
             return instance
         return PlainProfile(**attrs)
 

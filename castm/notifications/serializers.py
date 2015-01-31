@@ -5,15 +5,19 @@ from rest_framework import serializers
 
 from django.contrib.auth.models import User
 
+logger = logging.getLogger(__name__)
+
 
 class JSONField(serializers.WritableField):
     def to_native(self, obj):
+        logger.debug("to_native")
         try:
             return obj.__dict__
         except exceptions.AttributeError:
             return None
 
     def from_native(self, value):
+        logger.debug("from_native")
         return json.loads(value)
 
 

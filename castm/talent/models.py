@@ -56,7 +56,7 @@ class TalentHeadshot(models.Model):
 
 
 class PlainProfile(object):
-    def __init__(self, user=None, profile=None, notification=None):
+    def __init__(self, user=None, profile=None, notification=None, you=None):
         if user:
             self.user_id = user.id
             self.username = user.username
@@ -100,6 +100,10 @@ class PlainProfile(object):
         else:
             self.notifications_count = 0
             self.links_count = 0
+        if you:
+            self.link_status = Link.link_status(user, you)
+        else:
+            self.link_status = "U"
 
 
 

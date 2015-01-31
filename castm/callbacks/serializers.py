@@ -1,6 +1,6 @@
 import logging
 from rest_framework import serializers
-
+from notifications.serializers import JSONField
 
 class PlainCallbackSerializer(serializers.Serializer):
     callback_id = serializers.IntegerField(required=False, read_only=True)
@@ -11,6 +11,7 @@ class PlainCallbackSerializer(serializers.Serializer):
     callback_notes = serializers.CharField(required=False, read_only=True)
     event_id = serializers.IntegerField(required=False, read_only=True)
     event_name = serializers.CharField(required=False, read_only=True)
+    talent_callbacks = JSONField(required=False, read_only=True)
 
 
 class PlainCallbackTalentSerializer(serializers.Serializer):

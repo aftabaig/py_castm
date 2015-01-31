@@ -43,6 +43,7 @@ class PlainProfileSerializer(serializers.Serializer):
     agency_zip = serializers.CharField(required=False)
     resume_categories = serializers.CharField(required=False)
     thumbnail = serializers.CharField(required=False)
+    link_status = serializers.CharField(required=False)
 
     def restore_object(self, attrs, instance=None):
         if instance is not None:
@@ -78,6 +79,7 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.resume_categories = attrs.get('resume_categories', instance.resume_categories)
             if attrs.get('thumbnail'):
                 instance.thumbnail = attrs.get('thumbnail', instance.thumbnail)
+            instance.link_status = attrs.get('link_status', instance.link_status)
             return instance
         return PlainProfile(**attrs)
 

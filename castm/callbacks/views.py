@@ -1,4 +1,6 @@
 # rest_framework
+import logging
+
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED, HTTP_204_NO_CONTENT
@@ -17,6 +19,16 @@ from notifications.views import create_notification
 
 from events.models import Event, EventAttendee
 from organizations.models import Organization, OrganizationMember
+
+logger = logging.getLogger(__name__)
+
+def event_callbacks(event):
+    callbacks = Callback.event_callbacks(event)
+    plain_callbacks = []
+    for callback in callbacks:
+        plain_callback = callback.plain()
+        plain_callbacks.append(plain_callback)
+    return plain_callbacks
 
 
 def talent_callbacks(user, event):
@@ -49,9 +61,15 @@ def get_callbacks(request, event_id=None):
             return Response(serializer.data)
         else:
             user_organization = OrganizationMember.user_organization(user)
-            my_callbacks = organization_callbacks(user_organization, event)
-            serializer = PlainCallbackTalentSerializer(my_callbacks, many=True)
-            return Response(serializer.data)
+            if user_organization == event.owner:
+                callbacks = event_callbacks(event)
+                serializer = PlainCallbackSerializer(callbacks, many=True)
+                logger.debug(serializer.data)
+                return Response(serializer.data)
+            else:
+                my_callbacks = organization_callbacks(user_organization, event)
+                serializer = PlainCallbackTalentSerializer(my_callbacks, many=True)
+                return Response(serializer.data)
     return Response({
         "status": HTTP_404_NOT_FOUND,
         "message": "Event not found"
