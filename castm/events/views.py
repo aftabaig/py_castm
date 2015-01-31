@@ -337,9 +337,11 @@ def talent_event_info(request, event_id=None, talent_id=None):
         if user:
             if user.my_user.type == 'T':
                 talent_info = EventTalentInfo.get_talent_info(event, user)
-                plain_info = talent_info.plain()
-                serializer = PlainTalentEventInfoSerializer(plain_info)
-                return Response(serializer.data)
+                if talent_info:
+                    plain_info = talent_info.plain()
+                    serializer = PlainTalentEventInfoSerializer(plain_info)
+                    return Response(serializer.data)
+                return Response({})
             return Response({
                 "status": HTTP_404_NOT_FOUND,
                 "message": "Talent not found"
