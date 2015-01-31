@@ -7,7 +7,8 @@ from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_
 from django.contrib.auth.models import User
 
 from serializers import RatingFieldSerializer
-from users.views import error_as_text
+from um.views import error_as_text
+from um.permissions import IsCasting
 
 from models import UserRating
 from forms.models import RatingForm

@@ -24,7 +24,7 @@ class Callback(models.Model):
 
     @staticmethod
     def organization_callback(organization, event):
-        q1 = models.Q(callback_ogranization=organization)
+        q1 = models.Q(callback_organization=organization)
         q2 = models.Q(event=event)
         return Callback.objects.filter(q1 & q2)
 
