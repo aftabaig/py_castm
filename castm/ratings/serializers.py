@@ -1,7 +1,11 @@
+import logging
+
 from rest_framework import serializers
 
-from models import UserRating, UserRatingField
+from models import UserRating, UserRatingField, PlainUserRatingField
 from forms.models import RatingForm, FormField
+
+logger = logging.getLogger(__name__)
 
 
 class RatingFieldSerializer(serializers.Serializer):
@@ -13,8 +17,16 @@ class RatingFieldSerializer(serializers.Serializer):
         data['rating_id'] = self.context['rating_id']
         return super(RatingFieldSerializer, self).from_native(data, files)
 
+    def restore_object(self, attrs, instance=None):
+        if instance is not None:
+            instance.form_field_id = attrs.get("form_field_id", instance.schedule_id)
+            instance.form_field_value = attrs.get("form_field_value", instance.schedule_title)
+            return instance
+        return PlainUserRatingField(**attrs)
+
     def save_object(self, obj, **kwargs):
-        rating_field = UserRatingField(rating=obj.rating_id)
+        rating = UserRating.objects.filter(id=self.context['rating_id']).first()
+        rating_field = UserRatingField(rating=rating)
         rating_field.form_field = FormField.objects.filter(id=obj.form_field_id).first()
         rating_field.field_value = obj.form_field_value
         rating_field.save()

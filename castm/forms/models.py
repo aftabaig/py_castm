@@ -10,6 +10,7 @@ class RatingForm(models.Model):
     def organization_form(organization):
         return RatingForm.objects.filter(organization=organization).first()
 
+
 class FormField(models.Model):
     type_choices = (
         ('TXT', 'Text'),

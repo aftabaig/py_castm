@@ -33,6 +33,22 @@ castM.factory("UserService", function($http, $q, $localStorage) {
                 defer.reject(status);
             });
             return defer.promise;
+        },
+        headshots: function() {
+            var url = "/api/casting/headshots";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'GET',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
         }
     }
 });

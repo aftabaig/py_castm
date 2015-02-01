@@ -136,7 +136,8 @@ INSTALLED_APPS = (
     'organizations',
     'my_messages',
     'notifications',
-    'forms'
+    'forms',
+    'ratings'
 )
 
 REST_FRAMEWORK = {
@@ -213,6 +214,11 @@ LOGGING = {
             'propagate': True,
         },
         'notifications': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'ratings': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,

@@ -4,10 +4,10 @@ from organizations.models import Organization
 from django.contrib.auth.models import User
 
 
-class UserRating(models.model):
+class UserRating(models.Model):
     rating_form = models.ForeignKey(RatingForm)
-    talent_user = models.ForeignKey(User)
-    casting_user = models.ForeignKey(User)
+    talent_user = models.ForeignKey(User, related_name="rating_talent_user")
+    casting_user = models.ForeignKey(User, related_name="rating_casting_user")
     casting_organization = models.ForeignKey(Organization)
     rated_at = models.DateTimeField(auto_now_add=True, blank=True)
 
@@ -18,14 +18,21 @@ class UserRating(models.model):
         return UserRating.objects.filter(q1 & q2).count() > 0
 
 
-class UserRatingField(models.model):
+class UserRatingField(models.Model):
     rating = models.ForeignKey(UserRating)
     form_field = models.ForeignKey(FormField)
     field_value = models.CharField("Rating Value", max_length=64, blank=False)
 
 
-class UserOverallRating(object):
-    def __init__(self, talent_id=None, talent_first_name=None, talent_last_name=None, talent_title=None,
-                 talent_thumbnail_url=None, talent_profile_url=None,
-                 event_id=None, event_name=None):
+class PlainUserRatingField(object):
+    def __init__(self, rating_id=None, form_field_id=None, form_field_value=None):
+        self.rating_id = rating_id
+        self.form_field_id = form_field_id
+        self.form_field_value = form_field_value
+
+
+# class UserOverallRating(object):
+#     def __init__(self, talent_id=None, talent_first_name=None, talent_last_name=None, talent_title=None,
+#                  talent_thumbnail_url=None, talent_profile_url=None,
+#                  event_id=None, event_name=None):
 

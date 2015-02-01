@@ -15,7 +15,9 @@ from forms.models import RatingForm
 from organizations.models import Organization, OrganizationMember
 from events.models import Event, EventAttendee
 
-@api_view(['GET', ])
+logger = logging.getLogger(__name__)
+
+@api_view(['POST', ])
 @permission_classes([IsCasting])
 def rate_user(request, event_id=None, talent_id=None):
     user = request.user
@@ -23,10 +25,11 @@ def rate_user(request, event_id=None, talent_id=None):
     if event:
         user_organization = OrganizationMember.user_organization(user)
         if user_organization:
-            is_member = OrganizationMember.user_is_member_of(user_organization, user)
+            is_member = OrganizationMember.user_is_member_of(user, user_organization)
             if is_member:
                 has_attended_event = EventAttendee.is_organization_attending_event(user_organization, event)
-                if has_attended_event:
+                is_owner = event.owner == user_organization
+                if has_attended_event or is_owner:
                     talent_user = User.objects.filter(id=talent_id).first()
                     if talent_user:
                         talent_has_attended_event = EventAttendee.is_user_attending_event(talent_user, event)

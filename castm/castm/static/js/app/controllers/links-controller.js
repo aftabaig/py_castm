@@ -5,7 +5,7 @@ castM.controller("LinksController", ['$scope', '$rootScope', '$location', '$loca
     $scope.castingAttendees = castingAttendees;
 
     $scope.acceptRequest = function(index, isTalent) {
-console.log(index);
+
         // Get reference to attendee.
         var attendee;
         if (isTalent) {
@@ -20,13 +20,9 @@ console.log(index);
         // Send "accept" request to server.
         EventService.acceptRequest(event.event_id, attendee.attendance_id)
         .then(function(data) {
-            setTimeout(function() {
-                $scope.$apply(function() {
-                    attendee.updating = false;
-                    attendee.is_accepted = true;
-                    attendee.is_rejected = false;
-                });
-            }, 100);
+            attendee.updating = false;
+            attendee.is_accepted = true;
+            attendee.is_rejected = false;
         }, function(error) {
             attendee.updating = false;
             attendee.message = error.message;
@@ -50,12 +46,9 @@ console.log(index);
         // Send "reject" request to server.
         EventService.rejectRequest(event.event_id, attendee.attendance_id)
         .then(function(data) {
-            setTimeout(function() {
-                $scope.$apply(function() {
-                    attendee.is_accepted = false;
-                    attendee.is_rejected = true;
-                });
-            }, 100);
+            attendee.updating = false;
+            attendee.is_accepted = false;
+            attendee.is_rejected = true;
         }, function(error) {
             attendee.updating = false;
             attendee.message = error.message;

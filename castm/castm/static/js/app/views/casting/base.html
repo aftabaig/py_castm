@@ -84,7 +84,9 @@
         <!-- Begin Sidebar Menu -->
         <ul class="sidebar-menu">
             <center>
-                <img src="^^profile.thumbnail^^" style=" border-radius: 100%;border: solid 5px #fff;width: 119px; margin-bottom: 20px;">
+                <a ui-sref="casting.home">
+                    <img src="^^profile.thumbnail^^" style=" border-radius: 100%;border: solid 5px #fff;width: 119px; margin-bottom: 20px;">
+                </a>
             </center>
             <li class="has-sub" style="text-align:center;">
                 <a ng-click="toggleMyOrganization()" style="cursor:pointer">My Organization</a>
@@ -109,7 +111,7 @@
                 <a ui-sref="casting.schedules({'eventId': myEvent.event_id})" class="">Schedules</a>
             </li>
             <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
-                <a href="javascript:;" class="">Callbacks</a>
+                <a ui-sref="casting.callbacks({'eventId': myEvent.event_id})" class="">Callbacks</a>
             </li>
         </ul>
         <!-- End Sidebar Menu -->
@@ -117,7 +119,9 @@
     <!-- End Sidebar -->
 
     <!-- Begin Page -->
-    <div ui-view id="main-content"></div>
+    <div ui-view id="main-content">
+        <img src="^^headshot.headshot^^">
+    </div>
     <!-- End Page -->
 
 </div>

@@ -34,8 +34,14 @@ castM.config(function($stateProvider, $urlRouterProvider) {
     .state('casting', {
         templateUrl: "static/js/app/views/casting/base.html",
         abstract: true,
-        controller: function($scope, profile, myEvents) {
+        controller: function($scope, profile, headshots, myEvents) {
             $scope.profile = profile;
+            if (headshots && headshots.length > 0) {
+                $scope.headshot = headshots[0];
+            }
+            else {
+                $scope.headshot = {}
+            }
             $scope.showOrganization = false;
             $scope.showEvents = false;
             if (myEvents && myEvents.length > 0) {
@@ -52,7 +58,10 @@ castM.config(function($stateProvider, $urlRouterProvider) {
         },
         resolve: {
             profile: function(UserService) {
-                return UserService.profile()
+                return UserService.profile();
+            },
+            headshots: function(UserService) {
+                return UserService.headshots();
             },
             myEvents: function(EventService) {
                 return EventService.myEvents();

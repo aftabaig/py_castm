@@ -97,6 +97,7 @@ class OrganizationMember(models.Model):
         q = models.Q(user=user)
         if organization:
             q = q & models.Q(organization=organization)
+            logger.debug(OrganizationMember.objects.filter(q).count())
         return OrganizationMember.objects.filter(q).count() > 0
 
     @staticmethod

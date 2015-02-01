@@ -3499,3 +3499,30 @@ margin-top: 14% !important;
     position:absolute;
     display:inline
 }
+
+#parent-content {
+    position: relative;
+    width:100%;
+    height:100%
+    overflow: hidden;
+}
+
+#parent-content img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    opacity: 0.6;
+}
+
+.table tr:first-child td {
+    border-width:0px !important
+}
+
+.profile-name {
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+    text-color: orange;
+}

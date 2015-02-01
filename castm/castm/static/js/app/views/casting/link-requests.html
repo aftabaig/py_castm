@@ -18,14 +18,35 @@
                         <h4 class="span12">Talent Attendees</h4>
                     </div>
                     <div class="widget-body">
-                        <table class="table table-hover">
+                        <table class="table">
                             <tr ng-repeat="attendee in talentAttendees">
-                                <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
-                                <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
-                                <td style="text-align:right">
-                                    <div ng-if="!attendee.is_accepted && !attendee.is_rejected">
+                                <td style="width:20%">
+                                    <img ng-if="attendee.attendee_thumbnail_url"
+                                         src="^^attendee.attendee_thumbnail_url^^"
+                                         alt=""
+                                         style="width:100px">
+                                    <img ng-if="!attendee.attendee_thumbnail_url"
+                                         src="static/theme/img/avatar-mini.png"
+                                         alt=""
+                                         style="width:100px">
+                                </td>
+                                <td style="width:40%">
+                                    <div class="profile-name">
+                                        ^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^
+                                    </div>
+                                    <div>
+                                        ^^attendee.attendee_title^^
+                                    </div>
+                                </td>
+                                <td style="width:40%;text-align:right;vertical-align:middle">
+                                    <div ng-if="!attendee.is_accepted && !attendee.is_rejected && !attendee.updating">
                                         <button ng-click="acceptRequest($parent.$index, true)" class="btn btn-primary">Accept</button>
                                         <button ng-click="rejectRequest($parent.$index, true)" class="btn btn-danger">Reject</button>
+                                    </div>
+                                    <div ng-if="attendee.updating" style="padding-top:11px;width:100px;text-align:right">
+                                        <div class="progress progress-striped progress-success active">
+                                            <div style="width: 100%;" class="bar"></div>
+                                        </div>
                                     </div>
                                     <span ng-if="attendee.is_accepted"
                                           class="label label-large label-success"
@@ -52,12 +73,27 @@
                         <h4 class="span12">Casting Attendees</h4>
                     </div>
                     <div class="widget-body">
-                        <table class="table table-hover">
+                        <table class="table">
                             <tr ng-repeat="attendee in castingAttendees">
-                                <td><img src="^^attendee.attendee_thumbnail_url^^" alt="" style="border-radius:100%;width:29px"></td>
-                                <td>^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</td>
-                                <td>^^attendee.organization_name^^</td>
-                                <td style="text-align:right">
+                                <td style="width:20%">
+                                    <img ng-if="attendee.attendee_thumbnail_url"
+                                         src="^^attendee.attendee_thumbnail_url^^"
+                                         alt=""
+                                         style="width:100px">
+                                    <img ng-if="!attendee.attendee_thumbnail_url"
+                                         src="static/theme/img/avatar-mini.png"
+                                         alt=""
+                                         style="width:100px">
+                                </td>
+                                <td style="width:40%">
+                                    <div class="profile-name">
+                                        ^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^
+                                    </div>
+                                    <div>
+                                        ^^attendee.organization_name^^
+                                    </div>
+                                </td>
+                                <td style="width:40%;text-align:right;vertical-align:middle">
                                     <div ng-if="!attendee.is_accepted && !attendee.is_rejected && !attendee.updating">
                                         <button ng-click="acceptRequest($index, false)" class="btn btn-primary">Accept</button>
                                         <button ng-click="rejectRequest($index, false)" class="btn btn-danger">Reject</button>
@@ -73,8 +109,8 @@
                                         Approved
                                     </span>
                                     <span ng-if="attendee.is_rejected"
-                                          class="label label-danger"
-                                          style="font-weight:14px">
+                                          class="label label-important"
+                                          style="font-size:14px">
                                         Rejected
                                     </span>
                                 </td>
