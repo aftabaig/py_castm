@@ -42,7 +42,8 @@ def rate_user(request, event_id=None, talent_id=None):
                                 rating.casting_user = user
                                 rating.casting_organization = user_organization
                                 rating.save()
-                                serializer = RatingFieldSerializer(data=request.DATA, many=True, context={
+                                data = request.DATA.get("fields")
+                                serializer = RatingFieldSerializer(data=data, many=True, context={
                                     'rating_id': rating.id
                                 })
                                 if serializer.is_valid():
