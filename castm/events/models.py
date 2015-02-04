@@ -181,6 +181,7 @@ class EventAttendee(models.Model):
 class EventTalentInfo(models.Model):
     event = models.ForeignKey(Event)
     talent = models.ForeignKey(User)
+    audition_id = models.CharField("Audition #", max_length=16, blank=False)
     availability_date_start = models.DateField("Availability - Start", blank=True, null=True)
     availability_date_end = models.DateField("Availability - End", blank=True, null=True)
     availability_flexible = models.NullBooleanField("Is Flexible", blank=True, null=True)
@@ -188,6 +189,7 @@ class EventTalentInfo(models.Model):
 
     def plain(self):
         return PlainEventTalentInfo(
+            audition_id=self.audition_id,
             availability_date_start=self.availability_date_start,
             availability_date_end=self.availability_date_end,
             availability_flexible=self.availability_flexible,
@@ -254,8 +256,9 @@ class PlainAttendee(object):
 
 
 class PlainEventTalentInfo(object):
-    def __init__(self, availability_date_start=None, availability_date_end=None, availability_flexible=None,
+    def __init__(self, audition_id=None, availability_date_start=None, availability_date_end=None, availability_flexible=None,
                  hiring_preferences=None):
+        self.audition_id = audition_id
         self.availability_date_start = availability_date_start
         self.availability_date_end = availability_date_end
         self.availability_flexible = availability_flexible

@@ -7,7 +7,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import permission_classes
-from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_200_OK
+from rest_framework.status import HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_200_OK
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 
@@ -21,7 +21,7 @@ from django.core.mail import send_mail
 from mobi.decorators import detect_mobile
 
 # models
-from models import MyUser
+from models import MyUser, UserDevice
 from talent.models import TalentProfile
 from casting.models import CastingProfile
 
@@ -148,13 +148,14 @@ def authenticate(request):
     """
     serializer = AuthTokenSerializer(data=request.DATA)
     if serializer.is_valid():
-        token, created = Token.objects.get_or_create(user=serializer.object['user'])
-        my_user = MyUser.objects.filter(user=serializer.object['user']).first()
-        my_user.device_type = request.DATA.get("device_type")
-        my_user.push_token = request.DATA.get("push_token")
-        my_user.save()
-        type = None
-        sub_type = None
+        user = serializer.object['user']
+        device_type = request.DATA.get("device_type")
+        push_token = request.DATA.get("push_token")
+        token, created = Token.objects.get_or_create(user=user)
+        my_device = UserDevice.objects.get_or_create(user=user, device_type=device_type)
+        my_device.push_token = push_token
+        my_device.save()
+        my_user = MyUser.objects.filter(user=user).first()
         if my_user:
             if my_user.user.is_active:
                 type = my_user.type
@@ -167,10 +168,29 @@ def authenticate(request):
                 return Response(response)
     return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
 
+
 @api_view(['POST', ])
 @permission_classes([IsTalentOrCasting, ])
 def logout(request):
-    pass
+    user = request.user
+    device_type = request.DATA.get("device_type")
+    push_token = request.DATA.get("push_token")
+    if device_type and push_token:
+        user_device = UserDevice.get_user_device(user, device_type, push_token)
+        if user_device:
+            user_device.delete()
+            return Response({
+                "status": HTTP_200_OK,
+                "message": ""
+            })
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "User device not found"
+        }, status=HTTP_404_NOT_FOUND)
+    return Response({
+        "status": HTTP_400_BAD_REQUEST,
+        "message": "Required fields missing"
+    }, status=HTTP_400_BAD_REQUEST)
 
 
 @api_view(['PUT', ])

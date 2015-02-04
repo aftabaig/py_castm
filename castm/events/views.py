@@ -336,7 +336,7 @@ def reject_request(request, event_id=None, request_id=None):
     return process_attendance_request(request, event_id, request_id, accept=False)
 
 
-@api_view(['GET', ])
+@api_view(['GET', 'PUT', ])
 @permission_classes([IsTalentOrCasting, ])
 def talent_event_info(request, event_id=None, talent_id=None):
     user = User.objects.filter(id=talent_id).first()
@@ -347,6 +347,16 @@ def talent_event_info(request, event_id=None, talent_id=None):
                 talent_info = EventTalentInfo.get_talent_info(event, user)
                 if talent_info:
                     plain_info = talent_info.plain()
+                    if request.method == 'PUT':
+                        audition_id = request.DATA.get("audition_id")
+                        if audition_id:
+                            talent_info.audition_id = audition_id
+                            talent_info.save()
+                        else:
+                            return Response({
+                                "status": HTTP_400_BAD_REQUEST,
+                                "message": "Audition # is required"
+                            }, status=HTTP_400_BAD_REQUEST)
                     serializer = PlainTalentEventInfoSerializer(plain_info)
                     return Response(serializer.data)
                 return Response({

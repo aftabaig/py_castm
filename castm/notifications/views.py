@@ -54,21 +54,23 @@ def create_notification(type, source_id, from_user, for_user, message=None):
             "type": notification.type
         }
 
-        # try:
         airship = ua.Airship('d6awtJp0T-Cyx5QRXUYr7Q', 'gpSq1dyuZYZy-Q1i6qtEit')
-        push = airship.create_push()
-        push.audience = ua.device_token(for_user.my_user.push_token)
-        push.notification = ua.notification(ios=ua.ios(alert=message,
-                                                       badge="+1",
-                                                       extra=extra),
-                                            android=ua.android(alert=message,
-                                                               extra=extra))
-        logger.debug(push.audience)
-        push.device_types = ua.device_types('ios', 'android', )
-        push.send()
-        logger.debug(push)
-        # except ua.AirshipFailure:
-        #     pass
+        devices = for_user.user_devices.all()
+        for device in devices:
+            if device.push_token:
+                push = airship.create_push()
+                if device.device_type == 'iOS':
+                    push.audience = ua.device_token(device.push_token)
+                elif device.device_type == 'Android':
+                    push.audience = ua.apid(device.push_token)
+
+                push.notification = ua.notification(ios=ua.ios(alert=message,
+                                                               badge="+1",
+                                                               extra=extra),
+                                                    android=ua.android(alert=message,
+                                                                       extra=extra))
+                push.device_types = ua.device_types('ios', 'android', )
+                push.send()
 
         return notification
 
