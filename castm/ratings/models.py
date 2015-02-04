@@ -24,9 +24,15 @@ class UserRatingField(models.Model):
     field_value = models.CharField("Rating Value", max_length=64, blank=False)
 
     @staticmethod
-    def user_ratings(talent_user, casting_user):
-        q1 = models.Q(rating__talent_user==talent_user)
-        q2 = models
+    def user_field_ratings(talent_user, casting_user, field):
+        q1 = models.Q(rating__talent_user=talent_user)
+        q2 = models.Q(rating__casting_user=casting_user)
+        q3 = models.Q(form_field=field)
+        field_rating = UserRatingField.objects.filter(q1 & q2 & q3).first()
+        if field_rating:
+            return field_rating.field_value
+        return ""
+
 
 class PlainUserRatingField(object):
     def __init__(self, rating_id=None, form_field_id=None, form_field_value=None):
