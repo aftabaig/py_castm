@@ -1,7 +1,11 @@
+import logging
+
 from django.db import models
 from forms.models import RatingForm, FormField
 from organizations.models import Organization
 from django.contrib.auth.models import User
+
+logger = logging.getLogger(__name__)
 
 
 class UserRating(models.Model):

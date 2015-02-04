@@ -37,7 +37,7 @@ def user_rating_info(event, organization, talent):
     members = organization.members.all()
 
     form = RatingForm.organization_form(organization)
-    form_fields = form.fields
+    form_fields = form.fields.all()
 
     fields = []
     for form_field in form_fields:
@@ -57,7 +57,7 @@ def user_rating_info(event, organization, talent):
                 "member_first_name": member.user.first_name,
                 "member_last_name": member.user.last_name
             }
-            rating_value = UserRatingField.user_field_ratings(talent, member, form_field)
+            rating_value = UserRatingField.user_field_ratings(talent, member.user, form_field)
             rating = {
                 "member_info": member_info,
                 "rating": rating_value
@@ -116,9 +116,7 @@ def user_ratings(request, event_id=None, talent_id=None):
                                     "message": "You have already rated this user for this event"
                                 }, status=HTTP_400_BAD_REQUEST)
                             else:
-                                return Response({
-                                    user_rating_info(event, user_organization, talent_user)
-                                })
+                                return Response(user_rating_info(event, user_organization, talent_user))
                         return Response({
                             "status": HTTP_400_BAD_REQUEST,
                             "message": "This talent has not attended this event"

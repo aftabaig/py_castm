@@ -441,8 +441,14 @@ def send_link_request(request, user_id=0):
             create_notification("LR", link_request.id, me, other, message="Link Request")
             serializer = PlainLinkSerializer(link_request.plain(me))
             return Response(serializer.data)
-        return Response(status=HTTP_400_BAD_REQUEST)
-    return Response(status=HTTP_404_NOT_FOUND)
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message": "You are already linked to this user"
+        }, status=HTTP_400_BAD_REQUEST)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "User not found"
+    }, status=HTTP_404_NOT_FOUND)
 
 
 @api_view(['POST', ])
