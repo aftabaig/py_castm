@@ -17,6 +17,45 @@ from events.models import Event, EventAttendee
 
 logger = logging.getLogger(__name__)
 
+def user_rating_info(event_id, organization_id, user_id):
+
+    event = Event.objects.filter(id=event_id).first()
+    organization = Organization.objects.filter(id=organization_id).first()
+    talent = User.objects.filter(id=user_id).first()
+
+    event_info = {
+        "event_id": event.id,
+        "event_name": event.name
+    }
+
+    talent_info = {
+        "talent_id": talent.id,
+        "talent_first_name": talent.first_name,
+        "talent_last_name": talent.last_name,
+        "talent_title": talent.user_profile.get().title,
+        "talent_thumbnail_url": talent.user_profile.get().thumbnail,
+        "talent_profile_url": "/api/talents/profile/%d" % (talent.id, )
+    }
+
+    fields = []
+
+    form = RatingForm.organization_form(organization)
+    form_fields = form.fields
+
+    for field in form_fields:
+
+        field_info = {
+            "field_id": field.id,
+            "field_title": field.title,
+            "field_type": field.type,
+            "max_value": field.max_value
+        }
+
+        ratings = []
+
+
+
+
 @api_view(['POST', ])
 @permission_classes([IsCasting])
 def rate_user(request, event_id=None, talent_id=None):
@@ -78,6 +117,51 @@ def rate_user(request, event_id=None, talent_id=None):
         "status": HTTP_404_NOT_FOUND,
         "message": "Event not found"
     }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
+def view_user_rating(request, event_id=None, talent_id=None):
+    user = request.user
+    event = Event.objects.filter(id=event_id).first()
+    if event:
+        user_organization = OrganizationMember.user_organization(user)
+        if user_organization:
+            is_member = OrganizationMember.user_is_member_of(user, user_organization)
+            if is_member:
+                has_attended_event = EventAttendee.is_organization_attending_event(user_organization, event)
+                is_owner = (event.owner == user_organization)
+                if has_attended_event or is_owner:
+                    talent_user = User.objects.filter(id=talent_id).first()
+                    if talent_user:
+                        talent_has_attended_event = EventAttendee.is_user_attending_event(talent_user, event)
+                        if talent_has_attended_event:
+
+                        return Response({
+                            "status": HTTP_400_BAD_REQUEST,
+                            "message": "This talent has not attended this event"
+                        })
+                    return Response({
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "Talent not found"
+                    }, status=HTTP_404_NOT_FOUND)
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "Your organization did not attend the event"
+                }, status=HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_401_UNAUTHORIZED,
+                "message": "You are not an approved member of an organization"
+            }, status=HTTP_401_UNAUTHORIZED)
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message": "You must be associated with an organization to perform this action"
+        }, status=HTTP_400_BAD_REQUEST)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, status=HTTP_404_NOT_FOUND)
+
 
 
 

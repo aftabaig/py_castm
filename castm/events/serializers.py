@@ -38,6 +38,7 @@ class PlainAttendeeSerializer(serializers.Serializer):
 
 
 class PlainTalentEventInfoSerializer(serializers.Serializer):
+    audition_id = serializers.CharField(required=False, read_only=True)
     availability_date_start = serializers.DateField(required=False, read_only=True)
     availability_date_end = serializers.DateField(required=False, read_only=True)
     availability_flexible = serializers.BooleanField(required=False, read_only=True)

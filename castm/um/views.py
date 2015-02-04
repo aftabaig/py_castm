@@ -152,7 +152,7 @@ def authenticate(request):
         device_type = request.DATA.get("device_type")
         push_token = request.DATA.get("push_token")
         token, created = Token.objects.get_or_create(user=user)
-        my_device = UserDevice.objects.get_or_create(user=user, device_type=device_type)
+        my_device, created = UserDevice.objects.get_or_create(user=user, device_type=device_type)
         my_device.push_token = push_token
         my_device.save()
         my_user = MyUser.objects.filter(user=user).first()
