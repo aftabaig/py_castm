@@ -23,6 +23,10 @@ class UserRatingField(models.Model):
     form_field = models.ForeignKey(FormField)
     field_value = models.CharField("Rating Value", max_length=64, blank=False)
 
+    @staticmethod
+    def user_ratings(talent_user, casting_user):
+        q1 = models.Q(rating__talent_user==talent_user)
+        q2 = models
 
 class PlainUserRatingField(object):
     def __init__(self, rating_id=None, form_field_id=None, form_field_value=None):
