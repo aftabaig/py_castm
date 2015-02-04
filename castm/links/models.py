@@ -54,7 +54,7 @@ class Link(models.Model):
         q2 = models.Q(to_user=you)
         q3 = models.Q(from_user=you)
         q4 = models.Q(to_user=he)
-        link = Link.objects.filter((q1 & q4) | (q2 & q3)).first()
+        link = Link.objects.filter((q1 & q2) | (q3 & q4)).first()
         if link:
             if link.is_accepted:
                 return "F"
