@@ -93,7 +93,7 @@ class PlainProfileSerializer(serializers.Serializer):
 
         profile = TalentProfile.objects.get(id=obj.profile_id)
         if obj.is_stage_name:
-            profile.stage_is_stage_name = obj.is_stage_name
+            profile.is_stage_name = obj.is_stage_name
         if obj.stage_first_name:
             profile.stage_first_name = obj.stage_first_name
         if obj.stage_last_name:
