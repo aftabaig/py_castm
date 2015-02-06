@@ -38,6 +38,8 @@ logger = logging.getLogger(__name__)
 # TODO: This is only 2 level deep.
 # To dig deep, we might need a recursive method.
 def error_as_text(errors, status):
+    logger.debug(errors)
+    logger.debug(status)
     keys = errors.keys()
     error = errors[keys[0]]
     first_error = error[0]
@@ -149,8 +151,11 @@ def authenticate(request):
     serializer = AuthTokenSerializer(data=request.DATA)
     if serializer.is_valid():
         user = serializer.object['user']
+        logger.debug(user)
         device_type = request.DATA.get("device_type")
+        logger.debug(device_type)
         push_token = request.DATA.get("push_token")
+        logger.debug(push_token)
         token, created = Token.objects.get_or_create(user=user)
         my_device, created = UserDevice.objects.get_or_create(user=user, device_type=device_type, push_token=push_token)
         my_device.push_token = push_token

@@ -13,9 +13,15 @@ logger = logging.getLogger(__name__)
 
 
 class TalentProfile(models.Model):
+
     race_choices = (
         ('E', 'Ethnic'),
         ('R', 'Red-Headed'),
+    )
+
+    gender_choices = (
+        ('M', 'Male'),
+        ('F', 'Female'),
     )
     user = models.ForeignKey(User, related_name="user_profile")
     my_user = models.OneToOneField(MyUser)
@@ -23,6 +29,7 @@ class TalentProfile(models.Model):
     stage_first_name = models.CharField("Stage First Name", max_length=32, blank=True, db_index=True)
     stage_last_name = models.CharField("Stage Last Name", max_length=32, blank=True, db_index=True)
     title = models.CharField("Title", max_length=255, blank=True, db_index=True)
+    gender = models.CharField("Gender", max_length=1, choices=gender_choices, blank=True)
     height = models.CharField("Height", max_length=32, null=True, blank=True)
     weight = models.CharField("Weight", max_length=32, null=True, blank=True)
     birth_day = models.DateField("Birthday", null=True, blank=True)
@@ -31,21 +38,21 @@ class TalentProfile(models.Model):
     race = models.CharField("Race", max_length=2, choices=race_choices, blank=True)
     personal_add1 = models.CharField("Personal Address 1", max_length=1024, blank=True)
     personal_add2 = models.CharField("Personal Address 2", max_length=1024, blank=True)
-    personal_city = models.CharField("City", max_length=16, blank=True)
-    personal_state = models.CharField("State", max_length=16, blank=True)
-    personal_zip = models.CharField("Zip", max_length=16, blank=True)
+    personal_city = models.CharField("City", max_length=32, blank=True)
+    personal_state = models.CharField("State", max_length=32, blank=True)
+    personal_zip = models.CharField("Zip", max_length=32, blank=True)
     personal_mobile = models.CharField("Mobile #", max_length=32, blank=True)
     personal_office = models.CharField("Office #", max_length=32, blank=True)
-    personal_email = models.CharField("Email Address", max_length=32, blank=True)
+    personal_email = models.CharField("Email Address", max_length=75, blank=True)
     is_agency_contact = models.BooleanField("Have an agent?", blank=True, default=False)
     agency = models.CharField("Agency", max_length=255, blank=True)
     agency_name = models.CharField("Agency Name", max_length=255, blank=True)
     agency_office_num = models.CharField("Agency Office #", max_length=16, blank=True)
     agency_add1 = models.CharField("Agency Address 1", max_length=1024, blank=True)
     agency_add2 = models.CharField("Agency Address 2", max_length=1024, blank=True)
-    agency_city = models.CharField("City", max_length=16, blank=True)
-    agency_state = models.CharField("State", max_length=16, blank=True)
-    agency_zip = models.CharField("Zip", max_length=16, blank=True)
+    agency_city = models.CharField("City", max_length=32, blank=True)
+    agency_state = models.CharField("State", max_length=32, blank=True)
+    agency_zip = models.CharField("Zip", max_length=32, blank=True)
     resume_categories = models.TextField("Categories Dump", blank=True)
     thumbnail = models.CharField("Thumbnail", max_length=255, blank=True)
 
