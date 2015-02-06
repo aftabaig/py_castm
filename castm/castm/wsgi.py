@@ -7,9 +7,9 @@ if host_name is "castm":
     sys.path.append('/var/www/castm/py_castm/castm')
 
 import os
-if host_name is "castm":
+if host_name == "castm":
     os.environ["DJANGO_SETTINGS_MODULE"] = "castm.production"
-elif host_name is "":
+elif host_name == "":
     os.environ["DJANGO_SETTINGS_MODULE"] = "castm.staging"
 else:
     os.environ["DJANGO_SETTINGS_MODULE"] = "castm.development"

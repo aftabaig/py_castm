@@ -6,7 +6,7 @@ if __name__ == "__main__":
     host_name = gethostname()
     
     import os
-    if host_name is "castm":
+    if host_name == "castm":
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "castm.production")
     else:
         os.environ.setdefault("DJANGO_SETTINGS_MODULE", "castm.development")
