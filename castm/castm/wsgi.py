@@ -2,13 +2,13 @@ from socket import gethostname
 host_name = gethostname()
 
 import sys
-if host_name is "castm":
+if host_name == "castm":
     sys.path.append('/var/www/castm/py_castm/castm/castm')
     sys.path.append('/var/www/castm/py_castm/castm')
 
 import os
 if host_name == "castm":
-    os.environ["DJANGO_SETTINGS_MODULE"] = "production"
+    os.environ["DJANGO_SETTINGS_MODULE"] = "castm.production"
 elif host_name == "":
     os.environ["DJANGO_SETTINGS_MODULE"] = "castm.staging"
 else:
