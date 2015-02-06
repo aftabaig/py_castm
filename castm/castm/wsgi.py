@@ -8,7 +8,7 @@ if host_name is "castm":
 
 import os
 if host_name == "castm":
-    os.environ["DJANGO_SETTINGS_MODULE"] = "castm.production"
+    os.environ["DJANGO_SETTINGS_MODULE"] = "production"
 elif host_name == "":
     os.environ["DJANGO_SETTINGS_MODULE"] = "castm.staging"
 else:
