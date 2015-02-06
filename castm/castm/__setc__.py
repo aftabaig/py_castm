@@ -1,11 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from socket import gethostname
+host_name = gethostname()
+
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings_dev")
+if host_name == 'castm':
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "production")
+else:
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "development")
 
 import sys
-sys.path.append("/Users/aftabaig/Projects/Flash/Code/Backends/py_castm/castm")
+if host_name == 'castm':
+    sys.path.append("/var/www/castm/py_castm/castm")
+else:
+    sys.path.append("/Users/aftabaig/Projects/Flash/Code/Backends/py_castm/castm")
 
 import django
 django.setup()
