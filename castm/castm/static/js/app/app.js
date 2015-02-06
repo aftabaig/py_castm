@@ -11,6 +11,14 @@ castM.config(function($interpolateProvider) {
   $interpolateProvider.endSymbol('^^');
 });
 
+castM.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start;
+        return input.slice(start);
+    }
+});
+
+
 castM.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/login");

@@ -4,6 +4,18 @@ castM.controller("LinksController", ['$scope', '$rootScope', '$location', '$loca
     $scope.talentAttendees = talentAttendees;
     $scope.castingAttendees = castingAttendees;
 
+    $scope.currentTalentPage = 0;
+    $scope.talentPageSize = 25;
+    $scope.talentPageCount = function() {
+        return Math.ceil($scope.talentAttendees.length/$scope.talentPageSize);
+    }
+
+    $scope.currentCastingPage = 0;
+    $scope.castingPageSize = 25;
+    $scope.castingPageCount = function() {
+        return Math.ceil($scope.castingAttendees.length/$scope.castingPageSize);
+    }
+
     $scope.acceptRequest = function(index, isTalent) {
 
         // Get reference to attendee.

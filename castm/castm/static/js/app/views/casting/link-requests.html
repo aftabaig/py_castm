@@ -19,7 +19,7 @@
                     </div>
                     <div class="widget-body">
                         <table class="table">
-                            <tr ng-repeat="attendee in talentAttendees | ">
+                            <tr ng-repeat="attendee in talentAttendees | startFrom: currentTalentPage * talentPageSize | limitTo: talentPageSize">
                                 <td style="width:20%">
                                     <img ng-if="attendee.attendee_thumbnail_url"
                                          src="^^attendee.attendee_thumbnail_url^^"
@@ -58,6 +58,12 @@
                                           style="font-size:14px">
                                         Rejected
                                     </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#333333;text-align:center;margin-top:5px" colspan="3">
+                                    <button ng-click="currentTalentPage=currentTalentPage-1" ng-disabled="currentTalentPage == 0" style="btn btn-primary"><</button>
+                                    <button ng-click="currentTalentPage=currentTalentPage+1" ng-disabled="currentTalentPage >= talentAttendee.length/talentPageSize - 1" style="btn btn-primary">></button>
                                 </td>
                             </tr>
                         </table>
