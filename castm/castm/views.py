@@ -8,3 +8,4 @@ def home(request, template_name="index.html"):
 
 def activation(request, template_name="activation.html"):
     return render_to_response(template_name, context_instance=RequestContext(request))
+
