@@ -1,9 +1,7 @@
-# Django settings for cast'em project.
-
-from _base import *
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+from _base import *
 
 ADMINS = (
     #('Matthew Davenport', 'matthew@castm.co'),
