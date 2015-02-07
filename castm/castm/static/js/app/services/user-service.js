@@ -35,7 +35,7 @@ castM.factory("UserService", function($http, $q, $localStorage) {
             return defer.promise;
         },
         headshots: function() {
-            var url = "/api/casting/headshots";
+            var url = "/api/casting/headshots/";
             var defer = $q.defer();
             $http({
                 headers: {

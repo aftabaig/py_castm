@@ -62,8 +62,9 @@
                             </tr>
                             <tr>
                                 <td style="background-color:#333333;text-align:center;margin-top:5px" colspan="3">
-                                    <button ng-click="currentTalentPage=currentTalentPage-1" ng-disabled="currentTalentPage == 0" style="btn btn-primary"><</button>
-                                    <button ng-click="currentTalentPage=currentTalentPage+1" ng-disabled="currentTalentPage >= talentAttendee.length/talentPageSize - 1" style="btn btn-primary">></button>
+                                    <button ng-click="currentTalentPage=currentTalentPage-1" ng-disabled="currentTalentPage == 0" class="btn btn-primary"><</button>
+                                    <span>^^currentTalentPage+1^^/^^talentPageCount()^^</span>
+                                    <button ng-click="currentTalentPage=currentTalentPage+1" ng-disabled="currentTalentPage >= talentAttendees.length/talentPageSize - 1" class="btn btn-primary">></button>
                                 </td>
                             </tr>
                         </table>
