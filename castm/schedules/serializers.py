@@ -18,6 +18,7 @@ class PlainScheduleSerializer(serializers.Serializer):
     schedule_date = serializers.DateField(required=False)
     schedule_time_from = serializers.TimeField(required=False)
     schedule_time_to = serializers.TimeField(required=False)
+    sort_id = serializers.IntegerField(required=False)
     attendees = JSONField(required=False)
 
     def restore_object(self, attrs, instance=None):
@@ -29,6 +30,7 @@ class PlainScheduleSerializer(serializers.Serializer):
             instance.schedule_date = attrs.get("schedule_date", instance.schedule_date)
             instance.schedule_time_from = attrs.get("schedule_time_from", instance.schedule_time_from)
             instance.schedule_time_to = attrs.get("schedule_time_to", instance.schedule_time_to)
+            instance.sort_id = attrs.get("sort_id", instance.sort_id)
             return instance
         return PlainSchedule(**attrs)
 
@@ -52,6 +54,8 @@ class PlainScheduleSerializer(serializers.Serializer):
             schedule.schedule_time_from = obj.schedule_time_from
         if obj.schedule_time_to:
             schedule.schedule_time_to = obj.schedule_time_to
+        if obj.sort_id:
+            schedule.sort_id = obj.sort_id
         logger.debug("event:")
         logger.debug(obj.event_id)
         schedule.save()

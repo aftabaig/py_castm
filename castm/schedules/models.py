@@ -9,6 +9,7 @@ class Schedule(models.Model):
     schedule_date = models.DateField(blank=False)
     schedule_time_from = models.TimeField(blank=False)
     schedule_time_to = models.TimeField(blank=False)
+    sort_id = models.IntegerField(blank=True)
 
     def plain(self):
         plain_schedule = PlainSchedule(
@@ -19,6 +20,7 @@ class Schedule(models.Model):
             schedule_date=self.schedule_date,
             schedule_time_from="%s %s" % (self.schedule_date, self.schedule_time_from, ),
             schedule_time_to="%s %s" % (self.schedule_date, self.schedule_time_to, ),
+            sort_id=self.sort_id
         )
         return plain_schedule
 
@@ -52,6 +54,7 @@ class PlainSchedule(object):
                  event_id=None, event_name=None,
                  schedule_date=None,
                  schedule_time_from=None, schedule_time_to=None,
+                 sort_id=None,
                  attendees=None):
         self.schedule_id = schedule_id
         self.schedule_title = schedule_title
@@ -60,6 +63,7 @@ class PlainSchedule(object):
         self.schedule_date = schedule_date
         self.schedule_time_from = schedule_time_from
         self.schedule_time_to = schedule_time_to
+        self.sort_id = sort_id
         self.attendees = attendees
 
 

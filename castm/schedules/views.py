@@ -158,6 +158,42 @@ def update_or_delete_schedule(request, event_id=None, schedule_id=None):
         }, HTTP_404_NOT_FOUND)
 
 
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def update_schedules_order(request, event_id=None):
+    user = request.user
+    event = Event.objects.filter(id=event_id).first()
+    arr_schedules = request.DATA.get("schedules")
+    if event:
+        event_owner = event.owner
+        is_event_admin = OrganizationMember.user_is_admin(event_owner, user)
+        if is_event_admin:
+            for dict_schedule in arr_schedules:
+                schedule_id = dict_schedule.get("schedule_id")
+                sort_id = dict_schedule.get("sort_id")
+                schedule = Schedule.objects.filter(id=schedule_id)
+                if schedule:
+                    schedule.sort_id = sort_id
+                    schedule.save()
+                else:
+                    return Response({
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "Schedule not found"
+                    }, status=HTTP_404_NOT_FOUND)
+                return Response({
+                    "status": HTTP_200_OK,
+                    "message": "OK"
+                })
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to perform this operation"
+        }, HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, HTTP_404_NOT_FOUND)
+
+
 @api_view(['POST', ])
 @permission_classes([IsCasting, ])
 def add_attendee(request, event_id=None, schedule_id=None):

@@ -82,6 +82,22 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        changeOrder: function(eventId, schedules) {
+            var url = api_url + eventId + "/schedules/orders/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'PUT',
+                url: url,
+                data: schedules
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+        },
         addAttendee: function(eventId, scheduleId, attendee) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/attendees/";
             var defer = $q.defer();

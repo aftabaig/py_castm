@@ -115,12 +115,8 @@ castM.controller("ScheduleController", ['$scope', '$rootScope', '$location', '$l
             $scope.message = "";
             $scope.updating = true;
 
-            console.dir(schedule)
-            console.dir(event)
-
             ScheduleService.removeSchedule(schedule.event_id, schedule.schedule_id)
             .then(function() {
-                console.log("ok")
                 $scope.schedules.splice(index, 1);
                 $scope.updating = false;
             }, function(error) {
@@ -134,6 +130,49 @@ castM.controller("ScheduleController", ['$scope', '$rootScope', '$location', '$l
             })
 
         }
+
+    }
+
+    $scope.moveUp = function(index) {
+
+        if (index == 0) {
+            return;
+        }
+
+        var schedule1 = $scope.schedules[index];
+        var schedule2 = $scope.schedules[index-1];
+
+        $scope.message = "";
+        $scope.updating = true;
+
+        ScheduleService.changeOrder($scope.event.id, [{
+                "schedule_id": schedule1.schedule_id,
+                "sort_id": index
+            }, {
+                "schedule_id": schedule2.schedule_id,
+                "sort_id": index-1
+            }
+        ])
+        .then(function() {
+
+            schedule1.sort_id = index,
+            schedule2.sort_id = index-1
+
+            
+
+        }, function(error) {
+
+        })
+
+    }
+
+    $scope.moveDown = function(index) {
+
+        if (index >= $scope.schedules.length) {
+            return;
+        }
+
+
 
     }
 
