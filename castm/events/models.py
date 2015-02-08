@@ -59,14 +59,29 @@ class Event(models.Model):
         """
         :return: All events being attended by the talent.
         """
-        return Event.objects.all()
+        events = Event.objects.all()
+        user_events = []
+        for event in events:
+            attendees = event.attendees.all()
+            for attendee in attendees:
+                if attendee.attendee.id == talent_user.id and attendee.is_accepted:
+                    user_events.append(event)
+        return user_events
 
     @staticmethod
     def casting_events(casting_user):
         """
         :return: All events being attended by the organization to which the casting user is attached.
         """
-        return Event.objects.all()
+        user_organization = OrganizationMember.user_organization(casting_user)
+        events = Event.objects.all()
+        user_events = []
+        for event in events:
+            attendees = event.attendees.all()
+            for attendee in attendees:
+                if attendee.organization == user_organization and attendee.is_accepted:
+                    user_events.append(event)
+        return user_events
 
 
 class EventAttendee(models.Model):
