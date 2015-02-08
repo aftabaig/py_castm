@@ -56,15 +56,15 @@ def create_notification(type, source_id, from_user, for_user, message=None):
         }
 
         app_key = settings.UA['app_key']
-        app_secret = settings.UA['app_secret']
+        master_secret = settings.UA['master_secret']
 
         logger.debug("app_key")
         logger.debug(app_key)
 
-        logger.debug("app_secret")
-        logger.debug(app_secret)
+        logger.debug("master_secret")
+        logger.debug(master_secret)
 
-        airship = ua.Airship(app_key, app_secret)
+        airship = ua.Airship(app_key, master_secret)
         devices = for_user.user_devices.all()
         for device in devices:
             logger.debug("push_token")
