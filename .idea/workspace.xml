@@ -127,8 +127,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/events/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37078652" vertical-offset="1035" max-vertical-offset="4275">
-              <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.6741573" vertical-offset="855" max-vertical-offset="4275">
+              <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -1419,8 +1419,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/events/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37078652" vertical-offset="1035" max-vertical-offset="4275">
-          <caret line="85" column="47" selection-start-line="85" selection-start-column="47" selection-end-line="85" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.6741573" vertical-offset="855" max-vertical-offset="4275">
+          <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
           <folding />
         </state>
       </provider>

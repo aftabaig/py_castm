@@ -64,7 +64,7 @@ class Event(models.Model):
         for event in events:
             me = event.attendees.filter(attendee=talent_user).first()
             if me:
-                user_events.push(event)
+                user_events.append(event)
         return user_events
 
     @staticmethod
@@ -80,11 +80,11 @@ class Event(models.Model):
         for event in events:
             me = event.attendees.filter(organization=user_organization).first()
             if me:
-                user_events.push(event)
+                user_events.append(event)
             # in case the user's organization is the
             # owner of the event.
             if user_organization == event.owner:
-                user_events.push(event)
+                user_events.append(event)
         return user_events
 
 
