@@ -119,7 +119,7 @@ def process_membership_request(request, organization_id=None, request_id=None, a
                     membership.save()
                     plain_invitation = membership.plain()
                     serializer = PlainMemberSerializer(plain_invitation)
-                    create_notification("", membership.id, membership.inititator, membership.user, message=message)
+                    create_notification("", membership.id, membership.initiator, membership.user, message=message)
                     return Response(serializer.data)
                 return Response({
                     "status": HTTP_400_BAD_REQUEST,
