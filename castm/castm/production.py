@@ -101,9 +101,9 @@ CLOUDINARY = {
 }
 
 UA = {
-    'app_key': 'PQh3GQsFTBG0gt4aEjFFIQ',
-    'app_secret': 'nkjXFu3HTAi2yL_83Z2APA',
-    'master_secret': 'zCYCWfEfTle05XN2oZObDQ'
+    'app_key': 'azJQN5H2RxStXbWwM_qDww',
+    'app_secret': 'Gzap1pA2SHSuIOYj9Fbwgg',
+    'master_secret': 'zh6qT5PvSLS7TiLz4LW2hQ'
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

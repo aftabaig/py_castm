@@ -13,6 +13,7 @@ virtualenv==1.10.1
 django-admin-bootstrapped
 django-keyedcache
 django-mobi==0.1.7
+stripe
 pillow
 cloudinary
 urbanairship
