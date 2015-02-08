@@ -83,6 +83,13 @@ class Notification(models.Model):
         return Notification.objects.filter(q1 & q2 & q3)
 
     @staticmethod
+    def membership_requests_notifications(source_id):
+        q1 = models.q(source_id=source_id)
+        q2 = models.Q(type="OMR")
+        q3 = models.Q(action_taken=False)
+        return Notification.objects.filter(q1 & q2)
+
+    @staticmethod
     def unseen_notifications_count(user):
         q1 = models.Q(for_user=user)
         q2 = models.Q(seen=False)

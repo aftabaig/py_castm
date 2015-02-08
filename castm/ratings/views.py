@@ -34,7 +34,7 @@ def user_rating_info(event, organization, talent):
         "talent_profile_url": "/api/talents/profile/%d" % (talent.id, )
     }
 
-    members = organization.members.all()
+    members = OrganizationMember.organization_members(organization)
 
     form = RatingForm.organization_form(organization)
     form_fields = form.fields.all()

@@ -49,6 +49,9 @@ castM.factory("UserService", function($http, $q, $localStorage) {
                 defer.reject(status);
             });
             return defer.promise;
+        },
+        logout: function() {
+            delete $localStorage.user;
         }
     }
 });

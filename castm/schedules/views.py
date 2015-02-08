@@ -75,6 +75,9 @@ def get_or_add_schedules(request, event_id=None):
                 })
                 if serializer.is_valid():
                     serializer.save()
+                    schedule = Schedule.objects.filter(id=serializer.object.schedule_id).first()
+                    plain_schedule = schedule.plain()
+                    serializer = PlainScheduleSerializer(plain_schedule)
                     return Response(serializer.data)
                 return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), HTTP_400_BAD_REQUEST)
             return Response({
@@ -106,6 +109,9 @@ def update_or_delete_schedule(request, event_id=None, schedule_id=None):
                     serializer = PlainScheduleSerializer(plain_schedule, data=request.DATA)
                     if serializer.is_valid():
                         serializer.save()
+                        schedule = Schedule.objects.filter(id=serializer.object.schedule_id).first()
+                        plain_schedule = schedule.plain()
+                        serializer = PlainScheduleSerializer(plain_schedule)
                         return Response(serializer.data)
                 return Response({
                     "status": HTTP_401_UNAUTHORIZED,

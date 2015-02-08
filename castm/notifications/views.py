@@ -343,6 +343,12 @@ def action_taken(request, notification_id):
             related_notification.action_taken = True
             related_notification.seen = True
             related_notification.save()
+    elif notification.type == "OMR":
+        related_notifications = Notification.membership_requests_notifications(notification.source_id)
+        for related_notification in related_notifications:
+            related_notification.action_taken = True
+            related_notification.seen = True
+            related_notification.save()
     if notification.for_user == user:
         notification.action_taken = True
         notification.seen = True

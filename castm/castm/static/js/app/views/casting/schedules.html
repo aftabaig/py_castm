@@ -4,7 +4,7 @@
     <!-- Begin Page Header -->
     <div class="row-fluid">
         <div class="span12">
-            <h3 class="page-title">Event Schedules</h3>
+            <h3 class="page-title">Sessions</h3>
         </div>
     </div>
     <!-- End Page Header -->
@@ -13,91 +13,109 @@
     <div class="row-fluid">
         <div class="span12">
 
-            <!-- Begins Schedule -->
-            <div class="span4">
-                <!-- Begins New Schedule -->
+            <!-- Begins Session -->
+            <div class="span12">
+
+                <!-- Begins New Session -->
                 <div class="widget">
                     <div class="widget-title">
-                        <h4 class="span9">New Session</h4>
-                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
+                        <h4 class="span12">All Sessions</h4>
+                    </div>
+                    <div class="widget-body">
+                        <div ng-if="updating" style="padding-bottom:4px">
                             <div class="progress progress-striped progress-success active">
                                 <div style="width: 100%;" class="bar"></div>
                             </div>
                         </div>
-                        <span class="tools span3" style="text-align:center">
-                            <a ng-click="addNewSchedule()" class="icon-ok-sign"></a>
-                            <a ng-click="clearField()" class="icon-remove-sign"></a>
-                        </span>
-                    </div>
-                    <div class="widget-body">
-                        <div ng-if="newField.message" class="alert alert-error">
-                            <button ng-click="newSchedule.message=''" class="close" data-dismiss="alert">×</button>
-                            ^^newField.message^^
+                        <div ng-if="message" class="alert alert-error">
+                            <button ng-click="message=''" class="close" data-dismiss="alert">×</button>
+                            ^^message^^
                         </div>
-                        <div style="margin-bottom:-5px" class="control-group">
-                            <div class="controls">
-                                <input ng-model="newSchedule.schedule_title" type="text" placeholder="Schedule Title" class="input-xlarge">
-                                <input  ng-model=""
-                                                type="text" class="form-control"
-                                                style="width:150px"
-                                                datepicker-popup="dd-MMM-yyyy HH:mm"
-                                                min-mode="time"
-                                                is-open="true"
-                                                close-on-date-selection="true"
-                                                date-disabled="disabled(date, mode)"
-                                                show-button-bar="true"
-                                                show-weeks="false"/>
-                            </div>
+                        <form class="form-horizontal">
+                            <table class="table no-margin" style="width:100%" >
+                                <thead>
+                                    <tr>
+                                        <th style="width:25%;text-align:left">Title</th>
+                                        <th style="width:25%;text-align:left">Date</th>
+                                        <th style="width:30%;text-align:left">Time Range</th>
+                                        <th style="width:20%;text-align:right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="schedule in schedules">
+                                        <td>
+                                            <span ng-if="!schedule.editing">^^schedule.schedule_title^^</span>
+                                            <span ng-if="schedule.editing">
+                                                <input ng-model="schedule.schedule_title" type="text" placeholder="Title" class="input-xlarge">
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="!schedule.editing">^^schedule.schedule_date | date:"MMM/dd/yyyy"^^</span>
+                                            <span ng-if="schedule.editing">
+                                                <input ng-model="schedule.schedule_date" type="date" placeholder="Date" class="input-large">
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-if="!schedule.editing">^^schedule.schedule_time_from | date:"hh:mm a"^^ - ^^schedule.schedule_time_to | date: "hh:mma "^^</span>
+                                            <span ng-if="schedule.editing">
+                                                <input ng-model="schedule.schedule_time_from" type="time" step="900" style="width:100px">
+                                                <input ng-model="schedule.schedule_time_to" type="time" step="900" style="width:100px">
+                                            </span>
+                                        </td>
+                                        <td style="text-align:right">
+                                            <span ng-if="!schedule.editing">
+                                                <button ng-click="">
+                                                    <i class="icon-circle-arrow-up"></i>
+                                                </button>
+                                                <button ng-click="">
+                                                    <i class="icon-circle-arrow-down"></i>
+                                                </button>
+                                                <button ng-click="schedule.editing=true">
+                                                    <i class="icon-edit"></i>
+                                                </button>
+                                                <button ng-click="removeSession($index)">
+                                                    <i class="icon-trash"></i>
+                                                </button>
+                                            </span>
+                                            <span ng-if="schedule.editing">
+                                                <button ng-click="updateSession()">
+                                                    <i class="icon-ok"></i>
+                                                </button>
+                                                <button ng-click="schedule.editing=false">
+                                                    <i class="icon-remove"></i>
+                                                </button>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input ng-model="newSchedule.schedule_title" type="text" placeholder="Title" class="input-xlarge">
+                                        </td>
+                                        <td>
+                                            <input ng-model="newSchedule.schedule_date" type="date" placeholder="Date" class="input-large">
+                                        </td>
+                                        <td>
+                                            <input ng-model="newSchedule.schedule_time_from" type="time" step="900" style="width:100px">
+                                            <input ng-model="newSchedule.schedule_time_to" type="time" step="900" style="width:100px">
+                                        </td>
+                                        <td style="text-align:right">
+                                            <button ng-click="addNewSession()">
+                                                <i class="icon-save"></i>
+                                            </button>
+                                            <button ng-click="clear()">
+                                                <i class="icon-remove"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
-                <!-- Ends New Schedule -->
-
-                <!-- Begins Schedules List -->
-                <div class="widget" ng-repeat="schedule in schedules">
-                    <div class="widget-title">
-                        <h4>^^schedule.schedule_title^^</h4>
-                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
-                            <div class="progress progress-striped progress-success active">
-                                <div style="width: 100%;" class="bar"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-body">
-                        <div style="margin-bottom:-5px" class="control-group">
-                            <div class="controls">
-                                <h5>
-                                    ^^schedule.schedule_date | date: 'd-MMM-yyyy'^^
-                                    ^^schedule.schedule_time_from | date: 'yyyy'^^ -
-                                    ^^schedule.schedule_time_to | date: 'H:mm'^^
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Ends Schedules List -->
-
+                <!-- Ends New Session -->
             </div>
             <!-- Ends Schedule -->
-
-            <!-- Begins Calendar -->
-            <div class="span8">
-                <div class="widget" ng-disabled="true">
-                    <div class="widget-title">
-                        <h4 class="span3">Add Schedule</h4>
-                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
-                            <div class="progress progress-striped progress-success active">
-                                <div style="width: 100%;" class="bar"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget-body">
-                        <div ui-calendar="uiConfig.calendar" class="calendar" ng-model="calEntries"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- Ends Calendar -->
 
         </div>
     </div>

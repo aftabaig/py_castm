@@ -15,7 +15,7 @@ castM.controller("LoginController", ['$scope', '$rootScope', '$location', '$loca
             */
             console.dir(user);
             if (user.type != 'C') {
-                $scope.errorMessage = "The web app is currently designed for the casting users only.";
+                $scope.errorMessage = "The web app is currently designed for the casting users only. For access, search your app store for CastM";
             }
             else {
                 $localStorage.user = user;

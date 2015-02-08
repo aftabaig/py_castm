@@ -848,9 +848,8 @@ form legend {
 }
 
 .widget-title span.tools {
-    border-left: 1px solid #E0DEDE;
     float: right;
-    margin: 2px 0 0;
+    text-align:right;
     padding: 6px 5px 6px 10px;
 }
 
@@ -860,6 +859,7 @@ form legend {
     color: #979797;
     font-size: 14px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .widget-title span.tools > a:hover {

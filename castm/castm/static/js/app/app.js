@@ -39,6 +39,13 @@ castM.config(function($stateProvider, $urlRouterProvider) {
         templateUrl: "static/js/app/views/login.html",
         controller: "LoginController"
     })
+    .state('logout', {
+        url: '/logout',
+        controller: function($scope, $location, $localStorage) {
+            delete $localStorage.user;
+            $location.path("/login");
+        }
+    })
     .state('casting', {
         templateUrl: "static/js/app/views/casting/base.html",
         abstract: true,

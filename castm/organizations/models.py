@@ -111,6 +111,13 @@ class OrganizationMember(models.Model):
             return None
 
     @staticmethod
+    def organization_members(organization):
+        q1 = models.Q(organization=organization)
+        q2 = models.Q(is_accepted=True)
+        members = OrganizationMember.objects.filter(q1 & q2)
+        return members
+
+    @staticmethod
     def user_invitation(user):
         q1 = models.Q(user=user)
         q2 = ~models.Q(initiator=user)
