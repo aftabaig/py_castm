@@ -50,6 +50,7 @@ castM.controller("ScheduleController", ['$scope', '$rootScope', '$location', '$l
             return;
         }
 
+        schedule.sort_id = $scope.schedules.length + 1;
         schedule.schedule_date = moment(schedule.schedule_date).format("YYYY-MM-DD")
         schedule.schedule_time_from = moment(schedule.schedule_time_from).format("HH:mm")
         schedule.schedule_time_to = moment(schedule.schedule_time_to).format("HH:mm")
@@ -145,23 +146,31 @@ castM.controller("ScheduleController", ['$scope', '$rootScope', '$location', '$l
         $scope.message = "";
         $scope.updating = true;
 
-        ScheduleService.changeOrder($scope.event.id, [{
+        ScheduleService.changeOrder($scope.event.event_id, {
+            "schedules": [{
                 "schedule_id": schedule1.schedule_id,
-                "sort_id": index
+                "sort_id": index-1
             }, {
                 "schedule_id": schedule2.schedule_id,
-                "sort_id": index-1
-            }
-        ])
+                "sort_id": index
+            }]
+        })
         .then(function() {
 
-            schedule1.sort_id = index,
-            schedule2.sort_id = index-1
+            schedule1.sort_id = index;
+            schedule2.sort_id = index + 1;
 
-            
+            var ordered_schedules = $scope.schedules.splice(index-1, 2, schedule1, schedule2);
+            $scope.schedules = ordered_schedules;
+
+            $scope.updating = false;
+            $scope.message = "";
+
 
         }, function(error) {
 
+            $scope.updating = false;
+            $scope.mess
         })
 
     }

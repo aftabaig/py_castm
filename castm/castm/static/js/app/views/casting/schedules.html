@@ -44,7 +44,7 @@
                                 <tbody>
                                     <tr ng-repeat="schedule in schedules">
                                         <td>
-                                            <span ng-if="!schedule.editing">^^schedule.schedule_title^^</span>
+                                            <span ng-if="!schedule.editing">^^schedule.schedule_id^^ - ^^schedule.sort_id^^ ^^schedule.schedule_title^^</span>
                                             <span ng-if="schedule.editing">
                                                 <input ng-model="schedule.schedule_title" type="text" placeholder="Title" class="input-xlarge">
                                             </span>
@@ -64,7 +64,7 @@
                                         </td>
                                         <td style="text-align:right">
                                             <span ng-if="!schedule.editing">
-                                                <button ng-click="">
+                                                <button ng-click="moveUp($index)">
                                                     <i class="icon-circle-arrow-up"></i>
                                                 </button>
                                                 <button ng-click="">

@@ -81,6 +81,10 @@ class Event(models.Model):
             me = event.attendees.filter(organization=user_organization).first()
             if me:
                 user_events.push(event)
+            # in case the user's organization is the
+            # owner of the event.
+            if user_organization == event.ownder:
+                user_events.push(event)
         return user_events
 
 

@@ -97,6 +97,7 @@ castM.factory("ScheduleService", function($http, $q, $localStorage) {
             }).error(function(data, status, header, config) {
                 defer.reject(status);
             });
+            return defer.promise;
         },
         addAttendee: function(eventId, scheduleId, attendee) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/attendees/";

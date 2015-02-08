@@ -11,6 +11,9 @@ class Schedule(models.Model):
     schedule_time_to = models.TimeField(blank=False)
     sort_id = models.IntegerField(blank=True)
 
+    class Meta:
+        ordering = ['sort_id']
+
     def plain(self):
         plain_schedule = PlainSchedule(
             schedule_id=self.id,

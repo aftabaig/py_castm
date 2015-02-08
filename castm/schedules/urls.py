@@ -8,7 +8,7 @@ from views import update_schedules_order
 urlpatterns = patterns(
     'schedules.views',
     url(r'^$', get_or_add_schedules),
-    url(r'orders/$^$', update_schedules_order),
+    url(r'^orders/$', update_schedules_order),
     url(r'^(?P<schedule_id>[0-9]+)/$', update_or_delete_schedule),
     url(r'^(?P<schedule_id>[0-9]+)/attendees/$', add_attendee),
     url(r'^(?P<schedule_id>[0-9]+)/attendees/(?P<attendance_id>[0-9]+)/$', delete_attendee),
