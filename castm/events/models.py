@@ -154,6 +154,8 @@ class EventAttendee(models.Model):
             q = q & models.Q(attendee=user)
         else:
             organization = OrganizationMember.user_organization(user)
+            if not organization:
+                return 'NOL';
             q = q & models.Q(organization=organization)
         attendee = EventAttendee.objects.filter(q).first()
         if not attendee:
