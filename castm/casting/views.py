@@ -68,7 +68,8 @@ def public_profile(request, user_id=None):
                                      profile=profile,
                                      organization=organization,
                                      you=request.user)
-        serializer = PlainProfileSerializer(plain_profile)
+
+        serializer = MyPlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
 
     return Response({
