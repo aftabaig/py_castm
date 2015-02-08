@@ -1,5 +1,6 @@
 import logging
 import urbanairship as ua
+from django.conf import settings
 
 # rest_framework
 from rest_framework.decorators import api_view, permission_classes
@@ -54,7 +55,10 @@ def create_notification(type, source_id, from_user, for_user, message=None):
             "type": notification.type
         }
 
-        airship = ua.Airship('d6awtJp0T-Cyx5QRXUYr7Q', 'gpSq1dyuZYZy-Q1i6qtEit')
+        app_key = settings.UA['app_key']
+        app_secret = settings.UA['app_secret']
+
+        airship = ua.Airship(app_key, app_secret)
         devices = for_user.user_devices.all()
         for device in devices:
             if device.push_token:
