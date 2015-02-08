@@ -59,9 +59,18 @@ def public_profile(request, user_id=None):
     user = User.objects.filter(id=user_id).first()
     profile = CastingProfile.objects.filter(user_id=user_id).first()
     if user and profile:
-        plain_profile = PlainProfile(user=user, profile=profile, you=request.user)
+
+        organization = OrganizationMember.user_organization(user)
+        if organization:
+            organization = organization.plain()
+
+        plain_profile = PlainProfile(user=user,
+                                     profile=profile,
+                                     organization=organization,
+                                     you=request.user)
         serializer = PlainProfileSerializer(plain_profile)
         return Response(serializer.data, HTTP_200_OK)
+
     return Response({
         "status": HTTP_404_NOT_FOUND,
         "message": "User not found",
