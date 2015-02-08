@@ -62,10 +62,9 @@ class Event(models.Model):
         events = Event.objects.all()
         user_events = []
         for event in events:
-            attendees = event.attendees.all()
-            for attendee in attendees:
-                if attendee.attendee.id == talent_user.id and attendee.is_accepted:
-                    user_events.append(event)
+            me = event.attendees.filter(attendee=talent_user).first()
+            if me:
+                user_events.push(event)
         return user_events
 
     @staticmethod
@@ -74,13 +73,14 @@ class Event(models.Model):
         :return: All events being attended by the organization to which the casting user is attached.
         """
         user_organization = OrganizationMember.user_organization(casting_user)
+        if user_organization is None:
+            return []
         events = Event.objects.all()
         user_events = []
         for event in events:
-            attendees = event.attendees.all()
-            for attendee in attendees:
-                if attendee.organization == user_organization and attendee.is_accepted:
-                    user_events.append(event)
+            me = event.attendees.filter(organization=user_organization).first()
+            if me:
+                user_events.push(event)
         return user_events
 
 
