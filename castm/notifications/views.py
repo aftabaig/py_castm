@@ -59,7 +59,10 @@ def create_notification(type, source_id, from_user, for_user, message=None):
         app_secret = settings.UA['app_secret']
 
         logger.debug("app_key")
+        logger.debug(app_key)
+
         logger.debug("app_secret")
+        logger.debug(app_secret)
 
         airship = ua.Airship(app_key, app_secret)
         devices = for_user.user_devices.all()
