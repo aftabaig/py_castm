@@ -38,3 +38,4 @@ with open('__plans__', 'rU') as csvfile:
         plan.can_upgrade = can_upgrade
         plan.can_downgrade = can_downgrade
         plan.save()
+        print "plan_created: %s" % (plan.name, )

@@ -51,8 +51,8 @@ class UserSubscription(models.Model):
     status = models.CharField("Payment Status", max_length=2, choices=status_type_choices, blank=False)
 
 
-class StripeEvent(models.model):
-    user = models.ForeignKey(User, "payment_transactions", null=True)
+class StripeEvent(models.Model):
+    user = models.ForeignKey(User, related_name="stripe_events", null=True)
     stripe_event_id = models.CharField("Stripe Event Id", max_length=64, blank=False)
     stripe_event_type = models.CharField("Event Type", max_length=64, blank=False)
     created_at = models.DateField(auto_now_add=True, blank=True, null=True)
