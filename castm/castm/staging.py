@@ -106,6 +106,11 @@ UA = {
     'master_secret': '68AyBO-mRCiiBe_TVpDNrA'
 }
 
+STRIPE = {
+    'secret_key': 'sk_test_Qd1gjkWYroLCb0T0vUJ8atb6',
+    'publishable_key': 'pk_test_9ikeq7cbzVDaDfiIvISr5IBj'
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

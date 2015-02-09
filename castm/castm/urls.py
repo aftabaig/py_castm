@@ -92,6 +92,13 @@ urlpatterns += patterns(
     url(r'^api/organizations/', include('organizations.urls')),
 )
 
+# urls from subscriptions.
+# contains subscriptions related urls.
+urlpatterns += patterns(
+    'subscriptions.views',
+    url(r'^api/subscriptions/', include('subscriptions.urls')),
+)
+
 urlpatterns += (
     url(r'^api/docs/', include('rest_framework_swagger.urls')),
 )

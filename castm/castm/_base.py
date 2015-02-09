@@ -117,7 +117,8 @@ INSTALLED_APPS = (
     'my_messages',
     'notifications',
     'forms',
-    'ratings'
+    'ratings',
+    'subscriptions',
 )
 
 REST_FRAMEWORK = {
