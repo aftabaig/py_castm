@@ -30,7 +30,7 @@ class PaymentPlan(models.Model):
 
     @staticmethod
     def user_plans(user):
-        q = models.Q(user_type=user.my_user.type)
+        q = models.Q(plan_type=user.my_user.type)
         return PaymentPlan.objects.filter(q)
 
 
