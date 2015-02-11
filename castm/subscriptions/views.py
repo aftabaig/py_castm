@@ -179,8 +179,8 @@ def subscription_status(request):
                 "plan_id": subscription.plan.id,
                 "plan_title": subscription.plan.title,
                 "plan_charges": subscription.plan.charges,
-                "can_upgrade": subscription.can_upgrade,
-                "can_downgrade": subscription.can_downgrade
+                "can_upgrade": subscription.plan.can_upgrade,
+                "can_downgrade": subscription.plan.can_downgrade
             }
         }
     })
