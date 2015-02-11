@@ -179,8 +179,11 @@ def subscription_status(request):
 
     if subscription is None:
         return Response({
-            "status": "NS",
-            "plan": None
+            "status": HTTP_200_OK,
+            "data": {
+                "status": "NS",
+                "plan": None
+            }
         })
 
     return Response({
