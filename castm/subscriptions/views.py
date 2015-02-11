@@ -205,7 +205,7 @@ def subscription_status(request):
 @api_view(['POST', ])
 def event_handler(request):
 
-    stripe_event = json.load(request.body)
+    stripe_event = json.loads(request.body)
     stripe_event_id = stripe_event["id"]
     stripe_event_type = stripe_event["type"]
 
