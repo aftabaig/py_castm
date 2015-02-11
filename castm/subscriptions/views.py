@@ -205,18 +205,20 @@ def subscription_status(request):
 @api_view(['POST', ])
 def event_handler(request):
 
-    stripe_event = json.load(request.body)
-    stripe_event_id = stripe_event["id"]
-    stripe_event_type = stripe_event["type"]
+    logger.debug(request.body)
 
-    logger.debug("stripe_event")
-    logger.debug(stripe_event)
-
-    logger.debug("event_id")
-    logger.debug(stripe_event_id)
-
-    logger.debug("event_type")
-    logger.debug(stripe_event_type)
+    # stripe_event = json.load(request.body)
+    # stripe_event_id = stripe_event["id"]
+    # stripe_event_type = stripe_event["type"]
+    #
+    # logger.debug("stripe_event")
+    # logger.debug(stripe_event)
+    #
+    # logger.debug("event_id")
+    # logger.debug(stripe_event_id)
+    #
+    # logger.debug("event_type")
+    # logger.debug(stripe_event_type)
 
     # stripe_event = StripeEvent.objects.filter(stripe_event_id=stripe_event_id).first()
     # if stripe_event is None:
