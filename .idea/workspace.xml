@@ -42,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37078652" vertical-offset="1845" max-vertical-offset="3300">
-              <caret line="134" column="62" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="3300">
+              <caret line="137" column="35" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -114,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/subscriptions/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="500" max-vertical-offset="1275">
-              <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.29213482" vertical-offset="560" max-vertical-offset="1275">
+              <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -195,8 +195,8 @@
         <option value="$PROJECT_DIR$/castm/subscriptions/serializers.py" />
         <option value="$PROJECT_DIR$/castm/castm/__plans__" />
         <option value="$PROJECT_DIR$/castm/castm/__castm__.py" />
-        <option value="$PROJECT_DIR$/castm/subscriptions/models.py" />
         <option value="$PROJECT_DIR$/castm/subscriptions/views.py" />
+        <option value="$PROJECT_DIR$/castm/subscriptions/models.py" />
       </list>
     </option>
   </component>
@@ -360,28 +360,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="subscriptions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_castm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="py_castm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="castm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="subscriptions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1144,22 +1122,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/subscriptions/models.py">
+    <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="740" max-vertical-offset="1275">
-          <caret line="61" column="27" selection-start-line="61" selection-start-column="27" selection-end-line="61" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1950" max-vertical-offset="3300">
+          <caret line="137" column="35" selection-start-line="137" selection-start-column="16" selection-end-line="137" selection-end-column="35" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
+    <entry file="file://$PROJECT_DIR$/castm/subscriptions/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37078652" vertical-offset="1845" max-vertical-offset="3300">
-          <caret line="134" column="62" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.29213482" vertical-offset="560" max-vertical-offset="1275">
+          <caret line="46" column="117" selection-start-line="46" selection-start-column="117" selection-end-line="46" selection-end-column="117" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -44,7 +44,7 @@ class UserSubscription(models.Model):
     )
 
     user = models.OneToOneField(User, related_name="subscription")
-    organization = models.OneToOneField(Organization, related_name="organization_subscription")
+    organization = models.OneToOneField(Organization, related_name="organization_subscription", blank=True, null=True)
     plan = models.ForeignKey(PaymentPlan)
     stripe_customer_id = models.CharField("Customer #", max_length=128, blank=False)
     stripe_subscription_id = models.CharField("Subscription #", max_length=128, blank=False)
