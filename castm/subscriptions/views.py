@@ -201,12 +201,12 @@ def subscription_status(request):
 @api_view(['POST', ])
 def event_handler(request):
 
-    stripe_event = json.loads(request.body)
-    stripe_event_id = stripe_event["id"]
-    stripe_event_type = stripe_event["type"]
+    stripe_event_json = json.loads(request.body)
+    stripe_event_id = stripe_event_json["id"]
+    stripe_event_type = stripe_event_json["type"]
 
     logger.debug("stripe_event")
-    logger.debug(stripe_event)
+    logger.debug(stripe_event_json)
 
     logger.debug("event_id")
     logger.debug(stripe_event_id)
@@ -218,7 +218,7 @@ def event_handler(request):
     if stripe_event is None:
         stripe_event = StripeEvent(stripe_event_id=stripe_event_id, stripe_event_type=stripe_event_type)
         if stripe_event_type == CHARGE_SUCCESS or stripe_event_type == CHARGE_FAIL:
-            stripe_data = stripe_event["data"]
+            stripe_data = stripe_event_json["data"]
             stripe_charge = stripe_data["object"]
             stripe_card = stripe_charge["card"]
             stripe_customer_id = stripe_card["customer"]
