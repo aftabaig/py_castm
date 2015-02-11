@@ -138,13 +138,7 @@ def un_subscribe(request):
             "message": "You don't have any subscription"
         })
 
-    if subscription.status == "PN":
-        return Response({
-            "status": HTTP_400_BAD_REQUEST,
-            "message": "Your current subscription is pending"
-        }, "")
-
-    if subscription.status == "AS":
+    if subscription.status == "AS" or subscription.status == "PN":
 
         stripe_customer = stripe.Customer.retrieve(subscription.stripe_customer_id)
         if stripe_customer:
@@ -218,22 +212,22 @@ def event_handler(request):
     logger.debug("event_type")
     logger.debug(stripe_event_type)
 
-    # stripe_event = StripeEvent.objects.filter(stripe_event_id=stripe_event_id).first()
-    # if stripe_event is None:
-    #     stripe_event = StripeEvent(stripe_event_id=stripe_event_id, stripe_event_type=stripe_event_type)
-    #     if stripe_event_type == CHARGE_SUCCESS or stripe_event_type == CHARGE_FAIL:
-    #         stripe_data = stripe_event["data"]
-    #         stripe_charge = stripe_data["object"]
-    #         stripe_card = stripe_charge["card"]
-    #         stripe_customer_id = stripe_card["customer"]
-    #         subscription = UserSubscription.objects.filter(stripe_customer_id=stripe_customer_id).first()
-    #         if subscription:
-    #             if stripe_event_type == CHARGE_SUCCESS:
-    #                 subscription.status = "AS"
-    #             else:
-    #                 subscription.status = "FS"
-    #             subscription.save()
-    #             stripe_event.user = subscription.user
-    #     stripe_event.save()
+    stripe_event = StripeEvent.objects.filter(stripe_event_id=stripe_event_id).first()
+    if stripe_event is None:
+        stripe_event = StripeEvent(stripe_event_id=stripe_event_id, stripe_event_type=stripe_event_type)
+        if stripe_event_type == CHARGE_SUCCESS or stripe_event_type == CHARGE_FAIL:
+            stripe_data = stripe_event["data"]
+            stripe_charge = stripe_data["object"]
+            stripe_card = stripe_charge["card"]
+            stripe_customer_id = stripe_card["customer"]
+            subscription = UserSubscription.objects.filter(stripe_customer_id=stripe_customer_id).first()
+            if subscription:
+                if stripe_event_type == CHARGE_SUCCESS:
+                    subscription.status = "AS"
+                else:
+                    subscription.status = "FS"
+                subscription.save()
+                stripe_event.user = subscription.user
+        stripe_event.save()
 
     return Response(status=HTTP_200_OK)
