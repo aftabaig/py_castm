@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from organizations.models import Organization
+from organizations.models import Organization, OrganizationMember
 
 
 class PaymentPlan(models.Model):
@@ -49,6 +49,17 @@ class UserSubscription(models.Model):
     stripe_customer_id = models.CharField("Customer #", max_length=128, blank=False)
     stripe_subscription_id = models.CharField("Subscription #", max_length=128, blank=False)
     status = models.CharField("Payment Status", max_length=2, choices=status_type_choices, blank=False)
+
+    @staticmethod
+    def user_subscription(user):
+        if user.my_user.type == 'T':
+            return UserSubscription.objects.filter(user=user).first()
+        else:
+            user_organization = OrganizationMember.user_organization(user)
+            if user_organization:
+                return UserSubscription.objects.filter(organization=user_organization).first()
+            else:
+                return None
 
 
 class StripeEvent(models.Model):

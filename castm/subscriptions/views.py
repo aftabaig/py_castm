@@ -44,6 +44,7 @@ def plans(request):
 def subscribe(request):
     user = request.user
     user_organization = None
+    user_subscription = UserSubscription.user_subscription(user)
     if user.my_user.type == 'C':
         user_organization = OrganizationMember.user_organization(user)
         if not user_organization:
@@ -57,7 +58,7 @@ def subscribe(request):
                 "message": "Your organization already have an active subscription"
             }, status=HTTP_400_BAD_REQUEST)
     else:
-        if user.subscription and user.subscription.status == 'AS':
+        if user_subscription and user_subscription.status == 'AS':
             return Response({
                 "status": HTTP_400_BAD_REQUEST,
                 "message": "You already have an active subscription"
@@ -67,7 +68,7 @@ def subscribe(request):
     plan = PaymentPlan.objects.filter(id=plan_id).first()
     if plan:
 
-        subscription = user.subscription
+        subscription = user_subscription
         stripe_customer = None
 
         if stripe_token is None:
@@ -119,10 +120,7 @@ def subscribe(request):
 def un_subscribe(request):
 
     user = request.user
-    if user.my_user.type == 'T':
-        subscription = user.subscription
-    else:
-        subscription = user.organization_subscription
+    subscription = UserSubscription.user_subscription(user)
 
     if subscription is None:
         return Response({
@@ -163,9 +161,9 @@ def un_subscribe(request):
 def subscription_status(request):
     user = request.user
     if user.my_user.type == 'T':
-        subscription = user.subscription
+        subscription = UserSubscription.user_subscription(user)
     else:
-        subscription = user.organization_subscription
+        subscription = UserSubscription.user_subscription(user)
 
     if subscription is None:
         return Response({
