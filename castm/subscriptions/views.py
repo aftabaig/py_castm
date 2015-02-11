@@ -58,10 +58,10 @@ def subscribe(request):
                 "message": "Your organization already have an active subscription"
             }, status=HTTP_400_BAD_REQUEST)
     else:
-        if user_subscription and user_subscription.status == 'AS':
+        if user_subscription and (user_subscription.status == 'AS' or user_subscription.status == 'PN'):
             return Response({
                 "status": HTTP_400_BAD_REQUEST,
-                "message": "You already have an active subscription"
+                "message": "You already have an active/pending subscription"
             })
     plan_id = request.DATA.get("plan_id")
     stripe_token = request.DATA.get("stripeToken")
@@ -90,6 +90,13 @@ def subscribe(request):
                 return Response({
                     "status": HTTP_400_BAD_REQUEST,
                     "message": "Error creating customer"
+                }, status=HTTP_400_BAD_REQUEST)
+        else:
+            stripe_customer = stripe.Customer.retrieve(subscription.stripe_customer_id)
+            if stripe_customer is None:
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "Error retrieving customer"
                 }, status=HTTP_400_BAD_REQUEST)
 
         stripe_subscription = stripe_customer.subscriptions.create(
