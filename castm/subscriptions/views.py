@@ -138,6 +138,8 @@ def un_subscribe(request):
             "message": "You don't have any subscription"
         })
 
+
+
     if subscription.status == "AS" or subscription.status == "PN":
 
         stripe_customer = stripe.Customer.retrieve(subscription.stripe_customer_id)
