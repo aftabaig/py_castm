@@ -91,6 +91,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'subscriptions': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+import logging
 import stripe
 import json
 
@@ -15,6 +16,8 @@ from serializers import PlainPaymentPlanSerializer
 
 from um.views import error_as_text
 from um.permissions import IsTalentOrCasting
+
+logger = logging.getLogger(__name__)
 
 CHARGE_SUCCESS = "charge.succeeded"
 CHARGE_FAIL = "charge.failed"
@@ -135,6 +138,12 @@ def un_subscribe(request):
             "message": "You don't have any subscription"
         })
 
+    if subscription.status == "PN":
+        return Response({
+            "status": HTTP_400_BAD_REQUEST,
+            "message": "Your current subscription is pending"
+        }, "")
+
     if subscription.status == "AS":
 
         stripe_customer = stripe.Customer.retrieve(subscription.stripe_customer_id)
@@ -200,7 +209,16 @@ def event_handler(request):
     stripe_event_id = stripe_event["id"]
     stripe_event_type = stripe_event["type"]
 
-    stripe_event = StripeEvent.objects.filter(stripe_event_id=stripe_event_id)
+    logger.debug("stripe_event")
+    logger.debug(stripe_event)
+
+    logger.debug("event_id")
+    logger.debug(stripe_event_id)
+
+    logger.debug("event_type")
+    logger.debug(stripe_event_type)
+
+    stripe_event = StripeEvent.objects.filter(stripe_event_id=stripe_event_id).first()
     if stripe_event is None:
         stripe_event = StripeEvent(stripe_event_id=stripe_event_id, stripe_event_type=stripe_event_type)
         if stripe_event_type == CHARGE_SUCCESS or stripe_event_type == CHARGE_FAIL:
