@@ -45,9 +45,11 @@ def plans(request):
 @api_view(['POST', ])
 @permission_classes([IsTalentOrCasting, ])
 def subscribe(request):
+
     user = request.user
     user_organization = None
     user_subscription = UserSubscription.user_subscription(user)
+
     if user.my_user.type == 'C':
         user_organization = OrganizationMember.user_organization(user)
         if not user_organization:
@@ -55,7 +57,7 @@ def subscribe(request):
                 "status": HTTP_400_BAD_REQUEST,
                 "message": "You must be an approved member of an organization to be able to subscribe for a plan"
             }, status=HTTP_400_BAD_REQUEST)
-        if user_organization.organization_subscription and user_organization.organization_subscription.status == 'AS':
+        if user_subscription and (user_subscription.status == 'AS' or user_subscription.status == 'PN'):
             return Response({
                 "status": HTTP_400_BAD_REQUEST,
                 "message": "Your organization already have an active subscription"
@@ -66,6 +68,7 @@ def subscribe(request):
                 "status": HTTP_400_BAD_REQUEST,
                 "message": "You already have an active/pending subscription"
             })
+        
     plan_id = request.DATA.get("plan_id")
     stripe_token = request.DATA.get("stripeToken")
     plan = PaymentPlan.objects.filter(id=plan_id).first()

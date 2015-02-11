@@ -33,8 +33,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15730338" vertical-offset="2645" max-vertical-offset="3660">
-              <caret line="181" column="33" selection-start-line="181" selection-start-column="33" selection-end-line="181" selection-end-column="33" />
+            <state vertical-scroll-proportion="-4.966292" vertical-offset="3260" max-vertical-offset="3705">
+              <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -1134,8 +1134,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15730338" vertical-offset="2645" max-vertical-offset="3660">
-          <caret line="181" column="33" selection-start-line="181" selection-start-column="33" selection-end-line="181" selection-end-column="33" />
+        <state vertical-scroll-proportion="-4.966292" vertical-offset="3260" max-vertical-offset="3705">
+          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
