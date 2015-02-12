@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 
 from models import PaymentPlan, UserSubscription, StripeEvent
 from organizations.models import Organization, OrganizationMember
+from notifications.views import create_notificaiton
 
 from serializers import PlainPaymentPlanSerializer
 
@@ -68,7 +69,7 @@ def subscribe(request):
                 "status": HTTP_400_BAD_REQUEST,
                 "message": "You already have an active/pending subscription"
             })
-        
+
     plan_id = request.DATA.get("plan_id")
     stripe_token = request.DATA.get("stripeToken")
     plan = PaymentPlan.objects.filter(id=plan_id).first()
@@ -110,7 +111,7 @@ def subscribe(request):
         )
         if stripe_subscription:
             subscription.stripe_subscription_id = stripe_subscription.id
-            subscription.status = "PN"
+            subscription.status = "AS"
             subscription.save()
             return Response({
                 "status": HTTP_200_OK,
