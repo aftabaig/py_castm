@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 
 from models import PaymentPlan, UserSubscription, StripeEvent
 from organizations.models import Organization, OrganizationMember
-from notifications.views import create_notificaiton
+from notifications.views import create_notification
 
 from serializers import PlainPaymentPlanSerializer
 
