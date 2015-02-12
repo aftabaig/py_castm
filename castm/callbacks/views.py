@@ -302,7 +302,7 @@ def send_callbacks_to_talent(request, event_id=None):
                         if talent_callback.callback.callback_organization == user_organization:
                             talent_callback.sent_to_event_organization = True
                             talent_callback.save()
-                            create_notification("CB", talent_callback.id, event, talent_callback.talent.id, message="Callback Request")
+                            create_notification("CB", talent_callback.id, event_id, talent_callback.talent.id, message="Callback Request")
                         else:
                             return Response({
                                 "status": HTTP_401_UNAUTHORIZED,
