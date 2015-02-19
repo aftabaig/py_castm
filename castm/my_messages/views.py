@@ -4,6 +4,7 @@ import logging
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth.models import User
 
 from django.db import models
@@ -12,6 +13,7 @@ from um.permissions import IsTalentOrCasting
 from um.permissions import IsCasting
 
 from serializers import PlainMessageSerializer
+from serializers import PaginatedMessageSerializer
 from serializers import MyMessagesSerializer
 
 from models import Message
@@ -112,7 +114,35 @@ def message_thread(request, user_id=0):
     """
     user = request.user
     other = User.objects.filter(id=user_id).first()
-    messages = Message.thread(user, other)
+    all_messages = Message.thread(user, other)
+
+    all_plain_msgs = []
+    for message in all_messages:
+        all_plain_msgs.append(message.plain())
+
+    paginator = Paginator(all_plain_msgs, 1)
+    page = request.QUERY_PARAMS.get('page')
+
+    try:
+        page_messages = paginator.page(page)
+    except PageNotAnInteger:
+        page_messages = paginator.page(1)
+    except EmptyPage:
+        page_messages = paginator.page(paginator.num_pages)
+
+    serializer_context = {
+        'request': request
+    }
+
+    serializer = PaginatedMessageSerializer(page_messages, context=serializer_context)
+    return Response(serializer.data)
+
+
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
+def all_user_messages(request):
+    user = request.user
+    messages = Message.all_user_messages(user)
     plain_msgs = []
     for message in messages:
         plain_msg = message.plain()

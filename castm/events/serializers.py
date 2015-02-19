@@ -27,6 +27,7 @@ class PlainAttendeeSerializer(serializers.Serializer):
     attendance_id = serializers.IntegerField(required=False, read_only=True)
     organization_id = serializers.IntegerField(required=False, read_only=True)
     organization_name = serializers.CharField(required=False, read_only=True)
+    attendee_audition_id = serializers.CharField(required=False, read_only=True)
     attendee_id = serializers.IntegerField(required=False, read_only=True)
     attendee_first_name = serializers.CharField(required=False, read_only=True)
     attendee_last_name = serializers.CharField(required=False, read_only=True)

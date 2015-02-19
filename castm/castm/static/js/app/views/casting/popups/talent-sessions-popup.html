@@ -1,0 +1,30 @@
+    <div class="modal-header">
+        <h3 class="modal-title">^^talent.attendee_first_name^^ ^^talent.attendee_last_name^^ </h3>
+    </div>
+    <div class="modal-body">
+        <table class="table table-hover">
+            <tr>
+                <td>Select a session:</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="session in sessions">
+                <td>
+                    <button class="btn" ng-click="setAsCurrentSession($index)" ng-class="{'btn-info': session.schedule_id === currentSession.schedule_id}">
+                        ^^session.schedule_title^^
+                    </button>
+                </td>
+                <td>
+                    <span>^^session.schedule_date | date:"dd/MMM/yyy"^^</span>
+                </td>
+                <td>
+                    ^^session.schedule_time_from | date:"hh:mm a"^^ -
+                    ^^session.schedule_time_to | date:"HH:mm^^
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>

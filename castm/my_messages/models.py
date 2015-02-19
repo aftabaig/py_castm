@@ -48,6 +48,12 @@ class Message(models.Model):
         q4 = models.Q(to_user=user1)
         return Message.objects.filter((q1 & q2) | (q3 & q4)).order_by('-created_at')
 
+    @staticmethod
+    def all_user_messages(user):
+        q1 = models.Q(from_user=user)
+        q2 = models.Q(to_user=user)
+        return Message.objects.filter(q1 | q2).order_by('-created_at')
+
 
 class PlainMessage(object):
     def __init__(self, msg_id=None, created_at=None, title=None, message=None,

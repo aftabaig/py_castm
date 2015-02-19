@@ -7,6 +7,7 @@ from views import talent_event_info
 from views import qualified_talent_attendees, qualified_casting_attendees
 from views import pending_talent_attendees, pending_casting_attendees
 from views import request_attendance, accept_request, reject_request
+from schedules.views import get_talent_schedule
 
 urlpatterns = patterns(
     'events.views',
@@ -18,6 +19,7 @@ urlpatterns = patterns(
     url(r'^(?P<event_id>[0-9]+)/attendees/approved/$', qualified_talent_attendees),
     url(r'^(?P<event_id>[0-9]+)/attendees/pending/$', pending_talent_attendees),
     url(r'^(?P<event_id>[0-9]+)/attendees/(?P<talent_id>[0-9]+)/info/$', talent_event_info),
+    url(r'^(?P<event_id>[0-9]+)/attendees/(?P<talent_id>[0-9]+)/schedule/$', get_talent_schedule),
     url(r'^(?P<event_id>[0-9]+)/casting/$', all_casting_attendees),
     url(r'^(?P<event_id>[0-9]+)/casting/approved/$', qualified_casting_attendees),
     url(r'^(?P<event_id>[0-9]+)/casting/pending/$', pending_casting_attendees),

@@ -6,6 +6,7 @@ function onError(e) {
 // Create CastM module.
 var castM = angular.module('castM', ['ngResource', 'ui.router', 'ui.calendar', 'ui.bootstrap', 'ngStorage', 'cgBusy']);
 
+
 castM.config(function($interpolateProvider) {
   $interpolateProvider.startSymbol('^^');
   $interpolateProvider.endSymbol('^^');
@@ -83,15 +84,50 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('casting.home', {
+    .state('casting.event', {
+        views: {
+            'info': {
+                templateUrl: "static/js/app/views/casting/event/info.html"
+            },
+            '': {
+                templateUrl: "static/js/app/views/casting/event/base.html"
+            }
+        },
+        abstract: true,
+        parent: 'casting'
+    })
+    .state('casting.organization', {
+        views: {
+            'info': {
+                templateUrl: "static/js/app/views/casting/organization/info.html"
+            },
+            '': {
+                templateUrl: "static/js/app/views/casting/organization/base.html"
+            }
+        },
+        abstract: true,
+        parent: 'casting'
+    })
+    .state('casting.organization.home', {
         url: '/home',
-        parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/home.html',
+        parent: 'casting.organization',
+        templateUrl: 'static/js/app/views/casting/organization/home.html',
         controller: 'HomeController'
     })
-    .state('casting.links', {
+    .state('casting.organization.forms', {
+        url: '/organizations/:organizationId/forms',
+        parent: 'casting.organization',
+        templateUrl: 'static/js/app/views/casting/organization/rating-form.html',
+        controller: 'RatingFormController',
+        resolve: {
+            fields: function($stateParams, RatingService) {
+                return RatingService.formFields($stateParams.organizationId);
+            }
+        }
+    })
+    .state('casting.event.links', {
         url:'/events/:eventId/links',
-        parent: 'casting',
+        parent: 'casting.event',
         templateUrl: 'static/js/app/views/casting/link-requests.html',
         controller: 'LinksController',
         resolve: {
@@ -106,11 +142,11 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('casting.schedules', {
-        url: '/events/:eventId/schedules',
-        parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/schedules.html',
-        controller: 'ScheduleController',
+    .state('casting.event.sessions', {
+        url: '/events/:eventId/sessions',
+        parent: 'casting.event',
+        templateUrl: 'static/js/app/views/casting/event/sessions.html',
+        controller: 'SessionController',
         resolve: {
             event: function($stateParams, EventService) {
                 return EventService.eventDetail($stateParams.eventId);
@@ -120,6 +156,20 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             },
             talentAttendees: function($stateParams, EventService) {
                 return EventService.approvedTalentAttendees($stateParams.eventId);
+            }
+        }
+    })
+    .state('casting.event.schedule', {
+        url: '/events/:eventId/schedule',
+        parent: 'casting.event',
+        templateUrl: 'static/js/app/views/casting/event/schedule.html',
+        controller: 'ScheduleController',
+        resolve: {
+            event: function($stateParams, EventService) {
+                return EventService.eventDetail($stateParams.eventId);
+            },
+            schedules: function($stateParams, ScheduleService) {
+                return ScheduleService.getSchedules($stateParams.eventId);
             }
         }
     })
@@ -134,17 +184,6 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             },
             callbacks: function($stateParams, CallbackService) {
                 return CallbackService.getCallbacks($stateParams.eventId);
-            }
-        }
-    })
-    .state('casting.forms', {
-        url: '/organizations/:organizationId/forms',
-        parent: 'casting',
-        templateUrl: 'static/js/app/views/casting/rating-form.html',
-        controller: 'RatingFormController',
-        resolve: {
-            fields: function($stateParams, RatingService) {
-                return RatingService.formFields($stateParams.organizationId);
             }
         }
     })

@@ -1,0 +1,22 @@
+    <div class="modal-header">
+        <h3 class="modal-title">^^talent.attendee_first_name^^ ^^talent.attendee_last_name^^ </h3>
+    </div>
+    <div class="modal-body">
+        <table class="table">
+            <tr>
+                <td>Current Audition #:</td>
+                <td>
+                    <span ng-if="talent.attendee_audition_id">^^talent.attendee_audition_id^^</span>
+                    <span ng-if="!talent.attendee_audition_id">Unassigned</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Assign new Audition #:</td>
+                <td><input ng-model="new_audition_num" class="input-small" type="text"/></td>
+            </tr>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>

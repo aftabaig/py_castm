@@ -42,6 +42,7 @@ castM.factory("EventService", function($http, $q, $localStorage) {
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
+                console.dir(data);
                 defer.resolve(data);
             }).error(function(data, status, header, config) {
                 defer.reject(data);
@@ -152,7 +153,26 @@ castM.factory("EventService", function($http, $q, $localStorage) {
                     'Authorization': 'Token ' + $localStorage.user.token
                 },
                 method: 'PUT',
+                url: url
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(data);
+            });
+            return defer.promise;
+        },
+        changeTalentAuditionId: function(eventId, talentId, newAuditionId) {
+            var url = "/api/events/" + eventId + "/attendees/" + talentId + "/info/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'PUT',
                 url: url,
+                data: {
+                    "audition_id": newAuditionId
+                }
             }).success(function(data, status, header, config) {
                 defer.resolve(data);
             }).error(function(data, status, header, config) {

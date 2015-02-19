@@ -105,6 +105,9 @@ class EventAttendee(models.Model):
             is_rejected=self.is_rejected
         )
         if self.attendee.my_user.type == 'T':
+            talent_info = EventTalentInfo.get_talent_info(self.event, self.attendee)
+            if talent_info:
+                plain_attendee.attendee_audition_id = talent_info.audition_id
             plain_attendee.attendee_title = self.attendee.user_profile.get().title
             plain_attendee.attendee_thumbnail_url = self.attendee.user_profile.get().thumbnail
             plain_attendee.attendee_profile_url = "/api/talents/profile/%d" % (self.attendee.id, )
@@ -260,13 +263,15 @@ class PlainEvent(object):
 
 class PlainAttendee(object):
     def __init__(self, attendance_id=None, organization_id=None, organization_name=None,
-                 attendee_id=None, attendee_first_name=None, attendee_last_name=None, attendee_title=None,
+                 attendee_id=None, attendee_audition_id=None,
+                 attendee_first_name=None, attendee_last_name=None, attendee_title=None,
                  attendee_thumbnail_url=None, attendee_profile_url=None,
                  is_accepted=None, is_rejected=None):
         self.attendance_id = attendance_id
         self.organization_id = organization_id
         self.organization_name = organization_name
         self.attendee_id = attendee_id
+        self.attendee_audition_id = attendee_audition_id
         self.attendee_first_name = attendee_first_name
         self.attendee_last_name = attendee_last_name
         self.attendee_title = attendee_title

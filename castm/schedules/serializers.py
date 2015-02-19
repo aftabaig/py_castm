@@ -35,7 +35,7 @@ class PlainScheduleSerializer(serializers.Serializer):
         return PlainSchedule(**attrs)
 
     def from_native(self, data, files=None):
-        data['event_id'] = self.context['event_id']
+        # data['event_id'] = self.context['event_id']
         return super(PlainScheduleSerializer, self).from_native(data, files)
 
     def save_object(self, obj, **kwargs):
@@ -67,6 +67,7 @@ class PlainAttendeeSerializer(serializers.Serializer):
     schedule_id = serializers.IntegerField(required=True)
     attendance_id = serializers.IntegerField(required=True)
     attendee_id = serializers.IntegerField(required=False, read_only=True)
+    attendee_audition_id = serializers.IntegerField(required=False, read_only=True)
     attendee_first_name = serializers.CharField(required=False, read_only=True)
     attendee_last_name = serializers.CharField(required=False, read_only=True)
     attendee_title = serializers.CharField(required=False, read_only=True)

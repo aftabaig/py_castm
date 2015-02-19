@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.pagination import PaginationSerializer
 
 
 class PlainMessageSerializer(serializers.Serializer):
@@ -17,6 +18,11 @@ class PlainMessageSerializer(serializers.Serializer):
     to_title = serializers.CharField(required=False, read_only=True)
     to_thumbnail_url = serializers.CharField(required=False, read_only=True)
     to_profile_url = serializers.URLField(required=False, read_only=True)
+
+
+class PaginatedMessageSerializer(PaginationSerializer):
+    class Meta:
+        object_serializer_class = PlainMessageSerializer
 
 
 class MyMessagesSerializer(serializers.Serializer):

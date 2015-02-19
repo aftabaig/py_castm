@@ -90,6 +90,42 @@ def get_or_add_schedules(request, event_id=None):
         }, HTTP_404_NOT_FOUND)
 
 
+@api_view(['GET', ])
+@permission_classes([IsCasting, ])
+def get_talent_schedule(request, event_id=None, talent_id=None):
+    user = request.user
+    event = Event.objects.filter(id=event_id).first()
+    if event:
+        event_owner = event.owner
+        is_event_admin = OrganizationMember.user_is_admin(event_owner, user)
+        if is_event_admin:
+            talent = User.objects.filter(id=talent_id).first()
+            if talent:
+                if talent.my_user.type == 'T':
+                    talent_schedule = ScheduleAttendee.user_schedule(talent, event)
+                    talent_schedule_plain = None
+                    if talent_schedule:
+                        talent_schedule_plain = talent_schedule.plain()
+                    serializer = PlainAttendeeSerializer(talent_schedule_plain)
+                    return Response(serializer.data)
+                return Response({
+                    "status": HTTP_400_BAD_REQUEST,
+                    "message": "Casting users does not have schedules"
+                }, status=HTTP_400_BAD_REQUEST)
+            return Response({
+                "status": HTTP_404_NOT_FOUND,
+                "message": "Talent not found"
+            }, status=HTTP_404_NOT_FOUND)
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "Only event administrators have the right to view talent's schedule"
+        }, status=HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Event not found"
+    }, status=HTTP_404_NOT_FOUND)
+
+
 @api_view(['PUT', 'DELETE', ])
 @permission_classes([IsTalentOrCasting, ])
 def update_or_delete_schedule(request, event_id=None, schedule_id=None):
@@ -106,12 +142,13 @@ def update_or_delete_schedule(request, event_id=None, schedule_id=None):
                 schedule = Schedule.objects.filter(id=schedule_id).first()
                 if schedule.event == event:
                     plain_schedule = schedule.plain()
+                    logger.debug(request.DATA)
                     serializer = PlainScheduleSerializer(plain_schedule, data=request.DATA)
                     if serializer.is_valid():
                         serializer.save()
-                        schedule = Schedule.objects.filter(id=serializer.object.schedule_id).first()
-                        plain_schedule = schedule.plain()
-                        serializer = PlainScheduleSerializer(plain_schedule)
+                        # schedule = Schedule.objects.filter(id=serializer.object.schedule_id).first()
+                        # plain_schedule = schedule.plain()
+                        # serializer = PlainScheduleSerializer(plain_schedule)
                         return Response(serializer.data)
                 return Response({
                     "status": HTTP_401_UNAUTHORIZED,
@@ -208,34 +245,34 @@ def add_attendee(request, event_id=None, schedule_id=None):
         user = request.user
         event = Event.objects.filter(id=event_id).first()
         if event:
-            schedule = Schedule.objects.filter(id=schedule_id)
+            schedule = Schedule.objects.filter(id=schedule_id).first()
             if schedule:
                 event_owner = event.owner
                 is_event_admin = OrganizationMember.user_is_admin(event_owner, user)
                 if is_event_admin:
                     attendee_id = request.DATA.get("attendee_id")
                     if attendee_id:
-                        attendee = User.objects.filter(id=attendee_id)
+                        attendee = User.objects.filter(id=attendee_id).first()
                         if attendee:
                             if attendee.my_user.type == 'T':
                                 is_attending = EventAttendee.is_user_attending_event(attendee, event)
                                 if is_attending:
-                                    already_scheduled = ScheduleAttendee.user_is_already_scheduled(user, event)
-                                    if not already_scheduled:
-                                        attendance = ScheduleAttendee()
-                                        attendance.schedule = schedule
-                                        attendance.attendee = attendee
-                                        attendance.save()
-                                        return Response({
-                                            "schedule_id": schedule.id,
-                                            "attendee_id": attendee.id
-                                        })
+                                    current_schedule = ScheduleAttendee.user_schedule(attendee, event)
+                                    logger.debug(current_schedule)
+                                    if current_schedule:
+                                        logger.debug("delettteeddddd")
+                                        current_schedule.delete()
+                                    attendance = ScheduleAttendee()
+                                    attendance.schedule = schedule
+                                    attendance.attendee = attendee
+                                    attendance.save()
+                                    logger.debug("okkkkkkkkkk")
                                     return Response({
-                                        "status": HTTP_400_BAD_REQUEST,
-                                        "message": "User is already scheduled for this event"
-                                    }, status=HTTP_400_BAD_REQUEST)
+                                        "schedule_id": schedule.id,
+                                        "attendee_id": attendee.id
+                                    })
                                 return Response({
-                                    "status": HTTP_404_NOT_FOUND,
+                                    "status": HTTP_400_BAD_REQUEST,
                                     "message": "User is not an approved attendee for the event"
                                 }, status=HTTP_400_BAD_REQUEST)
                             return Response({

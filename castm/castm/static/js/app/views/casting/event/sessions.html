@@ -56,7 +56,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <span ng-if="!schedule.editing">^^schedule.schedule_time_from | date:"hh:mm a"^^ - ^^schedule.schedule_time_to | date: "hh:mma "^^</span>
+                                            <span ng-if="!schedule.editing">^^schedule.schedule_time_from | date:"hh:mm a"^^ - ^^schedule.schedule_time_to | date: "hh:mm a"^^</span>
                                             <span ng-if="schedule.editing">
                                                 <input ng-model="schedule.schedule_time_from" type="time" step="900" style="width:100px">
                                                 <input ng-model="schedule.schedule_time_to" type="time" step="900" style="width:100px">
