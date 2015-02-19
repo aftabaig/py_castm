@@ -120,7 +120,7 @@ def message_thread(request, user_id=0):
     for message in all_messages:
         all_plain_msgs.append(message.plain())
 
-    paginator = Paginator(all_plain_msgs, 1)
+    paginator = Paginator(all_plain_msgs, 10)
     page = request.QUERY_PARAMS.get('page')
 
     try:
@@ -142,6 +142,7 @@ def message_thread(request, user_id=0):
 @permission_classes([IsTalentOrCasting, ])
 def all_user_messages(request):
     user = request.user
+    logger.debug(user.id)
     messages = Message.all_user_messages(user)
     plain_msgs = []
     for message in messages:
