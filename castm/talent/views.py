@@ -210,7 +210,9 @@ class HeadshotViewSet(viewsets.ModelViewSet):
 
     def pre_save(self, obj):
         response = cloudinary.uploader.upload(self.request.FILES['headshot'])
+        response2 = cloudinary.uploader.upload(self.request.FILES['headshot_original'])
         obj.headshot = response['url']
+        obj.headshot_original = response2['url']
         obj.user = self.request.user
 
 

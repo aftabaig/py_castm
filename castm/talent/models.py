@@ -62,6 +62,7 @@ class TalentProfile(models.Model):
 class TalentHeadshot(models.Model):
     user = models.ForeignKey(User)
     headshot = models.ImageField(upload_to='headshots')
+    headshot_original = models.ImageField(upload_to='headshots')
 
 
 class PlainProfile(object):
