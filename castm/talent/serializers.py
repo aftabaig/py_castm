@@ -96,65 +96,65 @@ class PlainProfileSerializer(serializers.Serializer):
         user.save()
 
         profile = TalentProfile.objects.get(id=obj.profile_id)
-        if 'is_stage_name' in obj:
+        if hasattr(obj, 'is_stage_name'):
             profile.is_stage_name = obj.is_stage_name
-        if 'stage_first_name' in obj:
+        if obj.stage_first_name:
             profile.stage_first_name = obj.stage_first_name
-        if 'stage_last_name' in obj:
+        if obj.stage_last_name:
             profile.stage_last_name = obj.stage_last_name
-        if 'title' in obj:
+        if obj.title:
             profile.title = obj.title
-        if 'height' in obj:
+        if obj.height:
             profile.height = obj.height
-        if 'weight' in obj:
+        if obj.weight:
             profile.weight = obj.weight
-        if 'birth_day' in obj:
+        if obj.birth_day:
             profile.birth_day = obj.birth_day
-        if 'hair_color' in obj:
+        if obj.hair_color:
             profile.hair_color = obj.hair_color
-        if 'eye_color' in obj:
+        if obj.eye_color:
             profile.eye_color = obj.eye_color
-        if 'race' in obj:
+        if obj.race:
             profile.race = obj.race
-        if 'personal_add1' in obj:
+        if obj.personal_add1:
             profile.personal_add1 = obj.personal_add1
-        if 'personal_add2' in obj:
+        if obj.personal_add2:
             profile.personal_add2 = obj.personal_add2
-        if 'personal_city' in obj:
+        if obj.personal_city:
             profile.personal_city = obj.personal_city
-        if 'personal_state' in obj:
+        if obj.personal_state:
             profile.personal_state = obj.personal_state
-        if 'personal_zip' in obj:
+        if obj.personal_zip:
             profile.personal_zip = obj.personal_zip
-        if 'personal_mobile' in obj:
+        if obj.personal_mobile:
             profile.personal_mobile = obj.personal_mobile
-        if 'personal_office' in obj:
+        if obj.personal_office:
             profile.personal_office = obj.personal_office
-        if 'personal_email' in obj:
+        if obj.personal_email:
             profile.personal_email = obj.personal_email
-        if 'is_agency_contact' in obj:
+        if obj.is_agency_contact:
             profile.is_agency_contact = obj.is_agency_contact
-        if 'agency_name' in obj:
+        if obj.agency_name:
             profile.agency_name = obj.agency_name
-        if 'agency_mobile' in obj:
+        if obj.agency_mobile:
             profile.agency_mobile = obj.agency_mobile
-        if 'agency_email' in obj:
+        if obj.agency_email:
             profile.agency_email = obj.agency_email
-        if 'agency_office_num' in obj:
+        if obj.agency_office_num:
             profile.agency_office_num = obj.agency_office_num
-        if 'agency_add1' in obj:
+        if obj.agency_add1:
             profile.agency_add1 = obj.agency_add1
-        if 'agency_add2' in obj:
+        if obj.agency_add2:
             profile.agency_add2 = obj.agency_add2
-        if 'agency_city' in obj:
+        if obj.agency_city:
             profile.agency_city = obj.agency_city
-        if 'agency_state' in obj:
+        if obj.agency_state:
             profile.agency_state = obj.agency_state
-        if 'agency_zip' in obj:
+        if obj.agency_zip:
             profile.agency_zip = obj.agency_zip
-        if 'resume_categories' in obj:
+        if obj.resume_categories:
             profile.resume_categories = obj.resume_categories
-        if 'thumbnail' in obj:
+        if obj.thumbnail:
             profile.thumbnail = obj.thumbnail
         profile.save()
 
