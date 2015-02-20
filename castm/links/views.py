@@ -37,7 +37,7 @@ def my_links(request):
             if link.to_user.my_user.type == 'T':
                 talent_profile = link.to_user.user_profile.get()
                 if talent_profile.is_stage_name:
-                    l.full_name = "%s %s" % (talent_profile.stage_first_name, talent_profile.stage_last_name, )
+                    l["full_name"]= "%s %s" % (talent_profile.stage_first_name, talent_profile.stage_last_name, )
         else:
             l = {
                 "user_id": link.from_user.id,
