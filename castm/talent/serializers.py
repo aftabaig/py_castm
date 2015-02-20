@@ -98,6 +98,8 @@ class PlainProfileSerializer(serializers.Serializer):
         profile = TalentProfile.objects.get(id=obj.profile_id)
         if obj.is_stage_name:
             profile.is_stage_name = obj.is_stage_name
+        else:
+            profile.is_stage_name = False
         if obj.stage_first_name:
             profile.stage_first_name = obj.stage_first_name
         if obj.stage_last_name:
@@ -134,6 +136,8 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.personal_email = obj.personal_email
         if obj.is_agency_contact:
             profile.is_agency_contact = obj.is_agency_contact
+        else:
+            profile.is_agency_contact = False
         if obj.agency_name:
             profile.agency_name = obj.agency_name
         if obj.agency_mobile:
