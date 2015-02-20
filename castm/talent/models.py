@@ -47,6 +47,8 @@ class TalentProfile(models.Model):
     is_agency_contact = models.BooleanField("Have an agent?", blank=True, default=False)
     agency = models.CharField("Agency", max_length=255, blank=True)
     agency_name = models.CharField("Agency Name", max_length=255, blank=True)
+    agency_mobile = models.CharField("Agency Mobile", max_length=255, blank=True)
+    agency_email = models.CharField("Agency Email", max_length=255, blank=True)
     agency_office_num = models.CharField("Agency Office #", max_length=16, blank=True)
     agency_add1 = models.CharField("Agency Address 1", max_length=1024, blank=True)
     agency_add2 = models.CharField("Agency Address 2", max_length=1024, blank=True)
@@ -93,6 +95,8 @@ class PlainProfile(object):
             self.is_agency_contact = profile.is_agency_contact
             self.agency = profile.agency
             self.agency_name = profile.agency_name
+            self.agency_mobile = profile.agency_mobile
+            self.agency_email = profile.agency_email
             self.agency_office_num = profile.agency_office_num
             self.agency_add1 = profile.agency_add1
             self.agency_add2 = profile.agency_add2

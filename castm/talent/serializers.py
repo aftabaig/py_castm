@@ -35,6 +35,8 @@ class PlainProfileSerializer(serializers.Serializer):
     is_agency_contact = serializers.BooleanField(required=False)
     agency = serializers.CharField(required=False)
     agency_name = serializers.CharField(required=False)
+    agency_mobile = serializers.CharField(required=False)
+    agency_email = serializers.CharField(required=False)
     agency_office_num = serializers.CharField(required=False)
     agency_add1 = serializers.CharField(required=False)
     agency_add2 = serializers.CharField(required=False)
@@ -70,6 +72,8 @@ class PlainProfileSerializer(serializers.Serializer):
             instance.is_agency_contact = attrs.get('is_agency_contact', instance.is_agency_contact)
             instance.agency = attrs.get('agency', instance.agency)
             instance.agency_name = attrs.get('agency_name', instance.agency_name)
+            instance.agency_mobile = attrs.get('agency_mobile', instance.agency_mobile)
+            instance.agency_email = attrs.get('agency_email', instance.agency_email)
             instance.agency_office_num = attrs.get('agency_office_num', instance.agency_office_num)
             instance.agency_add1 = attrs.get('agency_add1', instance.agency_add1)
             instance.agency_add2 = attrs.get('agency_add2', instance.agency_add2)
@@ -132,6 +136,10 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.is_agency_contact = obj.is_agency_contact
         if obj.agency_name:
             profile.agency_name = obj.agency_name
+        if obj.agency_mobile:
+            profile.agency_mobile = obj.agency_mobile
+        if obj.agency_email:
+            profile.agency_email = obj.agency_email
         if obj.agency_office_num:
             profile.agency_office_num = obj.agency_office_num
         if obj.agency_add1:
