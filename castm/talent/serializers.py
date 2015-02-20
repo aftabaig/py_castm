@@ -98,63 +98,63 @@ class PlainProfileSerializer(serializers.Serializer):
         profile = TalentProfile.objects.get(id=obj.profile_id)
         if hasattr(obj, 'is_stage_name'):
             profile.is_stage_name = obj.is_stage_name
-        if obj.stage_first_name:
+        if hasattr(obj, 'stage_first_name'):
             profile.stage_first_name = obj.stage_first_name
-        if obj.stage_last_name:
+        if hasattr(obj, 'stage_last_name'):
             profile.stage_last_name = obj.stage_last_name
-        if obj.title:
+        if hasattr(obj, 'title'):
             profile.title = obj.title
-        if obj.height:
+        if hasattr(obj, 'height'):
             profile.height = obj.height
-        if obj.weight:
+        if hasattr(obj, 'weight'):
             profile.weight = obj.weight
-        if obj.birth_day:
+        if hasattr(obj, 'birth_day'):
             profile.birth_day = obj.birth_day
-        if obj.hair_color:
+        if hasattr(obj, 'hair_color'):
             profile.hair_color = obj.hair_color
-        if obj.eye_color:
+        if hasattr(obj, 'eye_color'):
             profile.eye_color = obj.eye_color
-        if obj.race:
+        if hasattr(obj, 'race'):
             profile.race = obj.race
-        if obj.personal_add1:
+        if hasattr(obj, 'personal_add1'):
             profile.personal_add1 = obj.personal_add1
-        if obj.personal_add2:
+        if hasattr(obj, 'personal_add2'):
             profile.personal_add2 = obj.personal_add2
-        if obj.personal_city:
+        if hasattr(obj, 'personal_cty'):
             profile.personal_city = obj.personal_city
-        if obj.personal_state:
+        if hasattr(obj, 'personal_state'):
             profile.personal_state = obj.personal_state
-        if obj.personal_zip:
+        if hasattr(obj, 'personal_zip'):
             profile.personal_zip = obj.personal_zip
-        if obj.personal_mobile:
+        if hasattr(obj, 'personal_mobile'):
             profile.personal_mobile = obj.personal_mobile
-        if obj.personal_office:
+        if hasattr(obj, 'personal_office'):
             profile.personal_office = obj.personal_office
-        if obj.personal_email:
+        if hasattr(obj, 'personal_email'):
             profile.personal_email = obj.personal_email
-        if obj.is_agency_contact:
+        if hasattr(obj, 'is_agency_contact'):
             profile.is_agency_contact = obj.is_agency_contact
-        if obj.agency_name:
+        if hasattr(obj, 'agency_name'):
             profile.agency_name = obj.agency_name
-        if obj.agency_mobile:
+        if hasattr(obj, 'agency_mobile'):
             profile.agency_mobile = obj.agency_mobile
-        if obj.agency_email:
+        if hasattr(obj, 'agency_email'):
             profile.agency_email = obj.agency_email
-        if obj.agency_office_num:
+        if hasattr(obj, 'agency_office_num'):
             profile.agency_office_num = obj.agency_office_num
-        if obj.agency_add1:
+        if hasattr(obj, 'agency_add1'):
             profile.agency_add1 = obj.agency_add1
-        if obj.agency_add2:
+        if hasattr(obj, 'agency_add2'):
             profile.agency_add2 = obj.agency_add2
-        if obj.agency_city:
+        if hasattr(obj, 'agency_city'):
             profile.agency_city = obj.agency_city
-        if obj.agency_state:
+        if hasattr(obj, 'agency_state'):
             profile.agency_state = obj.agency_state
-        if obj.agency_zip:
+        if hasattr(obj, 'agency_zip'):
             profile.agency_zip = obj.agency_zip
-        if obj.resume_categories:
+        if hasattr(obj, 'resume_categories'):
             profile.resume_categories = obj.resume_categories
-        if obj.thumbnail:
+        if hasattr(obj, 'thumbnail'):
             profile.thumbnail = obj.thumbnail
         profile.save()
 
