@@ -82,7 +82,8 @@ def create_notification(type, source_id, from_user, for_user, message=None):
                                                     android=ua.android(alert=message,
                                                                        extra=extra))
                 push.device_types = ua.device_types('ios', 'android', )
-                push.send()
+                logger.debug("push response")
+                logger.debug(push.send())
 
         return notification
 

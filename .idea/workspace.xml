@@ -4,7 +4,7 @@
     <option name="ANALYSIS_IN_BACKGROUND" value="true" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/castm/notifications/views.py" description="Ysd7JB36S8GugZ29-" line="88" />
+    <bookmark url="file://$PROJECT_DIR$/castm/notifications/views.py" description="Ysd7JB36S8GugZ29-" line="89" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e66a604a-73fd-467e-9ef4-0d3679001844" name="Default" comment="" />
@@ -30,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/castm/static/js/app/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6005917" vertical-offset="1379" max-vertical-offset="3540">
+            <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="3540">
               <caret line="119" column="74" selection-start-line="119" selection-start-column="63" selection-end-line="119" selection-end-column="74" />
               <folding />
             </state>
@@ -111,18 +111,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/castm/my_messages/serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="28" column="34" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/my_messages/urls.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -143,11 +131,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="5685">
-              <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.55473375" vertical-offset="855" max-vertical-offset="5700">
+              <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="core.py" pinned="false" current-in-tab="false">
+        <entry file="file:///Library/Python/2.7/site-packages/urbanairship/push/core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2445">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -164,7 +162,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/requirements.txt" />
-        <option value="$PROJECT_DIR$/castm/notifications/views.py" />
         <option value="$PROJECT_DIR$/castm/payments/serializers.py" />
         <option value="$PROJECT_DIR$/castm/payments/models.py" />
         <option value="$PROJECT_DIR$/castm/payments/views.py" />
@@ -214,6 +211,7 @@
         <option value="$PROJECT_DIR$/castm/my_messages/views.py" />
         <option value="$PROJECT_DIR$/castm/castm/static/js/app/views/casting/popups/talent-sessions-popup.html" />
         <option value="$PROJECT_DIR$/castm/castm/static/js/app/views/casting/organization/rating-form.html" />
+        <option value="$PROJECT_DIR$/castm/notifications/views.py" />
       </list>
     </option>
   </component>
@@ -873,13 +871,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/castm/callbacks/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/subscriptions/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3720">
@@ -1156,7 +1147,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1965" max-vertical-offset="2655">
           <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="20" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1174,7 +1165,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
           <caret line="28" column="34" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="34" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1195,26 +1186,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/my_messages/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="3180">
-          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/castm/static/js/app/views/casting/popups/talent-sessions-popup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.125" vertical-offset="0" max-vertical-offset="540">
           <caret line="21" column="61" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="5685">
-          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
           <folding />
         </state>
       </provider>
@@ -1266,8 +1241,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/castm/static/js/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6005917" vertical-offset="1379" max-vertical-offset="3540">
+        <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="3540">
           <caret line="119" column="74" selection-start-line="119" selection-start-column="63" selection-end-line="119" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Python/2.7/site-packages/urbanairship/push/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="2445">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/my_messages/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1665" max-vertical-offset="3180">
+          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/notifications/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55473375" vertical-offset="855" max-vertical-offset="5700">
+          <caret line="84" column="45" selection-start-line="84" selection-start-column="45" selection-end-line="84" selection-end-column="45" />
           <folding />
         </state>
       </provider>
