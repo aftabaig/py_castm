@@ -76,8 +76,8 @@
                         <div class="profile-name">^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</div>
                         <!-- Buttons when not linked -->
                         <div style="bottom:0" ng-if="!attendee.is_accepted && !attendee.is_rejected">
-                            <button ng-click="acceptRequest($parent.$index, true)" class="btn btn-primary">Approve</button>
-                            <button ng-click="rejectRequest($parent.$index, true)" class="btn btn-danger">Decline</button>
+                            <button ng-click="acceptRequest($parent.$index, false)" class="btn btn-primary">Approve</button>
+                            <button ng-click="rejectRequest($parent.$index, false)" class="btn btn-danger">Decline</button>
                         </div>
                         <!-- Buttons when linked -->
                         <div style="bottom:0" ng-if="attendee.is_accepted">
