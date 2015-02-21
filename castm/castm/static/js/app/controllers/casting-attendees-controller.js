@@ -22,6 +22,9 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
             attendee = $scope.castingAttendees[index];
         }
 
+        console.log(index);
+        console.dir(attendee);
+
         attendee.updating = true;
 
         // Send "accept" request to server.
