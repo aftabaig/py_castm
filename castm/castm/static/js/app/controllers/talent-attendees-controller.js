@@ -14,13 +14,7 @@ castM.controller("TalentAttendeesController", ['$scope', '$rootScope', '$modal',
     $scope.acceptRequest = function(index, isTalent) {
 
         // Get reference to attendee.
-        var attendee;
-        if (isTalent) {
-            attendee = $scope.talentAttendees[index];
-        }
-        else {
-            attendee = $scope.castingAttendees[index];
-        }
+        var attendee = $scope.currentAttendees[index];
 
         attendee.updating = true;
 
@@ -40,13 +34,7 @@ castM.controller("TalentAttendeesController", ['$scope', '$rootScope', '$modal',
     $scope.rejectRequest = function(index, isTalent) {
 
         // Get reference to attendee.
-        var attendee;
-        if (isTalent) {
-            attendee = $scope.talentAttendees[index];
-        }
-        else {
-            attendee = $scope.castingAttendees[index];
-        }
+        var attendee = $scope.talentAttendees[index];
 
         attendee.updating = true;
 

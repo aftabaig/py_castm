@@ -11,19 +11,10 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
         return Math.ceil($scope.currentAttendees.length/$scope.pageSize);
     }
 
-    $scope.acceptRequest = function(index, isTalent) {
+    $scope.acceptRequest = function(index) {
 
         // Get reference to attendee.
-        var attendee;
-        if (isTalent) {
-            attendee = $scope.talentAttendees[index];
-        }
-        else {
-            attendee = $scope.castingAttendees[index];
-        }
-
-        console.log(index);
-        console.dir(attendee);
+        var attendee = $scope.currentAttendees[index];
 
         attendee.updating = true;
 
@@ -43,13 +34,7 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
     $scope.rejectRequest = function(index, isTalent) {
 
         // Get reference to attendee.
-        var attendee;
-        if (isTalent) {
-            attendee = $scope.talentAttendees[index];
-        }
-        else {
-            attendee = $scope.castingAttendees[index];
-        }
+        var attendee = $scope.currentAttendees[index];
 
         attendee.updating = true;
 
