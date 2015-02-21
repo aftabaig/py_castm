@@ -116,7 +116,7 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
             $scope.currentAttendees = [];
             $scope.castingAttendees.forEach(function(attendee) {
                 if (!attendee.is_accepted && !attendee.is_rejected) {
-                    $scope.currentAttendees.push(talent);
+                    $scope.currentAttendees.push(attendee);
                 }
             })
         }

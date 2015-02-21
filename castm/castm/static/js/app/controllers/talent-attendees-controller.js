@@ -131,7 +131,7 @@ castM.controller("TalentAttendeesController", ['$scope', '$rootScope', '$modal',
             $scope.currentAttendees = [];
             $scope.talentAttendees.forEach(function(attendee) {
                 if (!attendee.is_accepted && !attendee.is_rejected) {
-                    $scope.currentAttendees.push(talent);
+                    $scope.currentAttendees.push(attendee);
                 }
             })
         }
@@ -139,7 +139,7 @@ castM.controller("TalentAttendeesController", ['$scope', '$rootScope', '$modal',
             $scope.currentAttendees = [];
             $scope.talentAttendees.forEach(function(attendee) {
                 if (!attendee.attendee_audition_id) {
-                    $scope.currentAttendees.push(talent);
+                    $scope.currentAttendees.push(attendee);
                 }
             })
         }
