@@ -35,7 +35,7 @@ class PlainScheduleSerializer(serializers.Serializer):
         return PlainSchedule(**attrs)
 
     def from_native(self, data, files=None):
-        # data['event_id'] = self.context['event_id']
+        data['event_id'] = self.context['event_id']
         return super(PlainScheduleSerializer, self).from_native(data, files)
 
     def save_object(self, obj, **kwargs):

@@ -221,10 +221,8 @@ def update_schedules_order(request, event_id=None):
                         "status": HTTP_404_NOT_FOUND,
                         "message": "Schedule not found"
                     }, status=HTTP_404_NOT_FOUND)
-            return Response({
-                "status": HTTP_200_OK,
-                "message": "OK"
-            })
+            serializer = PlainScheduleSerializer(get_schedules(event_id), many=True)
+            return Response(serializer.data)
         return Response({
             "status": HTTP_401_UNAUTHORIZED,
             "message": "You are not authorized to perform this operation"

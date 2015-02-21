@@ -3,12 +3,15 @@ castM.controller("SessionController", ['$scope', '$rootScope', '$location', '$lo
     $scope.event = event;
     $scope.schedules = schedules;
     $scope.newSchedule = {}
-    console.dir($scope.schedules);
-    schedules.forEach(function (schedule) {
-        schedule.schedule_date = new Date(schedule.schedule_date)
-        schedule.schedule_time_from = new Date(schedule.schedule_time_from)
-        schedule.schedule_time_to = new Date(schedule.schedule_time_to)
-    })
+
+    $scope.fixDateAndTimes = function() {
+        $scope.schedules.forEach(function (schedule) {
+            schedule.schedule_date = new Date(schedule.schedule_date)
+            schedule.schedule_time_from = new Date(schedule.schedule_time_from)
+            schedule.schedule_time_to = new Date(schedule.schedule_time_to)
+        })
+    }
+    $scope.fixDateAndTimes();
 
     // Clears the new schedule.
     // Called after a new schedule is added.
@@ -90,7 +93,7 @@ castM.controller("SessionController", ['$scope', '$rootScope', '$location', '$lo
         schedule.schedule_date = moment(schedule.schedule_date).format("YYYY-MM-DD")
         schedule.schedule_time_from = moment(schedule.schedule_time_from).format("HH:mm")
         schedule.schedule_time_to = moment(schedule.schedule_time_to).format("HH:mm")
-        console.dir(schedule);
+
         ScheduleService.updateSchedule(event.event_id, schedule.schedule_id, schedule)
         .then(function(updatedSchedule) {
 
@@ -154,17 +157,13 @@ castM.controller("SessionController", ['$scope', '$rootScope', '$location', '$lo
                 "sort_id": index
             }]
         })
-        .then(function() {
+        .then(function(schedules) {
 
-            schedule1.sort_id = index;
-            schedule2.sort_id = index + 1;
-
-            var ordered_schedules = $scope.schedules.splice(index-1, 2, schedule1, schedule2);
-            $scope.schedules = ordered_schedules;
+            $scope.schedules = schedules;
+            $scope.fixDateAndTimes();
 
             $scope.updating = false;
             $scope.message = "";
-
 
         }, function(error) {
 
@@ -180,6 +179,34 @@ castM.controller("SessionController", ['$scope', '$rootScope', '$location', '$lo
             return;
         }
 
+        var schedule1 = $scope.schedules[index];
+        var schedule2 = $scope.schedules[index+1];
+
+        $scope.message = "";
+        $scope.updating = true;
+
+        ScheduleService.changeOrder($scope.event.event_id, {
+            "schedules": [{
+                "schedule_id": schedule1.schedule_id,
+                "sort_id": index+1
+            }, {
+                "schedule_id": schedule2.schedule_id,
+                "sort_id": index
+            }]
+        })
+        .then(function(schedules) {
+
+            $scope.schedules = schedules;
+            $scope.fixDateAndTimes();
+
+            $scope.updating = false;
+            $scope.message = "";
+
+        }, function(error) {
+
+            $scope.updating = false;
+            $scope.mess
+        })
 
 
     }

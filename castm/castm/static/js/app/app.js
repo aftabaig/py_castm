@@ -125,17 +125,28 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('casting.event.links', {
-        url:'/events/:eventId/links',
+    .state('casting.event.talents', {
+        url:'/events/:eventId/talents',
         parent: 'casting.event',
-        templateUrl: 'static/js/app/views/casting/link-requests.html',
-        controller: 'LinksController',
+        templateUrl: 'static/js/app/views/casting/event/talent-attendees.html',
+        controller: 'TalentAttendeesController',
         resolve: {
             event: function($stateParams, EventService) {
                 return EventService.eventDetail($stateParams.eventId);
             },
             talentAttendees: function($stateParams, EventService) {
                 return EventService.allTalentAttendees($stateParams.eventId);
+            }
+        }
+    })
+    .state('casting.event.casting', {
+        url:'/events/:eventId/casting',
+        parent: 'casting.event',
+        templateUrl: 'static/js/app/views/casting/event/casting-attendees.html',
+        controller: 'CastingAttendeesController',
+        resolve: {
+            event: function($stateParams, EventService) {
+                return EventService.eventDetail($stateParams.eventId);
             },
             castingAttendees: function($stateParams, EventService) {
                 return EventService.allCastingAttendees($stateParams.eventId);

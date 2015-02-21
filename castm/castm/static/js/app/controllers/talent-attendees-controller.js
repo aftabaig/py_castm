@@ -1,4 +1,4 @@
-castM.controller("LinksController", ['$scope', '$rootScope', '$modal', '$location', '$localStorage', 'EventService', 'event', 'talentAttendees', 'castingAttendees', function($scope, $rootScope, $modal, $location, $localStorage, EventService, event, talentAttendees, castingAttendees) {
+castM.controller("TalentAttendeesController", ['$scope', '$rootScope', '$modal', '$location', '$localStorage', 'EventService', 'event', 'talentAttendees', function($scope, $rootScope, $modal, $location, $localStorage, EventService, event, talentAttendees) {
 
     $scope.event = event;
     $scope.talentAttendees = talentAttendees;

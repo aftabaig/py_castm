@@ -1,0 +1,98 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Attendees</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <!-->
+    <div class="row-fluid">
+        <div class="search-input-area" style="margin-bottom:10px">
+            <input ng-model="searchQuery" ng-change="search()" type="text" class="search-query" style="width:90%" placeholder="Search"/>
+            <i style="margin-left:-25px" class="icon-search"></i>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12" style="width:100%">
+            <div class="span4">
+                <div class="search-input-area" style="margin-bottom:20px">
+                    <span ng-click="prevPage()"
+                          style="cursor:pointer"
+                          class="label label-info" > <
+                    </span>
+                    <span>
+                        Page ^^currentPage+1^^ of ^^pageCount()^^
+                    </span>
+                    <span ng-click="nextPage()"
+                          style="cursor:pointer"
+                          class="label label-info"> > </span>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="search-input-area" style="width:90%;text-align:right;margin-bottom:20px">
+                    <span>Filter by:&nbsp;</span>
+                    <span ng-click="filterBy('')" ng-class="{'label-info': filterParameter == ''}" class="label" style="cursor:pointer" >No Filter</span>
+                    <span ng-click="filterBy('un-approved')"  ng-class="{'label-info': filterParameter == 'un-approved'}" class="label" style="cursor:pointer" >Unapproved</span>
+                    <span ng-click="filterBy('un-assigned')" ng-class="{'label-info': filterParameter == 'un-assigned'}" class="label" style="cursor:pointer" >Unassigned #</span>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="search-input-area" style="width:90%;text-align:right;margin-bottom:20px">
+                    <span>Sort by:&nbsp;</span>
+                    <span ng-click="sortBy('first-name')" ng-class="{'label-info': sortParameter == 'first-name'}" class="label" style="cursor:pointer" >First Name</span>
+                    <span ng-click="sortBy('last-name')"  ng-class="{'label-info': sortParameter == 'last-name'}" class="label" style="cursor:pointer" >Last Name</span>
+                    <span ng-click="sortBy('audition-num')" ng-class="{'label-info': sortParameter == 'audition-num'}" class="label" style="cursor:pointer" >Audition #</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-->
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+            <!-- Talents -->
+            <div class="span4"
+                 style="margin-left:0px;margin-bottom:20px"
+                 ng-repeat="attendee in currentAttendees | startFrom: currentPage * pageSize | limitTo: pageSize">
+                <div class="span12">
+                    <div class="span4">
+                        <img ng-if="attendee.attendee_thumbnail_url"
+                             src="^^attendee.attendee_thumbnail_url^^"
+                             alt=""
+                             style="width:100px;height:100px">
+                        <img ng-if="!attendee.attendee_thumbnail_url"
+                             src="static/theme/img/avatar-mini.png"
+                             alt=""
+                             style="width:100px;height:100px">
+                    </div>
+                    <div class="span8">
+                        <!-- Audition # -->
+                        <div ng-if="attendee.attendee_audition_id" class="profile-name">
+                            Audition # <span style="background-color:red !important" class="label label-warning">^^attendee.attendee_audition_id^^</span>
+                        </div>
+                        <!-- Full name -->
+                        <div class="profile-name">^^attendee.attendee_first_name^^ ^^attendee.attendee_last_name^^</div>
+                        <!-- Buttons when not linked -->
+                        <div style="bottom:0" ng-if="!attendee.is_accepted && !attendee.is_rejected">
+                            <button ng-click="acceptRequest($parent.$index, true)" class="btn btn-primary">Approve</button>
+                            <button ng-click="rejectRequest($parent.$index, true)" class="btn btn-danger">Decline</button>
+                        </div>
+                        <!-- Buttons when linked -->
+                        <div style="bottom:0" ng-if="attendee.is_accepted">
+                            <button ng-click="openSessions($index)" class="btn btn-primary">Sessions</button>
+                            <button ng-click="deleteUserSession($index)" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ends Talents -->
+        </div>
+        <!-- End Page Content -->
+    </div>
+    <!-- End Page Container -->
+</div>
+
+<div route-loader class="alert alert-success loader">Loading...</div>
+

@@ -74,7 +74,10 @@
                     <span ng-if="!myEvent">You don't have any event</span>
                 </li>
                 <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
-                    <a ui-sref="casting.event.links({'eventId': myEvent.event_id})" class="">Attendees</a>
+                    <a ui-sref="casting.event.talents({'eventId': myEvent.event_id})" class="">Attendees - Talents</a>
+                </li>
+                <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
+                    <a ui-sref="casting.event.casting({'eventId': myEvent.event_id})" class="">Attendees - Casting</a>
                 </li>
                 <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                     <a ui-sref="casting.callbacks({'eventId': myEvent.event_id})" class="">Callbacks</a>
