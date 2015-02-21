@@ -81,8 +81,10 @@
                         </div>
                         <!-- Buttons when linked -->
                         <div style="bottom:0" ng-if="attendee.is_accepted">
-                            <button ng-click="openSessions($index)" class="btn btn-primary">Sessions</button>
-                            <button ng-click="deleteUserSession($index)" class="btn btn-danger">Delete</button>
+                            <span class="label label-primary">Linked</span>
+                        </div>
+                        <div style="bottom:0" ng-if="attendee.is_rejected">
+                            <span class="label label-danger">Rejected</span>
                         </div>
                     </div>
                 </div>
