@@ -72,9 +72,7 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
                 var re = new RegExp(part, 'i');
                 var match1 = attendee.attendee_first_name.match(re);
                 var match2 = attendee.attendee_last_name.match(re);
-                var match3 = attendee.attendee_title.match(re);
-                var match4 = attendee.attendee_audition_id.match(re);
-                if (match1 || match2 || match3 || match4) {
+                if (match1 || match2) {
                     $scope.currentAttendees.push(attendee);
                 }
             })
@@ -106,19 +104,6 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
                 return 0;
             });
         }
-        else if (param == 'audition-num') {
-            $scope.currentAttendees.sort(function(talent1, talent2) {
-                audition_id1 = parseInt(talent1.attendee_audition_id);
-                audition_id2 = parseInt(talent2.attendee_audition_id);
-                if (audition_id1 < audition_id2) {
-                    return -1;
-                }
-                if (audition_id1 > audition_id2) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
         $scope.sortParameter = param;
     }
     $scope.sortBy("last-name");
@@ -131,14 +116,6 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
             $scope.currentAttendees = [];
             $scope.castingAttendees.forEach(function(attendee) {
                 if (!attendee.is_accepted && !attendee.is_rejected) {
-                    $scope.currentAttendees.push(talent);
-                }
-            })
-        }
-        else if (param == 'un-assigned') {
-            $scope.currentAttendees = [];
-            $scope.castingAttendees.forEach(function(attendee) {
-                if (!attendee.attendee_audition_id) {
                     $scope.currentAttendees.push(talent);
                 }
             })
