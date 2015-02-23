@@ -134,6 +134,8 @@ class PlainProfileSerializer(serializers.Serializer):
             profile.personal_email = obj.personal_email
         if hasattr(obj, 'is_agency_contact'):
             profile.is_agency_contact = obj.is_agency_contact
+        if hasattr(obj, 'agency'):
+            profile.agency = obj.agency
         if hasattr(obj, 'agency_name'):
             profile.agency_name = obj.agency_name
         if hasattr(obj, 'agency_mobile'):
