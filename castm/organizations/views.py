@@ -335,7 +335,7 @@ def request_membership(request, organization_id=None):
                 membership.save()
                 plain_member = membership.plain()
                 serializer = PlainMemberSerializer(plain_member)
-                message = "%s %s has requested membership of %s as %s" % (user.first_name, user.last_name, organization.name, "as an administrator" if membership.role == "ADM" else "as a coordinator", )
+                message = "%s %s has requested membership of %s" % (user.first_name, user.last_name, organization.name, )
                 for admin in organization.administrators():
                     create_notification("OMR", membership.id, membership.user, admin.user, message=message)
                 return Response(serializer.data)
