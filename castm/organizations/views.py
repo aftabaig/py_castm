@@ -324,9 +324,9 @@ def request_membership(request, organization_id=None):
     organization = Organization.objects.filter(id=organization_id).first()
     if organization:
         # role = request.DATA.get("role")
-        role = "COO"
         if not OrganizationMember.user_is_member_of(user, organization):
             if not OrganizationMember.user_is_member_of(user):
+                role = "COO"
                 membership = OrganizationMember()
                 membership.organization = organization
                 membership.user = user
