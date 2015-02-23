@@ -26,6 +26,7 @@ class PlainCallbackTalentSerializer(serializers.Serializer):
     callback_location = serializers.CharField(required=False, read_only=True)
     callback_notes = serializers.CharField(required=False, read_only=True)
     talent_id = serializers.IntegerField(required=False, read_only=True)
+    talent_audition_id = serializers.IntegerField(required=False, read_only=True)
     talent_first_name = serializers.CharField(required=False, read_only=True)
     talent_last_name = serializers.CharField(required=False, read_only=True)
     talent_title = serializers.CharField(required=False, read_only=True)

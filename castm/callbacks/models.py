@@ -1,7 +1,7 @@
 import logging
 
 from django.db import models
-from events.models import Event, EventOrganizationInfo
+from events.models import Event, EventOrganizationInfo, EventTalentInfo
 from organizations.models import Organization
 
 from django.contrib.auth.models import User
@@ -22,9 +22,8 @@ class Callback(models.Model):
         callback_talents = self.callback_talents.all()
         plain_callback_talents = []
         for callback_talent in callback_talents:
-            logger.debug("ok")
             plain_callback_talents.append(callback_talent.plain())
-        logger.debug(plain_callback_talents)
+
         return PlainCallback(
             callback=self,
             callback_organization=self.callback_organization,
@@ -67,6 +66,7 @@ class CallbackTalent(models.Model):
         q1 = models.Q(event=self.callback.event)
         q2 = models.Q(organization=self.callback.callback_organization)
         organization_info = EventOrganizationInfo.objects.filter(q1 & q2).first()
+        talent_info = EventTalentInfo.get_talent_info(self.callback.event, self.talent)
 
         return PlainCallbackTalent(
             talent_callback=self,
@@ -75,6 +75,7 @@ class CallbackTalent(models.Model):
             organization_info=organization_info,
             talent=self.talent,
             event=self.callback.event,
+            talent_info=talent_info,
         )
 
     @staticmethod
@@ -118,8 +119,6 @@ class PlainCallback(object):
         else:
             self.callback_location = ""
             self.callback_notes = ""
-            logger.debug("__init__")
-            logger.debug(talent_callbacks)
         if talent_callbacks:
             self.talent_callbacks = talent_callbacks
         else:
@@ -135,6 +134,7 @@ class PlainCallbackTalent(object):
                  organization_info=None,
                  talent=None,
                  event=None,
+                 talent_info=None
                  ):
         self.talent_callback_id = talent_callback.id
         if not talent_callback.sent_to_event_organization:
@@ -157,6 +157,10 @@ class PlainCallbackTalent(object):
             self.callback_location = ""
             self.callback_notes = ""
         self.talent_id = talent.id
+        if talent_info:
+            self.talent_audition_id = talent_info.audition_id
+        else:
+            self.talent_audition_id = ""
         self.talent_first_name = talent.first_name
         self.talent_last_name = talent.last_name
         self.talent_title = talent.user_profile.get().title

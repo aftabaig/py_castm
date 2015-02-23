@@ -65,7 +65,6 @@ def get_callbacks(request, event_id=None):
             if user_organization == event.owner:
                 callbacks = event_callbacks(event)
                 serializer = PlainCallbackSerializer(callbacks, many=True)
-                logger.debug(serializer.data)
                 return Response(serializer.data)
             else:
                 my_callbacks = organization_callbacks(user_organization, event)
