@@ -102,6 +102,7 @@ def process_membership_request(request, organization_id=None, request_id=None, a
     user = request.user
     organization = Organization.objects.filter(id=organization_id).first()
     membership = OrganizationMember.objects.filter(id=request_id).first()
+    membership_role = request.DATA.get("role")
     if organization:
         if membership:
             if OrganizationMember.user_is_admin(organization, user):
@@ -116,6 +117,10 @@ def process_membership_request(request, organization_id=None, request_id=None, a
                         membership.is_rejected = True
                         message = "Your membership request has been rejected"
                         notification_type = "ORR"
+                    if membership_role:
+                        membership.role = membership_role
+                    else:
+                        membership.role = "COO"
                     membership.save()
                     plain_invitation = membership.plain()
                     serializer = PlainMemberSerializer(plain_invitation)
@@ -318,7 +323,8 @@ def request_membership(request, organization_id=None):
     user = request.user
     organization = Organization.objects.filter(id=organization_id).first()
     if organization:
-        role = request.DATA.get("role")
+        # role = request.DATA.get("role")
+        role = "COO"
         if not OrganizationMember.user_is_member_of(user, organization):
             if not OrganizationMember.user_is_member_of(user):
                 membership = OrganizationMember()
