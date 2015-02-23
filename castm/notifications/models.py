@@ -84,7 +84,7 @@ class Notification(models.Model):
 
     @staticmethod
     def membership_requests_notifications(source_id):
-        q1 = models.q(source_id=source_id)
+        q1 = models.Q(source_id=source_id)
         q2 = models.Q(type="OMR")
         q3 = models.Q(action_taken=False)
         return Notification.objects.filter(q1 & q2)
