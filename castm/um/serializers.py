@@ -35,6 +35,5 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'type',
-            'sub_type',
             'user'
         )

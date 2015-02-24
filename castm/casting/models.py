@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 class CastingProfile(models.Model):
     user = models.ForeignKey(User, related_name="casting_profile")
     my_user = models.OneToOneField(MyUser)
+    title = models.CharField("Title", max_length=255, blank=True, db_index=True)
     add1 = models.CharField("Address 1", max_length=1024, blank=True)
     add2 = models.CharField("Address 2", max_length=1024, blank=True)
     city = models.CharField("City", max_length=16, blank=True)
@@ -39,8 +40,8 @@ class PlainProfile(object):
             self.first_name = user.first_name
             self.last_name = user.last_name
         if profile:
-            self.sub_type = profile.my_user.sub_type
             self.profile_id = profile.id
+            self.title = profile.title
             self.add1 = profile.add1
             self.add2 = profile.add2
             self.city = profile.city

@@ -144,18 +144,14 @@ def authenticate(request):
     Returns:\n
         {
             "token": "b95175a8e01d3ac718d12669f1ca8ddd37bf6f3d",
-            "type": 'S',
-            "sub_type": ''
+            "type": 'S'
         }\n
     """
     serializer = AuthTokenSerializer(data=request.DATA)
     if serializer.is_valid():
         user = serializer.object['user']
-        logger.debug(user)
         device_type = request.DATA.get("device_type")
-        logger.debug(device_type)
         push_token = request.DATA.get("push_token")
-        logger.debug(push_token)
         token, created = Token.objects.get_or_create(user=user)
         my_device, created = UserDevice.objects.get_or_create(user=user, device_type=device_type, push_token=push_token)
         my_device.push_token = push_token
@@ -164,11 +160,9 @@ def authenticate(request):
         if my_user:
             if my_user.user.is_active:
                 type = my_user.type
-                sub_type = my_user.sub_type
                 response = {
                     'token': token.key,
                     'type': type,
-                    'sub_type': sub_type,
                 }
                 return Response(response)
     return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)

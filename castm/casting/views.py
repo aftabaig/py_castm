@@ -39,6 +39,7 @@ def public_profile(request, user_id=None):
         {
             "username": "aftab.flash@gmail.com",
             "email": "aftab.flash@gmail.com",
+            "title": "Gentleman",
             "first_name": "",
             "last_name": "",
             "add1": "",

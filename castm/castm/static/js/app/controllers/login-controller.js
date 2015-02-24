@@ -9,11 +9,9 @@ castM.controller("LoginController", ['$scope', '$rootScope', '$location', '$loca
             /*
             {
                 "token": "b95175a8e01d3ac718d12669f1ca8ddd37bf6f3d",
-                "type": 'C',
-                "sub_type": ''
+                "type": 'C'
             }
             */
-            console.dir(user);
             if (user.type != 'C') {
                 $scope.errorMessage = "The web app is currently designed for the casting users only. For access, search your app store for CastM";
             }

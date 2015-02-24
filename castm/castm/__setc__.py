@@ -38,7 +38,7 @@ casting_user.set_password("p@$$w0rd")
 casting_user.save()
 
 # Step-1.1: Create associated my_user.
-my_user = MyUser(user=casting_user, type='C', sub_type='CO', activation_key='')
+my_user = MyUser(user=casting_user, type='C', activation_key='')
 my_user.save()
 
 # Step-1.2: Crate associated casting_profile.
@@ -145,7 +145,7 @@ with open('__data__', 'rU') as csvfile:
                 user.save()
 
                 # Create my_user.
-                my_user = MyUser(user=user, type='T', sub_type='T', activation_key='')
+                my_user = MyUser(user=user, type='T', activation_key='')
                 my_user.save()
 
                 # Create user's profile.

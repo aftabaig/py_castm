@@ -16,7 +16,7 @@ class PlainProfileSerializer(serializers.Serializer):
     email = serializers.CharField(read_only=True)
     first_name = serializers.CharField(required=False, error_messages="")
     last_name = serializers.CharField(required=False)
-    sub_type = serializers.CharField(required=False)
+    title = serializers.CharField(required=False)
     add1 = serializers.CharField(required=False)
     add2 = serializers.CharField(required=False)
     city = serializers.CharField(required=False)
@@ -33,6 +33,7 @@ class PlainProfileSerializer(serializers.Serializer):
         if instance is not None:
             instance.first_name = attrs.get('first_name', instance.first_name)
             instance.last_name = attrs.get('last_name', instance.last_name)
+            instance.title = attrs.get('title', instance.title)
             instance.add1 = attrs.get('add1', instance.add1)
             instance.add2 = attrs.get('add2', instance.add2)
             instance.city = attrs.get('city', instance.city)
@@ -55,21 +56,23 @@ class PlainProfileSerializer(serializers.Serializer):
         user.save()
 
         profile = CastingProfile.objects.get(id=obj.profile_id)
-        if obj.add1:
+        if hasattr(obj, 'title'):
+            profile.title = obj.title
+        if hasattr(obj, 'add1'):
             profile.add1 = obj.add1
-        if obj.add2:
+        if hasattr(obj, 'add2'):
             profile.add2 = obj.add2
-        if obj.city:
+        if hasattr(obj, 'city'):
             profile.city = obj.city
-        if obj.state:
+        if hasattr(obj, 'state'):
             profile.state = obj.state
-        if obj.zip:
+        if hasattr(obj, 'state'):
             profile.zip = obj.zip
-        if obj.mobile:
+        if hasattr(obj, 'mobile'):
             profile.mobile = obj.mobile
-        if obj.office:
+        if hasattr(obj, 'office'):
             profile.office = obj.office
-        if obj.thumbnail:
+        if hasattr(obj, 'thumbnail'):
             profile.thumbnail = obj.thumbnail
         profile.save()
 
