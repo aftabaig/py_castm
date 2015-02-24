@@ -96,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/castm/um/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.60674155" vertical-offset="2175" max-vertical-offset="3765">
-              <caret line="165" column="46" selection-start-line="165" selection-start-column="46" selection-end-line="165" selection-end-column="46" />
+              <caret line="165" column="0" selection-start-line="161" selection-start-column="16" selection-end-line="165" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1056,7 +1056,7 @@
     <entry file="file://$PROJECT_DIR$/castm/um/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60674155" vertical-offset="2175" max-vertical-offset="3765">
-          <caret line="165" column="46" selection-start-line="165" selection-start-column="46" selection-end-line="165" selection-end-column="46" />
+          <caret line="165" column="0" selection-start-line="161" selection-start-column="16" selection-end-line="165" selection-end-column="0" />
           <folding />
         </state>
       </provider>
