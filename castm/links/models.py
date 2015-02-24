@@ -26,7 +26,7 @@ class Link(models.Model):
             plain_link.thumbnail_url = self.to_user.user_profile.get().thumbnail
             plain_link.profile_url = "/api/talents/profile/%d" % (self.to_user.id, )
         else:
-            plain_link.title = ""
+            plain_link.title = self.to_user.casting_profile.get().title
             plain_link.thumbnail_url = self.to_user.casting_profile.get().thumbnail
             plain_link.profile_url = "/api/casting/profile/%d" % (self.to_user.id, )
 

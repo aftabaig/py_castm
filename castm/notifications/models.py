@@ -46,6 +46,7 @@ class Notification(models.Model):
         plain_notification = PlainNotification(
             notification_id=self.id,
             notification_type=self.type,
+            seen=self.seen,
             created_at=self.created_at,
             user_id=self.from_user.id,
             first_name=self.from_user.first_name,
@@ -59,7 +60,7 @@ class Notification(models.Model):
             plain_notification.thumbnail_url = self.from_user.user_profile.get().thumbnail
             plain_notification.profile_url = "/api/talents/profile/%d" % (self.from_user.id, )
         else:
-            plain_notification.title = ""
+            plain_notification.title = self.from_user.casting_profile.get().title
             plain_notification.thumbnail_url = self.from_user.casting_profile.get().thumbnail
             plain_notification.profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
 
@@ -97,10 +98,11 @@ class Notification(models.Model):
 
 
 class PlainNotification(object):
-    def __init__(self, notification_id=None, source_id=None, notification_type=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, thumbnail_url=None, profile_url=None, description=None):
+    def __init__(self, notification_id=None, source_id=None, notification_type=None, seen=None, created_at=None, user_id=None, first_name=None, last_name=None, title=None, thumbnail_url=None, profile_url=None, description=None):
         self.notification_id = notification_id
         self.source_id = source_id
         self.notification_type = notification_type
+        self.seen = seen
         self.created_at = created_at
         self.user_id = user_id
         self.first_name = first_name

@@ -26,17 +26,17 @@ class Message(models.Model):
             plain_msg.from_thumbnail_url = self.from_user.user_profile.get().thumbnail
             plain_msg.from_profile_url = "/api/talents/profile/%d" % (self.from_user.id, )
         else:
-            plain_msg.from_title = ""
-            # plain_msg.from_thumbnail_url = self.from_user.casting_profile.get().thumbnail
-            # plain_msg.from_profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
+            plain_msg.from_title = self.from_user.casting_profile.get().title
+            plain_msg.from_thumbnail_url = self.from_user.casting_profile.get().thumbnail
+            plain_msg.from_profile_url = "/api/casting/profile/%d" % (self.from_user.id, )
         if self.to_user.my_user.type == 'T':
             plain_msg.to_title = self.to_user.user_profile.get().title
             plain_msg.to_thumbnail_url = self.to_user.user_profile.get().thumbnail
             plain_msg.to_profile_url = "/api/talents/profile/%d" % (self.to_user.id, )
         else:
-            plain_msg.to_title = "",
-            # plain_msg.to_thumbnail_url = self.to_user.casting_profile.get().thumbnail
-            # plain_msg.to_profile_url = "/api/casting/profile/%d" % (self.to_user.id, )
+            plain_msg.to_title = self.to_user.casting_profile.get().title,
+            plain_msg.to_thumbnail_url = self.to_user.casting_profile.get().thumbnail
+            plain_msg.to_profile_url = "/api/casting/profile/%d" % (self.to_user.id, )
         return plain_msg
 
     @staticmethod

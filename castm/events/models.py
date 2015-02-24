@@ -112,7 +112,7 @@ class EventAttendee(models.Model):
             plain_attendee.attendee_thumbnail_url = self.attendee.user_profile.get().thumbnail
             plain_attendee.attendee_profile_url = "/api/talents/profile/%d" % (self.attendee.id, )
         else:
-            plain_attendee.attendee_title = ""
+            plain_attendee.attendee_title = self.attendee.casting_profile.get().title
             plain_attendee.attendee_thumbnail_url = self.attendee.casting_profile.get().thumbnail
             plain_attendee.attendee_profile_url = "/api/casting/profile/%d" % (self.attendee.id, )
             if self.organization:
