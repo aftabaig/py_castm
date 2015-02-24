@@ -163,6 +163,7 @@ def authenticate(request):
                 response = {
                     'token': token.key,
                     'type': type,
+                    'user_id': my_user.user.id
                 }
                 return Response(response)
     return Response(error_as_text(serializer.errors, HTTP_400_BAD_REQUEST), status=HTTP_400_BAD_REQUEST)
