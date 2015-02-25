@@ -84,7 +84,7 @@
         <entry file="file://$PROJECT_DIR$/castm/castm/production.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.6966292" vertical-offset="1505" max-vertical-offset="1950">
-              <caret line="121" column="37" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
+              <caret line="121" column="19" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1098,7 +1098,7 @@
     <entry file="file://$PROJECT_DIR$/castm/castm/production.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6966292" vertical-offset="1505" max-vertical-offset="1950">
-          <caret line="121" column="37" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
+          <caret line="121" column="19" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
           <folding />
         </state>
       </provider>
