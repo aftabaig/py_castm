@@ -100,11 +100,11 @@ def process_attendance_request(request, event_id=None, request_id=None, accept=T
                     n_type = "ERA"
                     if accept:
                         attend_request.is_accepted = True
-                        message = "Your membership request has been accepted"
+                        message = "Your attendance request has been accepted"
                     else:
                         attend_request.is_rejected = True
                         n_type = "ERR"
-                        message = "Your membership request has been rejected"
+                        message = "Your attendance request has been rejected"
                     attend_request.save()
                     plain_request = attend_request.plain()
                     serializer = PlainAttendeeSerializer(plain_request)
