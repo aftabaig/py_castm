@@ -115,7 +115,8 @@ with open('__data__', 'rU') as csvfile:
                 if previous_email:
                     resume_categories = [
                         {
-                            "jobs": jobs
+                            "jobs": jobs,
+                            "title": "RESUME"
                         }
                     ]
 
