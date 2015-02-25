@@ -113,10 +113,11 @@ with open('__data__', 'rU') as csvfile:
                 # outer condition, we get a null in the previous_email
                 # for the first time in the loop.
                 if previous_email:
-                    resume_categories = {
-                        "title": "RESUME",
-                        "jobs": jobs
-                    }
+                    resume_categories = [
+                        {
+                            "jobs": jobs
+                        }
+                    ]
 
                     # Update user's resume.
                     u = User.objects.filter(email=previous_email)
