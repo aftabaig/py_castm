@@ -114,12 +114,8 @@ with open('__data__', 'rU') as csvfile:
                 # for the first time in the loop.
                 if previous_email:
                     resume_categories = {
-                        "resume_categories": [
-                            {
-                                "title": "RESUME",
-                                "jobs": jobs
-                            }
-                        ]
+                        "title": "RESUME",
+                        "jobs": jobs
                     }
 
                     # Update user's resume.
