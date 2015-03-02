@@ -26,7 +26,7 @@ jobs = []
 from subscriptions.models import PaymentPlan
 
 import csv
-with open('__plans__', 'rU') as csvfile:
+with open('data/__plans__', 'rU') as csvfile:
     reader = csv.reader(csvfile)
     lines = list(reader)
     for plan_name, plan_title, plan_charges, plan_type, can_upgrade, can_downgrade in lines:

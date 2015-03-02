@@ -7,14 +7,14 @@ logger = logging.getLogger(__name__)
 
 
 class Organization(models.Model):
-    name = models.CharField("Organization Name", max_length=32, blank=False)
+    name = models.CharField("Organization Name", max_length=128, blank=False)
     add1 = models.CharField("Address 1", max_length=1024, blank=True, null=True)
     add2 = models.CharField("Address 2", max_length=1024, blank=True, null=True)
-    city = models.CharField("City", max_length=16, blank=True, null=True)
-    state = models.CharField("State", max_length=16, blank=True, null=True)
-    zip = models.CharField("Zip", max_length=16, blank=True, null=True)
-    mobile = models.CharField("Mobile #", max_length=32, blank=True, null=True)
-    office = models.CharField("Office #", max_length=32, blank=True, null=True)
+    city = models.CharField("City", max_length=64, blank=True, null=True)
+    state = models.CharField("State", max_length=64, blank=True, null=True)
+    zip = models.CharField("Zip", max_length=64, blank=True, null=True)
+    mobile = models.CharField("Mobile #", max_length=64, blank=True, null=True)
+    office = models.CharField("Office #", max_length=64, blank=True, null=True)
     logo = models.CharField("Logo", max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
