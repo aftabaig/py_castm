@@ -45,15 +45,21 @@ my_user.save()
 casting_profile = CastingProfile(user=casting_user, my_user=my_user)
 casting_profile.save()
 
+print "Created user `April`"
+
 # Step-2: Create "SETC" organization.
 # This organization will be the owner of the "SETC" event
 # that we create below.
 organization = Organization(name="SETC")
 organization.save()
 
+print "Created organization `SETC`"
+
 # Step-3: Create an admin member of the "SETC" organization
 member = OrganizationMember(organization=organization, initiator=casting_user, user=casting_user, role='ADM', is_accepted=True, is_rejected=False)
 member.save()
+
+print "Made `April`, the admin of `SETC`"
 
 # Step-4 Create "SETC" event
 event = Event(name="SETC", owner=organization)
@@ -67,17 +73,20 @@ event.callback_time_from = "12:00"
 event.callback_time_to = "20:00"
 event.save()
 
+print "Created event `SETC`"
+
 import csv
 with open('data/__setc_talent_users__', 'rU') as csvfile:
     reader = csv.reader(csvfile)
     lines = list(reader)
-    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42 in lines:
+    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43 in lines:
 
         audition_num = f0
         first_name = f2
         middle_name = f3
         last_name = f4
-        street_address = f5
+        street_address1 = f5
+        street_address2 = f43
         city = f6
         state = f7
         zip = f8
@@ -132,7 +141,8 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
                 import cloudinary.uploader
                 import cloudinary.api
                 try:
-                    url = "http://setc.matchingneeds.com/inf/images/om/%s" % (picture_file, )
+                    file_name_parts = picture_file.split('.')
+                    url = "http://setc.matchingneeds.com/inf/images/om/%s_thumb.%s" % (file_name_parts[0], file_name_parts[1], )
                     response = cloudinary.uploader.upload(url)
                 except:
                     response = {}
@@ -148,7 +158,8 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
 
                 # Create user's profile.
                 profile = TalentProfile(user=user, my_user=my_user)
-                profile.personal_add1 = street_address
+                profile.personal_add1 = street_address1
+                profile.personal_add2 = street_address2
                 profile.personal_city = city
                 profile.personal_state = state
                 profile.personal_zip = zip
@@ -160,6 +171,8 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
                 profile.eye_color = eye_color
                 profile.gender = gender[0]
                 profile.birth_day = dob.replace(", ", "-")
+                if profile.birth_day == "0-0-0":
+                    profile.birth_day = None
                 if response:
                     profile.thumbnail = response["url"]
                 profile.save()
@@ -184,7 +197,7 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
                 info.hiring_preferences = work_preferences
                 info.save()
 
-                print i
+                print "%s / %s" % (i, lines.__len__())
 
         # We collect the job and store it in
         # the jobs array. The jobs array will

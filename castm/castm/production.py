@@ -112,8 +112,8 @@ UA = {
 }
 
 STRIPE = {
-    'secret_key': 'sk_test_Qd1gjkWYroLCb0T0vUJ8atb6',
-    'publishable_key': 'pk_test_9ikeq7cbzVDaDfiIvISr5IBj'
+    'secret_key': 'sk_live_yGDAvAv7DY9Hb0C3CfgrFUdy',
+    'publishable_key': 'pk_live_nSOXQM3oTgU6WoTSG5yY2VqM'
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
