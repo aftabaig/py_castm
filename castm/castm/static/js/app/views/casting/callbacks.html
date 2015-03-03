@@ -14,7 +14,7 @@
         <div class="span12">
 
                 <!-- Begins Schedules List -->
-                <div class="widget" ng-repeat="callback in callbacks">
+                <div class="widget">
                     <div class="widget-title">
                         <img src="http://res.cloudinary.com/flash-solutions/image/upload/v1422309755/diuhe3gplqyj5mvxexfs.png" alt="" style="padding-top:3px;border-radius:100%;width:29px">
                         <h4>^^callback.callback_organization_name^^</h4>
@@ -25,27 +25,41 @@
                         </div>
                     </div>
                     <div class="widget-body">
-                            <div ng-repeat="talent_callback in callback.talent_callbacks">
-                                <span>
-                                    <img ng-if="talent_callback.talent_thumbnail_url"
-                                         src="^^talent_callback.talent_thumbnail_url^^"
-                                         alt=""
-                                         style="padding-top:3px;border-radius:100%;width:29px">
-                                    <img ng-if="!talent_callback.talent_thumbnail_url"
-                                         src="static/theme/img/avatar-mini.png"
-                                         alt=""
-                                         style="padding-top:3px;border-radius:100%;width:29px">
-                                </span>
-                                <span>
-                                    <span>^^talent_callback.talent_first_name^^ ^^talent_callback.talent_last_name^^</span>
-                                </span>
-                                <span>
-                                    <span>^^getCallbackType(talent_callback.callback_type)^^</span>
-                                </span>
-                            </div>
-                        <div ng-repeat="talent_callback in talent_callbacks" style="margin-bottom:-5px" class="control-group">
+                            <form class="form-horizontal">
+                            <table class="table no-margin" style="width:100%" >
+                                <thead>
+                                    <tr>
+                                        <th style="width:40%;text-align:left">From</th>
+                                        <th style="width:40%;text-align:left">To</th>
+                                        <th style="width:10%;text-align:left">Audition #</th>
+                                        <th style="width:10%;text-align:right">Callback</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="callback in callbacks">
+                                        <td>
+                                            <span>
+                                                ^^callback.callback_organization_name^^
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                                ^^callback.callback_organization_name^^
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span>
 
-                        </div>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 </div>
                 <!-- Ends Schedules List -->
