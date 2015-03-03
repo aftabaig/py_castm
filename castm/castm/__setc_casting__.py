@@ -31,17 +31,17 @@ from links.models import Link
 
 # Step-1: Create a casting user with casting profile
 # This will be "Matthew" who would be linked to all casting users.
-matthew_user = User(email="matthew@castm.co", first_name="Matthew", last_name="Davenport", username="matthew@castm.co")
-matthew_user.set_password("p@$$w0rd")
-matthew_user.save()
+# matthew_user = User(email="matthew@castm.co", first_name="Matthew", last_name="Davenport", username="matthew@castm.co")
+# matthew_user.set_password("p@$$w0rd")
+# matthew_user.save()
 
 # Step-1.1: Create associated my_user.
-my_user = MyUser(user=matthew_user, type='C', activation_key='')
-my_user.save()
+# my_user = MyUser(user=matthew_user, type='C', activation_key='')
+# my_user.save()
 
 # Step-1.2: Crate associated casting_profile.
-casting_profile = CastingProfile(user=matthew_user, my_user=my_user)
-casting_profile.save()
+# casting_profile = CastingProfile(user=matthew_user, my_user=my_user)
+# casting_profile.save()
 
 # Get reference to "SETC" event.
 event = Event.objects.filter(name="SETC").first()
