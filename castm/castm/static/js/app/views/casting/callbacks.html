@@ -16,23 +16,17 @@
                 <!-- Begins Schedules List -->
                 <div class="widget">
                     <div class="widget-title">
-                        <img src="http://res.cloudinary.com/flash-solutions/image/upload/v1422309755/diuhe3gplqyj5mvxexfs.png" alt="" style="padding-top:3px;border-radius:100%;width:29px">
-                        <h4>^^callback.callback_organization_name^^</h4>
-                        <div ng-if="updating" style="padding-top:11px;width:100px;text-align:right" class="span3">
-                            <div class="progress progress-striped progress-success active">
-                                <div style="width: 100%;" class="bar"></div>
-                            </div>
-                        </div>
+                        Callbacks
                     </div>
                     <div class="widget-body">
                             <form class="form-horizontal">
                             <table class="table no-margin" style="width:100%" >
                                 <thead>
                                     <tr>
-                                        <th style="width:40%;text-align:left">From</th>
-                                        <th style="width:40%;text-align:left">To</th>
-                                        <th style="width:10%;text-align:left">Audition #</th>
-                                        <th style="width:10%;text-align:right">Callback</th>
+                                        <th style="width:30%;text-align:left">From</th>
+                                        <th style="width:30%;text-align:left">To</th>
+                                        <th style="width:20%;text-align:left">Audition #</th>
+                                        <th style="width:20%;text-align:right">Callback</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,16 +38,17 @@
                                         </td>
                                         <td>
                                             <span>
-                                                ^^callback.callback_organization_name^^
+                                                ^^callback.talent_first_name^^ ^^callback.talent_last_name^^
                                             </span>
                                         </td>
                                         <td>
                                             <span>
+                                                ^^callback.talent_audition_id^^
                                             </span>
                                         </td>
                                         <td>
                                             <span>
-
+                                                ^^getCallbackType(callback.callback_type)^^
                                             </span>
                                         </td>
                                     </tr>
