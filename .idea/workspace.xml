@@ -90,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__setc_casting__.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="__setc_casting__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/castm/__setc_casting__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="2085">
-              <caret line="122" column="32" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.49438202" vertical-offset="1070" max-vertical-offset="2085">
+              <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -110,10 +110,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__setc_casting_users__" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__setc_casting_users__" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/castm/castm/data/__setc_casting_users__">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9325843" vertical-offset="1700" max-vertical-offset="2205">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="2205">
               <caret line="141" column="58" selection-start-line="141" selection-start-column="58" selection-end-line="141" selection-end-column="58" />
               <folding />
             </state>
@@ -184,13 +184,13 @@
         <option value="$PROJECT_DIR$/castm/castm/__castm_casting__.py" />
         <option value="$PROJECT_DIR$/castm/castm/scripts/__setc_casting__.py" />
         <option value="$PROJECT_DIR$/castm/organizations/models.py" />
-        <option value="$PROJECT_DIR$/castm/castm/__setc_casting__.py" />
         <option value="$PROJECT_DIR$/castm/castm/data/__plans_prod__" />
         <option value="$PROJECT_DIR$/castm/castm/__castm__.py" />
         <option value="$PROJECT_DIR$/castm/castm/production.py" />
         <option value="$PROJECT_DIR$/castm/castm/data/__setc_talent_users__" />
         <option value="$PROJECT_DIR$/castm/castm/__setc__.py" />
         <option value="$PROJECT_DIR$/castm/castm/data/__setc_casting_users__" />
+        <option value="$PROJECT_DIR$/castm/castm/__setc_casting__.py" />
       </list>
     </option>
   </component>
@@ -986,14 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/castm/castm/__setc_casting__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="890" max-vertical-offset="2085">
-          <caret line="122" column="32" selection-start-line="122" selection-start-column="32" selection-end-line="122" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/castm/castm/data/__setc_talent_users__">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.115385" vertical-offset="47741" max-vertical-offset="59700">
@@ -1036,8 +1028,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/castm/data/__setc_casting_users__">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9325843" vertical-offset="1700" max-vertical-offset="2205">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="2205">
           <caret line="141" column="58" selection-start-line="141" selection-start-column="58" selection-end-line="141" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/castm/castm/__setc_casting__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49438202" vertical-offset="1070" max-vertical-offset="2085">
+          <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
           <folding />
         </state>
       </provider>

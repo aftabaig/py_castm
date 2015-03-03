@@ -50,32 +50,32 @@ if not event:
     sys.exit(0)
 
 # Create organizations.
-import csv
-with open('data/__setc_organizations__', 'rU') as csvfile:
-    reader = csv.reader(csvfile)
-    lines = list(reader)
-    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 in lines:
-
-        i += 1
-        print ("%s/%s" % (i, lines.__len__()))
-
-        org_name = f1
-        org_add1 = f6
-        org_add2 = f7
-        org_city = f8
-        org_state = f9
-        org_zip = f10
-        org_office = f5
-
-        org = Organization()
-        org.name = org_name
-        org.add1 = org_add1
-        org.add2 = org_add2
-        org.city = org_city
-        org.state = org_state
-        org.zip = org_zip
-        org.office = org_office
-        org.save()
+# import csv
+# with open('data/__setc_organizations__', 'rU') as csvfile:
+#     reader = csv.reader(csvfile)
+#     lines = list(reader)
+#     for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 in lines:
+#
+#         i += 1
+#         print ("%s/%s" % (i, lines.__len__()))
+#
+#         org_name = f1
+#         org_add1 = f6
+#         org_add2 = f7
+#         org_city = f8
+#         org_state = f9
+#         org_zip = f10
+#         org_office = f5
+#
+#         org = Organization()
+#         org.name = org_name
+#         org.add1 = org_add1
+#         org.add2 = org_add2
+#         org.city = org_city
+#         org.state = org_state
+#         org.zip = org_zip
+#         org.office = org_office
+#         org.save()
 
 print "Organizations - DONE"
 i = 0
@@ -84,7 +84,7 @@ i = 0
 with open('data/__setc_casting_users__', 'rU') as csvfile:
     reader = csv.reader(csvfile)
     lines = list(reader)
-    for f0, f1, f2, f3, f4, f5, f6 in lines:
+    for f0, f1, f2, f3, f4, f5 in lines:
 
         i += 1
         print ("%s/%s" % (i, lines.__len__()))
