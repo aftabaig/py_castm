@@ -184,9 +184,9 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
-    .state('casting.callbacks', {
+    .state('casting.event.callbacks', {
         url: '/events/:eventId/callbacks',
-        parent: 'casting',
+        parent: 'casting.event',
         templateUrl: 'static/js/app/views/casting/callbacks.html',
         controller: 'CallbackController',
         resolve: {
