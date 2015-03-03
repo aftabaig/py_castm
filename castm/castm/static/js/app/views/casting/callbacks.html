@@ -9,6 +9,13 @@
     </div>
     <!-- End Page Header -->
 
+     <div class="row-fluid">
+        <div class="search-input-area" style="margin-bottom:10px">
+            <input ng-model="searchQuery" ng-change="search()" type="text" class="search-query" style="width:90%" placeholder="Search"/>
+            <i style="margin-left:-25px" class="icon-search"></i>
+        </div>
+    </div>
+
     <!-- Begin Page Content -->
     <div class="row-fluid">
         <div class="span12">
@@ -16,7 +23,7 @@
                 <!-- Begins Schedules List -->
                 <div class="widget">
                     <div class="widget-title">
-                        Callbacks
+                        <h4 class="span12">Callbacks</h4>
                     </div>
                     <div class="widget-body">
                             <form class="form-horizontal">
@@ -26,7 +33,7 @@
                                         <th style="width:30%;text-align:left">From</th>
                                         <th style="width:30%;text-align:left">To</th>
                                         <th style="width:20%;text-align:left">Audition #</th>
-                                        <th style="width:20%;text-align:right">Callback</th>
+                                        <th style="width:20%;text-align:left">Callback</th>
                                     </tr>
                                 </thead>
                                 <tbody>
