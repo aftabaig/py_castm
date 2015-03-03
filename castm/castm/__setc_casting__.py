@@ -98,6 +98,8 @@ with open('data/__setc_casting_users__', 'rU') as csvfile:
         org = Organization.objects.filter(name=org_name).first()
         if not org:
             print "Organization with name `%s` not found" % (org_name,)
+            org = Organization(name=org_name)
+            org.save()
 
         # Create user.
         casting_user = User(email=email, first_name=first_name, last_name=last_name, username=email)
