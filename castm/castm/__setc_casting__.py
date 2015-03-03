@@ -31,17 +31,17 @@ from links.models import Link
 
 # Step-1: Create a casting user with casting profile
 # This will be "Matthew" who would be linked to all casting users.
-# matthew_user = User(email="matthew@castm.co", first_name="Matthew", last_name="Davenport", username="matthew@castm.co")
-# matthew_user.set_password("p@$$w0rd")
-# matthew_user.save()
+matthew_user = User(email="matthew@castm.co", first_name="Matthew", last_name="Davenport", username="matthew@castm.co")
+matthew_user.set_password("p@$$w0rd")
+matthew_user.save()
 
 # Step-1.1: Create associated my_user.
-# my_user = MyUser(user=matthew_user, type='C', activation_key='')
-# my_user.save()
+my_user = MyUser(user=matthew_user, type='C', activation_key='')
+my_user.save()
 
 # Step-1.2: Crate associated casting_profile.
-# casting_profile = CastingProfile(user=matthew_user, my_user=my_user)
-# casting_profile.save()
+casting_profile = CastingProfile(user=matthew_user, my_user=my_user)
+casting_profile.save()
 
 # Get reference to "SETC" event.
 event = Event.objects.filter(name="SETC").first()
@@ -51,31 +51,31 @@ if not event:
 
 # Create organizations.
 import csv
-# with open('data/__setc_organizations__', 'rU') as csvfile:
-#     reader = csv.reader(csvfile)
-#     lines = list(reader)
-#     for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 in lines:
-#
-#         i += 1
-#         print ("%s/%s" % (i, lines.__len__()))
-#
-#         org_name = f1
-#         org_add1 = f6
-#         org_add2 = f7
-#         org_city = f8
-#         org_state = f9
-#         org_zip = f10
-#         org_office = f5
-#
-#         org = Organization()
-#         org.name = org_name
-#         org.add1 = org_add1
-#         org.add2 = org_add2
-#         org.city = org_city
-#         org.state = org_state
-#         org.zip = org_zip
-#         org.office = org_office
-#         org.save()
+with open('data/__setc_organizations__', 'rU') as csvfile:
+    reader = csv.reader(csvfile)
+    lines = list(reader)
+    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10 in lines:
+
+        i += 1
+        print ("%s/%s" % (i, lines.__len__()))
+
+        org_name = f1
+        org_add1 = f6
+        org_add2 = f7
+        org_city = f8
+        org_state = f9
+        org_zip = f10
+        org_office = f5
+
+        org = Organization()
+        org.name = org_name
+        org.add1 = org_add1
+        org.add2 = org_add2
+        org.city = org_city
+        org.state = org_state
+        org.zip = org_zip
+        org.office = org_office
+        org.save()
 
 print "Organizations - DONE"
 i = 0
