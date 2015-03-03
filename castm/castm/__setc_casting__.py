@@ -50,7 +50,7 @@ if not event:
     sys.exit(0)
 
 # Create organizations.
-# import csv
+import csv
 # with open('data/__setc_organizations__', 'rU') as csvfile:
 #     reader = csv.reader(csvfile)
 #     lines = list(reader)
