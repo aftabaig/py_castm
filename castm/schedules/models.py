@@ -27,7 +27,7 @@ class Schedule(models.Model):
         )
 
         plain_attendees = []
-        for attendee in self.schedule_attendees.all():
+        for attendee in self.schedule_attendees.all().order_by('id'):
             plain_attendees.append(attendee.plain())
         plain_schedule.attendees = plain_attendees
 
@@ -38,6 +38,9 @@ class ScheduleAttendee(models.Model):
     schedule = models.ForeignKey(Schedule, related_name="schedule_attendees")
     attendee = models.ForeignKey(User)
     attendee_unique_id = models.CharField("Unique Id", max_length=16, blank=True, null=True)
+
+    class Meta:
+        ordering = ['id']
 
     def plain(self):
         talent_info = EventTalentInfo.get_talent_info(self.schedule.event, self.attendee)
