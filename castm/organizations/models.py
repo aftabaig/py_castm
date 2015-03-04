@@ -16,6 +16,7 @@ class Organization(models.Model):
     mobile = models.CharField("Mobile #", max_length=64, blank=True, null=True)
     office = models.CharField("Office #", max_length=64, blank=True, null=True)
     logo = models.CharField("Logo", max_length=255, blank=True, null=True)
+    disable_forms = models.BooleanField('Form Disabled?', default=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def plain(self, include_members=False):
@@ -30,6 +31,7 @@ class Organization(models.Model):
             mobile=self.mobile,
             office=self.office,
             logo=self.logo,
+            disable_forms=self.disable_forms,
             created_at=self.created_at,
         )
         if include_members:
@@ -128,7 +130,7 @@ class OrganizationMember(models.Model):
 
 class PlainOrganization(object):
 
-    def __init__(self, request=None, organization_id=None, name=None, add1=None, add2=None, city=None, state=None, zip=None, mobile=None, office=None, logo=None, created_at=None, members=None):
+    def __init__(self, request=None, organization_id=None, name=None, add1=None, add2=None, city=None, state=None, zip=None, mobile=None, office=None, logo=None, disable_forms=None, created_at=None, members=None):
         if request:
             self.name = request.DATA.get("name")
             self.add1 = request.DATA.get("add1")
@@ -149,6 +151,7 @@ class PlainOrganization(object):
             self.mobile = mobile
             self.office = office
             self.logo = logo
+            self.disable_forms = disable_forms
             self.created_at = created_at
             self.members = members
 

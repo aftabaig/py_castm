@@ -63,8 +63,8 @@
                 <li ng-if="showOrganization" class=has-sub" style="text-align:center;background-color:black">
                     ^^profile.organization.name^^
                 </li>
-                <li ng-if="showOrganization" class="has-sub" style="text-align:center;background-color:gray">
-                    <a ui-sref="casting.organization.forms({'organizationId': profile.organization.organization_id})" class="">Rating Form</a>
+                <li ng-if="showOrganization && !profile.organization.disable_forms" class="has-sub" style="text-align:center;background-color:gray">
+                    <a ui-sref="casting.organization.forms({'organizationId': profile.organization.organization_id})" class="">Audition Form</a>
                 </li>
                 <li class="has-sub" style="text-align:center;">
                     <a ng-click="toggleMyEvents()" style="cursor:pointer">My Events</a>

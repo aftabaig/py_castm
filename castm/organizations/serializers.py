@@ -39,6 +39,7 @@ class PlainOrganizationSerializer(serializers.Serializer):
     mobile = serializers.CharField(required=False)
     office = serializers.CharField(required=False)
     logo = serializers.CharField(required=False)
+    disable_forms = serializers.BooleanField(required=False)
     created_at = serializers.DateTimeField(required=False, read_only=True)
     members = PlainMemberSerializer(read_only=True, many=True)
 
@@ -55,6 +56,7 @@ class PlainOrganizationSerializer(serializers.Serializer):
             instance.office = attrs.get('office', instance.office)
             if attrs.get('logo'):
                 instance.logo = attrs.get('logo', instance.logo)
+            instance.disable_forms
             return instance
         return PlainOrganization(**attrs)
 

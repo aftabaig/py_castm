@@ -190,7 +190,6 @@ def get_or_update_organization(request, organization_id=None):
             is_member = OrganizationMember.user_is_member_of(user, organization)
             if is_member:
                 plain_organization = organization.plain(include_members=True)
-                logger.debug(plain_organization)
                 serializer = PlainOrganizationSerializer(plain_organization)
                 return Response(serializer.data)
             return Response({
