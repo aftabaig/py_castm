@@ -125,7 +125,7 @@ for schedule_id in schedule_ids:
     i += 1
     start = schedule_audition.get("start")
     end = schedule_audition.get("end")
-    for audition_id in range(start, end):
+    for audition_id in range(start, end+1):
         print "%s -> %s" % (schedule_id, audition_id)
         q1 = models.Q(event=event)
         q2 = models.Q(audition_id=audition_id)
