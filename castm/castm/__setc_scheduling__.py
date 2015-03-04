@@ -130,7 +130,8 @@ for schedule_id in schedule_ids:
         q1 = models.Q(event=event)
         q2 = models.Q(audition_id=audition_id)
         event_talent_info = EventTalentInfo.objects.filter(q1 & q2).first()
-        talent = event_talent_info.talent
-        schedule = Schedule.objects.filter(id=schedule_id).first()
-        schedule_attendee = ScheduleAttendee(schedule=schedule, attendee=talent)
-        schedule_attendee.save()
+        if event_talent_info:
+            talent = event_talent_info.talent
+            schedule = Schedule.objects.filter(id=schedule_id).first()
+            schedule_attendee = ScheduleAttendee(schedule=schedule, attendee=talent)
+            schedule_attendee.save()
