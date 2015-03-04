@@ -21,6 +21,8 @@ from links.models import Link
 from models import PlainMessage
 from talent.models import TalentProfile
 from notifications.views import create_notification
+from events.models import Event
+from organizations.models import Organization, OrganizationMember
 
 logger = logging.getLogger(__name__)
 
@@ -202,5 +204,60 @@ def send_message(request):
         "status": HTTP_404_NOT_FOUND,
         "message": "User not found"
     }, status=HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST', ])
+@permission_classes([IsTalentOrCasting, ])
+def send_broadcast(request, event_id=None):
+
+    me = request.user
+    to = request.DATA.get("to")
+    title = request.DATA.get("title")
+    msg = request.DATA.get("message")
+
+    event = Event.objects.filter(id=event_id).first()
+    if not event:
+        return Response({
+            "status": HTTP_404_NOT_FOUND,
+            "message": "Event not found"
+        }, status=HTTP_404_NOT_FOUND)
+
+    event_organization = event.owner
+    user_organization = OrganizationMember.user_organization(me)
+    if event_organization != user_organization:
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not an authorized member of the event's organization"
+        }, status=HTTP_401_UNAUTHORIZED)
+
+    if not OrganizationMember.user_is_admin(user_organization, me):
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You must be an administrator to broadcast messages"
+        }, status=HTTP_401_UNAUTHORIZED)
+
+    if to == "ALL":
+        recipients = User.objects.all()
+    elif to == "CASTING":
+        recipients = User.objects.filter(my_user__type='C')
+    else:
+        recipients = User.objects.filter(my_user__type='T')
+
+    for recipient in recipients:
+        message = Message()
+        message.from_user = me
+        message.to_user = recipient
+        message.title = title
+        message.message = msg
+        message.save()
+        create_notification("MSG", message.id, me, recipient, message=msg)
+
+    serializer = PlainMessageSerializer({
+        "status": HTTP_200_OK,
+        "message": "Broadcast sent."
+    })
+    return Response(serializer.data)
+
+
 
 

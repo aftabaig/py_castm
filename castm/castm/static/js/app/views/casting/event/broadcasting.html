@@ -19,14 +19,27 @@
                         <h4 class="span12">Message</h4>
                     </div>
                     <div class="widget-body">
+                            <div ng-if="info" class="alert alert-info">
+                                <button ng-click="info=''" class="close" data-dismiss="alert">×</button>
+                                ^^info^^
+                            </div>
+                            <div ng-if="errorMessage" class="alert alert-error">
+                                <button ng-click="errorMessage=''" class="close" data-dismiss="alert">×</button>
+                                ^^errorMessage^^
+                            </div>
                             <form class="form-horizontal" style="margin-right:20px">
-                                <div>
-                                    <span ng-repeat="type in recipientTypes" class="">type</span>
+                                <div style="margin-bottom:10px">
+                                    <span>Recipients: </span>
+                                    <select ng-model="to">
+                                        <option value="">Select</option>
+                                        <option value="ALL">All</option>
+                                        <option value="CASTING">Casting</option>
+                                        <option value="TALENTS">Talents</option>
+                                    </select>
                                 </div>
-                                <textarea rows="5" style="width:100%;margin-right:30px"/>
-                                <span>To:</span>
+                                <textarea ng-model="message" rows="5" style="width:100%;margin-right:30px"/>
                                 <div style="text-align:right;margin-left:20px;margin-top:10px">
-                                    <button ng-click="acceptRequest($parent.$index, false)" class="btn btn-primary" style="text-align:right">Send</button>
+                                    <button ng-disabled="working" ng-click="send()" class="btn btn-primary" style="text-align:right">Send</button>
                                 </div>
                             </form>
                     </div>
