@@ -122,6 +122,7 @@ schedule_audition_ids = [{
 i = 0
 for schedule_id in schedule_ids:
     schedule_audition = schedule_audition_ids[i]
+    i += 1
     start = schedule_audition.get("start")
     end = schedule_audition.get("end")
     for audition_id in range(start, end):
