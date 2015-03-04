@@ -32,6 +32,18 @@ castM.controller("CallbackController", ['$scope', '$rootScope', '$location', '$l
         }
     }
 
+    $scope.getCallbackType = function(abbr) {
+        if (abbr === 'HCB') {
+            return "Headshot/Resume Callback";
+        }
+        else if (abbr === 'DCB') {
+            return 'Dancer Callback';
+        }
+        else {
+            return 'Regular Callback';
+        }
+    }
+
     $scope.search = function() {
         $scope.currentCallbacks = [];
         $scope.currentPage = 0;
@@ -42,7 +54,9 @@ castM.controller("CallbackController", ['$scope', '$rootScope', '$location', '$l
                 var match1 = callback.callback_organization_name.match(re);
                 var match2 = callback.talent_first_name.match(re);
                 var match3 = callback.talent_last_name.match(re);
-                if (match1 || match2 || match3) {
+                var match4 = callback.talent_audition_id.match(re);
+                var match5 = $scope.getCallbackType(callback.callback_type).match(re);
+                if (match1 || match2 || match3 || match4 || match5) {
                     $scope.currentCallbacks.push(callback);
                 }
             })
@@ -102,18 +116,4 @@ castM.controller("CallbackController", ['$scope', '$rootScope', '$location', '$l
     }
     $scope.sortBy("last-name");
 
-    $scope.getCallbackType = function(abbr) {
-        if (abbr === 'HCB') {
-            return "Headshot/Resume Callback";
-        }
-        else if (abbr === 'DCB') {
-            return 'Dancer Callback';
-        }
-        else {
-            return 'Regular Callback';
-        }
-    }
-
-
-    
 }]);
