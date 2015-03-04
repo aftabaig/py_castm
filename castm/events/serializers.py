@@ -7,6 +7,7 @@ class PlainEventSerializer(serializers.Serializer):
     name = serializers.CharField(required=False, read_only=True)
     owner_id = serializers.IntegerField(required=False, read_only=True)
     owner_name = serializers.CharField(required=False, read_only=True)
+    owner_logo = serializers.CharField(required=False, read_only=True)
     add1 = serializers.CharField(required=False, read_only=True)
     add2 = serializers.CharField(required=False, read_only=True)
     city = serializers.CharField(required=False, read_only=True)

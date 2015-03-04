@@ -37,6 +37,7 @@ class Event(models.Model):
             name=self.name,
             owner_id=self.owner.id,
             owner_name=self.owner.name,
+            owner_logo=self.owner.logo,
             add1=self.add1,
             add2=self.add2,
             city=self.city,
@@ -118,6 +119,7 @@ class EventAttendee(models.Model):
             if self.organization:
                 plain_attendee.organization_id = self.organization.id
                 plain_attendee.organization_name = self.organization.name
+                plain_attendee.organization_logo = self.organization.logo
 
         return plain_attendee
 
@@ -233,7 +235,7 @@ class EventOrganizationInfo(models.Model):
 
 
 class PlainEvent(object):
-    def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None,
+    def __init__(self, event_id=None, name=None, owner_id=None, owner_name=None, owner_logo=None,
                  add1=None, add2=None, city=None, state=None, zip=None,
                  audition_start_date=None, audition_end_date=None,
                  audition_time_from=None, audition_time_to=None,
@@ -244,6 +246,7 @@ class PlainEvent(object):
         self.name = name
         self.owner_id = owner_id
         self.owner_name = owner_name
+        self.owner_logo = owner_logo
         self.add1 = add1
         self.add2 = add2
         self.city = city
@@ -262,7 +265,7 @@ class PlainEvent(object):
 
 
 class PlainAttendee(object):
-    def __init__(self, attendance_id=None, organization_id=None, organization_name=None,
+    def __init__(self, attendance_id=None, organization_id=None, organization_name=None, organization_logo=None,
                  attendee_id=None, attendee_audition_id=None,
                  attendee_first_name=None, attendee_last_name=None, attendee_title=None,
                  attendee_thumbnail_url=None, attendee_profile_url=None,
@@ -270,6 +273,7 @@ class PlainAttendee(object):
         self.attendance_id = attendance_id
         self.organization_id = organization_id
         self.organization_name = organization_name
+        self.organization_logo = organization_logo
         self.attendee_id = attendee_id
         self.attendee_audition_id = attendee_audition_id
         self.attendee_first_name = attendee_first_name

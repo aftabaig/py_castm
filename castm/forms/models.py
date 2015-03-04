@@ -25,6 +25,7 @@ class FormField(models.Model):
     title = models.CharField("Field Title", max_length=1024, blank=False)
     max_value = models.IntegerField("Max Value", blank=True, null=True)
     use_stars = models.NullBooleanField(default=False, blank=True, null=True)
+    sort_id = models.IntegerField(blank=True)
 
     def plain(self):
         plain_form = PlainFormField(
