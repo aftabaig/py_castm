@@ -1,0 +1,43 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Broadcasting</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+
+                <!-- Begins Schedules List -->
+                <div class="widget">
+                    <div class="widget-title">
+                        <h4 class="span12">Message</h4>
+                    </div>
+                    <div class="widget-body">
+                            <form class="form-horizontal" style="margin-right:20px">
+                                <div>
+                                    <span ng-repeat="type in recipientTypes" class="">type</span>
+                                </div>
+                                <textarea rows="5" style="width:100%;margin-right:30px"/>
+                                <span>To:</span>
+                                <div style="text-align:right;margin-left:20px;margin-top:10px">
+                                    <button ng-click="acceptRequest($parent.$index, false)" class="btn btn-primary" style="text-align:right">Send</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+                <!-- Ends Schedules List -->
+
+        </div>
+    </div>
+    <!-- End Page Content -->
+</div>
+<!-- End Page Container -->
+
+<div route-loader class="alert alert-success loader">Loading...</div>
+

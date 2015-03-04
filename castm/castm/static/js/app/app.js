@@ -198,6 +198,19 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
+    .state('casting.event.broadcasting', {
+        url: '/events/:eventId/broadcasting',
+        templateUrl: 'static/js/app/views/casting/event/broadcasting.html',
+        controller: 'BroadcastController',
+        resolve: {
+            talentAttendees: function($stateParams, EventService) {
+                return EventService.allTalentAttendees($stateParams.eventId);
+            },
+            castingAttendees: function($stateParams, EventService) {
+                return EventService.allCastingAttendees($stateParams.eventId);
+            }
+        }
+    })
 
 });
 

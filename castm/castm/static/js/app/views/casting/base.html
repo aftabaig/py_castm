@@ -88,6 +88,9 @@
                 <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                     <a ui-sref="casting.event.schedule({'eventId': myEvent.event_id})" class="">Schedule</a>
                 </li>
+                <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
+                    <a ui-sref="casting.event.broadcasting({'eventId': myEvent.event_id})" class="">Broadcast</a>
+                </li>
             </ul>
             <!-- End Sidebar Menu -->
         </div>
