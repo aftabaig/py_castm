@@ -68,6 +68,23 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        changeOrder: function(organizationId, fields) {
+            var url = "api/organizations/" + organizationId + "/forms/orders/";
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'PUT',
+                url: url,
+                data: fields
+            }).success(function(data, status, header, config) {
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
+        },
         fieldTypes: function() {
             types = [];
             types.push({

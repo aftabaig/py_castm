@@ -1,6 +1,7 @@
 castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '$localStorage', 'RatingService', 'fields', function($scope, $rootScope, $location, $localStorage, RatingService, fields) {
 
     $scope.fields = fields;
+    console.dir($scope.fields);
     $scope.fieldTypes = RatingService.fieldTypes();
     $scope.newField = {}
     $scope.updating = false;
@@ -238,6 +239,77 @@ castM.controller("RatingFormController", ['$scope', '$rootScope', '$location', '
             field.use_stars = !field.use_stars;
         }
 
+    }
+
+    $scope.moveUp = function(index) {
+
+        if (index == 0) {
+            return;
+        }
+
+        var field1 = $scope.fields[index];
+        var field2 = $scope.fields[index-1];
+
+        $scope.message = "";
+        $scope.updating = true;
+
+        RatingService.changeOrder($scope.profile.organization.organization_id, {
+            "fields": [{
+                "field_id": field1.id,
+                "sort_id": index-1
+            }, {
+                "field_id": field2.id,
+                "sort_id": index
+            }]
+        })
+        .then(function(fields) {
+
+            $scope.fields = fields;
+
+            $scope.updating = false;
+            $scope.message = "";
+
+        }, function(error) {
+
+            $scope.updating = false;
+            $scope.message = "";
+        })
+
+    }
+
+    $scope.moveDown = function(index) {
+
+        if (index >= $scope.fields.length) {
+            return;
+        }
+
+        var field1 = $scope.fields[index];
+        var field2 = $scope.fields[index+1];
+
+        $scope.message = "";
+        $scope.updating = true;
+
+        RatingService.changeOrder($scope.profile.organization.organization_id, {
+            "fields": [{
+                "field_id": field1.id,
+                "sort_id": index+1
+            }, {
+                "field_id": field2.id,
+                "sort_id": index
+            }]
+        })
+        .then(function(fields) {
+
+            $scope.fields = fields;
+
+            $scope.updating = false;
+            $scope.message = "";
+
+        }, function(error) {
+
+            $scope.updating = false;
+            $scope.message = "";
+        })
     }
 
 }]);

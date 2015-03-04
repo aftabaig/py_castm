@@ -13,6 +13,7 @@ class PlainFormFieldSerializer(serializers.Serializer):
     title = serializers.CharField(required=False, read_only=True)
     max_value = serializers.IntegerField(required=False, read_only=True)
     use_stars = serializers.BooleanField(required=False, read_only=True)
+    sort_id = serializers.IntegerField(required=False)
     items = JSONField(required=False, read_only=True)
 
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -59,5 +60,6 @@ class FormFieldSerializer(serializers.ModelSerializer):
             'title',
             'max_value',
             'use_stars',
+            'sort_id',
             'items',
         )

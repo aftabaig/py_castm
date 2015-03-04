@@ -96,6 +96,12 @@
                         </div>
                     </div>
                     <span class="tools span5">
+                        <button ng-click="moveUp($index)">
+                            <i class="icon-circle-arrow-up"></i>
+                        </button>
+                        <button ng-click="moveDown($index)">
+                            <i class="icon-circle-arrow-down"></i>
+                        </button>
                         <a ng-click="updateField($index)"><span class="label label-warning">Update</span></a>
                         <a ng-click="confirmDelete($index)"><span class="label label-important">Delete</span></a>
                     </span>

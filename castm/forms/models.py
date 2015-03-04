@@ -25,7 +25,10 @@ class FormField(models.Model):
     title = models.CharField("Field Title", max_length=1024, blank=False)
     max_value = models.IntegerField("Max Value", blank=True, null=True)
     use_stars = models.NullBooleanField(default=False, blank=True, null=True)
-    sort_id = models.IntegerField(blank=True)
+    sort_id = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['sort_id', ]
 
     def plain(self):
         plain_form = PlainFormField(
@@ -34,6 +37,7 @@ class FormField(models.Model):
             title=self.title,
             max_value=self.max_value,
             use_stars=self.use_stars,
+            sort_id=self.sort_id,
         )
         plain_items = []
         for item in self.items.all():
@@ -58,13 +62,15 @@ class FieldItem(models.Model):
 
 
 class PlainFormField(object):
-    def __init__(self, organization_id=None, form_id=None, form_type=None, title=None, max_value=None, use_stars=None, items=None):
+    def __init__(self, organization_id=None, form_id=None, form_type=None, title=None,
+                 max_value=None, use_stars=None, sort_id=None, items=None):
         self.organization_id = organization_id
         self.form_id = form_id
         self.form_type = form_type
         self.title = title
         self.max_value = max_value
         self.user_stars = use_stars
+        self.sort_id = sort_id
         self.items = items
 
 

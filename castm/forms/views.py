@@ -120,3 +120,38 @@ def update_or_delete_field(request, organization_id=None, field_id=None):
     }, status=HTTP_404_NOT_FOUND)
 
 
+@api_view(['PUT', ])
+@permission_classes([IsCasting, ])
+def update_form_field_order(request, organization_id=None):
+    user = request.user
+    organization = Organization.objects.filter(id=organization_id).first()
+    arr_fields = request.DATA.get("fields")
+    if organization:
+        is_admin = OrganizationMember.user_is_admin(organization, user)
+        if is_admin:
+            for dict_field in arr_fields:
+                field_id = dict_field.get("field_id")
+                sort_id = dict_field.get("sort_id")
+                field = FormField.objects.filter(id=field_id).first()
+                if field:
+                    field.sort_id = sort_id
+                    field.save()
+                else:
+                    return Response({
+                        "status": HTTP_404_NOT_FOUND,
+                        "message": "Field not found"
+                    }, status=HTTP_404_NOT_FOUND)
+            fields = FormField.objects.filter(form__organization=organization)
+            serializer = FormFieldSerializer(fields, many=True)
+            return Response(serializer.data)
+        return Response({
+            "status": HTTP_401_UNAUTHORIZED,
+            "message": "You are not authorized to perform this operation"
+        }, HTTP_401_UNAUTHORIZED)
+    return Response({
+        "status": HTTP_404_NOT_FOUND,
+        "message": "Organization not found"
+    }, HTTP_404_NOT_FOUND)
+
+
+

@@ -208,10 +208,6 @@ def update_schedules_order(request, event_id=None):
             for dict_schedule in arr_schedules:
                 schedule_id = dict_schedule.get("schedule_id")
                 sort_id = dict_schedule.get("sort_id")
-                logger.debug("schedule_id")
-                logger.debug(schedule_id)
-                logger.debug("sort_id")
-                logger.debug(sort_id)
                 schedule = Schedule.objects.filter(id=schedule_id).first()
                 if schedule:
                     schedule.sort_id = sort_id
