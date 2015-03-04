@@ -44,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/castm/castm/static/js/app/controllers/callback-controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5730337" vertical-offset="0" max-vertical-offset="1860">
-              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -1425,7 +1425,7 @@
     <entry file="file://$PROJECT_DIR$/castm/castm/static/js/app/controllers/callback-controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5730337" vertical-offset="0" max-vertical-offset="1860">
-          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding />
         </state>
       </provider>
