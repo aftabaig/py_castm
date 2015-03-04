@@ -15,7 +15,7 @@ castM.controller("CallbackController", ['$scope', '$rootScope', '$location', '$l
     $scope.currentCallbacks = angular.copy($scope.callbacks);
 
     $scope.currentPage = 0;
-    $scope.pageSize = 30;
+    $scope.pageSize = 5;
     $scope.pageCount = function() {
         return Math.ceil($scope.currentCallbacks.length/$scope.pageSize);
     }
