@@ -32,6 +32,10 @@ castM.controller("CallbackController", ['$scope', '$rootScope', '$location', '$l
         }
     }
 
+    $scope.setCurrentPage = function(pageNum) {
+        $scope.currentPage = pageNum;
+    }
+
     $scope.getCallbackType = function(abbr) {
         if (abbr === 'HCB') {
             return "Headshot/Resume Callback";

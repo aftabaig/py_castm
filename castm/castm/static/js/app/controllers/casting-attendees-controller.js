@@ -63,6 +63,10 @@ castM.controller("CastingAttendeesController", ['$scope', '$rootScope', '$modal'
         }
     }
 
+    $scope.setCurrentPage = function(pageNum) {
+        $scope.currentPage = pageNum;
+    }
+
     $scope.search = function() {
         $scope.currentAttendees = [];
         $scope.currentPage = 0;

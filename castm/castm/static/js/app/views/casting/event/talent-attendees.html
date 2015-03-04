@@ -14,31 +14,43 @@
             <i style="margin-left:-25px" class="icon-search"></i>
         </div>
     </div>
+    <!-- Pagination -->
     <div class="row-fluid">
         <div class="span12" style="width:100%">
-            <div class="span4">
+            <div class="span12">
                 <div class="search-input-area" style="margin-bottom:20px">
+                    <span>Pages: </span>
                     <span ng-click="prevPage()"
-                          style="cursor:pointer"
+                          style="cursor:pointer;margin-right:3px"
                           class="label label-info" > <
                     </span>
-                    <span>
-                        Page ^^currentPage+1^^ of ^^pageCount()^^
+                    <span ng-repeat="i in [] | range: pageCount()"
+                          ng-click="setCurrentPage($index)"
+                          ng-class="{'label-success': currentPage==$index}"
+                          class="label" style="cursor:pointer;margin-right:5px">
+                        ^^$index+1^^
                     </span>
                     <span ng-click="nextPage()"
                           style="cursor:pointer"
                           class="label label-info"> > </span>
                 </div>
             </div>
-            <div class="span4">
-                <div class="search-input-area" style="width:90%;text-align:right;margin-bottom:20px">
+        </div>
+    </div>
+    <!-- Pagination Ends -->
+
+    <!-- Sort & Filter -->
+    <div class="row-fluid">
+        <div class="span12" style="width:100%">
+            <div class="span6">
+                <div class="search-input-area" style="width:90%;text-align:left;margin-bottom:20px">
                     <span>Filter by:&nbsp;</span>
                     <span ng-click="filterBy('')" ng-class="{'label-info': filterParameter == ''}" class="label" style="cursor:pointer" >No Filter</span>
                     <span ng-click="filterBy('un-approved')"  ng-class="{'label-info': filterParameter == 'un-approved'}" class="label" style="cursor:pointer" >Unapproved</span>
                     <span ng-click="filterBy('un-assigned')" ng-class="{'label-info': filterParameter == 'un-assigned'}" class="label" style="cursor:pointer" >Unassigned #</span>
                 </div>
             </div>
-            <div class="span4">
+            <div class="span6">
                 <div class="search-input-area" style="width:90%;text-align:right;margin-bottom:20px">
                     <span>Sort by:&nbsp;</span>
                     <span ng-click="sortBy('first-name')" ng-class="{'label-info': sortParameter == 'first-name'}" class="label" style="cursor:pointer" >First Name</span>
@@ -48,7 +60,8 @@
             </div>
         </div>
     </div>
-    <!-->
+    <!-- Sort & Filter ends -->
+
     <!-- Begin Page Content -->
     <div class="row-fluid">
         <div class="span12">

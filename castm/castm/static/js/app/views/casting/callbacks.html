@@ -24,8 +24,11 @@
                           style="cursor:pointer"
                           class="label label-info" > <
                     </span>
-                    <span>
-                        Page ^^currentPage+1^^ of ^^pageCount()^^
+                    <span ng-repeat="i in [] | range: pageCount()"
+                          ng-click="setCurrentPage($index)"
+                          ng-class="{'label-success': currentPage==$index}"
+                          class="label" style="cursor:pointer;margin-right:5px">
+                        ^^$index+1^^
                     </span>
                     <span ng-click="nextPage()"
                           style="cursor:pointer"

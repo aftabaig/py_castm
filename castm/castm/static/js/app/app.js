@@ -242,6 +242,15 @@ castM.directive('routeLoader', function($rootScope) {
     };
 });
 
+castM.filter('range', function() {
+  return function(input, total) {
+    total = parseInt(total);
+    for (var i=0; i<total; i++)
+      input.push(i);
+    return input;
+  };
+});
+
 
 castM.directive('ngEnter', function () {
     return function (scope, element, attrs) {
