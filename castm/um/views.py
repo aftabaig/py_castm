@@ -31,6 +31,7 @@ from serializers import UserSerializer
 # permissions
 from permissions import IsTalent
 from permissions import IsTalentOrCasting
+from rest_framework.permissions import AllowAny
 
 logger = logging.getLogger(__name__)
 
@@ -211,6 +212,7 @@ def change_password(request):
 
 
 @api_view(['POST', ])
+@permission_classes([AllowAny, ])
 def forgot_password(request):
     email_address = request.DATA.get("email_address")
     if email_address:
