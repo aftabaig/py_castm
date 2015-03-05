@@ -117,8 +117,8 @@ STRIPE = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = 'info@castm.co'
 EMAIL_HOST_PASSWORD = 'Q-n3(qak&H3]XZd'
-EMAIL_PORT = 587
+EMAIL_PORT = 80
