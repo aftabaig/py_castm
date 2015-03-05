@@ -121,4 +121,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = 'info@castm.co'
 EMAIL_HOST_PASSWORD = 'Q-n3(qak&H3]XZd'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
