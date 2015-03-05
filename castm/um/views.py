@@ -216,7 +216,7 @@ def change_password(request):
 def forgot_password(request):
     email_address = request.DATA.get("email_address")
     if email_address:
-        user = User.objects.get(username=email_address)
+        user = User.objects.filter(username=email_address).first()
         if user:
             # create and save a random password.
             password = User.objects.make_random_password(length=16)
