@@ -120,7 +120,7 @@ def sign_up(request):
         msg += 'Click on the following link to activate your account:<br/>'
         msg += '<a href="%s">Activate</a>' % (request.build_absolute_uri(relative_url), )
         logger.debug(msg)
-        send_mail(subject, 'Message', 'info@castm.com', (user.username, ), html_message=msg)
+        send_mail(subject, 'Message', 'info@castm.co', (user.username, ), html_message=msg)
 
         return Response(message('An activation link is sent to your email address.'), status=HTTP_200_OK)
     else:

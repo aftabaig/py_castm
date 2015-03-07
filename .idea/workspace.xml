@@ -65,8 +65,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/castm/um/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40088758" vertical-offset="3119" max-vertical-offset="3795">
-              <caret line="228" column="56" selection-start-line="228" selection-start-column="56" selection-end-line="228" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.37692308" vertical-offset="3145" max-vertical-offset="3795">
+              <caret line="228" column="47" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -1190,8 +1190,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/castm/um/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40088758" vertical-offset="3119" max-vertical-offset="3795">
-          <caret line="228" column="56" selection-start-line="228" selection-start-column="56" selection-end-line="228" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.37692308" vertical-offset="3145" max-vertical-offset="3795">
+          <caret line="228" column="47" selection-start-line="228" selection-start-column="43" selection-end-line="228" selection-end-column="47" />
           <folding />
         </state>
       </provider>
