@@ -148,7 +148,11 @@ def authenticate(request):
             "type": 'S'
         }\n
     """
-    serializer = AuthTokenSerializer(data=request.DATA)
+    data = {
+        "username": request.DATA.get("username").lower(),
+        "password": request.DATA.get("password")
+    }
+    serializer = AuthTokenSerializer(data=data)
     if serializer.is_valid():
         user = serializer.object['user']
         device_type = request.DATA.get("device_type")
