@@ -226,7 +226,7 @@ def forgot_password(request):
             subject = 'Your Cast\'M password'
             msg = 'Your new password is <strong>%s</strong>' % (password, )
             msg += '<br/>You can change it from right within your app'
-            send_mail(subject, 'Message', 'info@castm.com', (email_address, ), html_message=msg)
+            send_mail(subject, 'Message', 'info@castm.co', (email_address, ), html_message=msg)
             return Response(message("An email has been sent to you with the new password"), status=HTTP_200_OK)
         return Response(error_message("Account with this email does not exist."), status=HTTP_400_BAD_REQUEST)
     return Response(error_message("Email is required."), status=HTTP_400_BAD_REQUEST)
