@@ -153,14 +153,12 @@ with open('data/__setc_talent_users_2016__', 'rU') as csvfile:
                 import cloudinary
                 import cloudinary.uploader
                 import cloudinary.api
-                # try:
-                file_name_parts = picture_file.split('.')
-                url = "http://setc.matchingneeds.com/inf/images/om/%s_thumb.%s" % (file_name_parts[0], file_name_parts[1], )
-                response = cloudinary.uploader.upload(url)
-                # except:
-                #     response = {}
-
-                print response
+                try:
+                    file_name_parts = picture_file.split('.')
+                    url = "http://setc.matchingneeds.com/inf/images/om/%s_thumb.%s" % (file_name_parts[0], file_name_parts[1], )
+                    response = cloudinary.uploader.upload(url)
+                except:
+                    response = {}
 
                 # Create user.
                 user, created = User.objects.get_or_create(email=email, username=email)
