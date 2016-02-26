@@ -223,7 +223,7 @@ castM.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
                 return EventService.eventDetail($stateParams.eventId);
             }
         }
-    })
+    });
 
     $httpProvider.interceptors.push('Interceptor');
 
