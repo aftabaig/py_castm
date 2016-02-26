@@ -61,9 +61,11 @@
         <!-- Ends angular and dependencies -->
 
         <script src="{{ STATIC_URL }}js/libs/moment/moment.js" ></script>
+        <script src="{{ STATIC_URL }}js/libs/angucomplete-alt/dist/angucomplete-alt.min.js" ></script>
 
         <!-- Begin app scripts -->
         <script src="{{ STATIC_URL }}js/app/app.js"></script>
+        <script src="{{ STATIC_URL }}js/app/services/interceptor.js"></script>
         <script src="{{ STATIC_URL }}js/app/services/broadcast-service.js"></script>
         <script src="{{ STATIC_URL }}js/app/services/user-service.js"></script>
         <script src="{{ STATIC_URL }}js/app/services/event-service.js"></script>
@@ -80,6 +82,7 @@
         <script src="{{ STATIC_URL }}js/app/controllers/callback-controller.js"></script>
         <script src="{{ STATIC_URL }}js/app/controllers/rating-form-controller.js"></script>
         <script src="{{ STATIC_URL }}js/app/controllers/broadcast-controller.js"></script>
+        <script src="{{ STATIC_URL }}js/app/controllers/rating-controller.js"></script>
         <!-- End app scripts -->
 
         <!-- Begin template related scripts -->

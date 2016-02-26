@@ -4,9 +4,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/my/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -20,9 +17,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -36,9 +30,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/attendees/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -53,9 +44,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/attendees/approved/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -69,9 +57,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/attendees/pending/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url,
             }).success(function(data, status, header, config) {
@@ -85,9 +70,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/casting/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url,
             }).success(function(data, status, header, config) {
@@ -101,9 +83,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/casting/approved/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url,
             }).success(function(data, status, header, config) {
@@ -117,9 +96,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/casting/pending/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url,
             }).success(function(data, status, header, config) {
@@ -133,9 +109,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/requests/" + requestId + "/accept/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url,
             }).success(function(data, status, header, config) {
@@ -149,9 +122,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/requests/" + requestId + "/reject/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url
             }).success(function(data, status, header, config) {
@@ -165,9 +135,6 @@ castM.factory("EventService", function($http, $q, $localStorage) {
             var url = "/api/events/" + eventId + "/attendees/" + talentId + "/info/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url,
                 data: {

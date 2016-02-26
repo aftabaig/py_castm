@@ -5,9 +5,6 @@ castM.factory("BroadcastService", function($http, $q, $localStorage) {
             var url = api_url + eventId + "/broadcast/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'POST',
                 url: url,
                 data: {

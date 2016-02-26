@@ -91,6 +91,9 @@
                 <li ng-if="showEvents && myEvent" class=has-sub" style="text-align:center;background-color:gray">
                     <a ui-sref="casting.event.broadcasting({'eventId': myEvent.event_id})" class="">Broadcast</a>
                 </li>
+                <li ng-if="showEvents && myEvent && !profile.organization.disable_forms" style="text-align:center;background-color:gray">
+                    <a ui-sref="casting.event.rating1({'eventId': myEvent.event_id})" class="">Rate Talent</a>
+                </li>
             </ul>
             <!-- End Sidebar Menu -->
         </div>

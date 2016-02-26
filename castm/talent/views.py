@@ -11,7 +11,7 @@ from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_400_BAD_
 from django.contrib.auth.models import User
 
 # um
-from um.permissions import IsTalent
+from um.permissions import IsTalent, IsTalentOrCasting
 from um.views import error_as_text
 
 # serializers
@@ -197,6 +197,26 @@ def public_headshots(request, user_id=None):
         "message": "Talent not found"
     }, status=HTTP_404_NOT_FOUND)
 
+@api_view(['GET', ])
+@permission_classes([IsTalentOrCasting, ])
+def search_talents(request):
+
+    # get query_string.
+    query_string = request.GET.get("query_string")
+
+    logger.debug(query_string)
+
+    # build search query.
+    q = models.Q(stage_first_name__icontains=query_string)
+    q = q | models.Q(stage_last_name__icontains=query_string)
+    q = q | models.Q(title__icontains=query_string)
+    q = q | models.Q(user__first_name__icontains=query_string)
+    q = q | models.Q(user__last_name__icontains=query_string)
+    talents = TalentProfile.objects.filter(q)
+
+    serializer = PlainProfileSerializer(talents, many=True)
+    return Response(serializer.data)
+
 
 class HeadshotViewSet(viewsets.ModelViewSet):
     permission_classes = (IsTalent, )
@@ -214,6 +234,8 @@ class HeadshotViewSet(viewsets.ModelViewSet):
         obj.headshot = response['url']
         obj.headshot_original = response2['url']
         obj.user = self.request.user
+
+
 
 
 

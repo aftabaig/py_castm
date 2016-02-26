@@ -19,6 +19,8 @@ castM.controller("BroadcastController", ['$scope', '$rootScope', '$location', '$
             return;
         }
 
+
+
         BroadcastService.broadcast($scope.event.event_id, $scope.to, $scope.message)
         .then(function(data) {
             $scope.working = false;

@@ -1,0 +1,41 @@
+<!-- Begin Page Container -->
+<div class="container-fluid">
+
+    <!-- Begin Page Header -->
+    <div class="row-fluid">
+        <div class="span12">
+            <h3 class="page-title">Select Talent</h3>
+        </div>
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Begin Page Content -->
+    <div class="row-fluid">
+        <div class="span12">
+
+            <div class="span12">
+                <div class="form-group">
+                    <label class="col-md-3 col-xs-5 control-label">Search Talent</label>
+                    <div class="col-md-9 col-xs-7">
+                        <angucomplete-alt
+                            id="vendors"
+                            name="vendor_id"
+                            initial-value=""
+                            pause="200"
+                            remote-url="api/talent/search?query_string="
+                            remote-url-data-field="vendors"
+                            title-field="name"
+                            selected-object="asset.vendorSelected"
+                            input-class="form-control"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Page Content -->
+</div>
+<!-- End Page Container -->
+
+<div route-loader class="alert alert-success loader">Loading...</div>
+

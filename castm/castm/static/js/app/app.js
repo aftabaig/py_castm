@@ -4,7 +4,7 @@ function onError(e) {
 }
 
 // Create CastM module.
-var castM = angular.module('castM', ['ngResource', 'ui.router', 'ui.calendar', 'ui.bootstrap', 'ngStorage', 'cgBusy']);
+var castM = angular.module('castM', ['ngResource', 'ui.router', 'ui.calendar', 'ui.bootstrap', 'ngStorage', 'cgBusy', 'angucomplete-alt']);
 
 
 castM.config(function($interpolateProvider) {
@@ -20,7 +20,7 @@ castM.filter('startFrom', function() {
 });
 
 
-castM.config(function($stateProvider, $urlRouterProvider) {
+castM.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise("/login");
 
@@ -214,6 +214,18 @@ castM.config(function($stateProvider, $urlRouterProvider) {
             }
         }
     })
+    .state('casting.event.rating1', {
+        url: '/events/:eventId/rate/step1',
+        templateUrl: 'static/js/app/views/casting/event/rate-step1.html',
+        controller: 'RatingController',
+        resolve: {
+            event: function($stateParams, EventService) {
+                return EventService.eventDetail($stateParams.eventId);
+            }
+        }
+    })
+
+    $httpProvider.interceptors.push('Interceptor');
 
 });
 

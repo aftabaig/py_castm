@@ -4,9 +4,6 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             var url = "/api/organizations/" + organizationId + "/forms/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -20,9 +17,6 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             var url = "/api/organizations/" + organizationId + "/forms/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'POST',
                 url: url,
                 data: field
@@ -37,9 +31,6 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             var url = "/api/organizations/" + organizationId + "/forms/" + field.id + "/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url,
                 data: field
@@ -54,9 +45,6 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             var url = "/api/organizations/" + organizationId + "/forms/" + fieldId + "/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'DELETE',
                 url: url
             }).success(function(data, status, header, config) {
@@ -72,9 +60,6 @@ castM.factory("RatingService", function($http, $q, $localStorage) {
             var url = "api/organizations/" + organizationId + "/forms/orders/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url,
                 data: fields

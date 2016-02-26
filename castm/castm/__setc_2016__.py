@@ -19,6 +19,8 @@ else:
 import django
 django.setup()
 
+import datetime
+
 i=0
 previous_email = ''
 jobs = []
@@ -67,32 +69,37 @@ member.save()
 
 print "Made `April`, the admin of `SETC`"
 
-# Step-4 Create "SETC" event
-event, created = Event.objects.get_or_create(name="SETC", owner=organization)
-event.audition_start_date = "2015-03-04"
-event.audition_end_date = "2015-03-08"
+# Step-4 Create "SETC 2016" event
+event, created = Event.objects.get_or_create(name="SETC 2016", owner=organization)
+event.audition_start_date = "2016-03-04"
+event.audition_end_date = "2016-03-08"
 event.audition_time_from = "12:00"
 event.audition_time_to = "20:00"
-event.callback_start_date = "2015-03-04"
-event.callback_end_date = "2015-03-08"
+event.callback_start_date = "2016-03-04"
+event.callback_end_date = "2016-03-08"
 event.callback_time_from = "12:00"
 event.callback_time_to = "20:00"
+event.add1 = "3121 W Gate City Blvd."
+event.add2 = ""
+event.city = "Greensboro"
+event.state = "NC"
+event.zip = "27407"
 event.save()
 
 print "Created event `SETC`"
 
 import csv
-with open('data/__setc_talent_users__', 'rU') as csvfile:
+with open('data/__setc_talent_users_2016__', 'rU') as csvfile:
     reader = csv.reader(csvfile)
     lines = list(reader)
-    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39, f40, f41, f42, f43 in lines:
+    for f0, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16, f17, f18, f19, f20, f21, f22, f23, f24, f25, f26, f27, f28, f29, f30, f31, f32, f33, f34, f35, f36, f37, f38, f39 in lines:
 
         audition_num = f0
         first_name = f2
         middle_name = f3
         last_name = f4
         street_address1 = f5
-        street_address2 = f43
+        street_address2 = f5
         city = f6
         state = f7
         zip = f8
@@ -108,7 +115,7 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
         weight = f19
         hair_color = f20
         eye_color = f21
-        picture_file = f26
+        picture_file = f25
         play_show = f32
         role = f33
         producing_organization = f35
@@ -146,12 +153,14 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
                 import cloudinary
                 import cloudinary.uploader
                 import cloudinary.api
-                try:
-                    file_name_parts = picture_file.split('.')
-                    url = "http://setc.matchingneeds.com/inf/images/om/%s_thumb.%s" % (file_name_parts[0], file_name_parts[1], )
-                    response = cloudinary.uploader.upload(url)
-                except:
-                    response = {}
+                # try:
+                file_name_parts = picture_file.split('.')
+                url = "http://setc.matchingneeds.com/inf/images/om/%s_thumb.%s" % (file_name_parts[0], file_name_parts[1], )
+                response = cloudinary.uploader.upload(url)
+                # except:
+                #     response = {}
+
+                print response
 
                 # Create user.
                 user, created = User.objects.get_or_create(email=email, username=email)
@@ -201,10 +210,8 @@ with open('data/__setc_talent_users__', 'rU') as csvfile:
 
                 # Store talent's event related info.
                 info, created = EventTalentInfo.objects.get_or_create(event=event, talent=user, audition_id=audition_num)
-                date_parts = begin_avail.split('/')
-                info.availability_date_start = "20%s-%s-%s" % (date_parts[2], date_parts[0], date_parts[1], )
-                date_parts = end_avail.split('/')
-                info.availability_date_end = "20%s-%s-%s" % (date_parts[2], date_parts[0], date_parts[1], )
+                info.availability_date_start = datetime.date(1900, 1, 1) + datetime.timedelta(int(begin_avail))
+                info.availability_date_end = datetime.date(1900, 1, 1) + datetime.timedelta(int(end_avail))
                 info.availability_flexible = dates_flexible
                 info.hiring_preferences = work_preferences
                 info.save()

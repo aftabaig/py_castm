@@ -5,9 +5,6 @@ castM.factory("CallbackService", function($http, $q, $localStorage) {
             var url = api_url + eventId + "/callbacks/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'GET',
                 url: url
             }).success(function(data, status, header, config) {
@@ -21,9 +18,6 @@ castM.factory("CallbackService", function($http, $q, $localStorage) {
             var url = api_url + eventId + "/schedules/" + scheduleId + "/";
             var defer = $q.defer();
             $http({
-                headers: {
-                    'Authorization': 'Token ' + $localStorage.user.token
-                },
                 method: 'PUT',
                 url: url,
                 data: callbacks

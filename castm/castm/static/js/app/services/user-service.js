@@ -35,6 +35,23 @@ castM.factory("UserService", function($http, $q, $localStorage) {
             });
             return defer.promise;
         },
+        search: function(query_string) {
+            var url = "/api/talent/search?query_string=" + query_string;
+            var defer = $q.defer();
+            $http({
+                headers: {
+                    'Authorization': 'Token ' + $localStorage.user.token
+                },
+                method: 'GET',
+                url: url
+            }).success(function(data, status, header, config) {
+                console.dir(data);
+                defer.resolve(data);
+            }).error(function(data, status, header, config) {
+                defer.reject(status);
+            });
+            return defer.promise;
+        },
         headshots: function() {
             var url = "/api/casting/headshots/";
             var defer = $q.defer();
