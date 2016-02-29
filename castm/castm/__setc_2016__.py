@@ -99,7 +99,7 @@ with open('data/__setc_talent_users_2016__', 'rU') as csvfile:
         middle_name = f3
         last_name = f4
         street_address1 = f5
-        street_address2 = f5
+        street_address2 = f43
         city = f6
         state = f7
         zip = f8
@@ -115,7 +115,7 @@ with open('data/__setc_talent_users_2016__', 'rU') as csvfile:
         weight = f19
         hair_color = f20
         eye_color = f21
-        picture_file = f25
+        picture_file = f26
         play_show = f32
         role = f33
         producing_organization = f35

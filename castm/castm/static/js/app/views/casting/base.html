@@ -66,6 +66,7 @@
                 <li ng-if="showOrganization && !profile.organization.disable_forms" class="has-sub" style="text-align:center;background-color:gray">
                     <a ui-sref="casting.organization.forms({'organizationId': profile.organization.organization_id})" class="">Audition Form</a>
                 </li>
+                <div>
                 <li class="has-sub" style="text-align:center;">
                     <a ng-click="toggleMyEvents()" style="cursor:pointer">My Events</a>
                 </li>
@@ -94,6 +95,7 @@
                 <li ng-if="showEvents && myEvent && !profile.organization.disable_forms" style="text-align:center;background-color:gray">
                     <a ui-sref="casting.event.rating1({'eventId': myEvent.event_id})" class="">Rate Talent</a>
                 </li>
+            </div>
             </ul>
             <!-- End Sidebar Menu -->
         </div>
