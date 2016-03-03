@@ -116,9 +116,16 @@ STRIPE = {
     'publishable_key': 'pk_live_nSOXQM3oTgU6WoTSG5yY2VqM'
 }
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = False
+# EMAIL_HOST = 'a2plcpnl0117.prod.iad2.secureserver.net'
+# EMAIL_HOST_USER = 'info@castm.co'
+# EMAIL_HOST_PASSWORD = 'Q-n3(qak&H3]XZd'
+# EMAIL_PORT = 465
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = False
-EMAIL_HOST = 'a2plcpnl0117.prod.iad2.secureserver.net'
-EMAIL_HOST_USER = 'info@castm.co'
-EMAIL_HOST_PASSWORD = 'Q-n3(qak&H3]XZd'
-EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'aftab@techverx.com'
+EMAIL_HOST_PASSWORD = 'Chaghi25BigMac'
+EMAIL_PORT = 587
