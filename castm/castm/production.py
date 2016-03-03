@@ -121,4 +121,4 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'a2plcpnl0117.prod.iad2.secureserver.net'
 EMAIL_HOST_USER = 'info@castm.co'
 EMAIL_HOST_PASSWORD = 'Q-n3(qak&H3]XZd'
-EMAIL_PORT = 25
+EMAIL_PORT = 465
