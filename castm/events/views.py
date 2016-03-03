@@ -160,7 +160,8 @@ def my_events(request):
 def user_attending_events(request):
     user = request.user
     if user.my_user.type == 'T':
-        events = talent_attending_events(user)
+        events = []
+        #events = talent_attending_events(user)
     else:
         events = []
         #events = casting_attending_events(user)
