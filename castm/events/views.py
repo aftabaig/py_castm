@@ -162,7 +162,8 @@ def user_attending_events(request):
     if user.my_user.type == 'T':
         events = talent_attending_events(user)
     else:
-        events = casting_attending_events(user)
+        events = []
+        #events = casting_attending_events(user)
     serializer = PlainEventSerializer(events, many=True)
     return Response(serializer.data)
 
