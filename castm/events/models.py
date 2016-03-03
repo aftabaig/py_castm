@@ -84,8 +84,6 @@ class Event(models.Model):
                 user_events.append(event)
             # in case the user's organization is the
             # owner of the event.
-            elif user_organization == event.owner:
-                user_events.append(event)
         return user_events
 
 
